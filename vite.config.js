@@ -12,7 +12,7 @@ export default {
   resolve: {
     extensions: [".js", ".jsx"],
   },
-  plugins: [react(), ssr()],
+  plugins: [react(), ssr({ prerender: true })],
   optimizeDeps: {
     esbuildOptions: {
       loader: {

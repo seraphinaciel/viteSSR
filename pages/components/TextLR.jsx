@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import PropTypes from "prop-types";
-import styles from "./TextLR.module.css";
 import { gsap } from "gsap/dist/gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
+import styles from "./TextLR.module.css";
 
 gsap.registerPlugin(ScrollTrigger);
 

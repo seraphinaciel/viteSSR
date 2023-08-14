@@ -11,7 +11,7 @@
     @apply text-red-600 p-10 m-10 border;
   }
   button {
-    @apply p-2 border rounded-md bg-slate-300 hover:bg-slate-700 hover:text-white;
+    @apply p-2 border rounded-md  hover:bg-slate-700 hover:text-white;
   }
 }
 @layer components {

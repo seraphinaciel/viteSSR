@@ -1,26 +1,32 @@
-### 조건
-
-- SSR, Seo 최적화, PHP
-- Next.js (X)
-
-### vite에서 SSR
-
-[vite 도움말](https://ko.vitejs.dev/guide/ssr.html)
-
-[plugin/tools](https://github.com/vitejs/awesome-vite#ssr)
-
 ### 프로젝트 폴더 생성 및 초기화
+
+> vite, vite-plugin-ssr 같이 설치
+
+> react 엔터
 
 [vite-plugin-ssr](https://vite-plugin-ssr.com/)
 
 ```bash
 npm init vite-plugin-ssr@latest
+
+    Need to install the following packages:
+      create-vite-plugin-ssr@0.0.296
+    Ok to proceed? (y) // y 엔터
+    ? Project name: » vite-ssr-project // 프로젝트 이름 적고 엔터
+
+    Scaffolding project in C:\__work\project-01\vite-ssr-project...
+    ? Select a boilerplate: ...
+      vue
+      vue-ts
+    > react // react 엔터
+      react-ts
+
 cd my-react-project
 npm install
 npm run dev
 ```
 
-#### tailwind.css / PostCSS
+#### tailwind.css / PostCSS 설치
 
 [Install Tailwind CSS with Vite](https://tailwindcss.com/docs/guides/vite)
 
@@ -30,32 +36,12 @@ npm run dev
 npm install -D tailwindcss postcss autoprefixer
 npm install -D postcss-import
 npm install postcss-nesting
-
 ```
 
-```js
-// tailwind.config.js
-export default {
-  content: [
-    "./renderer/*.{js,ts,jsx,tsx}",
-    "./index.html",
-    "./pages/**/*.{js,ts,jsx,tsx}",
-  ],
-  // 그 외 커스텀
-};
+### gsap 설치
 
-// postcss.config.js
-module.exports = {
-  plugins: {
-    "postcss-import": {},
-    "tailwindcss/nesting": "postcss-nesting",
-
-    // 필요한 구문 사용
-
-    tailwindcss: {},
-    autoprefixer: {},
-  },
-};
+```bash
+npm install gsap
 ```
 
 ### 폴더 용도
@@ -68,8 +54,13 @@ module.exports = {
 - 중복되는 기능들 모음집(?) : pages/components/##.jsx
 - tailwind.css 모음 : /styles/index.css
 
-### gsap
+page file 접미사
 
-`npm install gsap`
+- page.js: Node.js뿐만 아니라 브라우저에서 실행
+- page.client.js: 브라우저에서만 실행
+- page.server.js: Node.js에서만 실행
+- page.route.js: 페이지의 Route String 또는 Route Function을 정의
 
-> 🛢 gsap 이 안됨..ㅠㅠㅠㅠㅠ
+모든 페이지에 기본 적용
+/renderer/\_default.page.client.js
+/renderer/\_default.page.server.js

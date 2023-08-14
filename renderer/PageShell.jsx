@@ -1,9 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
-import logo from "./logo.svg";
 import "../styles/index.css";
 import { PageContextProvider } from "./usePageContext";
-import { Link } from "./Link";
+
+import { Header } from "./Header";
+import { Footer } from "./Footer";
 import { childrenPropType } from "./PropTypeValues";
 
 export { PageShell };
@@ -17,22 +18,11 @@ function PageShell({ pageContext, children }) {
     <React.StrictMode>
       <PageContextProvider pageContext={pageContext}>
         <Layout>
-          <Header>
-            <Logo />
-            <nav>
-              <Link className="navitem" href="/">
-                Home
-              </Link>
-              <Link className="navitem" href="/about">
-                About
-              </Link>
-              <Link className="navitem" href="/work">
-                Work
-              </Link>
-            </nav>
-          </Header>
+          <Header />
 
           <Content>{children}</Content>
+
+          <Footer />
         </Layout>
       </PageContextProvider>
     </React.StrictMode>
@@ -43,37 +33,7 @@ Layout.propTypes = {
   children: childrenPropType,
 };
 function Layout({ children }) {
-  return (
-    <div
-      style={{
-        maxWidth: 1200,
-        margin: "auto",
-      }}
-    >
-      {children}
-    </div>
-  );
-}
-
-Header.propTypes = {
-  children: childrenPropType,
-};
-function Header({ children }) {
-  return (
-    <div
-      style={{
-        padding: 20,
-        flexShrink: 0,
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "space-between",
-        lineHeight: "1.8em",
-        backgroundColor: "#f5f5f5",
-      }}
-    >
-      {children}
-    </div>
-  );
+  return <div>{children}</div>;
 }
 
 Content.propTypes = {
@@ -81,29 +41,15 @@ Content.propTypes = {
 };
 function Content({ children }) {
   return (
-    <div
+    <main
       style={{
         padding: 20,
         paddingBottom: 50,
+        maxWidth: "1280px",
         minHeight: "100vh",
       }}
     >
       {children}
-    </div>
-  );
-}
-
-function Logo() {
-  return (
-    <div
-      style={{
-        marginTop: 20,
-        marginBottom: 10,
-      }}
-    >
-      <a href="/">
-        <img src={logo} height={64} width={64} alt="logo" />
-      </a>
-    </div>
+    </main>
   );
 }

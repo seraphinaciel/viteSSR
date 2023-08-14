@@ -5,7 +5,7 @@ export const passToClient = ["pageProps", "urlPathname"];
 import ReactDOMServer from "react-dom/server";
 import { PageShell } from "./PageShell";
 import { escapeInject, dangerouslySkipEscape } from "vite-plugin-ssr/server";
-import logoUrl from "./logo.svg";
+import logoUrl from "/images/logo.svg";
 
 async function render(pageContext) {
   const { Page, pageProps } = pageContext;
@@ -20,14 +20,11 @@ async function render(pageContext) {
 
   // See https://vite-plugin-ssr.com/head
   const { documentProps } = pageContext.exports;
-  const title =
-    (documentProps && documentProps.title) ||
-    pageContext.exports.title ||
-    "The J";
-  const desc =
-    (documentProps && documentProps.description) ||
-    pageContext.exports.description ||
-    "Anything";
+
+  const title = (documentProps && documentProps.title) || "The J";
+  const desc = (documentProps && documentProps.description) || "Anything";
+
+  // console.log(pageContext, "hello " + pageContext._pageRoutes[0].pageId);
 
   const documentHtml = escapeInject`<!DOCTYPE html>
     <html lang="ko">
