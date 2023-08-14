@@ -6,6 +6,7 @@ import styles from "./Work.module.css";
 import SvgLine from "#root/components/SvgLine";
 import TextBanner from "#root/components/TextMarquee/TextMarquee";
 import Video from "#root/components/Video/Video";
+import CircleBox from "#root/components/CircleBox/CircleBox";
 
 export const title = "🥰 work2",
   description = "this is a work2 page.";
@@ -54,10 +55,10 @@ function Page() {
 
       <div style={{ height: "100vh" }}></div>
 
+      <CircleBox imgSrc="https://www.w3schools.com/html/mov_bbb.mp4" />
       <Video id="bigger" src="https://www.w3schools.com/html/mov_bbb.mp4" />
-      <Video id="smaller" src="https://www.w3schools.com/html/mov_bbb.mp4" />
+      <Video id="smaller" src="https://www.w3schools.com/tags/movie.mp4" />
     </>
   );
 }
-
 export { Page };

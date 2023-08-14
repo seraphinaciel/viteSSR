@@ -29,3 +29,28 @@
     @apply text-sky-700 text-lg mb-4;
   }
 }
+.cursor-dot,
+.cursor-dot-outline {
+  @apply pointer-events-none fixed top-0 left-0 rounded-full cursor-none;
+  transform: translate(-50%, -50%);
+  transition: all 0.3s ease-in-out, transform 0.1s ease-in-out;
+  will-change: width, height, transform;
+  z-index: 999;
+}
+
+.cursor-dot {
+  @apply w-2 h-2 bg-red-600/100;
+  &.active-link {
+    @apply w-10 h-10 bg-red-600/50;
+  }
+  &.active-video {
+    @apply w-72 h-72 bg-teal-500/60;
+  }
+}
+
+.cursor-dot-outline {
+  @apply w-10 h-10 bg-red-600/50 opacity-0;
+  &.active-link {
+    @apply opacity-0;
+  }
+}

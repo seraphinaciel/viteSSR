@@ -4,10 +4,9 @@ import { gsap } from "gsap/dist/gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import styles from "./TextReveal.module.css";
 
+gsap.registerPlugin(ScrollTrigger);
 export default function TextReveal({ content }) {
   useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
-
     gsap.utils.toArray("#transition-wrap").forEach((section, index) => {
       const w = section.querySelector("div");
       const [x, xEnd] =

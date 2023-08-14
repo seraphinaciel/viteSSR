@@ -1,11 +1,18 @@
 .movieBox {
-  @apply h-screen flex flex-col items-center justify-center bg-slate-200;
+  @apply h-screen flex flex-col items-center justify-center bg-slate-200 mb-10;
   .box {
-    @apply w-[20vw] bg-orange-400;
+    @apply w-[100vw] aspect-video bg-orange-400;
+    clip-path: inset(50%);
   }
   .box-container__smaller .box {
     @apply w-[100vw] bg-orange-400;
   }
-  h1 {
+  video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100vw;
+    width: 100vw;
+    object-fit: cover;
   }
 }

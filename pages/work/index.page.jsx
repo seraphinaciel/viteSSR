@@ -1,6 +1,7 @@
 import styles from "./Work.module.css";
 import TextLR from "#root/components/TextLR/TextLR";
 import TextBanner from "#root/components/TextMarquee/TextMarquee";
+// import Cursor from "../../renderer/Cursor";
 
 export const title = "🥰 work",
   description = "this is a work page.";
@@ -8,6 +9,7 @@ export const title = "🥰 work",
 function Page() {
   return (
     <>
+      {/* <Cursor /> */}
       <h1 className={styles.name}>Work</h1>
       <TextLR id="out" conLeft="GET ON THE" conRight="ELEVATOR" />
       <TextLR id="in" conLeft="Apple is" conRight="expensive" />
