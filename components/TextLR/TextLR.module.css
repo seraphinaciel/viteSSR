@@ -1,0 +1,6 @@
+.elevator {
+  @apply text-green-900 text-5xl grid grid-cols-2 gap-3 bg-slate-400;
+  .elevatorL {
+    @apply text-right;
+  }
+}

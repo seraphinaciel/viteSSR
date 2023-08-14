@@ -1,6 +1,6 @@
 import { Counter } from "./Counter";
-import Button from "../components/Button";
-import Text from "../components/Text";
+import Button from "../../components/Button";
+import Text from "../../components/Text";
 
 // head의 title, meta 내용
 

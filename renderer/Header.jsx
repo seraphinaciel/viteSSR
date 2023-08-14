@@ -7,6 +7,7 @@ export { Header };
 Link.propTypes = {
   className: PropTypes.string,
   href: PropTypes.string.isRequired,
+  text: PropTypes.string.isRequired,
 };
 function Link(props) {
   const pageContext = usePageContext();
@@ -16,7 +17,11 @@ function Link(props) {
   ]
     .filter(Boolean)
     .join(" ");
-  return <a {...props} className={className} />;
+  return (
+    <a {...props} className={className}>
+      {props.text}
+    </a>
+  );
 }
 
 function Logo() {
@@ -49,18 +54,10 @@ function Header() {
       <Logo />
 
       <nav>
-        <Link className="navitem" href="/">
-          Home
-        </Link>
-        <Link className="navitem" href="/about">
-          About
-        </Link>
-        <Link className="navitem" href="/work">
-          Work
-        </Link>
-        <Link className="navitem" href="/work2">
-          Work2
-        </Link>
+        <Link href="/" text="Home" />
+        <Link href="/about" text="About" />
+        <Link href="/work" text="Work" />
+        <Link href="/work2" text="Work2" />
       </nav>
     </header>
   );

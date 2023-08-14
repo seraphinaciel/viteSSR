@@ -24,8 +24,6 @@ async function render(pageContext) {
   const title = (documentProps && documentProps.title) || "The J";
   const desc = (documentProps && documentProps.description) || "Anything";
 
-  // console.log(pageContext, "hello " + pageContext._pageRoutes[0].pageId);
-
   const documentHtml = escapeInject`<!DOCTYPE html>
     <html lang="ko">
       <head>

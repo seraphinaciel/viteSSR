@@ -45,7 +45,6 @@ function Content({ children }) {
       style={{
         padding: 20,
         paddingBottom: 50,
-        maxWidth: "1280px",
         minHeight: "100vh",
       }}
     >

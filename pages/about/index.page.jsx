@@ -1,5 +1,5 @@
 import styles from "./About.module.css";
-import Text from "../components/Text";
+import Text from "../../components/Text";
 export { Page };
 
 export const documentProps = {
