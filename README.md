@@ -73,3 +73,4 @@ module.exports = {
 `npm install gsap`
 
 > 🛢 gsap 이 안됨..ㅠㅠㅠㅠㅠ
+# viteSSR
