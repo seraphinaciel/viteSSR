@@ -1,0 +1,10 @@
+.elevator {
+  @apply text-sky-500 text-5xl grid grid-cols-2 gap-3 bg-slate-400;
+  .elevatorL {
+    @apply text-right;
+  }
+}
+
+.name {
+  color: green;
+}
