@@ -1,5 +1,4 @@
 import { Counter } from "./Counter";
-import Button from "../../components/Button";
 import Text from "../../components/Text";
 
 // head의 title, meta 내용
@@ -20,7 +19,6 @@ function Page() {
           Interactive. <Counter />
         </li>
       </ul>
-      <Button label="hello Btn" />
     </>
   );
 }

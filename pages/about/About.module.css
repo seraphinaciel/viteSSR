@@ -3,3 +3,9 @@
   padding: 3px 5px;
   border-radius: 4px;
 }
+.text_reveal {
+  @apply max-w-3xl mx-auto p-8 pt-16;
+  & > div {
+    @apply text-6xl/[76px] text-slate-700 dark:text-gray-200 text-center font-black;
+  }
+}

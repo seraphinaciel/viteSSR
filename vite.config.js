@@ -18,6 +18,7 @@ export default {
       loader: {
         ".cjs": "js", // CommonJS 모듈을 JS로 로드하도록 설정
       },
+      // exclude: ["splitting"],
     },
   },
 };

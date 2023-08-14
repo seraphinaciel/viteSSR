@@ -22,28 +22,26 @@ export default function Textmarquee({ content, speed, withSvg, svgId }) {
       const firstElement = parentSelector.children[0];
       const distanceX = firstElement.clientWidth;
 
-      const timel = gsap.timeline();
-      timel
-        .fromTo(
-          firstElement,
-          { marginLeft: 0 },
-          {
-            marginLeft: -distanceX,
-            duration: speed,
-            ease: "none",
-            repeat: -1,
-            start: "top center",
-            end: "+=bottom",
-          }
-        )
-        .to(parentSelector, {
-          x: xEnd,
-          scrollTrigger: {
-            trigger: firstElement,
-            scrub: 1,
-            markers: true,
-          },
-        });
+      const tl = gsap.timeline();
+      tl.fromTo(
+        firstElement,
+        { marginLeft: 0 },
+        {
+          marginLeft: -distanceX,
+          duration: speed,
+          ease: "none",
+          repeat: -1,
+          start: "top center",
+          end: "+=bottom",
+        }
+      ).to(parentSelector, {
+        x: xEnd,
+        scrollTrigger: {
+          trigger: firstElement,
+          scrub: 1,
+          markers: true,
+        },
+      });
     });
   }, [speed]);
 

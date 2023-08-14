@@ -1,0 +1,11 @@
+.movieBox {
+  @apply h-screen flex flex-col items-center justify-center bg-slate-200;
+  .box {
+    @apply w-[20vw] bg-orange-400;
+  }
+  .box-container__smaller .box {
+    @apply w-[100vw] bg-orange-400;
+  }
+  h1 {
+  }
+}

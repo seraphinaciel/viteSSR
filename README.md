@@ -42,6 +42,14 @@ npm install postcss-nesting
 npm install gsap
 ```
 
+### splitting 설치
+
+[more](https://splitting.js.org/)
+
+```bash
+npm i splitting -s
+```
+
 ### 폴더 용도
 
 > 자세한 내용은 주석 참고
@@ -248,9 +256,15 @@ useEffect(() => {
 }, []);
 ```
 
+### 8.11.
+
+- 아이콘(얘도 스크롤) + marquee 같이 되는거 만들어야 함
+- 만들어 둔 거 옮기기
+
 ### 8.10.
 
 - 아이콘(얘도 스크롤) + marquee 같이 되는거 만들어야 함
+- 만들어 둔 거 옮기기
 
 ### 23.8.9
 
