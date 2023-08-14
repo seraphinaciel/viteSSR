@@ -1,7 +1,6 @@
 import styles from "./Work.module.css";
 import TextLR from "../components/TextLR";
-
-export const title = "🥰 Testing",
+export const title = "🥰 work",
   description = "this is a work page.";
 
 function Page() {
