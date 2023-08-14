@@ -248,6 +248,10 @@ useEffect(() => {
 }, []);
 ```
 
+### 8.14.
+
+- add to custom cursor, video
+
 ### 8.11.
 
 - 아이콘(얘도 스크롤) + marquee 같이 되는거 만들어야 함
