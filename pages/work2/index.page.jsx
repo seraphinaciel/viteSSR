@@ -3,8 +3,9 @@ import { gsap } from "gsap/dist/gsap";
 
 import styles from "./Work.module.css";
 
-import SvgLine from "../../components/SvgLine";
-import TextBanner from "../../components/TextMarquee/TextMarquee";
+import SvgLine from "#root/components/SvgLine";
+import TextBanner from "#root/components/TextMarquee/TextMarquee";
+import Video from "#root/components/Video/Video";
 
 export const title = "🥰 work2",
   description = "this is a work2 page.";
@@ -52,6 +53,9 @@ function Page() {
       </div>
 
       <div style={{ height: "100vh" }}></div>
+
+      <Video id="bigger" src="https://www.w3schools.com/html/mov_bbb.mp4" />
+      <Video id="smaller" src="https://www.w3schools.com/html/mov_bbb.mp4" />
     </>
   );
 }

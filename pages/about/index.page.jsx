@@ -1,8 +1,9 @@
 import styles from "./About.module.css";
-import Text from "../../components/Text";
-import Button from "../../components/Button";
-import TextSplit from "../../components/TextSplit";
-import TextTyping from "../../components/TextTyping";
+import Text from "#root/components/Text";
+import Button from "#root/components/Button";
+import TextSplit from "#root/components/TextSplit";
+import TextTyping from "#root/components/TextTyping";
+import SvgIcons from "#root/components/SvgIcons";
 
 export { Page };
 
@@ -23,9 +24,6 @@ function Page(pageContext) {
       <br />
       <br />
       <br />
-      <TextTyping content="As human beings we often find ourselves feeling out of place in the world around us We sense that something is not quite right that the reality we experience is not necessarily the truth" />
-      {/* . , / 안읽힘 */}
-
       <ul>
         <li>
           <Text content="공통 !" />
@@ -35,16 +33,32 @@ function Page(pageContext) {
         </li>
       </ul>
 
-      <div className={styles.text_reveal} style={{ marginBottom: "200vh" }}>
+      <div className={styles.text_reveal}>
         <div>
-          <TextSplit content="Design is" />
-          <TextSplit content="intelligence" />
-          <TextSplit content="made visible." />
+          <TextSplit content="version 1" />
           <TextSplit content="Design is" />
           <TextSplit content="intelligence" />
           <TextSplit content="made visible." />
         </div>
       </div>
+
+      <div className={styles.text_reveal}>
+        <div>
+          <TextTyping splitBy="words" content="version 2" />
+          <TextTyping splitBy="words" content="디자인은" />
+          <TextTyping splitBy="words" content="눈에 보이는 " />
+          <TextTyping splitBy="words" content="지성입니다...?" />
+        </div>
+      </div>
+
+      <div className={styles.text_split}>
+        <TextTyping
+          splitBy="letter"
+          content="As human beings, we often find ourselves feeling out of place in the world around us. We sense that something is not quite right that the reality we experience is not necessarily the truth"
+        />
+      </div>
+
+      <SvgIcons />
     </>
   );
 }

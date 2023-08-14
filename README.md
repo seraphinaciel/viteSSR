@@ -42,14 +42,6 @@ npm install postcss-nesting
 npm install gsap
 ```
 
-### splitting 설치
-
-[more](https://splitting.js.org/)
-
-```bash
-npm i splitting -s
-```
-
 ### 폴더 용도
 
 > 자세한 내용은 주석 참고

@@ -1,5 +1,5 @@
 import { Counter } from "./Counter";
-import Text from "../../components/Text";
+import Text from "#root/components/Text";
 
 // head의 title, meta 내용
 

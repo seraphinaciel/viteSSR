@@ -1,8 +1,4 @@
-// import { useEffect } from 'react';
-// import PropTypes from 'prop-types';
-// import { gsap } from 'gsap';
-// import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import styles from "../common.module.css";
+import styles from "./common.module.css";
 
 const SvgIcons = () => {
   return (

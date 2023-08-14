@@ -4,14 +4,14 @@ import { gsap } from "gsap/dist/gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import styles from "./Video.module.css";
 
-const Video = ({ id, imgSrc, alt }) => {
+const Video = ({ id, src }) => {
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
     let tlbigger = gsap.timeline({
       scrollTrigger: {
         trigger: `.box-container__${id}`,
-        start: "top top",
+        start: "top 50%",
         end: "+=100%",
         pin: true,
         scrub: true,
@@ -29,10 +29,17 @@ const Video = ({ id, imgSrc, alt }) => {
     };
   }, [id]);
 
+  // 비디오는 배경, 그 위에 박스가 커지고 작아짐
+
   return (
     <section className={`box-container__${id} ${styles.movieBox}`}>
       <div className={`box ${styles.box}`}>
-        <img src={imgSrc} alt={alt} />
+        {/* <img src={imgSrc} alt={alt} /> */}
+
+        <video controls muted autoPlay preload loop>
+          <source src={src} type="video/mp4" />
+          Your browser does not support HTML video.
+        </video>
       </div>
       {id === "smaller" && <h1>hello</h1>}
     </section>
@@ -40,8 +47,8 @@ const Video = ({ id, imgSrc, alt }) => {
 };
 Video.propTypes = {
   id: PropTypes.string.isRequired,
-  imgSrc: PropTypes.string.isRequired,
-  alt: PropTypes.string.isRequired,
+  src: PropTypes.string.isRequired,
+  // alt: PropTypes.string.isRequired,
 };
 export default Video;
 

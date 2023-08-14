@@ -11,6 +11,9 @@ export default {
   // },
   resolve: {
     extensions: [".js", ".jsx"],
+    alias: {
+      "#root": __dirname,
+    },
   },
   plugins: [react(), ssr({ prerender: true })],
   optimizeDeps: {

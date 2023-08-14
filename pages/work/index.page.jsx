@@ -1,6 +1,6 @@
 import styles from "./Work.module.css";
-import TextLR from "../../components/TextLR/TextLR";
-import TextBanner from "../../components/TextMarquee/TextMarquee";
+import TextLR from "#root/components/TextLR/TextLR";
+import TextBanner from "#root/components/TextMarquee/TextMarquee";
 
 export const title = "🥰 work",
   description = "this is a work page.";
