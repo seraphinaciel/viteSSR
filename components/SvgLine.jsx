@@ -4,6 +4,9 @@ import { gsap } from "gsap/dist/gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
+const PropType = {
+  className: PropTypes.string,
+};
 
 const SvgLine = ({ id, className }) => {
   const components = {
@@ -12,6 +15,10 @@ const SvgLine = ({ id, className }) => {
     sThej: <Thej />,
   };
   return components[id] || "No icon";
+};
+SvgLine.propTypes = {
+  ...PropType,
+  id: PropTypes.string.isRequired,
 };
 
 function Bubble({ className }) {
@@ -36,6 +43,7 @@ function Bubble({ className }) {
     </svg>
   );
 }
+Bubble.propTypes = PropType;
 
 function Arrow({ className }) {
   return (
@@ -66,6 +74,7 @@ function Arrow({ className }) {
     </svg>
   );
 }
+Arrow.propTypes = PropType;
 
 function Thej() {
   return (
@@ -123,14 +132,4 @@ function Thej() {
   );
 }
 
-SvgLine.propTypes = {
-  id: PropTypes.string.isRequired,
-  className: PropTypes.string,
-};
-Bubble.propTypes = {
-  className: PropTypes.string,
-};
-Arrow.propTypes = {
-  className: PropTypes.string,
-};
 export default SvgLine;

@@ -8,20 +8,19 @@
 @tailwind utilities;
 
 @layer base {
-  :root {
-    /* breakpoint 
-			html의 font size를 10vw로 고정하고
-			1vw = 1rem = 10px로 맞춤. 
-			이 기준이 적용되는 분기점은 
-			모바일 캔버스 360 x 2,
-			데스크탑 캔버스 1920,
-			그 사이에 임의갑 - 1440 - 지정함.
+  /* breakpoint 
+  html의 font size를 10vw로 고정하고
+  1vw = 1rem = 10px로 맞춤. 
+  이 기준이 적용되는 분기점은 
+  모바일 캔버스 360 x 2,
+  데스크탑 캔버스 1920,
+  그 사이에 임의갑 - 1440 - 지정함.
 
-			html의 기준 값을 조정해주는 역할.
-			미디어쿼리 사용은 class로.
-		*/
-    --test: 720;
-    --canvas: var(--test);
+  html의 기준 값을 조정해주는 역할.
+  미디어쿼리 사용은 class로.
+*/
+  :root {
+    --canvas: 720;
 
     @media (min-width: 721px) {
       --canvas: 1440;
@@ -29,24 +28,38 @@
     @media (min-width: 1441px) {
       --canvas: 1920;
     }
+    @media (min-width: 1920px) {
+      --canvas: 2560;
+    }
   }
   html {
-    font-family: "Poppins", "Pretendard", sans-serif;
-    font-size: calc(10 * 100vw / var(--canvas));
+    font-size: calc(16 * (100vw / var(--canvas)));
+
+    @apply font-poppins;
   }
-  h1 {
-    @apply text-pink-700 bg-pink-50 text-center p-10;
+  body {
+    font-size: 1rem;
   }
   button {
     @apply p-2 border rounded-md  hover:bg-slate-700 hover:text-white;
   }
 
   /* HEADING */
-  .special {
-    @apply text-black text-[64px] lg:text-[200px] capitalize;
+
+  h1 {
+    @apply text-heading-3 desktop:text-special capitalize;
   }
-  .heading__1 {
-    @apply text-black text-[50px]/[60px] lg:text-[130px]/[180px] font-light;
+  h2 {
+    @apply text-heading-5 desktop:text-heading-1 font-light;
+    strong {
+      @apply font-medium;
+    }
+  }
+  /* .special {
+    @apply text-black text-[64px] lg:text-[200px];
+  } */
+  /* .heading__1 {
+    @apply  text-[50px]/[60px] lg:text-[130px]/[180px] font-light;
     strong {
       @apply font-medium;
     }
@@ -56,15 +69,15 @@
   }
   .heading__10 {
     @apply text-black text-[18px]/[30px] lg:text-[20px]/[32px];
-  }
+  } */
 
   /* BODY */
-  .body__1 {
+  /* .body__1 {
     @apply text-2xl/8 lg:text-4xl/[48px] font-medium;
   }
   .body__2 {
     @apply text-[20px]/[30px] lg:text-[26px]/[38px];
-  }
+  } */
 }
 @layer components {
   nav {

@@ -6,9 +6,9 @@ const commonStyle = {
 };
 
 const fontSizeRange = (value) => {
-  const min = 12;
-  const max = Math.round(Number(value.split("rem")[0] * 100 * 1.3 * 0.1));
-  return `min(max(${value}, ${min}px), ${max}px)`;
+  const minFontSize = 12;
+  const maxFontSize = Math.round(Number(value.split("rem")[0] * 100 * 1 * 0.1));
+  return `min(max(${value}, ${minFontSize}px), ${maxFontSize}px)`;
 };
 
 export default {
@@ -36,12 +36,11 @@ export default {
       ud: "3840px",
       // breakpoint
       smart: { max: "414px" },
-      mobile: { min: "0px", max: "720px" },
-      tablet: { min: "721px", max: "1440px" }, // include laptop
-      desktop: { min: "1441px", max: "1920px" },
+      // mobile: { min: "0px" },
+      tablet: { min: "721px" }, // include laptop
+      desktop: { min: "1441px" },
       over: {
-        DEFAULT: { min: "1921px", max: "2560px" },
-        mx: { min: "1921px" },
+        DEFAULT: { min: "1921px" },
         wd: { min: "2561px" },
       },
     },

@@ -2,13 +2,13 @@ import { Fragment } from "react";
 import PropTypes from "prop-types";
 
 // component
-export function Text({ container = "span", children, theme = null }) {
+export function Text({ container = "span", children, className = null }) {
   const Tagname = container;
 
   // children case:Array
   if (Array.isArray(children)) {
     return (
-      <Tagname className={theme}>
+      <Tagname className={className}>
         {[...children].map((content, index) => {
           return (
             <Fragment key={index}>
@@ -22,21 +22,29 @@ export function Text({ container = "span", children, theme = null }) {
   }
 
   // children case:String
-  return <Tagname className={theme}>{children}</Tagname>;
+  return <Tagname className={className}>{children}</Tagname>;
 }
 
-export function Title({ container = "h1", children, theme = null }) {
+export function Title({ container = "h1", children, className = null }) {
   return (
-    <Text container={container} theme={theme}>
+    <Text container={container} className={className}>
       {children}
     </Text>
   );
 }
 
+/* examples
+      <Title>
+        {["We create designs", "to inspire people", "around the world"]}
+      </Title>
+      <Text>
+        {["We create designs", "to inspire people", "around the world"]}
+      </Text>
+ */
 const TextPropsType = {
   container: PropTypes.string,
   children: PropTypes.oneOfType([PropTypes.string, PropTypes.array]).isRequired,
-  theme: PropTypes.oneOfType([
+  className: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.array,
     PropTypes.instanceOf(null),

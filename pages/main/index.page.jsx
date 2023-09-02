@@ -20,8 +20,8 @@ function Page() {
           <SvgLine id="sThej" />
         </MainTitle>
         <div className={`${styles.main_txt} body__2`}>
-          <Text>{"Our latest"}</Text>
-          <Text>{"SCROLL"}</Text>
+          <Text>Our latest</Text>
+          <Text>SCROLL</Text>
         </div>
       </Video>
 

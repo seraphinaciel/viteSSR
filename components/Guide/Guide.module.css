@@ -1,0 +1,17 @@
+.title {
+  @apply desktop:text-special text-heading-1;
+}
+.head {
+  @apply desktop:text-heading-7 text-heading-3 underline underline-offset-4;
+}
+.table {
+  --item-gap: max(3rem, 15px);
+  @apply flex flex-col gap-[1rem] text-body-1;
+  > * {
+    @apply flex flex-row flex-1 gap-[var(--item-gap)] items-center;
+  }
+}
+[class*="bg-"] {
+  --range: max(10rem, 40px);
+  @apply box-border border border-solid border-[#c8b16c] min-w-[var(--range)] h-[var(--range)];
+}

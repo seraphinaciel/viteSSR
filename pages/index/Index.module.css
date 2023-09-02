@@ -1,3 +1,7 @@
+.title {
+  @apply text-heading-3 desktop:text-special over:wd:text-cursor;
+}
+
 .text_reveal {
   @apply mx-auto p-8 pt-16;
   & > div {
