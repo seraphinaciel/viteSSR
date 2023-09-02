@@ -41,7 +41,7 @@
     font-size: 1rem;
   }
   button {
-    @apply p-2 border rounded-md  hover:bg-slate-700 hover:text-white;
+    @apply p-2 border rounded-md hover:bg-slate-700 hover:text-white;
   }
 
   /* HEADING */
@@ -73,14 +73,11 @@
 
   h6 {
     /* 18px / 20px */
-    @apply text-body-1 desktop:text-heading-10;
+    /* @apply text-body-1 desktop:text-heading-10; */
+    @apply text-body-6-kr desktop:text-body-5-kr;
   }
 
   .text_box_1 {
-    @apply text-heading-10 desktop:text-heading-4;
-    em {
-      @apply text-heading-10 desktop:text-body-1 block not-italic;
-    }
   }
 
   .title_flow {
@@ -95,26 +92,32 @@
 
   .text_box_side {
     grid-template-columns: repeat(12, minmax(0, 1fr));
-    @apply desktop:grid desktop:gap-x-5 desktop:mx-20 relative;
+    @apply desktop:grid desktop:gap-x-5 desktop:mx-20 relative px-[2.6471rem] desktop:px-0;
 
     > *:first-child {
       /* 24px / 26px */
       @apply desktop:col-span-3 text-heading-9 desktop:text-heading-8;
     }
     > *:last-child {
-      @apply desktop:col-span-6  text-heading-9 desktop:text-heading-8;
+      @apply desktop:col-span-6 text-heading-9 desktop:text-heading-8;
     }
     .svgAni {
       @apply absolute;
     }
   }
+
   .text_box_noSide {
     grid-template-columns: repeat(12, minmax(0, 1fr));
-    @apply desktop:grid desktop:gap-x-5 desktop:mx-20;
+    @apply px-[2.6471rem] desktop:grid desktop:gap-x-5 desktop:mx-20 desktop:px-0;
 
     > *:last-child {
       @apply desktop:col-start-4 desktop:col-span-8;
     }
+  }
+
+  .title_box {
+    @apply relative grid items-center justify-center desktop:px-11 pt-56 mx-auto;
+    /* s:h-almost-screen s:pt-80 pt-140*/
   }
 
   /* .special {
@@ -154,7 +157,9 @@
   .cursor-dot {
     @apply pointer-events-none fixed top-0 left-0 rounded-full cursor-none w-5 h-5 bg-red-600/100;
     transform: translate(-50%, -50%);
-    transition: width 0.15s ease-in-out, height 0.15s ease-in-out,
+    transition:
+      width 0.15s ease-in-out,
+      height 0.15s ease-in-out,
       transform 0.1s ease-in-out;
     will-change: width, height, transform;
     z-index: 999;

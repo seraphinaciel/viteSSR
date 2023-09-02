@@ -30,16 +30,21 @@ function Page() {
 
       <Sentence tagName="h4" content="Creative Design Technical Agency" />
 
-      <section className={`text_box_1 ${styles.svgTest}`}>
-        <Sentence content="We have implemented various experience, such as global integrated platforms and creative projects.">
-          <SvgLine id="sBubble" className={`svg ${styles.svg01}`} />
-          <SvgLine id="sArrow" className={`svg ${styles.svg02}`} />
-        </Sentence>
+      <section className={`text_box_noSide ${styles.svgTest}`}>
+        <section>
+          <Sentence
+            tagName="h3"
+            content="We have implemented various experience, such as global integrated platforms and creative projects."
+          >
+            <SvgLine id="sBubble" className={`svg ${styles.svg01}`} />
+            <SvgLine id="sArrow" className={`svg ${styles.svg02}`} />
+          </Sentence>
 
-        <Sentence
-          tagName="em"
-          content="글로벌 통합 플랫폼 프로젝트와 크리에이티브 프로젝트 등 다양한 프로젝트들을 수행해 왔습니다."
-        />
+          <Sentence
+            tagName="p"
+            content="글로벌 통합 플랫폼 프로젝트와 크리에이티브 프로젝트 등 다양한 프로젝트들을 수행해 왔습니다."
+          />
+        </section>
       </section>
 
       <div style={{ height: "500vh" }}></div>

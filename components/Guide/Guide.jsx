@@ -54,14 +54,14 @@ export default function Guide() {
     <>
       {/* <div ref={ref}> */}
 
-      <section id="sec01">
+      <section className={styles.font}>
         <Title className={styles.head}>Font size</Title>
 
         <ul className={styles.table}>
           {Object.keys(fontSize).map((name) => {
             return (
               <li key={name}>
-                <p className={`text-${name}`}>text-{name}</p>
+                <p>text-{name}</p>
                 {fontSize[name][0]}
               </li>
             );
@@ -69,7 +69,7 @@ export default function Guide() {
         </ul>
       </section>
 
-      <section id="sec02">
+      <section className={styles.color}>
         <Title className={styles.head}>Colors</Title>
         <ul className={styles.table}>
           {Object.keys(palette).map((name, index) => {
@@ -77,7 +77,7 @@ export default function Guide() {
             return (
               <li key={name}>
                 <div className={boxName}></div>
-                <Text>{[`Color name : bg-${name}`, `${palette[name]}`]}</Text>
+                <Text tagName="p">{[`bg-${name}`, `${palette[name]}`]}</Text>
               </li>
             );
           })}

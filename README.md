@@ -284,6 +284,26 @@ npm install postcss-nesting
 npm install gsap
 ```
 
+### 그 외
+
+#### prettier-plugin-tailwindcss
+
+```bash
+npm install -D prettier prettier-plugin-tailwindcss
+
+```
+
+```js
+# prettier.config.js 파일 생성
+
+module.exports = {
+  plugins: [require("prettier-plugin-tailwindcss")],
+  tailwindConfig: "./tailwind.config.js",
+};
+```
+
+tailwind 클래스명을 정렬해준다.
+
 ### 폴더 용도
 
 > 자세한 내용은 주석 참고

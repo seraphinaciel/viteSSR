@@ -1,14 +1,28 @@
 .head {
   @apply desktop:text-heading-7 text-heading-3 underline underline-offset-4;
 }
-.table {
-  --item-gap: max(3rem, 15px);
-  @apply flex flex-col gap-[1rem] text-body-1;
-  > * {
-    @apply flex flex-row flex-1 gap-[var(--item-gap)] items-center;
+
+.font {
+  @apply flex;
+  ul {
+    @apply w-10/12 mx-auto grid grid-cols-1 md:grid-cols-2 mx:grid-cols-3 text-body-2 gap-6 gap-x-32;
+    li {
+      @apply flex justify-between;
+    }
   }
-  [class*="bg-"] {
-    --range: max(10rem, 40px);
-    @apply box-border border border-solid border-[#c8b16c] min-w-[var(--range)] h-[var(--range)];
+}
+.color {
+  @apply flex;
+  ul {
+    @apply w-10/12 mx-auto grid grid-cols-2 md:grid-cols-4 mx:grid-cols-5 text-body-2 gap-6 gap-x-32;
+    p {
+      @apply flex justify-between;
+    }
+  }
+  .table {
+    div {
+      --range: max(5rem, 20px);
+      @apply box-border border border-solid border-[#c8b16c] min-w-[var(--range)] h-[var(--range)];
+    }
   }
 }

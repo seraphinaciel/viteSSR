@@ -9,6 +9,7 @@ import { Sentence } from "#root/components/TextSplit";
 import TextMove from "#root/components/about/TextMove";
 import SvgIcons from "#root/components/SvgIcons";
 import SvgLine from "#root/components/SvgLine";
+import { TextSvg } from "#root/components/TextSvg";
 
 import Video from "#root/components/Video";
 
@@ -24,7 +25,7 @@ export const documentProps = {
 function Page() {
   return (
     <>
-      <Title className={styles.title}>heading tag</Title>
+      <Title className={styles.title}>heading tag -- eng</Title>
       <h1>h1 64px / 200px</h1>
       <h2>h2 50px / 130px</h2>
       <h3>h3 20px / 60px</h3>
@@ -33,6 +34,11 @@ function Page() {
       <h6>h6 18px / 20px</h6>
       <h7>h7</h7>
       <h8>h8</h8>
+
+      <hr />
+
+      <Title className={styles.title}>Guide</Title>
+      <Guide />
 
       <hr />
 
@@ -77,12 +83,35 @@ function Page() {
       <SvgLine id="sBubble_s" color="red" className="svgAni" />
       <hr />
 
-      <Title className={styles.title}>0</Title>
+      <Title className={styles.title}>TextSvg</Title>
 
+      <div className="w-2/6 mx-auto mt-[70px] gap-y-[30px] flex flex-wrap">
+        <Sentence
+          tagName="h5"
+          content="As technology develops, the combination of UX design and technology will be our powerful force."
+        />
+        <Sentence
+          tagName="h6"
+          content="기술이 발달할수록 크리에이티브와 기술의 결합은 우리의 막강한 힘이 될
+      것이라고 믿습니다."
+        />
+      </div>
+      <TextSvg
+        tagName="div"
+        className="w-2/6 mx-auto mt-[70px] gap-y-[30px] flex flex-wrap"
+      >
+        <Text tagName="h5">
+          {
+            "As technology develops, the combination of UX design and technology will be our powerful force."
+          }
+        </Text>
+        <Text tagName="h6">
+          {
+            "기술이 발달할수록 크리에이티브와 기술의 결합은 우리의 막강한 힘이 될 것이라고 믿습니다."
+          }
+        </Text>
+      </TextSvg>
       <hr />
-
-      <Title className={styles.title}>Guide</Title>
-      <Guide />
 
       {/* <Text content="This page is:" />
       <Button label="hello Btn" />
