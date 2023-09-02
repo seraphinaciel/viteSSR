@@ -1,4 +1,5 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto&family=Poppins&family=IBM+Plex+Sans+KR:wght@100;200;300;400;500;600;700;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;900&display=swap");
+/* @import url("https://fonts.googleapis.com/css2?family=Roboto&family=Poppins&family=IBM+Plex+Sans+KR:wght@100;200;300;400;500;600;700;900&display=swap"); */
 
 @tailwind base;
 @tailwind components;
@@ -6,13 +7,35 @@
 
 @layer base {
   html {
-    font-family: "Poppins", "IBM Plex Sans KR", system-ui, sans-serif;
+    @apply font-sans;
   }
   h1 {
-    @apply text-red-600 p-10 my-10 border;
+    @apply text-pink-700 bg-pink-50 text-center p-10;
   }
   button {
     @apply p-2 border rounded-md  hover:bg-slate-700 hover:text-white;
+  }
+
+  /* HEADING */
+  .special {
+    @apply text-black text-[64px] lg:text-[200px] capitalize;
+  }
+  .heading__1 {
+    @apply text-black text-[50px]/[60px] lg:text-[130px]/[180px] font-light;
+    strong {
+      @apply font-medium;
+    }
+  }
+  .heading__4 {
+    @apply text-black text-xl/[30px] lg:text-6xl/[75px];
+  }
+
+  /* BODY */
+  .body__1 {
+    @apply text-2xl/8 lg:text-4xl/[48px] font-medium;
+  }
+  .body__2 {
+    @apply text-[26px]/[38px];
   }
 }
 @layer components {
@@ -39,21 +62,11 @@
       @apply w-72 h-72 bg-teal-500/60;
     }
   }
-
-  .svgIcons {
-    /* @apply bg-yellow-200; */
-    animation: rotatei 15s linear infinite;
-  }
-  @keyframes rotatei {
-    0% {
-      transform: rotate(0deg);
-    }
-    100% {
-      transform: rotate(365deg);
-    }
-  }
 }
 
 .pin-spacer {
-  border: 2px solid red;
+  border: 2px dashed green;
+}
+svg {
+  border: 2px dashed greenyellow;
 }

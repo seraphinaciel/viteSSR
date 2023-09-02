@@ -9,30 +9,46 @@ export default function Textsplit({ content, className }) {
 
   useEffect(() => {
     let ctx = gsap.context(() => {
-      const textReveal = (word, sentence) => {
-        word.anim = gsap.from(sentence, {
-          duration: 0.6,
-          ease: "circ.out",
-          yPercent: "100",
-          opacity: 1,
-          stagger: 0.02,
-          scrollTrigger: {
-            trigger: sentence,
-            toggleActions: "restart pause resume reverse",
-            start: "top 40%",
-          },
-        });
+      const splitTargets = target.current;
+      const createWordNode = (word, index) => {
+        const node = document.createElement("span");
+        node.textContent = word;
+        node.style.setProperty("--index", index);
+        node.classList.add("chars");
+        return node;
       };
 
-      const paragraph = target.current;
-      const sentence = paragraph.querySelector("p");
-      const word = content.split(" ");
+      const splitByWord = (text) => text.split(" ").map(createWordNode);
 
-      if (word.anim) {
-        word.anim.progress(1).kill();
-      }
+      let nodes = splitByWord(content);
 
-      textReveal(word, sentence);
+      if (nodes) splitTargets.firstChild.replaceWith(...nodes);
+
+      // const textReveal = (word, sentence) => {
+      //   word.anim = gsap.from(sentence, {
+      //     duration: 0.6,
+      //     ease: "circ.out",
+      //     yPercent: "100",
+      //     opacity: 1,
+      //     stagger: 0.02,
+      //     scrollTrigger: {
+      //       trigger: sentence,
+      //       toggleActions: "restart pause resume reverse",
+      //       start: "top 40%",
+      //       markers: true,
+      //     },
+      //   });
+      // };
+
+      // const paragraph = target.current;
+      // const sentence = paragraph.querySelector("p");
+      // const word = content.split(" ");
+
+      // if (word.anim) {
+      //   word.anim.progress(1).kill();
+      // }
+
+      // textReveal(word, sentence);
     }, target);
     return () => ctx.revert();
   }, [content]);

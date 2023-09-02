@@ -3,8 +3,9 @@ import styles from "./About.module.css";
 import Text from "#root/components/Text";
 import CircleBox from "#root/components/CircleBox/CircleBox";
 import TextMove from "#root/components/TextMove";
-import TextLR from "#root/components/TextLR/TextLR";
-import Texttyping from "#root/components/TextTyping";
+import AboutTitle from "#root/components/AboutTitle/AboutTitle";
+import TextTyping from "#root/components/TextTyping";
+import Textsplit from "#root/components/Textsplit";
 import SvgIcons from "#root/components/SvgIcons";
 
 export { Page };
@@ -20,15 +21,28 @@ function Page(pageContext) {
 
   return (
     <>
-      <h1>About</h1>
-      <CircleBox>
-        <div className={styles.circle}>
-          <TextLR id="out" conLeft="new" conRight="eyes" />
-          <SvgIcons color="black" />
-        </div>
-      </CircleBox>
+      <h1 className="heading__1">
+        <strong>
+          <Textsplit content="We are focusing on" />
+        </strong>
+        <Textsplit content="creative design and technical work" />
+      </h1>
+
+      <div className={styles.circle}>
+        <CircleBox>
+          <SvgIcons className="basic" color="black" />
+          <AboutTitle
+            className={`${styles.title} special`}
+            conLeft="new"
+            conRight="eyes"
+          />
+        </CircleBox>
+      </div>
+
+      <SvgIcons className="big2" color="black" />
+      <SvgIcons className="big1" color="black" />
       <TextMove
-        className={styles.text}
+        className={`${styles.text} special`}
         location={["x", "x", "y"]}
         coord={["-1", "1", "1"]}
       >
@@ -39,18 +53,17 @@ function Page(pageContext) {
         <Text content="Creativity" />
       </TextMove>
 
-      <Texttyping
+      <TextTyping
         content="Neat Arrangement Creative Expression Sophisticated Techniques Good Communication Young Generation Casual and Cozy Office Free-Spirited"
         splitBy="letter"
-        className="text-9xl"
+        className="heading__1"
       />
 
       <TextMove
-        className={styles.vision_title}
+        className={`${styles.vision_title} special`}
         location={["y", "y", "y"]}
         coord={["1", "1", "1"]}
       >
-        <SvgIcons color="black" />
         <div>
           <Text content="Discover" />
           <Text content="Hidden" />

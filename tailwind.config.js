@@ -6,6 +6,9 @@ export default {
     "./components/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
+    fontFamily: {
+      sans: ["Poppins", "IBM Plex Sans KR", "system-ui"],
+    },
     extend: {},
   },
   plugins: [],

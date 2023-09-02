@@ -6,40 +6,12 @@ import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
 const SvgLine = ({ id, className }) => {
-  // useEffect(() => {
-  //   const ctx = gsap.context(() => {
-  //     const paths = gsap.utils.toArray(`svg#${id} path`);
-  //     paths.forEach((path) => {
-  //       const pathLength = path.getTotalLength();
-  //       gsap.set(path, {
-  //         strokeDasharray: pathLength,
-  //         strokeDashoffset: pathLength,
-  //       });
-
-  //       console.log(pathLength);
-  //       gsap.to(path, {
-  //         strokeDashoffset: 0,
-  //         duration: duration / 1000, // Convert duration to seconds
-  //         delay: delay / 1000, // Convert delay to seconds
-  //         scrollTrigger: {
-  //           trigger: path,
-  //           start: "top 100%",
-  //           end: "top center",
-  //           scrub: true,
-  //         },
-  //       });
-  //     });
-  //   });
-
-  //   return () => ctx.revert();
-  // }, [id, delay, duration]);
-
   const components = {
     sBubble: <Bubble className={className} />,
-    sArrow: <Arrow />,
+    sArrow: <Arrow className={className} />,
     sThej: <Thej />,
   };
-  return components[id] || "error";
+  return components[id] || "No icon";
 };
 
 function Bubble({ className }) {
@@ -65,10 +37,11 @@ function Bubble({ className }) {
   );
 }
 
-function Arrow() {
+function Arrow({ className }) {
   return (
     <svg
       id="sArrow"
+      className={className}
       width="188"
       height="268"
       viewBox="0 0 188 268"
@@ -104,7 +77,6 @@ function Thej() {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      {/* <g clipPath="url(#clip0_59_1312)"> */}
       <path
         d="M14.8022 78.8677L104.14 81.2018"
         stroke="black"
@@ -147,12 +119,6 @@ function Thej() {
         strokeLinecap="round"
         strokeLinejoin="round"
       />
-      {/* </g> */}
-      {/* <defs>
-        <clipPath id="clip0_59_1312">
-          <rect width="322" height="292" fill="white" />
-        </clipPath>
-      </defs> */}
     </svg>
   );
 }
@@ -160,8 +126,6 @@ function Thej() {
 SvgLine.propTypes = {
   id: PropTypes.string.isRequired,
   className: PropTypes.string,
-  // duration: PropTypes.number.isRequired,
-  // delay: PropTypes.number,
 };
 Bubble.propTypes = {
   className: PropTypes.string,

@@ -1,49 +1,45 @@
 import PropTypes from "prop-types";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { gsap } from "gsap/dist/gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import styles from "./CircleBox.module.css";
 
-export default function CircleBox({ children }) {
-  useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger);
 
-    let tlcircle = gsap.timeline({
-      scrollTrigger: {
-        trigger: "#circleBox",
-        start: "top top",
-        end: "+=100%",
-        markers: true,
-        pin: true,
-        scrub: true,
-      },
-    });
-    tlcircle
-      .fromTo(
+export default function CircleBox({ children }) {
+  const targetRef = useRef(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      let tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: targetRef.current,
+          start: "top top",
+          end: "+=100%",
+          // markers: true,
+          // pin: true,
+          scrub: true,
+        },
+      });
+      tl.fromTo(
         "i",
         { scale: 0 },
         { scale: 200, duration: 10, ease: "power1.in" }
-      )
-      .fromTo(
+      ).fromTo(
         "em",
         { scale: 0 },
         { scale: 5, rotation: 360, duration: 7, ease: "power1.in" },
         "<"
       );
-
-    return () => {
-      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
-    };
+    }, targetRef);
+    return () => ctx.revert();
   }, []);
 
   return (
-    <section className={` ${styles.cBox}`} id="circleBox">
-      <div>
-        <em></em>
-        <i></i>
-        {children}
-      </div>
-    </section>
+    <div className={styles.cBox} ref={targetRef}>
+      <i></i>
+      {children}
+    </div>
   );
 }
 CircleBox.propTypes = {

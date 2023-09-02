@@ -1,12 +1,10 @@
 .cBox {
-  @apply h-screen flex flex-col items-center justify-center bg-slate-200 overflow-hidden;
-  div {
-    @apply flex flex-col justify-center items-center;
-    em {
-      @apply flex justify-center items-center w-10 h-10 rounded-full bg-yellow-300 z-50;
-    }
-    i {
-      @apply block bg-gray-400 w-[1vw] h-[1vw] rounded-full absolute;
-    }
+  /* @apply overflow-hidden; */
+  @apply flex flex-col justify-center items-center h-screen;
+  @apply bg-slate-200;
+
+  i {
+    @apply block w-[1vw] h-[1vw] rounded-full absolute;
+    @apply bg-sky-500;
   }
 }

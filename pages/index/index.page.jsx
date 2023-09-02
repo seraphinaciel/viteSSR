@@ -1,15 +1,14 @@
-import styles from "./Index.module.css";
+// import styles from "./Index.module.css";
 
-import Text from "#root/components/Text";
-import Button from "#root/components/Button";
-import TextSplit from "#root/components/TextSplit";
-import TextTyping from "#root/components/TextTyping";
-import TextLR from "#root/components/TextLR/TextLR";
-import TextMarquee from "#root/components/TextMarquee/TextMarquee";
-import TextReveal from "#root/components/TextReveal/TextReveal";
-import TextMove from "#root/components/TextMove";
-import SvgIcons from "#root/components/SvgIcons";
-import Video from "#root/components/Video/Video";
+// import Text from "#root/components/Text";
+// import Button from "#root/components/Button";
+// import TextSplit from "#root/components/TextSplit";
+// import TextTyping from "#root/components/TextTyping";
+// import TextMarquee from "#root/components/TextMarquee/TextMarquee";
+// import TextReveal from "#root/components/TextReveal/TextReveal";
+// import TextMove from "#root/components/TextMove";
+// import SvgIcons from "#root/components/SvgIcons";
+// import Video from "#root/components/Video/Video";
 
 // head의 title, meta 내용
 export const documentProps = {
@@ -20,8 +19,8 @@ export const documentProps = {
 function Page() {
   return (
     <>
-      <h1>Text, Button</h1>
-      <Text content="This page is:" />
+      <h1>index</h1>
+      {/* <Text content="This page is:" />
       <Button label="hello Btn" />
 
       <h1>Text : Move 등등 </h1>
@@ -69,18 +68,18 @@ function Page() {
         <TextMarquee content="one two three" speed={1.5} />
         <TextMarquee content="깊은 밤, 길을 잃어도 차라리 날아올라" speed={2} />
       </div>
-      <TextLR id="out" conLeft="GET ON THE" conRight="ELEVATOR" />
-      <TextLR id="in" conLeft="Apple is" conRight="expensive" />
+
       <div className={styles.transition}>
         <TextReveal content="my favorite fruit is apple" />
         <TextReveal content="my favorite fruit is apple" />
       </div>
 
       <h1>SvgIcons</h1>
-      <SvgIcons color="pink" />
+      <SvgIcons className="basic" color="pink" size={[200, 200]} />
 
       <h1>video</h1>
       <Video id="smaller" src="https://www.w3schools.com/tags/movie.mp4" />
+      <Video id="bigger" src="https://www.w3schools.com/tags/movie.mp4" /> */}
     </>
   );
 }

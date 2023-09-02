@@ -1,5 +1,5 @@
 .text {
-  @apply text-4xl/loose  lg:text-[200px]/loose border py-10;
+  @apply py-10;
   div {
     @apply flex justify-between;
   }
@@ -8,7 +8,7 @@
   }
 }
 .vision_title {
-  @apply text-4xl/loose  lg:text-[200px]/loose border py-10;
+  @apply py-10;
   div {
     @apply flex gap-8;
   }
@@ -18,13 +18,7 @@
 }
 
 .circle {
-  .elevator {
-    @apply flex flex-row;
-  }
-  .elevatorL,
-  .elevatorR {
-    background: blue;
-  }
 }
-
-/* 클래스가 먹히지 않음 */
+.title {
+  @apply grid grid-cols-2 gap-[240px] capitalize;
+}

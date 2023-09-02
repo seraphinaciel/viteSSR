@@ -2,6 +2,7 @@ import { useEffect, useRef } from "react";
 import PropTypes from "prop-types";
 import { gsap } from "gsap/dist/gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
+import { animateSvg } from "#root/utils/animateSvg";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -62,29 +63,6 @@ function Words({ content, className, children }) {
   const childrenRef = useRef(null);
 
   useEffect(() => {
-    function animateSvg() {
-      const paths = document.querySelectorAll(".text-word path");
-
-      console.log(paths);
-      paths.forEach((p) => {
-        const pathLength = p.getTotalLength();
-
-        gsap.set(p, {
-          strokeDasharray: pathLength,
-          strokeDashoffset: pathLength,
-        });
-        gsap.to(
-          p,
-          {
-            duration: 1,
-            opacity: 1,
-            ease: "power3.out",
-            strokeDashoffset: 0,
-          },
-          ">"
-        );
-      });
-    }
     const splitTargets = targetRef.current;
 
     let ctx = gsap.context(() => {
@@ -96,7 +74,7 @@ function Words({ content, className, children }) {
           end: "+=100%",
           markers: true,
         },
-        onComplete: animateSvg,
+        onComplete: () => animateSvg(".text-word path", 1),
       });
 
       tl.from(splitTargets, {
@@ -110,9 +88,11 @@ function Words({ content, className, children }) {
       if (childrenRef.current) {
         tl.from(childrenRef.current, { duration: 0.000001, opacity: 0 }, ">");
       }
+
+      console.log(children);
     }, targetRef);
     return () => ctx.revert();
-  }, []);
+  }, [children]);
 
   return (
     <div className="text-word">
