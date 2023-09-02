@@ -10,7 +10,7 @@ export default function TextMove({ className, location, coord, children }) {
   useEffect(() => {
     let ctx = gsap.context(() => {
       const paragraph = target.current;
-      const sentence = paragraph.querySelectorAll("p");
+      const sentence = paragraph.querySelectorAll("span");
 
       const ani8 = gsap.timeline();
 

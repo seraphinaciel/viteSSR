@@ -3,15 +3,17 @@ import styles from "./Index.module.css";
 import { Title } from "#root/components/Text";
 import Guide from "#root/components/Guide/Guide";
 
-// import Text from "#root/components/Text";
+import { Text } from "#root/components/Text";
 // import Button from "#root/components/Button";
 import { Sentence } from "#root/components/TextSplit";
+import TextMove from "#root/components/about/TextMove";
+import SvgIcons from "#root/components/SvgIcons";
 // import SvgLine from "#root/components/SvgLine";
+
+import Video from "#root/components/Video";
 
 // import TextMarquee from "#root/components/TextMarquee/TextMarquee";
 // import TextReveal from "#root/components/TextReveal/TextReveal";
-// import TextMove from "#root/components/TextMove";
-// import Video from "#root/components/Video/Video";
 
 // head의 title, meta 내용
 export const documentProps = {
@@ -28,7 +30,7 @@ function Page() {
       <h3>h3 20px / 60px</h3>
       <h4>h4 26px / 36px</h4>
       <h5>h5 20px / 26px</h5>
-      <h6>h6</h6>
+      <h6>h6 18px / 20px</h6>
       <h7>h7</h7>
       <h8>h8</h8>
 
@@ -46,26 +48,45 @@ function Page() {
 
       <hr />
 
+      <Title className={styles.title}>/about .text_box_2</Title>
+      <TextMove
+        className={`${styles.vision_title_2} text_box_2`}
+        location={["y", "y", "y"]}
+        coord={["1", "1", "1"]}
+      >
+        <Text tagName="div" className="gap-8">
+          {"Discover"}
+          {"Hidden"}
+        </Text>
+        <Text>{"Creativity"}</Text>
+      </TextMove>
+      <hr />
+
+      <Title className={styles.title}>SvgIcons .basic .big1~2</Title>
+      <SvgIcons types="basic" color="pink" />
+      <SvgIcons types="big1" color="hotpink" />
+      <SvgIcons types="big2" />
+      <hr />
+
+      <Title className={styles.title}>#smaller, #bigger</Title>
+      <Video id="smaller" src="https://www.w3schools.com/tags/movie.mp4" />
+      <Video id="bigger" src="https://www.w3schools.com/tags/movie.mp4" />
+      <hr />
+
+      <Title className={styles.title}>0</Title>
+
+      <hr />
+
+      <Title className={styles.title}>0</Title>
+
+      <hr />
+
       <Title className={styles.title}>Guide</Title>
       <Guide />
 
       {/* <Text content="This page is:" />
       <Button label="hello Btn" />
 
-      <h1>Text : Move 등등 </h1>
-      <TextMove
-        className={styles.vision_title}
-        location={["y", "y", "y"]}
-        coord={["1", "1", "1"]}
-      >
-        <div>
-          <Text content="Discover" />
-          <Text content="Hidden" />
-        </div>
-        <Text content="Creativity" />
-      </TextMove>
-
-      
 
       <div className={styles.text_reveal}>
         <div>
@@ -100,8 +121,7 @@ function Page() {
       <SvgIcons className="basic" color="pink" size={[200, 200]} />
 
       <h1>video</h1>
-      <Video id="smaller" src="https://www.w3schools.com/tags/movie.mp4" />
-      <Video id="bigger" src="https://www.w3schools.com/tags/movie.mp4" /> */}
+       */}
     </>
   );
 }

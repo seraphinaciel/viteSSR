@@ -1,10 +1,10 @@
 import styles from "./Main.module.css";
 
 import { Text } from "#root/components/Text";
-import Video from "#root/components/Video/Video";
-import MainTitle from "#root/components/MainTitle/MainTitle";
+import Video from "#root/components/Video";
 import { Sentence } from "#root/components/TextSplit";
 import SvgLine from "#root/components/SvgLine";
+import MainTitle from "#root/components/main/MainTitle";
 
 export const title = "🥰 Main",
   description = "this is a Main page.";
@@ -22,7 +22,7 @@ function Page() {
           <SvgLine id="sThej" />
         </MainTitle>
 
-        <Text container="h5" className={styles.main_txt}>
+        <Text tagName="h5" className={styles.main_txt}>
           {"Our latest"}
           {"SCROLL"}
         </Text>

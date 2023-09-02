@@ -13,10 +13,10 @@ const AboutTitle = ({ className, conLeft, conRight }) => {
       let tl = gsap.timeline({
         scrollTrigger: {
           trigger: targetRef.current,
-          start: "top 50%",
+          start: "top 80%",
           end: "+=100%",
           // pin: true,
-          markers: true,
+          // markers: true,
           scrub: true,
         },
       });

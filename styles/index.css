@@ -76,7 +76,15 @@
       @apply text-heading-10 desktop:text-body-1 block not-italic;
     }
   }
-
+  .text_box_2 {
+    @apply text-heading-5 desktop:text-special;
+    div {
+      @apply flex;
+    }
+    > span:last-child {
+      margin-left: 50%;
+    }
+  }
   /* .special {
     @apply text-black text-[64px] lg:text-[200px];
   } */

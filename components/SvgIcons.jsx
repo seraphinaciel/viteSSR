@@ -1,9 +1,9 @@
 import PropTypes from "prop-types";
-// import { gsap } from "gsap/dist/gsap";
-// import { useEffect, useRef } from "react";
+import { gsap } from "gsap/dist/gsap";
+import { useEffect, useRef } from "react";
 
-const SvgIcons = ({ color, className }) => {
-  // const targetRef = useRef();
+const SvgIcons = ({ color = "black", types, className }) => {
+  const targetRef = useRef();
 
   let pathD = [
     { d01: 100, d02: 0, d03: 100, d04: 72.5869 },
@@ -37,34 +37,34 @@ const SvgIcons = ({ color, className }) => {
 
   let newpathD = [];
   let size = 0;
-  if (className === "basic") {
+  if (types === "basic") {
     newpathD = [...pathD];
     size = 200;
-  } else if (className === "big1") {
+  } else if (types === "big1") {
     newpathD = calculateNewPathD(pathD, 1.2);
     size = 240;
-  } else if (className === "big2") {
+  } else if (types === "big2") {
     newpathD = calculateNewPathD(pathD, 3);
     size = 600;
   }
 
-  // useEffect(() => {
-  //   const ctx = gsap.context(() => {
-  //     gsap.to(targetRef.current, {
-  //       rotation: "180",
-  //       delay: "0.000001",
-  //       repeat: "-1",
-  //       duration: "6",
-  //       ease: "none",
-  //     });
-  //   });
-  //   return () => ctx.revert();
-  // }, [className, size]);
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.to(targetRef.current, {
+        rotation: "180",
+        delay: "0.000001",
+        repeat: "-1",
+        duration: "6",
+        ease: "none",
+      });
+    });
+    return () => ctx.revert();
+  }, [className, size]);
 
   return (
     <>
       <svg
-        // ref={targetRef}
+        ref={targetRef}
         className={className}
         width={size}
         height={size}
@@ -83,7 +83,7 @@ const SvgIcons = ({ color, className }) => {
 export default SvgIcons;
 
 SvgIcons.propTypes = {
-  color: PropTypes.string.isRequired,
-  // size: PropTypes.array.isRequired,
-  className: PropTypes.string.isRequired,
+  types: PropTypes.string.isRequired,
+  color: PropTypes.string,
+  className: PropTypes.string,
 };
