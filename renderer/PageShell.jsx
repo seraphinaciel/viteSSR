@@ -1,52 +1,96 @@
-import React from "react";
+import React, { useState, useCallback } from "react";
 import PropTypes from "prop-types";
-import "../styles/index.css";
+import { childrenPropType } from "./PropTypeValues";
 import { PageContextProvider } from "./usePageContext";
 
-import { Header } from "./Header";
-import { Footer } from "./Footer";
-import { childrenPropType } from "./PropTypeValues";
+// components
 import CursorDot from "../components/CursorDot";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
+
+// style:global
+import "../styles/index.css";
 
 export { PageShell };
-PageShell.propTypes = {
-  pageContext: PropTypes.any,
-  children: childrenPropType,
-};
+
+const routes = [
+  // {
+  //   id: "index",
+  //   name: "Home",
+  //   route: "/",
+  // },
+  // {
+  //   id: "main",
+  //   name: "Main",
+  //   route: "/main",
+  // },
+  {
+    id: "work",
+    name: "Work",
+    route: "/work",
+  },
+  {
+    id: "about",
+    name: "About",
+    route: "/about",
+  },
+  {
+    id: "careers",
+    name: "Careers",
+    route: "/careers",
+  },
+  {
+    id: "contact",
+    name: "Contact",
+    route: "/contact",
+  },
+];
+
 function PageShell({ pageContext, children }) {
   return (
     <React.StrictMode>
       <PageContextProvider pageContext={pageContext}>
-        <Layout>
-          <Header />
-          <Content>{children}</Content>
-
-          <Footer />
-          <CursorDot />
-        </Layout>
+        <Layout>{children}</Layout>
       </PageContextProvider>
     </React.StrictMode>
   );
 }
+
+function Layout({ children }) {
+  const [mode, setMode] = useState("light");
+  const modeRef = useCallback(node => {
+    if (null != node) {
+      // console.log("ready!");
+
+      const darkModeFlag = [...node.children[0].classList].includes("bg-black");
+      darkModeFlag && setMode("dark");
+    }
+  }, []);
+
+  return (
+    <>
+      {/* header */}
+      <Header menuList={routes} mode={mode} />
+
+      {/* page contents */}
+      <main ref={modeRef} className="overflow-hidden min-h-[100vh]">
+        {children}
+      </main>
+
+      {/* footter */}
+      <Footer menuList={routes} />
+
+      {/* cursor */}
+      <CursorDot />
+    </>
+  );
+}
+
+// props type
+PageShell.propTypes = {
+  pageContext: PropTypes.any,
+  children: childrenPropType,
+};
 Layout.propTypes = {
   children: childrenPropType,
 };
-function Layout({ children }) {
-  return <div>{children}</div>;
-}
-
-Content.propTypes = {
-  children: childrenPropType,
-};
-function Content({ children }) {
-  return (
-    <main
-      style={{
-        minHeight: "100vh",
-        overflow: "hidden",
-      }}
-    >
-      {children}
-    </main>
-  );
-}

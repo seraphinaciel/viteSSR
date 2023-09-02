@@ -1,0 +1,45 @@
+/* re-use */
+.underline-3 {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.flex-box-both-end {
+  @apply flex justify-between items-center;
+}
+.menu-text-style {
+  @apply text-[1.9rem] leading-[2.8rem] md:text-[2.6rem] md:leading-[3.8rem];
+}
+
+.wrap {
+  @apply flex-box-both-end gap-[2rem] py-[2rem] px-[2.5rem] md:py-[4rem] md:px-[8rem];
+  & a {
+    @apply block;
+  }
+}
+
+.logo {
+  @apply w-[7rem] md:w-[9.5rem] h-auto;
+  & img {
+    @apply w-full;
+  }
+}
+
+/* GNB */
+.menu {
+  @apply menu-text-style gap-[5rem] hidden md:flex justify-between items-center;
+}
+.menu-button {
+  @apply menu-text-style underline-3 md:hidden;
+}
+.menu-link {
+}
+.menu-text {
+}
+
+/* color mode */
+.dark .wrap {
+  @apply text-white;
+}
+.light .wrap {
+  @apply text-black;
+}

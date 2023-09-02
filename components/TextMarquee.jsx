@@ -2,12 +2,16 @@ import { useEffect, useRef } from "react";
 import PropTypes from "prop-types";
 import { gsap } from "gsap/dist/gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
-import styles from "./Textmarquee.module.css";
-import SvgLine from "../SvgLine";
 gsap.registerPlugin(ScrollTrigger);
 
-export default function Textmarquee({ content, speed, withSvg, svgId }) {
+export default function Textmarquee({
+  content,
+  speed,
+  tagName = "div",
+  children,
+}) {
   const marquee = useRef();
+  const TagName = tagName;
 
   useEffect(() => {
     const parentSelector = marquee.current;
@@ -22,6 +26,8 @@ export default function Textmarquee({ content, speed, withSvg, svgId }) {
       const firstElement = parentSelector.children[0];
       const distanceX = firstElement.clientWidth;
 
+      console.log(parentSelector);
+      console.log(firstElement);
       const tl = gsap.timeline();
       tl.fromTo(
         firstElement,
@@ -31,35 +37,32 @@ export default function Textmarquee({ content, speed, withSvg, svgId }) {
           duration: speed,
           ease: "none",
           repeat: -1,
-          start: "top center",
-          end: "+=bottom",
         }
       ).to(parentSelector, {
         x: xEnd,
         scrollTrigger: {
           trigger: firstElement,
           scrub: 1,
-          markers: true,
         },
       });
     });
   }, [speed]);
 
   return (
-    <section className={` ${styles.marquee_wrap}`} id="marquee_wrap">
-      <div className={styles.marquee_items} ref={marquee}>
-        <span>
+    <TagName className="overflow-hidden" id="marquee_wrap">
+      <div className="flex" ref={marquee}>
+        <span className="whitespace-nowrap uppercase flex flex-nowrap items-center justify-start gap-x-12">
           {content}
-          {withSvg && <SvgLine id={svgId} duration={500} delay={50} />}
+          {children}
         </span>
       </div>
-    </section>
+    </TagName>
   );
 }
 
 Textmarquee.propTypes = {
   content: PropTypes.string.isRequired,
   speed: PropTypes.number.isRequired,
-  withSvg: PropTypes.bool,
-  svgId: PropTypes.string,
+  tagName: PropTypes.string,
+  children: PropTypes.node,
 };

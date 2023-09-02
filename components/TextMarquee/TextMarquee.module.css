@@ -1,9 +1,0 @@
-.marquee_wrap {
-  @apply bg-gray-300 overflow-hidden;
-  .marquee_items {
-    @apply flex;
-    span {
-      @apply border text-8xl p-6 whitespace-nowrap uppercase;
-    }
-  }
-}
