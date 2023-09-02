@@ -1,9 +1,9 @@
 import styles from "./Main.module.css";
 
-import Text from "#root/components/Text";
+import { Text } from "#root/components/Text";
 import Video from "#root/components/Video/Video";
 import MainTitle from "#root/components/MainTitle/MainTitle";
-import TextTyping from "#root/components/TextTyping";
+import TextSplit from "#root/components/TextSplit";
 import SvgLine from "#root/components/SvgLine";
 
 export const title = "🥰 Main",
@@ -20,29 +20,29 @@ function Page() {
           <SvgLine id="sThej" />
         </MainTitle>
         <div className={`${styles.main_txt} body__2`}>
-          <Text content="Our latest" />
-          <Text content="SCROLL" />
+          <Text>{"Our latest"}</Text>
+          <Text>{"SCROLL"}</Text>
         </div>
       </Video>
 
-      <TextTyping
+      <TextSplit
         className="body__1"
-        splitBy="words"
+        splitBy="sentence"
         content="Creative Design Technical Agency"
       />
 
       <div className={styles.svgTest}>
-        <TextTyping
+        <TextSplit
           className="heading__4 mb-50"
-          splitBy="words"
+          splitBy="sentence"
           content="We have implemented various experience, such as global integrated platforms and creative projects."
         >
-          <SvgLine id="sBubble" className="" delay={50} />
-          <SvgLine id="sArrow" className="" />
-        </TextTyping>
-        <TextTyping
+          <SvgLine id="sBubble" className={styles.svg01} />
+          <SvgLine id="sArrow" className={styles.svg02} />
+        </TextSplit>
+        <TextSplit
           className="text-xl"
-          splitBy="words"
+          splitBy="sentence"
           content="글로벌 통합 플랫폼 프로젝트와 크리에이티브 프로젝트 등 다양한 프로젝트들을 수행해 왔습니다."
         />
       </div>

@@ -5,7 +5,10 @@
 
 .svgTest {
   @apply flex pl-0 flex-col items-start gap-3 ml-[45%] w-5/12 relative;
-  svg {
-    /* @apply opacity-0; */
+  .svg01 {
+    @apply absolute;
+  }
+  .svg02 {
+    @apply absolute top-full;
   }
 }

@@ -1,3 +1,14 @@
+### 8.24.
+
+**상현 선임님 작업**
+
+- color... 이름은 figma의 토큰명과 일치시킴.
+- font... 일단 heading-1, body-1로...
+- text 컴포넌트... element 통째로 받는 것도 가능하고, 문자열만 넣는 것도 가능하고, br이 필요한 문단인 경우엔 문자열로 된 배열로 넣으면 됨.
+
+main에 사용하신 text 컴포넌트가 오류로 잡혀서 그 부분만 수정했고,
+index 페이지에 들어가시면 컬러칩 보이실거예요.
+
 ### 8.18.
 
 https://webstoryboy.github.io/gsap2023/gsap13.html

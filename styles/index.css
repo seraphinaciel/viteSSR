@@ -1,13 +1,38 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;900&display=swap");
-/* @import url("https://fonts.googleapis.com/css2?family=Roboto&family=Poppins&family=IBM+Plex+Sans+KR:wght@100;200;300;400;500;600;700;900&display=swap"); */
+/* pretendard */
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/variable/pretendardvariable-dynamic-subset.css");
+/* poppins */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap");
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
+  :root {
+    /* breakpoint 
+			html의 font size를 10vw로 고정하고
+			1vw = 1rem = 10px로 맞춤. 
+			이 기준이 적용되는 분기점은 
+			모바일 캔버스 360 x 2,
+			데스크탑 캔버스 1920,
+			그 사이에 임의갑 - 1440 - 지정함.
+
+			html의 기준 값을 조정해주는 역할.
+			미디어쿼리 사용은 class로.
+		*/
+    --test: 720;
+    --canvas: var(--test);
+
+    @media (min-width: 721px) {
+      --canvas: 1440;
+    }
+    @media (min-width: 1441px) {
+      --canvas: 1920;
+    }
+  }
   html {
-    @apply font-sans;
+    font-family: "Poppins", "Pretendard", sans-serif;
+    font-size: calc(10 * 100vw / var(--canvas));
   }
   h1 {
     @apply text-pink-700 bg-pink-50 text-center p-10;
@@ -29,13 +54,16 @@
   .heading__4 {
     @apply text-black text-xl/[30px] lg:text-6xl/[75px];
   }
+  .heading__10 {
+    @apply text-black text-[18px]/[30px] lg:text-[20px]/[32px];
+  }
 
   /* BODY */
   .body__1 {
     @apply text-2xl/8 lg:text-4xl/[48px] font-medium;
   }
   .body__2 {
-    @apply text-[26px]/[38px];
+    @apply text-[20px]/[30px] lg:text-[26px]/[38px];
   }
 }
 @layer components {
