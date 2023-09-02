@@ -1,18 +1,20 @@
-import { useEffect, useRef } from "react";
-import { gsap } from "gsap/dist/gsap";
+// import { useEffect, useRef } from "react";
+// import { gsap } from "gsap/dist/gsap";
 
-import styles from "./Work.module.css";
+import styles from "./Main.module.css";
 
+import Text from "#root/components/Text";
 import SvgLine from "#root/components/SvgLine";
 import TextBanner from "#root/components/TextMarquee/TextMarquee";
 import Video from "#root/components/Video/Video";
 import CircleBox from "#root/components/CircleBox/CircleBox";
+import TextLR from "../../components/TextLR/TextLR";
 
-export const title = "🥰 work2",
-  description = "this is a work2 page.";
+export const title = "🥰 Main",
+  description = "this is a Main page.";
 
 function Page() {
-  const apple = useRef();
+  /* const apple = useRef();
   const banana = useRef();
 
   useEffect(() => {
@@ -22,18 +24,33 @@ function Page() {
     }, apple);
 
     return () => carot.revert();
-  }, []);
+  }, []); */
 
   return (
     <>
-      <h1 className={styles.name}>Work2</h1>
-      <div className={styles.apple} ref={apple}>
+      <h1 className={styles.name}>Main</h1>
+      <Video id="smaller" src="https://www.w3schools.com/tags/movie.mp4">
+        <div className={styles.main_txt}>
+          <Text content="Our latest" />
+          <Text content="SCROLL" />
+        </div>
+      </Video>
+
+      <TextLR id="out" conLeft="make" conRight="work"></TextLR>
+
+      <div className={styles.main_txt}>
+        <Text content="See all open positions" />
+        <Text content="SCROLL" />
+      </div>
+      <Video id="bigger" src="https://www.w3schools.com/html/mov_bbb.mp4" />
+
+      {/* <div className={styles.apple} ref={apple}>
         <div className={`${styles.box} boxing`}>box</div>
         <div className={styles.banana} ref={banana}>
           banana
         </div>
-      </div>
-      <SvgLine id="sStar" duration={500} delay={50} />
+      </div> */}
+      {/* <SvgLine id="sStar" duration={500} delay={50} />
       <SvgLine id="sArrow" duration={500} delay={50} />
       <SvgLine id="sHand" duration={500} delay={50} />
       <div className={styles.banner}>
@@ -47,6 +64,7 @@ function Page() {
           <img src="/images/star.webp" alt="" />
         </div>
         <TextBanner content="a little bit of love" speed={5} />
+        <TextBanner content="a little bit of love" speed={5} />
         <TextBanner content="good chioce" speed={5} />
         <TextBanner content="I love tomato" speed={1} />
         <TextBanner content="one two three" speed={1.5} />
@@ -55,9 +73,7 @@ function Page() {
 
       <div style={{ height: "100vh" }}></div>
 
-      <CircleBox imgSrc="https://www.w3schools.com/html/mov_bbb.mp4" />
-      <Video id="bigger" src="https://www.w3schools.com/html/mov_bbb.mp4" />
-      <Video id="smaller" src="https://www.w3schools.com/tags/movie.mp4" />
+      <CircleBox imgSrc="https://www.w3schools.com/html/mov_bbb.mp4" /> */}
     </>
   );
 }

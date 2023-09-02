@@ -1,11 +1,9 @@
-import styles from "./common.module.css";
-
 const SvgIcons = () => {
   return (
     <>
       <svg
         id="sVane"
-        className={styles.svgIcons}
+        className="svgIcons"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
         width="190"

@@ -57,7 +57,7 @@ function Header() {
         <Link href="/" text="Home" />
         <Link href="/about" text="About" />
         <Link href="/work" text="Work" />
-        <Link href="/work2" text="Work2" />
+        <Link href="/main" text="Main" />
       </nav>
     </header>
   );

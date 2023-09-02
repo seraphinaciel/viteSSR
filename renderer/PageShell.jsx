@@ -1,14 +1,18 @@
 import React from "react";
+import PropTypes from "prop-types";
 import "../styles/index.css";
 import { PageContextProvider } from "./usePageContext";
 
 import { Header } from "./Header";
 import { Footer } from "./Footer";
 import { childrenPropType } from "./PropTypeValues";
-import DotRing from "../components/DotRing";
+import CursorDot from "../components/CursorDot";
 
 export { PageShell };
-
+PageShell.propTypes = {
+  pageContext: PropTypes.any,
+  children: childrenPropType,
+};
 function PageShell({ pageContext, children }) {
   return (
     <React.StrictMode>
@@ -18,7 +22,7 @@ function PageShell({ pageContext, children }) {
           <Content>{children}</Content>
 
           <Footer />
-          <DotRing />
+          <CursorDot />
         </Layout>
       </PageContextProvider>
     </React.StrictMode>
@@ -41,6 +45,7 @@ function Content({ children }) {
         padding: 20,
         paddingBottom: 50,
         minHeight: "100vh",
+        overflow: "hidden",
       }}
     >
       {children}

@@ -1,18 +1,12 @@
 .movieBox {
   @apply h-screen flex flex-col items-center justify-center bg-slate-200 mb-10;
-  .box {
-    @apply w-[100vw] aspect-video bg-orange-400;
+  .movieBox_wrap {
+    @apply aspect-[9/16] lg:aspect-video bg-orange-400;
+    width: calc(100vw - 40px);
     clip-path: inset(50%);
   }
-  .box-container__smaller .box {
-    @apply w-[100vw] bg-orange-400;
-  }
+
   video {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100vw;
-    width: 100vw;
-    object-fit: cover;
+    @apply absolute top-0 left-0 h-screen w-screen object-cover;
   }
 }

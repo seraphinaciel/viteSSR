@@ -4,11 +4,15 @@ import { gsap } from "gsap/dist/gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import styles from "./Video.module.css";
 
+import TextLR from "../TextLR/TextLR";
+
 gsap.registerPlugin(ScrollTrigger);
 
-export default function Video({ id, src }) {
+export default function Video({ id, src, children }) {
+  const textLR = useRef();
+
   useEffect(() => {
-    let tl = gsap.timeline({
+    const tl = gsap.timeline({
       scrollTrigger: {
         trigger: `.box-container__${id}`,
         start: "top 0%",
@@ -18,20 +22,25 @@ export default function Video({ id, src }) {
       },
     });
 
-    let [pathS, pathE] =
+    const [clipS, clipE] =
       id === "bigger"
-        ? ["inset(0%)", "inset(40%)"]
-        : ["inset(40%)", "inset(0%)"];
+        ? ["inset(40%)", "inset(0%)"]
+        : ["inset(0%)", "inset(40%)"];
+
+    const name = `.box-container__${id} .box`;
     tl.fromTo(
-      `.box-container__${id} .box`,
-      { webkitClipPath: pathS, clipPath: pathS },
+      name,
+      { webkitClipPath: clipS, clipPath: clipS },
       {
-        webkitClipPath: pathE,
-        clipPath: pathE,
+        webkitClipPath: clipE,
+        clipPath: clipE,
         duration: 14,
         ease: "none",
       }
-    );
+    )
+      .fromTo(".children", { y: 0 }, { y: "-100vh", duration: 5 }, "<+2")
+      .fromTo(textLR.current, { y: "100vh" }, { y: "0vh", duration: 5 }, "<+5");
+
     return () => {
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
     };
@@ -39,19 +48,30 @@ export default function Video({ id, src }) {
 
   return (
     <section className={`box-container__${id} ${styles.movieBox}`}>
-      <div className={`box ${styles.box}`}>
-        <div className={styles.clip}></div>
+      <div className="children w-full">{children}</div>
+      {id === "smaller" ? (
+        <div ref={textLR} className="absolute w-full">
+          <TextLR id="out" conLeft="make" conRight="work" change="moment">
+            <p className="text-4xl text-center max-w-xl mx-auto">
+              LG Electronics online platform Global pilot website
+            </p>
+          </TextLR>
+        </div>
+      ) : (
+        ""
+      )}
+      <div className={`box ${styles.movieBox_wrap}`}>
         <video controls muted autoPlay preload="true" loop>
           <source src={src} type="video/mp4" />
           Your browser does not support HTML video.
         </video>
       </div>
-      {id === "smaller" && <h1>hello</h1>}
     </section>
   );
 }
+
 Video.propTypes = {
   id: PropTypes.string.isRequired,
   src: PropTypes.string.isRequired,
-  // alt: PropTypes.string.isRequired,
+  children: PropTypes.node,
 };

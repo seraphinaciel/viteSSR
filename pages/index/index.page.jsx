@@ -13,8 +13,13 @@ function Page() {
       <h1>Welcome to home</h1>
       <Text content="This page is:" />
 
-      <a href="">Hover over me</a>
-      <button>Hover over me</button>
+      <a
+        href=""
+        className="p-2 text-orange-600 hover:bg-orange-700 hover:text-white"
+      >
+        a : Hover over me
+      </a>
+      <button>button : Hover over me</button>
 
       <ul>
         <li>Rendered to HTML.</li>

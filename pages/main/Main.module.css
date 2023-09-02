@@ -1,3 +1,8 @@
+.main_txt {
+  @apply flex justify-between w-full absolute;
+  top: calc(100% - 0px);
+}
+
 .box {
   width: 100px;
   height: 100px;

@@ -9,7 +9,7 @@
     font-family: "Poppins", "IBM Plex Sans KR", system-ui, sans-serif;
   }
   h1 {
-    @apply text-red-600 p-10 m-10 border;
+    @apply text-red-600 p-10 my-10 border;
   }
   button {
     @apply p-2 border rounded-md  hover:bg-slate-700 hover:text-white;
@@ -28,29 +28,31 @@
   .text {
     @apply text-sky-700 text-lg mb-4;
   }
-}
-.cursor-dot,
-.cursor-dot-outline {
-  @apply pointer-events-none fixed top-0 left-0 rounded-full cursor-none;
-  transform: translate(-50%, -50%);
-  transition: all 0.3s ease-in-out, transform 0.1s ease-in-out;
-  will-change: width, height, transform;
-  z-index: 999;
-}
-
-.cursor-dot {
-  @apply w-2 h-2 bg-red-600/100;
-  &.active-link {
-    @apply w-10 h-10 bg-red-600/50;
+  .cursor-dot {
+    @apply pointer-events-none fixed top-0 left-0 rounded-full cursor-none w-2 h-2 bg-red-600/100;
+    transform: translate(-50%, -50%);
+    transition: width 0.15s ease-in-out, height 0.15s ease-in-out,
+      transform 0.1s ease-in-out;
+    will-change: width, height, transform;
+    z-index: 999;
+    &.active-link {
+      @apply w-10 h-10 bg-red-600/50;
+    }
+    &.active-video {
+      @apply w-72 h-72 bg-teal-500/60;
+    }
   }
-  &.active-video {
-    @apply w-72 h-72 bg-teal-500/60;
-  }
-}
 
-.cursor-dot-outline {
-  @apply w-10 h-10 bg-red-600/50 opacity-0;
-  &.active-link {
-    @apply opacity-0;
+  .svgIcons {
+    /* @apply bg-yellow-200; */
+    animation: rotatei 15s linear infinite;
+  }
+  @keyframes rotatei {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(365deg);
+    }
   }
 }
