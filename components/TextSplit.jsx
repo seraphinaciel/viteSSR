@@ -7,13 +7,16 @@ import { animateSvg } from "#root/utils/animateSvg";
 gsap.registerPlugin(ScrollTrigger);
 
 const PropsType = {
-  content: PropTypes.string.isRequired,
+  content: PropTypes.string,
   className: PropTypes.string,
+  container: PropTypes.string,
   children: PropTypes.node,
+  tagName: PropTypes.string,
 };
 
-function Letter({ content, className }) {
+export function Letter({ content, className, tagName = "p" }) {
   const targetRef = useRef();
+  const Tagname = tagName;
 
   useEffect(() => {
     const splitTargets = targetRef.current;
@@ -55,15 +58,16 @@ function Letter({ content, className }) {
         className === undefined ? "split letter" : `split letter ${className}`
       }
     >
-      <p ref={targetRef}>{content}</p>
+      <Tagname ref={targetRef}>{content}</Tagname>
     </div>
   );
 }
 Letter.propTypes = PropsType;
 
-function Sentence({ content, className, children }) {
+export function Sentence({ content, className, children, tagName = "p" }) {
   const targetRef = useRef();
   const childrenRef = useRef(null);
+  const Tagname = tagName;
 
   useEffect(() => {
     const splitTargets = targetRef.current;
@@ -77,7 +81,7 @@ function Sentence({ content, className, children }) {
           end: "+=100%",
           markers: true,
         },
-        onComplete: () => animateSvg(".text-sentence path", 1),
+        onComplete: () => animateSvg(".split.sentence path", 1),
       });
 
       tl.from(splitTargets, {
@@ -92,8 +96,9 @@ function Sentence({ content, className, children }) {
         tl.from(childrenRef.current, { duration: 0.000001, opacity: 0 }, ">");
       }
     }, targetRef);
+
     return () => ctx.revert();
-  }, [children]);
+  }, [content, children]);
 
   return (
     <div
@@ -105,15 +110,16 @@ function Sentence({ content, className, children }) {
     >
       {children ? <div ref={childrenRef}>{children}</div> : null}
       <div className="overflow-hidden">
-        <p ref={targetRef}>{content}</p>
+        <Tagname ref={targetRef}>{content}</Tagname>
       </div>
     </div>
   );
 }
 Sentence.propTypes = PropsType;
 
-function Word({ content, className }) {
+export function Word({ content, className, tagName = "p" }) {
   const targetRef = useRef();
+  const Tagname = tagName;
 
   useEffect(() => {
     let ctx = gsap.context(() => {
@@ -156,41 +162,48 @@ function Word({ content, className }) {
         className === undefined ? "split words" : `split words ${className}`
       }
     >
-      <p
+      <Tagname
         ref={targetRef}
         className="flex flex-wrap justify-center gap-x-[0.25em] overflow-hidden"
       >
         {content}
-      </p>
+      </Tagname>
     </div>
   );
 }
 Word.propTypes = PropsType;
 
-export default function TextSplit({ content, splitBy, className, children }) {
-  if (splitBy === "letter") {
-    return (
-      <Letter content={content} className={className}>
-        {children}
-      </Letter>
-    );
-  } else if (splitBy === "sentence") {
-    return (
-      <Sentence content={content} className={className}>
-        {children}
-      </Sentence>
-    );
-  } else if (splitBy === "word") {
-    return (
-      <Word content={content} className={className}>
-        {children}
-      </Word>
-    );
-  }
+// export default function TextSplit({
+//   content,
+//   splitBy,
+//   className,
+//   children,
+//   tagName = "span",
+// }) {
+//   if (splitBy === "letter") {
+//     return (
+//       <Letter content={content} className={className}>
+//         {children}
+//       </Letter>
+//     );
+//   } else if (splitBy === "sentence") {
+//     return (
+//       <Sentence content={content} className={className} tagName={tagName}>
+//         {children}
+//       </Sentence>
+//     );
+//   } else if (splitBy === "word") {
+//     return (
+//       <Word content={content} className={className}>
+//         {children}
+//       </Word>
+//     );
+//   }
 
-  return null;
-}
-TextSplit.propTypes = {
-  ...PropsType,
-  splitBy: PropTypes.string.isRequired,
-};
+//   return null;
+// }
+// TextSplit.propTypes = {
+//   ...PropsType,
+//   tagName: PropTypes.string,
+//   splitBy: PropTypes.string.isRequired,
+// };

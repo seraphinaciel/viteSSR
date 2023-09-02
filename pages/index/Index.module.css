@@ -1,8 +1,8 @@
 .title {
-  @apply text-heading-3 desktop:text-special over:wd:text-cursor;
+  @apply text-heading-3 desktop:text-heading-8 text-red-600 over:wd:text-cursor;
 }
 
-.text_reveal {
+/* .text_reveal {
   @apply mx-auto p-8 pt-16;
   & > div {
     @apply text-6xl/[76px] text-slate-700 dark:text-gray-200 text-center font-black;
@@ -14,4 +14,4 @@
 
 .text_split {
   @apply text-5xl/loose bg-slate-100 dark:bg-transparent dark:text-white p-8;
-}
+} */

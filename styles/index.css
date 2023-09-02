@@ -35,7 +35,7 @@
   html {
     font-size: calc(16 * (100vw / var(--canvas)));
 
-    @apply font-poppins;
+    @apply font-all;
   }
   body {
     font-size: 1rem;
@@ -55,6 +55,28 @@
       @apply font-medium;
     }
   }
+  h3 {
+    @apply text-heading-10 desktop:text-heading-4;
+  }
+  h4 {
+    @apply text-heading-8 desktop:text-heading-6;
+  }
+
+  h5 {
+    @apply text-heading-10 desktop:text-heading-8;
+  }
+
+  h6 {
+    @apply text-body-1 desktop:text-heading-10;
+  }
+
+  .text_box_1 {
+    @apply text-heading-10 desktop:text-heading-4;
+    em {
+      @apply text-heading-10 desktop:text-body-1 block not-italic;
+    }
+  }
+
   /* .special {
     @apply text-black text-[64px] lg:text-[200px];
   } */

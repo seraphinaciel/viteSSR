@@ -1,5 +1,5 @@
 .text {
-  @apply py-10;
+  @apply py-10 text-heading-5 desktop:text-special;
   div {
     @apply flex justify-between;
   }
