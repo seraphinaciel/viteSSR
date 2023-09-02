@@ -104,7 +104,7 @@ export function Sentence({ content, className, children, tagName = "p" }) {
     <div
       className={
         className === undefined
-          ? "split-sentence"
+          ? "split-sentence relative"
           : `split-sentence ${className}`
       }
     >

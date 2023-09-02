@@ -8,7 +8,7 @@ import { Text } from "#root/components/Text";
 import { Sentence } from "#root/components/TextSplit";
 import TextMove from "#root/components/about/TextMove";
 import SvgIcons from "#root/components/SvgIcons";
-// import SvgLine from "#root/components/SvgLine";
+import SvgLine from "#root/components/SvgLine";
 
 import Video from "#root/components/Video";
 
@@ -48,9 +48,9 @@ function Page() {
 
       <hr />
 
-      <Title className={styles.title}>/about .text_box_2</Title>
+      <Title className={styles.title}>/about .title_flow</Title>
       <TextMove
-        className={`${styles.vision_title_2} text_box_2`}
+        className={`${styles.vision_title_2} title_flow`}
         location={["y", "y", "y"]}
         coord={["1", "1", "1"]}
       >
@@ -73,8 +73,8 @@ function Page() {
       <Video id="bigger" src="https://www.w3schools.com/tags/movie.mp4" />
       <hr />
 
-      <Title className={styles.title}>0</Title>
-
+      <Title className={styles.title}>bubble</Title>
+      <SvgLine id="sBubble_s" color="red" className="svgAni" />
       <hr />
 
       <Title className={styles.title}>0</Title>
