@@ -7,8 +7,6 @@ gsap.registerPlugin(ScrollTrigger);
 
 const SvgLine = ({ id, duration, delay }) => {
   useEffect(() => {
-    console.log("svg line starts");
-
     const ctx = gsap.context(() => {
       const paths = gsap.utils.toArray(`svg#${id} path`);
       paths.forEach((path) => {
@@ -35,29 +33,28 @@ const SvgLine = ({ id, duration, delay }) => {
   }, [id, delay, duration]);
 
   const components = {
-    sStar: <Star />,
+    sBubble: <Bubble />,
     sArrow: <Arrow />,
     sHand: <Hand />,
   };
   return components[id] || "error";
 };
 
-function Star() {
+function Bubble() {
   return (
     <svg
-      className="starsvg"
-      id="sStar"
-      xmlns="http://www.w3.org/2000/svg"
-      width="296"
-      height="71"
-      viewBox="0 0 296 71"
+      id="sBubble"
+      width="347"
+      height="90"
+      viewBox="0 0 347 90"
       fill="none"
+      xmlns="http://www.w3.org/2000/svg"
     >
       <path
-        id="star-path"
-        d="M164.68 59.0702C115.31 62.4702 65.3199 65.8302 16.6399 56.9302C9.36988 55.6002 0.139896 50.9902 2.0299 43.8502C2.7999 40.9502 5.33985 38.9002 7.79985 37.1902C25.3899 24.9802 46.5899 19.2302 67.5499 14.8402C122.21 3.41024 178.51 -0.119756 234.17 4.39024C250.63 5.72024 267.32 7.83024 282.42 14.5102C288.08 17.0102 294.17 21.2402 294.32 27.4202C294.5 35.1402 285.73 39.5102 278.36 41.8302C237.7 54.6402 195.88 63.8002 153.58 69.1402"
+        id="Bubble-path"
+        d="M167.071 11.3825C114.038 10.8715 58.5416 10.9539 11.5558 36.2693C7.5723 38.4119 3.41285 41.0324 1.74906 45.334C-1.89846 54.7778 8.48418 63.4141 17.571 67.3531C49.5668 81.2304 84.7142 85.2024 119.366 87.2461C172.255 90.3611 225.368 89.3227 278.113 84.1641C295.886 82.4171 313.916 80.1261 330.25 72.726C336.681 69.8088 343.288 65.5072 345.352 58.585C348.632 47.5755 338.873 37.1758 329.338 31.1766C306.301 16.7224 279.265 10.6903 252.548 6.81714C184.541 -3.05519 114.838 -0.335788 47.743 14.7776"
         stroke="black"
-        strokeWidth="3"
+        strokeWidth="1.5"
         strokeLinecap="round"
         strokeLinejoin="round"
       />
@@ -68,7 +65,6 @@ function Star() {
 function Arrow() {
   return (
     <svg
-      className="starsvg"
       id="sArrow"
       width="188"
       height="268"
@@ -98,7 +94,6 @@ function Arrow() {
 function Hand() {
   return (
     <svg
-      className="starsvg"
       id="sHand"
       xmlns="http://www.w3.org/2000/svg"
       width="146"

@@ -1,0 +1,15 @@
+.elevator {
+  @apply text-black text-[200px] flex flex-col lg:flex-row justify-center gap-[30%] capitalize;
+  .elevatorL {
+    @apply text-right;
+  }
+  img {
+    @apply inline;
+  }
+}
+/* .elevator {
+  @apply text-black text-[200px] grid grid-cols-2 gap-[30%] capitalize;
+  .elevatorL {
+    @apply text-right;
+  }
+} */

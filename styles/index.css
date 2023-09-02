@@ -25,18 +25,15 @@
     }
   }
 
-  .text {
-    @apply text-sky-700 text-lg mb-4;
-  }
   .cursor-dot {
-    @apply pointer-events-none fixed top-0 left-0 rounded-full cursor-none w-2 h-2 bg-red-600/100;
+    @apply pointer-events-none fixed top-0 left-0 rounded-full cursor-none w-5 h-5 bg-red-600/100;
     transform: translate(-50%, -50%);
     transition: width 0.15s ease-in-out, height 0.15s ease-in-out,
       transform 0.1s ease-in-out;
     will-change: width, height, transform;
     z-index: 999;
     &.active-link {
-      @apply w-10 h-10 bg-red-600/50;
+      @apply w-20 h-20 bg-red-600/50;
     }
     &.active-video {
       @apply w-72 h-72 bg-teal-500/60;
@@ -55,4 +52,8 @@
       transform: rotate(365deg);
     }
   }
+}
+
+.pin-spacer {
+  border: 2px solid red;
 }

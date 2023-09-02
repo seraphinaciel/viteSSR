@@ -5,7 +5,7 @@ import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-function Letters({ content }) {
+function Letters({ content, className, children }) {
   const targetRef = useRef();
   useEffect(() => {
     const splitTargets = targetRef.current;
@@ -48,60 +48,91 @@ function Letters({ content }) {
     return () => ctx.revert();
   }, [content]);
   return (
-    <p ref={targetRef} className="textSplit letter">
-      {content}
-    </p>
+    <>
+      <p ref={targetRef} className={`textSplit letter ${className}`}>
+        {content}
+      </p>
+      {children}
+    </>
   );
 }
-Letters.propTypes = {
-  content: PropTypes.string.isRequired,
-};
-function Words({ content }) {
+
+function Words({ content, className, children }) {
   const targetRef = useRef();
+  const childrenRef = useRef(null);
 
   useEffect(() => {
     const splitTargets = targetRef.current;
 
     let ctx = gsap.context(() => {
-      gsap.from(splitTargets, {
+      let tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: splitTargets,
+          toggleActions: "restart pause resume reverse",
+          start: "top 40%",
+          end: "+=100%",
+          // scrub: true,
+          markers: true,
+        },
+      });
+
+      tl.from(splitTargets, {
         duration: 0.6,
         ease: "circ.out",
         yPercent: "100",
         opacity: 1,
         stagger: 0.02,
-        scrollTrigger: {
-          trigger: splitTargets,
-          toggleActions: "restart pause resume reverse",
-          start: "top 40%",
-        },
-      });
+      }).fromTo(
+        childrenRef.current,
+        { display: "none" },
+        { display: "block" },
+        ">"
+      );
     }, targetRef);
     return () => ctx.revert();
   }, [content]);
 
   return (
     <div className="overflow-hidden">
-      <p ref={targetRef} className="textSplit words">
+      <p ref={targetRef} className={`textSplit words ${className}`}>
         {content}
       </p>
+      <div ref={childrenRef}>{children}</div>
     </div>
   );
 }
-Words.propTypes = {
-  content: PropTypes.string.isRequired,
-};
 
-export default function Texttyping({ content, splitBy }) {
+export default function Texttyping({ content, splitBy, className, children }) {
   if (splitBy === "letter") {
-    return <Letters content={content} />;
+    return (
+      <Letters content={content} className={className}>
+        {children}
+      </Letters>
+    );
   } else if (splitBy === "words") {
-    return <Words content={content} />;
+    return (
+      <Words content={content} className={className}>
+        {children}
+      </Words>
+    );
   }
 
   return null;
 }
 
+Letters.propTypes = {
+  content: PropTypes.string.isRequired,
+  className: PropTypes.string,
+  children: PropTypes.node,
+};
+Words.propTypes = {
+  content: PropTypes.string.isRequired,
+  className: PropTypes.string,
+  children: PropTypes.node,
+};
 Texttyping.propTypes = {
   content: PropTypes.string.isRequired,
   splitBy: PropTypes.string.isRequired,
+  className: PropTypes.string,
+  children: PropTypes.node,
 };

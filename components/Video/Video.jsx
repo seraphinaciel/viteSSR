@@ -4,8 +4,6 @@ import { gsap } from "gsap/dist/gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import styles from "./Video.module.css";
 
-import TextLR from "../TextLR/TextLR";
-
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Video({ id, src, children }) {
@@ -18,6 +16,7 @@ export default function Video({ id, src, children }) {
         start: "top 0%",
         end: "+=100%",
         pin: true,
+        anticipatePin: 1,
         scrub: true,
       },
     });
@@ -37,29 +36,30 @@ export default function Video({ id, src, children }) {
         duration: 14,
         ease: "none",
       }
-    )
-      .fromTo(".children", { y: 0 }, { y: "-100vh", duration: 5 }, "<+2")
-      .fromTo(textLR.current, { y: "100vh" }, { y: "0vh", duration: 5 }, "<+5");
+    );
 
+    if (children) {
+      tl.fromTo(
+        textLR.current,
+        { y: "50vh" },
+        { y: "0vh", duration: 5 },
+        "<+15"
+      );
+    }
+
+    tl.to(name, { display: "none" });
     return () => {
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
     };
-  }, [id]);
+  }, [id, children]);
 
   return (
     <section className={`box-container__${id} ${styles.movieBox}`}>
-      <div className="children w-full">{children}</div>
-      {id === "smaller" ? (
+      {children ? (
         <div ref={textLR} className="absolute w-full">
-          <TextLR id="out" conLeft="make" conRight="work" change="moment">
-            <p className="text-4xl text-center max-w-xl mx-auto">
-              LG Electronics online platform Global pilot website
-            </p>
-          </TextLR>
+          {children}
         </div>
-      ) : (
-        ""
-      )}
+      ) : null}
       <div className={`box ${styles.movieBox_wrap}`}>
         <video controls muted autoPlay preload="true" loop>
           <source src={src} type="video/mp4" />

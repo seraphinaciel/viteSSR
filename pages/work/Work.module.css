@@ -8,3 +8,22 @@
 .name {
   color: green;
 }
+
+.text {
+  @apply text-4xl/loose  lg:text-[200px]/loose border py-10;
+  div {
+    @apply flex justify-between;
+  }
+  > p:last-child {
+    margin-left: 50%;
+  }
+}
+.text2 {
+  @apply text-4xl/loose  lg:text-[200px]/loose border py-10;
+  div {
+    @apply flex gap-8;
+  }
+  > p:last-child {
+    margin-left: 50%;
+  }
+}

@@ -1,68 +1,40 @@
-### 프로젝트 폴더 생성 및 초기화
+### 8.18.
 
-> vite, vite-plugin-ssr 같이 설치
+https://webstoryboy.github.io/gsap2023/gsap13.html
 
-[vite-plugin-ssr](https://vite-plugin-ssr.com/)
+- 컴포넌트들 간략하게라도 만들어두기
+- 짜깁기는 나중에
 
-```bash
-npm init vite-plugin-ssr@latest
+### 8.17.
 
-    Need to install the following packages:
-      create-vite-plugin-ssr@0.0.296
-    Ok to proceed? (y) // y 엔터
-    ? Project name: » vite-ssr-project // 프로젝트 이름 적고 엔터
+- main 상단, 폰트까지
 
-    Scaffolding project in C:\__work\project-01\vite-ssr-project...
-    ? Select a boilerplate: ...
-      vue
-      vue-ts
-    > react // react 엔터
-      react-ts
+### 8.16.
 
-cd my-react-project
-npm install
-npm run dev
-```
+- main coding start(video)
 
-#### tailwind.css / PostCSS 설치
+### 8.14.
 
-[Install Tailwind CSS with Vite](https://tailwindcss.com/docs/guides/vite)
+- add to custom cursor, video
 
-[PostCSS config](https://tailwindcss.com/docs/using-with-preprocessors#nesting)
+### 8.11.
 
-```bash
-npm install -D tailwindcss postcss autoprefixer
-npm install -D postcss-import
-npm install postcss-nesting
-```
+- 아이콘(얘도 스크롤) + marquee 같이 되는거 만들어야 함
+- 만들어 둔 거 옮기기
 
-### gsap 설치
+### 8.10.
 
-```bash
-npm install gsap
-```
+- 아이콘(얘도 스크롤) + marquee 같이 되는거 만들어야 함
+- 만들어 둔 거 옮기기
 
-### 폴더 용도
+### 23.8.9
 
-> 자세한 내용은 주석 참고
-
-- doctype 설명 : /renderer/\_default.page.server.jsx
-- routes & layout : /renderer/PageShell.jsx
-- sub pages(script, styles) : /pages/##/##.page.jsx
-- components : pages/components/##.jsx
-- features : pages/components/##/##.jsx
-- tailwind.css 모음 : /styles/index.css
-
-<!--
-
-*
-*
-*
-* 개인용
-*
-*
-*
-* -->
+- 기본 페이지 : max-width:2560px or 100%
+- detail : 디자인팀 정리 예정
+  태블릿 / 모바일에 떼두리 있던거 다 빼고 심플하게
+  kv 제외 컨텐츠들만 max-width:1920px
+  영상 삽입했을 때는 어딘가는 잘릴텐데 높이가 고정
+  hero 영역 kv만 잘릴꺼 고민
 
 page file 접미사
 
@@ -77,31 +49,31 @@ page file 접미사
 
 ### gsap 속기..?
 
-x: 100 transform: translateX(100px)
-y: 100 transform: translateY(100px)
-xPercent: -50 transform: translateX(-50%)
-yPercent: -50 transform: translateY(-50%)
-rotation: 360 transform: rotate(360deg) Rotate (degrees)
-scale: 2 transform: scale(2, 2)
-transformOrigin: "0% 100%" transform-origin: 0% 100%;
-rotationX: 360 transform: rotateX(360deg)
-rotationY: 360 transform: rotateY(360deg)
-skewX: 45 transform: skewX(45deg)
-skewY: 45 transform: skewY(45deg)
-scaleX: 2 transform: scaleX(2)
-scaleY: 2 transform: scaleY(2)
+- x: 100 transform: translateX(100px)
+- y: 100 transform: translateY(100px)
+- xPercent: -50 transform: translateX(-50%)
+- yPercent: -50 transform: translateY(-50%)
+- rotation: 360 transform: rotate(360deg) Rotate (degrees)
+- scale: 2 transform: scale(2, 2)
+- transformOrigin: "0% 100%" transform-origin: 0% 100%;
+- rotationX: 360 transform: rotateX(360deg)
+- rotationY: 360 transform: rotateY(360deg)
+- skewX: 45 transform: skewX(45deg)
+- skewY: 45 transform: skewY(45deg)
+- scaleX: 2 transform: scaleX(2)
+- scaleY: 2 transform: scaleY(2)
 
-x: 200, // px(기본)
-x: "+=200" // relative values
-x: '40vw', // GSAP가 구문 분석할 수 있도록 다른 단위의 문자열을 전달
-x: () => window.innerWidth / 2, // 함수 값을 계산
+- x: 200, // px(기본)
+- x: "+=200" // relative values
+- x: '40vw', // GSAP가 구문 분석할 수 있도록 다른 단위의 문자열을 전달
+- x: () => window.innerWidth / 2, // 함수 값을 계산
 
-rotation: 360 // degrees
-rotation: "1.25rad" // radians
+- rotation: 360 // degrees
+- rotation: "1.25rad" // radians
 
 변환/불투명도 사용 추천(필터, 그림자는 랜더링 시 cpu 부하)
 
-SVG attributes
+### SVG attributes
 
 ```javascript
 gsap.to(".svgBox", {
@@ -117,7 +89,7 @@ gsap.to(".svgBox", {
 });
 ```
 
-특수 속성
+### 특수 속성
 
 [더보기](https://greensock.com/docs/v3/GSAP/Tween#special-properties)
 
@@ -145,7 +117,7 @@ gsap.to(".box", {
 });
 ```
 
-Timelines
+### Timelines
 
 [more](https://greensock.com/get-started-2)
 
@@ -167,9 +139,7 @@ tl.to(".green", { x: 200 })
   .to(".orange", { x: 200, scale: 2, y: 20 });
 ```
 
-애니메이션 제어
-
-콜백
+### 애니메이션 제어 콜백
 
 ```javascript
 gsap.to(".class", {
@@ -248,25 +218,68 @@ useEffect(() => {
 }, []);
 ```
 
-### 8.14.
+<!--
 
-- add to custom cursor, video
+*
+*
+*
+* 개인용
+*
+*
+*
+* -->
 
-### 8.11.
+### 프로젝트 폴더 생성 및 초기화
 
-- 아이콘(얘도 스크롤) + marquee 같이 되는거 만들어야 함
-- 만들어 둔 거 옮기기
+> vite, vite-plugin-ssr 같이 설치
 
-### 8.10.
+[vite-plugin-ssr](https://vite-plugin-ssr.com/)
 
-- 아이콘(얘도 스크롤) + marquee 같이 되는거 만들어야 함
-- 만들어 둔 거 옮기기
+```bash
+npm init vite-plugin-ssr@latest
 
-### 23.8.9
+    Need to install the following packages:
+      create-vite-plugin-ssr@0.0.296
+    Ok to proceed? (y) // y 엔터
+    ? Project name: » vite-ssr-project // 프로젝트 이름 적고 엔터
 
-- 기본 페이지 : max-width:2560px or 100%
-- detail : 디자인팀 정리 예정
-  태블릿 / 모바일에 떼두리 있던거 다 빼고 심플하게
-  kv 제외 컨텐츠들만 max-width:1920px
-  영상 삽입했을 때는 어딘가는 잘릴텐데 높이가 고정
-  hero 영역 kv만 잘릴꺼 고민
+    Scaffolding project in C:\__work\project-01\vite-ssr-project...
+    ? Select a boilerplate: ...
+      vue
+      vue-ts
+    > react // react 엔터
+      react-ts
+
+cd my-react-project
+npm install
+npm run dev
+```
+
+#### tailwind.css / PostCSS 설치
+
+[Install Tailwind CSS with Vite](https://tailwindcss.com/docs/guides/vite)
+
+[PostCSS config](https://tailwindcss.com/docs/using-with-preprocessors#nesting)
+
+```bash
+npm install -D tailwindcss postcss autoprefixer
+npm install -D postcss-import
+npm install postcss-nesting
+```
+
+### gsap 설치
+
+```bash
+npm install gsap
+```
+
+### 폴더 용도
+
+> 자세한 내용은 주석 참고
+
+- doctype 설명 : /renderer/\_default.page.server.jsx
+- routes & layout : /renderer/PageShell.jsx
+- sub pages(script, styles) : /pages/##/##.page.jsx
+- components : pages/components/##.jsx
+- features : pages/components/##/##.jsx
+- tailwind.css 모음 : /styles/index.css

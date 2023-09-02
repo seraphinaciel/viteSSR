@@ -4,7 +4,7 @@ import { gsap } from "gsap/dist/gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
-export default function Textsplit({ content }) {
+export default function Textsplit({ content, className }) {
   const target = useRef();
 
   useEffect(() => {
@@ -40,7 +40,7 @@ export default function Textsplit({ content }) {
   return (
     <>
       <div className="overflow-hidden" ref={target}>
-        <p>{content}</p>
+        <p className={className}>{content}</p>
       </div>
     </>
   );
@@ -48,4 +48,5 @@ export default function Textsplit({ content }) {
 
 Textsplit.propTypes = {
   content: PropTypes.string.isRequired,
+  className: PropTypes.string,
 };
