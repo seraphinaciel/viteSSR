@@ -7,7 +7,7 @@ import styles from "./Video.module.css";
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Video({ id, src, children }) {
-  const textLR = useRef();
+  const textChange = useRef();
 
   useEffect(() => {
     const tl = gsap.timeline({
@@ -40,14 +40,14 @@ export default function Video({ id, src, children }) {
 
     if (children) {
       tl.fromTo(
-        textLR.current,
+        textChange.current,
         { y: "50vh" },
         { y: "0vh", duration: 5 },
         "<+15"
       );
     }
 
-    tl.to(name, { display: "none" });
+    tl.to(name, { opacity: 0, duration: 10, display: "none" });
     return () => {
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
     };
@@ -56,7 +56,7 @@ export default function Video({ id, src, children }) {
   return (
     <section className={`box-container__${id} ${styles.movieBox}`}>
       {children ? (
-        <div ref={textLR} className="absolute w-full">
+        <div ref={textChange} className="absolute w-full">
           {children}
         </div>
       ) : null}

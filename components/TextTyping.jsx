@@ -62,6 +62,29 @@ function Words({ content, className, children }) {
   const childrenRef = useRef(null);
 
   useEffect(() => {
+    function animateSvg() {
+      const paths = document.querySelectorAll(".text-word path");
+
+      console.log(paths);
+      paths.forEach((p) => {
+        const pathLength = p.getTotalLength();
+
+        gsap.set(p, {
+          strokeDasharray: pathLength,
+          strokeDashoffset: pathLength,
+        });
+        gsap.to(
+          p,
+          {
+            duration: 1,
+            opacity: 1,
+            ease: "power3.out",
+            strokeDashoffset: 0,
+          },
+          ">"
+        );
+      });
+    }
     const splitTargets = targetRef.current;
 
     let ctx = gsap.context(() => {
@@ -83,37 +106,18 @@ function Words({ content, className, children }) {
         opacity: 1,
         stagger: 0.02,
       });
-      tl.from(childrenRef.current, { duration: 0.000001, opacity: 0 }, ">");
+
+      if (childrenRef.current) {
+        tl.from(childrenRef.current, { duration: 0.000001, opacity: 0 }, ">");
+      }
     }, targetRef);
     return () => ctx.revert();
   }, []);
-  function animateSvg() {
-    const paths = childrenRef.current.querySelectorAll(`svg path`);
-
-    paths.forEach((p) => {
-      const pathLength = p.getTotalLength();
-
-      gsap.set(p, {
-        strokeDasharray: pathLength,
-        strokeDashoffset: pathLength,
-      });
-      gsap.to(
-        p,
-        {
-          duration: 1,
-          opacity: 1,
-          ease: "power3.out",
-          strokeDashoffset: 0,
-        },
-        ">"
-      );
-    });
-  }
 
   return (
-    <>
+    <div className="text-word">
       {children ? (
-        <div ref={childrenRef} className="absolute overflow-hidden">
+        <div ref={childrenRef} className="absolute">
           {children}
         </div>
       ) : null}
@@ -122,7 +126,7 @@ function Words({ content, className, children }) {
           {content}
         </p>
       </div>
-    </>
+    </div>
   );
 }
 

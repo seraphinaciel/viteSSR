@@ -37,6 +37,7 @@ const SvgLine = ({ id, className }) => {
   const components = {
     sBubble: <Bubble className={className} />,
     sArrow: <Arrow />,
+    sThej: <Thej />,
   };
   return components[id] || "error";
 };
@@ -89,6 +90,69 @@ function Arrow() {
         strokeLinecap="round"
         strokeLinejoin="round"
       />
+    </svg>
+  );
+}
+
+function Thej() {
+  return (
+    <svg
+      id="sThej"
+      width="322"
+      height="292"
+      viewBox="0 0 322 292"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      {/* <g clipPath="url(#clip0_59_1312)"> */}
+      <path
+        d="M14.8022 78.8677L104.14 81.2018"
+        stroke="black"
+        strokeWidth="12"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M82.5807 26.6116C82.5807 26.6116 6.32764 205.833 6.32764 225.969"
+        stroke="black"
+        strokeWidth="12"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M124.93 6.87622C124.93 6.87622 60.2364 172.546 59.4565 179.13C66.7699 164.028 97.2018 105.205 119.922 112.172C142.642 119.14 95.2781 206.617 95.2781 206.617"
+        stroke="black"
+        strokeWidth="12"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M147.274 143.126C152.663 144.676 176.163 158.994 186.163 130.741C196.162 102.488 137.552 106.999 138.99 165.352C139.527 187.178 154.604 195.783 167.29 191.097C185.227 184.478 196.908 166.362 204.568 155.476"
+        stroke="black"
+        strokeWidth="12"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M315.181 82.7529L311.455 92.281"
+        stroke="black"
+        strokeWidth="12"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M258.968 168.295C258.968 168.295 286.315 157.078 306.332 113.322C293.23 156.294 261.654 266.223 210.825 284.409C175.696 291.916 167.309 236.803 167.309 236.803"
+        stroke="black"
+        strokeWidth="12"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      {/* </g> */}
+      {/* <defs>
+        <clipPath id="clip0_59_1312">
+          <rect width="322" height="292" fill="white" />
+        </clipPath>
+      </defs> */}
     </svg>
   );
 }

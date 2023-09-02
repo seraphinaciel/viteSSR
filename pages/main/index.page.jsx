@@ -14,16 +14,11 @@ function Page() {
     <>
       <h1 className={styles.name}>Main</h1>
       <Video id="smaller" src="https://www.w3schools.com/tags/movie.mp4">
-        <TextChange
-          id="out"
-          conLeft="make"
-          conRight="work"
-          change="moment"
-          img="/images/thej_path_1x.webp"
-        >
-          <p className="text-4xl text-center max-w-xl mx-auto">
-            LG Electronics online platform Global pilot website
-          </p>
+        <p className="text-4xl text-center max-w-xl mx-auto">
+          LG Electronics online platform Global pilot website
+        </p>
+        <TextChange conLeft="make" conRight="work" change="moment">
+          <SvgLine id="sThej" />
         </TextChange>
         <div className={styles.main_txt}>
           <Text content="Our latest" />
