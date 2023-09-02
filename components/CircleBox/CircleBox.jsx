@@ -4,7 +4,7 @@ import { gsap } from "gsap/dist/gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import styles from "./CircleBox.module.css";
 
-export default function CircleBox({ imgSrc }) {
+export default function CircleBox({ children }) {
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
@@ -39,14 +39,13 @@ export default function CircleBox({ imgSrc }) {
   return (
     <section className={` ${styles.cBox}`} id="circleBox">
       <div>
-        <em>
-          <img src={imgSrc} alt="" />
-        </em>
+        <em></em>
         <i></i>
+        {children}
       </div>
     </section>
   );
 }
 CircleBox.propTypes = {
-  imgSrc: PropTypes.string.isRequired,
+  children: PropTypes.node,
 };

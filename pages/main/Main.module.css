@@ -3,50 +3,9 @@
   top: calc(100% - 0px);
 }
 
-.box {
-  width: 100px;
-  height: 100px;
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  background-color: green;
-  font-weight: 600;
-  color: white;
-}
-
-.banana {
-  width: 100px;
-  height: 100px;
-  border-radius: 99%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  background-color: purple;
-  font-weight: 600;
-  color: white;
-}
-
-.apple {
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  min-height: 100vh;
-  background: #f9f9f9;
-}
-.svgIcons {
-  @apply bg-black w-2/12;
-  img {
-    animation: rotatei 15s linear infinite;
-  }
-}
-@keyframes rotatei {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(365deg);
+.svgTest {
+  @apply flex pl-0 flex-col items-start gap-3 ml-[45%] w-5/12 relative;
+  svg {
+    /* @apply opacity-0; */
   }
 }

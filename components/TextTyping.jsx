@@ -69,11 +69,11 @@ function Words({ content, className, children }) {
         scrollTrigger: {
           trigger: splitTargets,
           toggleActions: "restart pause resume reverse",
-          start: "top 40%",
+          start: "top center",
           end: "+=100%",
-          // scrub: true,
           markers: true,
         },
+        onComplete: animateSvg,
       });
 
       tl.from(splitTargets, {
@@ -82,23 +82,47 @@ function Words({ content, className, children }) {
         yPercent: "100",
         opacity: 1,
         stagger: 0.02,
-      }).fromTo(
-        childrenRef.current,
-        { display: "none" },
-        { display: "block" },
-        ">"
-      );
+      });
+      tl.from(childrenRef.current, { duration: 0.000001, opacity: 0 }, ">");
     }, targetRef);
     return () => ctx.revert();
-  }, [content]);
+  }, []);
+  function animateSvg() {
+    const paths = childrenRef.current.querySelectorAll(`svg path`);
+
+    paths.forEach((p) => {
+      const pathLength = p.getTotalLength();
+
+      gsap.set(p, {
+        strokeDasharray: pathLength,
+        strokeDashoffset: pathLength,
+      });
+      gsap.to(
+        p,
+        {
+          duration: 1,
+          opacity: 1,
+          ease: "power3.out",
+          strokeDashoffset: 0,
+        },
+        ">"
+      );
+    });
+  }
 
   return (
-    <div className="overflow-hidden">
-      <p ref={targetRef} className={`textSplit words ${className}`}>
-        {content}
-      </p>
-      <div ref={childrenRef}>{children}</div>
-    </div>
+    <>
+      {children ? (
+        <div ref={childrenRef} className="absolute overflow-hidden">
+          {children}
+        </div>
+      ) : null}
+      <div className="overflow-hidden">
+        <p ref={targetRef} className={`textSplit words ${className}`}>
+          {content}
+        </p>
+      </div>
+    </>
   );
 }
 

@@ -1,8 +1,10 @@
 import styles from "./About.module.css";
+
 import Text from "#root/components/Text";
-import Button from "#root/components/Button";
-import TextSplit from "#root/components/TextSplit";
-import TextTyping from "#root/components/TextTyping";
+import CircleBox from "#root/components/CircleBox/CircleBox";
+import TextMove from "#root/components/TextMove";
+import TextLR from "#root/components/TextLR/TextLR";
+import Texttyping from "#root/components/TextTyping";
 import SvgIcons from "#root/components/SvgIcons";
 
 export { Page };
@@ -19,46 +21,42 @@ function Page(pageContext) {
   return (
     <>
       <h1>About</h1>
-      <strong className={styles.desc}>{documentProps.description}</strong>
-      <br />
-      <br />
-      <br />
-      <br />
-      <ul>
-        <li>
-          <Text content="공통 !" />
-        </li>
-        <li>
-          <Button label="hello Btn" />
-        </li>
-      </ul>
-
-      <div className={styles.text_reveal}>
-        <div>
-          <TextSplit content="version 1" />
-          <TextSplit content="Design is" />
-          <TextSplit content="intelligence" />
-          <TextSplit content="made visible." />
+      <CircleBox>
+        <div className={styles.circle}>
+          <TextLR id="out" conLeft="new" conRight="eyes" />
+          <SvgIcons color="black" />
         </div>
-      </div>
-
-      <div className={styles.text_reveal}>
+      </CircleBox>
+      <TextMove
+        className={styles.text}
+        location={["x", "x", "y"]}
+        coord={["-1", "1", "1"]}
+      >
         <div>
-          <TextTyping splitBy="words" content="version 2" />
-          <TextTyping splitBy="words" content="디자인은" />
-          <TextTyping splitBy="words" content="눈에 보이는 " />
-          <TextTyping splitBy="words" content="지성입니다...?" />
+          <Text content="Make Empathy" />
+          <Text content="&" />
         </div>
-      </div>
+        <Text content="Creativity" />
+      </TextMove>
 
-      <div className={styles.text_split}>
-        <TextTyping
-          splitBy="letter"
-          content="As human beings, we often find ourselves feeling out of place in the world around us. We sense that something is not quite right that the reality we experience is not necessarily the truth"
-        />
-      </div>
+      <Texttyping
+        content="Neat Arrangement Creative Expression Sophisticated Techniques Good Communication Young Generation Casual and Cozy Office Free-Spirited"
+        splitBy="letter"
+        className="text-9xl"
+      />
 
-      <SvgIcons />
+      <TextMove
+        className={styles.vision_title}
+        location={["y", "y", "y"]}
+        coord={["1", "1", "1"]}
+      >
+        <SvgIcons color="black" />
+        <div>
+          <Text content="Discover" />
+          <Text content="Hidden" />
+        </div>
+        <Text content="Creativity" />
+      </TextMove>
     </>
   );
 }

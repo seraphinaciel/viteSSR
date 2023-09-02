@@ -1,18 +1,30 @@
-.desc {
-  background-color: #eaeaea;
-  padding: 3px 5px;
-  border-radius: 4px;
+.text {
+  @apply text-4xl/loose  lg:text-[200px]/loose border py-10;
+  div {
+    @apply flex justify-between;
+  }
+  > p:last-child {
+    margin-left: 50%;
+  }
 }
-.text_reveal {
-  @apply mx-auto p-8 pt-16;
-  & > div {
-    @apply text-6xl/[76px] text-slate-700 dark:text-gray-200 text-center font-black;
-    span {
-      @apply overflow-hidden inline-flex;
-    }
+.vision_title {
+  @apply text-4xl/loose  lg:text-[200px]/loose border py-10;
+  div {
+    @apply flex gap-8;
+  }
+  > p:last-child {
+    margin-left: 50%;
   }
 }
 
-.text_split {
-  @apply text-5xl/loose bg-slate-100 dark:bg-transparent dark:text-white p-8;
+.circle {
+  .elevator {
+    @apply flex flex-row;
+  }
+  .elevatorL,
+  .elevatorR {
+    background: blue;
+  }
 }
+
+/* 클래스가 먹히지 않음 */

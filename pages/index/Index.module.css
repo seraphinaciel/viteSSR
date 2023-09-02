@@ -1,0 +1,13 @@
+.text_reveal {
+  @apply mx-auto p-8 pt-16;
+  & > div {
+    @apply text-6xl/[76px] text-slate-700 dark:text-gray-200 text-center font-black;
+    span {
+      @apply overflow-hidden inline-flex;
+    }
+  }
+}
+
+.text_split {
+  @apply text-5xl/loose bg-slate-100 dark:bg-transparent dark:text-white p-8;
+}

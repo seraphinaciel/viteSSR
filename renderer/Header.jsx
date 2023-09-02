@@ -55,9 +55,11 @@ function Header() {
 
       <nav>
         <Link href="/" text="Home" />
-        <Link href="/about" text="About" />
-        <Link href="/work" text="Work" />
         <Link href="/main" text="Main" />
+        <Link href="/work" text="Work" />
+        <Link href="/about" text="About" />
+        <Link href="/careers" text="Careers" />
+        <Link href="/contact" text="Contact" />
       </nav>
     </header>
   );
