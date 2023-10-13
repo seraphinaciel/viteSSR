@@ -15,7 +15,7 @@ import { Text } from "./Text";
 // utils
 import { CM } from "#root/utils";
 
-const tweenSVGLine = (pathElement, config = {}) => {
+export const tweenSVGLine = (pathElement, config = {}) => {
   const tl = gsap.timeline();
   const pathLength = pathElement.getTotalLength();
   const setValue = {
@@ -32,10 +32,18 @@ const tweenSVGLine = (pathElement, config = {}) => {
   return tl;
 };
 
-function LineMotionText({ styleId, children, extendLineStyle = null, slicePoint = 0.6, cutoffRatio = 0.9 }) {
+function LineMotionText({
+  styleId,
+  children,
+  color = "black",
+  extendLineStyle = null,
+  slicePoint = 0.6,
+  cutoffRatio = 0.9,
+  animateDelegation = true,
+}) {
   const lineRef = useRef(null);
   useEffect(() => {
-    if (null == lineRef.current) return;
+    if (!animateDelegation) return;
 
     // const { width, height } = lineRef.current.viewBox.baseVal;
     // console.group(`${styleId}`);
@@ -85,7 +93,7 @@ function LineMotionText({ styleId, children, extendLineStyle = null, slicePoint 
     const intersectionObserver = new IntersectionObserver(callback, {
       threshold: [cutoffRatio],
     });
-    intersectionObserver.observe(lineRef.current);
+    // intersectionObserver.observe(lineRef.current);
 
     // unmount
     const cleanUp = () => {
@@ -104,6 +112,7 @@ function LineMotionText({ styleId, children, extendLineStyle = null, slicePoint 
       <SvgLine
         ref={lineRef}
         shape={styleId}
+        color={color}
         className={CM("svg", "row-span-1 col-span-1 row-start-1 col-start-1", extendLineStyle)}
       />
     </span>
@@ -114,8 +123,10 @@ LineMotionText.propTypes = {
   styleId: PropTypes.oneOf(SvgLineIdList).isRequired,
   children: PropTypes.node.isRequired,
   extendLineStyle: PropTypes.string,
+  color: PropTypes.string,
   slicePoint: PropTypes.number,
   cutoffRatio: PropTypes.number,
+  animateDelegation: PropTypes.bool,
 };
 
 export default LineMotionText;

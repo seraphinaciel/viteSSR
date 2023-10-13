@@ -38,7 +38,8 @@ export default function VisualBox({ id, src, children, conLeft, conRight, change
             scrub: true,
             start: "top top",
           },
-          onComplete: () => animateSvg(".Thej path", 0.2),
+          onComplete: () => animateSvg(gsap.utils.toArray(".Thej path"), 0.2),
+          // onComplete: () => animateSvg(".Thej path", 0.2),
         });
 
         const [clipStart, clipEnd] = clipMap[id];
@@ -137,7 +138,7 @@ export default function VisualBox({ id, src, children, conLeft, conRight, change
         {children}
 
         {/* title */}
-        <h1>
+        <h1 className="text-heading-3 md:text-special capitalize">
           <p className="conLeft">
             <Text tagName="span">{conLeft}</Text>
             <SvgLine shape="typo/thej" className="Thej" ref={centerRef} />

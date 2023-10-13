@@ -154,24 +154,24 @@ export default function Guide() {
         <Title className={styles.title}>공통 text box</Title>
         <section className="layout_text_box">
           <Title tagName="h5">Our Philosophy</Title>
-          <article>
+          {/* <article>
             <SWord
               className="title_p"
               content="We respect the thoughts of people who grew up in different environments. Making my thoughts and other people's thoughts together The beginning is The J's creative momentum."
               location="respect"
-            >
-              <SvgLine shape="circle/4.down" color="red" />
-            </SWord>
+              styleId="circle/4.down"
+              color="red"
+            />
             <SWord
               className="basic_p_2"
               content="우리는 서로 다른 환경에서 자란 사람들의 생각을 존중합니다. 나의 생각과 다른 사람들의 생각을 함께 만들어가는 것 그 시작이 더제이의 크리에이티브 모멘텀입니다."
             />
-          </article>
+          </article> */}
         </section>
 
         <Title className={styles.title}>공통 title</Title>
         <section className="title_box">
-          <h2>
+          {/* <h2>
             <Word tagName="strong" content="We are focusing on" />
             <Word content="creative design" />
             <Word content="and technical work" />
@@ -189,7 +189,7 @@ export default function Guide() {
               content="기술이 발달할수록 크리에이티브와 기술의 결합은 우리의 막강한 힘이 될
           것이라고 믿습니다."
             />
-          </article>
+          </article> */}
 
           <nav>
             <a href="">

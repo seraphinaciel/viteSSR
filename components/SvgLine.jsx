@@ -20,7 +20,7 @@ gsap.registerPlugin(ScrollTrigger);
 // ];
 
 // circle/ellipsis=20&open=down&renderType=fill
-// circle/20.down.fill
+// circle?20&down&fill
 // circle*20*down*fill
 // circle*20.down.fill
 // circle/20.down.fill
@@ -48,7 +48,7 @@ export const SvgLineIdList = [
   "typo/difference",
 ];
 
-const SvgLine = forwardRef(function SvgLine({ shape, className, color = "black" }, ref) {
+const SvgLine = forwardRef(function SvgLine({ shape, className, color = "black", style }, ref) {
   switch (shape) {
     // circle
     case "circle/20.down.fill":
@@ -210,10 +210,25 @@ const SvgLine = forwardRef(function SvgLine({ shape, className, color = "black" 
           </svg>
         </>
       );
+    case "icon/x":
+      return (
+        <svg viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg" {...style}>
+          <path d="M3 3L27 27" stroke="black" strokeWidth="1.5" />
+          <path d="M27 3L3 27" stroke="black" strokeWidth="1.5" />
+        </svg>
+      );
     // typography
     case "typo/thej":
       return (
-        <svg ref={ref} className={className} viewBox="0 0 322 292" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg
+          ref={ref}
+          className={className}
+          width="322"
+          height="292"
+          viewBox="0 0 322 292"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
           <path
             d="M14.8022 78.8677L104.14 81.2018"
             stroke={color}
@@ -260,7 +275,7 @@ const SvgLine = forwardRef(function SvgLine({ shape, className, color = "black" 
       );
     case "typo/difference":
       return (
-        <svg xmlns="http://www.w3.org/2000/svg" width="211" height="52" viewBox="0 0 211 52" fill="none">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 211 52" fill="none">
           <g clipPath="url(#clip0_1561_2525)">
             <path
               d="M15.7455 0.928964C11.8905 0.859875 8.21442 2.33148 5.35068 4.9016C4.70359 5.79285 5.63981 6.98119 6.26625 7.65136C6.85139 8.23862 8.16623 9.25423 9.00607 8.56333C13.7698 4.12089 21.5969 3.91362 26.8011 7.69281C29.1761 11.2371 27.5102 16.3497 26.629 20.2325C22.9461 28.7927 12.393 35.7845 4.33186 39.9437C6.68617 31.4043 9.27455 22.7266 13.46 14.8366C14.9814 14.9748 14.9194 13.7243 14.1966 12.4807C13.2191 10.788 11.0231 9.09532 9.94918 10.8778C6.28002 17.1442 4.20106 24.219 1.95688 31.0865C0.676466 35.5151 -2.54523 42.7487 3.82244 44.5658C11.1263 44.5174 23.7584 33.3111 28.35 27.6527C36.0394 14.6916 32.1293 1.64058 15.7455 0.928964Z"
@@ -319,6 +334,7 @@ SvgLine.propTypes = {
   shape: PropTypes.oneOf(SvgLineIdList),
   className: PropTypes.string,
   color: PropTypes.string,
+  style: PropTypes.object,
 };
 
 export default SvgLine;

@@ -1,13 +1,6 @@
-.swords {
+.words_wrap {
   @apply overflow-hidden;
-  p {
-    @apply flex flex-wrap gap-x-[0.25em];
-    span:has(svg) {
-      @apply relative px-20;
-    }
-    svg {
-      @apply absolute top-[50%] left-[50%] w-full h-auto;
-      transform: translate(-50%, -50%);
-    }
+  > * {
+    @apply flex flex-wrap items-center gap-x-[0.25em];
   }
 }

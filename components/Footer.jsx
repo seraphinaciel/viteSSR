@@ -72,7 +72,7 @@ function BackToTop() {
     <button ref={ref} type="button" className="flex items-center gap-[0.5rem]">
       <Text>Back to Top</Text>
       <span className="block w-[1.6rem] md:w-[2rem]">
-        <Icon shape={"arrow/up"} style={{ fill: "white" }} />
+        <Icon shape={"arrow/up"} style={{ stroke: "white" }} />
       </span>
     </button>
   );
