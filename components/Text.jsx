@@ -52,3 +52,4 @@ export function Title({ tagName = "h1", children, className = null }) {
       </Text>
  */
 Title.propTypes = TextPropsType;
+

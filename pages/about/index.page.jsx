@@ -1,6 +1,7 @@
 import styles from "./About.module.css";
 
 import { Title, Text } from "#root/components/Text";
+import { TextSvg } from "#root/components/TextSvg";
 import CircleGrid from "#root/components/about/CircleGrid";
 import TextMove from "#root/components/about/TextMove";
 import AboutTitle from "#root/components/about/AboutTitle";
@@ -25,7 +26,7 @@ function Page() {
   useEffect(() => {
     const ctx = gsap.context(() => {
       const body = document.querySelector("body");
-      let main = gsap.timeline({
+      const mainTimeline = gsap.timeline({
         scrollTrigger: {
           trigger: mainRef.current,
           start: "top 100%",
@@ -34,8 +35,9 @@ function Page() {
           scrub: true,
         },
       });
-      main.to(body, { className: "bg-bg-light text-pink" });
-      let dark = gsap.timeline({
+      mainTimeline.to(body, { className: "bg-bg-light text-pink" });
+
+      const darkTimeline = gsap.timeline({
         scrollTrigger: {
           trigger: ".dark",
           start: "top 100%",
@@ -44,9 +46,9 @@ function Page() {
           scrub: true,
         },
       });
-      dark.to(body, { className: "bg-bg-dark text-white" }, "<");
+      darkTimeline.to(body, { className: "bg-bg-dark text-white" }, "<");
 
-      let light = gsap.timeline({
+      const lightTimeline = gsap.timeline({
         scrollTrigger: {
           trigger: ".light",
           start: "top 20%",
@@ -55,44 +57,52 @@ function Page() {
           scrub: true,
         },
       });
-      light.to(body, { className: "bg-bg-light text-black" }).fromTo(
-        ".svgFixed",
-        { opacity: 0, position: "static" },
-        {
-          opacity: 1,
-          position: "fixed",
-          top: 0,
-          left: 0,
-        },
-        "<-=1"
-      );
+      lightTimeline
+        .to(body, { className: "bg-bg-light text-black" })
+        .fromTo(
+          ".svgFixed",
+          { opacity: 0, position: "static" },
+          {
+            opacity: 1,
+            position: "fixed",
+            top: 0,
+            left: 0,
+          },
+          "<-=1"
+        )
+        .set(".svgFixed", { opacity: 0, position: "static" });
     }, mainRef);
     return () => ctx.revert();
   }, []);
 
   return (
     <div className="about" ref={mainRef}>
-      <h2>
-        <Word tagName="strong" className="block" content="We are focusing on" />
-        <Word content="creative design and technical work" />
-      </h2>
+      <section className="hidden title_box">
+        <h2>
+          <Word
+            tagName="strong"
+            className="block"
+            content="We are focusing on"
+          />
+          <Word content="creative design and technical work" />
+        </h2>
 
-      <div className="w-2/6 mx-auto mt-[70px] gap-y-[30px] flex flex-wrap">
-        <Sentence
-          tagName="h5"
-          content="As technology develops, the combination of UX design and technology will
-      be our powerful force."
-        />
-        <Sentence
-          tagName="h6"
-          content="기술이 발달할수록 크리에이티브와 기술의 결합은 우리의 막강한 힘이 될
-      것이라고 믿습니다."
-        />
-      </div>
+        <div className="w-2/6 mx-auto mt-[70px] gap-y-[30px] flex flex-wrap">
+          <Sentence
+            tagName="h5"
+            content="As technology develops, the combination of UX design and technology will be our powerful force."
+          />
+          <Sentence
+            tagName="h6"
+            content="기술이 발달할수록 크리에이티브와 기술의 결합은 우리의 막강한 힘이 될
+          것이라고 믿습니다."
+          />
+        </div>
+      </section>
 
-      <CircleGrid className="cCircle">
+      <CircleGrid className="hidden cCircle">
         <AboutTitle
-          className={`${styles.cCircle_title}`}
+          className={styles.cCircle_title}
           conLeft="new"
           conRight="eyes"
         />
@@ -108,7 +118,7 @@ function Page() {
         </div>
       </CircleGrid>
 
-      <article className="dark">
+      <section className="hidden dark">
         <TextMove
           className={`${styles.vision_title_1} title_flow`}
           location={["x", "x", "y"]}
@@ -120,9 +130,9 @@ function Page() {
           </Text>
           <Text>{"Creativity"}</Text>
         </TextMove>
-      </article>
+      </section>
 
-      <article className="text_box_side">
+      <section className={`hidden text_box_side ${styles.message}`}>
         <Title tagName="h3">Our Philosophy</Title>
 
         <section>
@@ -137,25 +147,49 @@ function Page() {
             />
           </Sentence>
           <Sentence
-            tagName="p"
+            tagName="h6"
             content="
               우리는 서로 다른 환경에서 자란 사람들의 생각을 존중합니다. 나의
               생각과 다른 사람들의 생각을 함께 만들어가는 것 그 시작이 더제이의
               크리에이티브 모멘텀입니다."
           />
         </section>
-      </article>
+      </section>
 
-      <article className="text_box_noSide">
+      <section className={`hidden text_box_side ${styles.message}`}>
+        <Title tagName="h3">Our Philosophy</Title>
+
+        <div>
+          <TextSvg className="relative">
+            <Text tagName="h4">
+              {
+                "We respect the thoughts of people who grew up in different environments. Making my thoughts and other people's thoughts together The beginning is The J's creative momentum."
+              }
+            </Text>
+            <SvgLine
+              id="sBubble_s"
+              color="white"
+              className="svgAni top-0 left-[4.2rem]"
+            />
+            <Text tagName="h6">
+              {
+                "우리는 서로 다른 환경에서 자란 사람들의 생각을 존중합니다. 나의 생각과 다른 사람들의 생각을 함께 만들어가는 것 그 시작이 더제이의 크리에이티브 모멘텀입니다."
+              }
+            </Text>
+          </TextSvg>
+        </div>
+      </section>
+
+      <section className="hidden text_box_noSide">
         <section>
           <Letter
             content="Neat Arrangement Creative Expression Sophisticated Techniques Good Communication Young Generation Casual and Cozy Office Free-Spirited"
             className="text-heading-8 desktop:text-heading-1"
           />
         </section>
-      </article>
+      </section>
 
-      <article className="light">
+      <section className="hidden light">
         <SvgIcons types="basic" color="black" className="svgFixed" />
         <TextMove
           className={`${styles.vision_title_2} title_flow `}
@@ -168,7 +202,58 @@ function Page() {
           </Text>
           <Text>{"Creativity"}</Text>
         </TextMove>
-      </article>
+      </section>
+
+      <section className={`hidden text_box_side ${styles.message}`}>
+        <Title tagName="h3">Our vision</Title>
+
+        <div>
+          <Sentence
+            tagName="h4"
+            content="Various ideas and trendy experiences increase the branding representation of the project and make it simple and easy to design. By reflecting creativity in technology, we constantly pursue creativity in technical UX design."
+          >
+            <SvgLine
+              id="sBubble_s"
+              color="white"
+              className="svgAni left-[4.2rem]"
+            />
+          </Sentence>
+          <Sentence
+            tagName="h6"
+            content="
+              다양한 아이디어와 트렌디한 경험을 통해 프로젝트의 브랜딩 표현을 높이고 사용성은 간결하고 쉽게 디자인합니다. 기술력에 크리에이티브를 반영하는 과정을 통해 우리는 늘 최상의 크리에이티브 테크니컬 UX 디자인을 만들어가고 있습니다."
+          />
+        </div>
+      </section>
+
+      <section className={styles.spreadImg}>
+        <div className={styles.txtBox}>
+          <Title tagName="h3">Our capability</Title>
+
+          <Sentence
+            tagName="h3"
+            content="We specialize in global and commerce, from building and rollout to maintenance, and strategy and creative design."
+          />
+          <Sentence
+            tagName="h6"
+            content="전략, 크리에이티브 디자인을 중심으로 구축, 확산, 운영 등 글로벌과 커머스에 특화된 디자인이 가능합니다."
+          />
+        </div>
+        <ol>
+          <li>
+            <img src="/images/char1.jpg" alt="" />
+          </li>
+          <li>
+            <img src="/images/char2.jpg" alt="" />
+          </li>
+          <li>
+            <img src="/images/char3.jpg" alt="" />
+          </li>
+          <li>
+            <img src="/images/char5.jpg" alt="" />
+          </li>
+        </ol>
+      </section>
     </div>
   );
 }

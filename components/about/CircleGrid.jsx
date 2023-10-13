@@ -8,33 +8,27 @@ gsap.registerPlugin(ScrollTrigger);
 
 const contents = [
   {
-    class: "bg-red-100 col-start-3 row-start-1",
-    url: "/images/logo.svg",
+    class: "bg-red-100 col-start-3 row-start-1 w-1/3",
     alt: "logo",
   },
   {
-    class: "bg-red-200 col-start-1 row-start-2",
-    url: "/images/star.webp",
+    class: "bg-red-200 col-start-1 row-start-2 w-2/3",
     alt: "star",
   },
   {
     class: "bg-red-300 col-start-2 row-start-3",
-    url: "/images/thej_path_1x.webp",
     alt: "the j",
   },
   {
-    class: "bg-red-400 col-end-11 row-start-1",
-    url: "/images/logo.svg",
+    class: "bg-red-400 col-end-11 row-start-1 w-2/3",
     alt: "logo 1",
   },
   {
     class: "bg-red-500 col-end-13 row-start-2",
-    url: "/images/star.webp",
     alt: "star 1",
   },
   {
-    class: "bg-red-600 col-end-12 row-start-3",
-    url: "/images/thej_path_1x.webp",
+    class: "bg-red-600 col-end-12 row-start-3 w-1/3",
     alt: "the j 1",
   },
 ];
@@ -124,11 +118,15 @@ export default function CircleBox({ className, children }) {
         {contents.map((con, index) => (
           <span
             key={index}
-            className={con.class}
+            className={`aspect-square overflow-hidden rounded-full ${con.class}`}
             id={`span_${index + 1}`}
             ref={gridRef}
           >
-            <img src={con.url} alt={con.alt} />
+            <img
+              src={`/images/char${index + 1}.jpg`}
+              alt={con.alt}
+              className="h-full mx-auto"
+            />
           </span>
         ))}
 

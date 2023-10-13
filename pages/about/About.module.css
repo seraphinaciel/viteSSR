@@ -14,3 +14,29 @@
     @apply w-3/6 text-center;
   }
 } */
+
+.message {
+  h4 {
+    @apply text-heading-9 desktop:text-heading-8;
+  }
+  h6 {
+    @apply text-body-6-kr desktop:text-body-5-kr;
+  }
+}
+
+.spreadImg {
+  @apply border h-screen relative;
+  ol {
+    @apply flex justify-between flex-wrap gap-y-96 h-screen;
+    /* pointer-events: none; */
+    li {
+      @apply bg-slate-400 flex-1 basis-1/2;
+      &:nth-of-type(even) img {
+        @apply mx-auto mr-0;
+      }
+    }
+  }
+  .txtBox {
+    @apply mx-auto w-5/12 absolute left-1/4;
+  }
+}

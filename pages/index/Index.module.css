@@ -2,6 +2,18 @@
   @apply text-heading-3 desktop:text-heading-8 text-red-600 over:wd:text-cursor;
 }
 
+.aside {
+  ul {
+    @apply w-10/12 mx-auto grid grid-cols-3 text-body-2 gap-6 gap-x-32;
+    li {
+      @apply flex justify-between;
+      strong {
+      }
+      p {
+      }
+    }
+  }
+}
 /* .text_reveal {
   @apply mx-auto p-8 pt-16;
   & > div {
