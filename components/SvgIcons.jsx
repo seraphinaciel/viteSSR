@@ -52,13 +52,15 @@ const SvgIcons = ({ color = "black", types, className }) => {
 
     mm.add(isMo, () => {
       console.log("😎");
-      const newSize2 = newSize / 2.5;
-      targetRef.current.style.width = `${newSize2}px`;
-      targetRef.current.style.height = `${newSize2}px`;
+
+      targetRef.current.style.width = `${newSize / 2.5}px`;
+      targetRef.current.style.height = `${newSize / 2.5}px`;
     });
 
     mm.add(isTab, () => {
       console.log("😀");
+      targetRef.current.style.width = `${newSize / 2}px`;
+      targetRef.current.style.height = `${newSize / 2}px`;
     });
 
     mm.add(isPc, () => {
@@ -66,6 +68,7 @@ const SvgIcons = ({ color = "black", types, className }) => {
       targetRef.current.style.width = `${newSize}px`;
       targetRef.current.style.height = `${newSize}px`;
     });
+
     const ctx = gsap.context(() => {
       gsap.to(targetRef.current, {
         rotation: "180",

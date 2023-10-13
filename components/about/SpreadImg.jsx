@@ -9,19 +9,19 @@ gsap.registerPlugin(ScrollTrigger);
 const items = [
   {
     class: "bg-red-600/20",
-    alt: "name A",
+    alt: "hyundai",
   },
   {
     class: "bg-blue-600/20",
-    alt: "name b",
+    alt: "samsung",
   },
   {
     class: "bg-green-600/20",
-    alt: "name C",
+    alt: "lg",
   },
   {
     class: "bg-yellow-600/20",
-    alt: "name D",
+    alt: "genesis",
   },
 ];
 
@@ -38,7 +38,7 @@ const SpreadImg = ({ className, children }) => {
             start: "top 0%",
             end: "+=50%",
             toggleActions: "restart pause resume reverse",
-            scrub: 0.02,
+            scrub: 0.01,
             pin: true,
           },
         });
@@ -50,32 +50,32 @@ const SpreadImg = ({ className, children }) => {
           .from(
             ".item_1",
             {
-              xPercent: 90,
-              yPercent: 250,
+              scale: 1.25,
+              xPercent: 220,
+              yPercent: 150,
             },
             "<",
           )
           .from(
             ".item_2",
             {
-              xPercent: -100,
-              yPercent: 300,
+              scale: 1.25,
+              xPercent: -180,
+              yPercent: 160,
             },
             "<",
           )
-          .from(
-            ".item_3",
-            {
-              xPercent: 70,
-              yPercent: 100,
-            },
-            "<",
-          )
+          .from(".item_3", {
+            scale: 1.25,
+            xPercent: 170,
+            yPercent: 60,
+          })
           .from(
             ".item_4",
             {
-              xPercent: -90,
-              yPercent: 50,
+              scale: 1.25,
+              xPercent: -190,
+              yPercent: 80,
             },
             "<",
           );
@@ -85,7 +85,7 @@ const SpreadImg = ({ className, children }) => {
         let tl = gsap.timeline({
           scrollTrigger: {
             trigger: targetRef.current,
-            start: "0 0%",
+            start: "-20% 0%",
             end: "+=50%",
             toggleActions: "restart pause resume reverse",
             scrub: 0.02,
@@ -97,27 +97,18 @@ const SpreadImg = ({ className, children }) => {
           { opacity: 0 },
           "<",
         )
-          .to(
-            ".item_1",
-            {
-              xPercent: 20,
-              yPercent: -40,
-              opacity: 1,
-            },
-            "<",
-          )
+          .to(".item_1", {
+            xPercent: 20,
+            yPercent: -100,
+            opacity: 1,
+          })
           .to(
             ".item_3",
             {
               xPercent: 100,
-              yPercent: 40,
+              yPercent: 0,
               opacity: 1,
             },
-            "<",
-          )
-          .set(
-            items.slice(0, 4).map((_, index) => `.item_${index + 1}`),
-            { opacity: 0 },
             "<",
           );
         return tl;
@@ -126,7 +117,7 @@ const SpreadImg = ({ className, children }) => {
         let tl = gsap.timeline({
           scrollTrigger: {
             trigger: targetRef.current,
-            start: "25% 0%",
+            start: "20% 0%",
             end: "+=25%",
             toggleActions: "restart pause resume reverse",
             scrub: 0.02,
@@ -147,7 +138,6 @@ const SpreadImg = ({ className, children }) => {
             },
             "<",
           )
-
           .to(
             ".item_4",
             {
@@ -156,6 +146,13 @@ const SpreadImg = ({ className, children }) => {
               opacity: 1,
             },
             "<",
+          )
+          .to(
+            ".item_4 img",
+            {
+              scale: 1,
+            },
+            ">",
           );
         return tl;
       }
@@ -166,20 +163,18 @@ const SpreadImg = ({ className, children }) => {
         },
       });
 
-      // console.log(mainWidth);
       const breakPoint = "(min-width: 768px)";
       const isPC = window.matchMedia(breakPoint).matches;
-
       if (isPC) {
-        console.log("PC");
         master.add(ani01());
       } else {
-        console.log("mobile");
         master.add(ani02());
         master.add(ani03());
       }
     }, targetRef);
-    return () => ctx.revert();
+    return () => {
+      ctx.revert();
+    };
   }, [mainWidth]);
 
   return (
@@ -188,8 +183,11 @@ const SpreadImg = ({ className, children }) => {
         <ol>
           {items.map((item, index) => (
             <li key={index} className={`item_${index + 1} ${item.class}`}>
-              <span>{index + 1}</span>
-              {/* <img src={`/images/char${index + 1}.jpg`} alt={item.alt} /> */}
+              <picture>
+                <source srcSet={`/images/spread_${index + 1}.webp`} type="image/webp" />
+                <source srcSet={`/images/spread_${index + 1}.jpg`} type="image/jpeg" />
+                <img src={`/images/spread_${index + 1}.jpg`} alt={item.alt} />
+              </picture>
             </li>
           ))}
         </ol>
