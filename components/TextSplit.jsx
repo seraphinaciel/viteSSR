@@ -14,6 +14,7 @@ const PropsType = {
   children: PropTypes.node,
   tagName: PropTypes.string,
   location: PropTypes.string,
+  keyword: PropTypes.arrayOf(PropTypes.string),
 };
 
 // 음절 쪼개기
@@ -55,15 +56,15 @@ export function Letter({ content, className, tagName = "p" }) {
     return () => ctx.revert();
   }, [content]);
   return (
-    <div className={`split-letter ${className}`}>
-      <Tagname ref={targetRef}>{content}</Tagname>
-    </div>
+    <Tagname className={`split-letter ${className}`}>
+      <div ref={targetRef}>{content}</div>
+    </Tagname>
   );
 }
 Letter.propTypes = PropsType;
 
 // 어절 쪼개기
-export function Word({ content, className, tagName = "p" }) {
+export function Word({ content, className, tagName = "p", keyword, location }) {
   const Tagname = tagName;
   const targetRef = useRef();
 
@@ -87,15 +88,22 @@ export function Word({ content, className, tagName = "p" }) {
     return () => ctx.revert();
   }, [content]);
 
+  const contentWords = content.split(" ");
+  const keywordArray = Array.isArray(keyword) ? keyword : [keyword];
+
   return (
     <Tagname ref={targetRef} className={`split-words ${className}`}>
-      {content.split(" ").map((word, index) => {
-        return (
-          <span key={index} className="word" style={{ "--index": index }}>
+      {contentWords.map((word, index) =>
+        keywordArray.includes(word) ? (
+          <a href={location} className="word" key={index}>
+            {word}
+          </a>
+        ) : (
+          <span key={index} className="word">
             {word}
           </span>
-        );
-      })}
+        ),
+      )}
     </Tagname>
   );
 }
@@ -115,13 +123,12 @@ export function SWord({ content, className, tagName = "div", children, location 
           trigger: gsap.utils.toArray(".sword"),
           toggleActions: "restart pause resume reverse",
           // start: "top 50%",
-          // end: "+=",
-          markers: true,
+          end: "+=100%",
         },
         onComplete: () => animateSvg(".sword path", 0.25),
       });
 
-      if (location) {
+      if (location && children) {
         tl.set(".sword path", {
           duration: 0.000001,
           opacity: 0,
@@ -143,22 +150,12 @@ export function SWord({ content, className, tagName = "div", children, location 
       <>
         <Tagname className={`${styles.swords} ${className}`}>
           <p ref={targetRef}>
-            {content.split(" ").map((word, index) => {
-              if (word.includes(location)) {
-                return (
-                  <span key={index} className="sword" style={{ "--index": index }}>
-                    {children}
-                    {word}
-                  </span>
-                );
-              } else {
-                return (
-                  <span key={index} className="sword" style={{ "--index": index }}>
-                    {word}
-                  </span>
-                );
-              }
-            })}
+            {content.split(" ").map((word, index) => (
+              <span key={index} className="sword" style={{ "--index": index }}>
+                {word.includes(location) && children}
+                {word}
+              </span>
+            ))}
           </p>
         </Tagname>
       </>
@@ -174,7 +171,7 @@ export function SWord({ content, className, tagName = "div", children, location 
 SWord.propTypes = PropsType;
 
 // 문단(효과)
-export function Sentence({ content, className, children, tagName = "p" }) {
+export function Sentence({ content, className, children, tagName = "div" }) {
   const targetRef = useRef();
   const childrenRef = useRef(null);
   const Tagname = tagName;
@@ -188,7 +185,7 @@ export function Sentence({ content, className, children, tagName = "p" }) {
           trigger: splitTargets,
           toggleActions: "restart pause resume reverse",
           // start: "top 70%",
-          // end: "+=70%",
+          end: "+=100%",
         },
         onComplete: () => animateSvg(".split-sentence path", 1),
       });
@@ -198,7 +195,7 @@ export function Sentence({ content, className, children, tagName = "p" }) {
         ease: "circ.out",
         yPercent: "100",
         opacity: 1,
-        stagger: 0.02,
+        stagger: 2,
       });
 
       if (childrenRef.current) {
@@ -209,24 +206,21 @@ export function Sentence({ content, className, children, tagName = "p" }) {
     return () => ctx.revert();
   }, [content, children]);
 
-  const SvgContent = ({ children, className }) => {
-    return (
-      <div className={`split-sentence ${className}`}>
-        <Tagname ref={targetRef} className="overflow-hidden">
-          {content}
-        </Tagname>
-        {children}
-      </div>
-    );
-  };
   return (
     <>
       {children ? (
-        <SvgContent className={`${className} relative`}>
+        <div className={`split-sentence relative bg-red-50 ${className} `}>
+          <div ref={targetRef} className="overflow-hidden border">
+            <Tagname>{content}</Tagname>
+          </div>
           <div ref={childrenRef}>{children}</div>
-        </SvgContent>
+        </div>
       ) : (
-        <SvgContent className={className} />
+        <div className={`split-sentence overflow-hidden bg-sky-100 ${className}`}>
+          <Tagname ref={targetRef} className="border">
+            {content}
+          </Tagname>
+        </div>
       )}
     </>
   );

@@ -134,7 +134,7 @@ function Footer({ menuList, mode = "dark" }) {
     <footer id="footer" className={`${styles.wrap} ${bg} ${text}`}>
       <div className={styles.container}>
         {/* FNB */}
-        <ul className={styles.fnb}>
+        <ul className={styles.navigation}>
           {menuList.map(({ id, name, route }) => (
             <li key={id}>
               <a href={route}>{name}</a>

@@ -10,7 +10,6 @@ export default function RecruitList({ className, children }) {
   useEffect(() => {
     const ctx = gsap.context(() => {
       const animateElement = (element, animation) => {
-        console.log(element);
         gsap.fromTo(
           element.querySelector("h2"),
           {

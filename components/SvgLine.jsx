@@ -1,18 +1,43 @@
 import PropTypes from "prop-types";
 import { gsap } from "gsap/dist/gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
+import { forwardRef } from "react";
 
 gsap.registerPlugin(ScrollTrigger);
 
-function SvgLine({ shape, className, color = "black" }) {
+export const SvgLineIdList = [
+  "bubble/bold",
+  "bExperience",
+  "bSpecializing",
+  "bRespect",
+  "bCreativity",
+  "bHighquality",
+  "bBetter",
+  "sArrow",
+  "sThej",
+];
+
+const SvgLine = forwardRef(function SvgLine({ shape, className, color = "black" }, ref) {
   switch (shape) {
     // 말풍선 모음
+    case "bubble/bold":
+      return (
+        <svg ref={ref} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 252 55" fill="none" className={className}>
+          <path
+            d="M38.6064 41.0944C27.7081 39.2469 16.6821 36.4277 7.79082 31.5385C4.4703 29.8276 1.8603 27.5214 1.15047 24.9454C-0.847375 18.3321 8.75274 14.4424 16.4332 11.8829C35.737 5.5203 58.0017 2.54457 80.4826 1.29207C100.398 0.167237 120.718 0.578295 141.042 1.39279C147.724 1.80857 154.424 2.43848 161.108 2.92744C168.119 3.68816 175.12 4.60743 182.129 5.42352C201.104 7.78167 232.342 12.9708 246.42 22.381C266.595 38.126 221.875 44.6326 206.16 47.9548C203.308 48.507 200.451 49.0517 197.589 49.5922C195.295 50.0158 193.803 47.8902 195.963 47.3657C210.108 44.2072 224.988 41.8184 238.005 37.2971C247.042 33.7855 252.486 29.2571 243.601 22.3714C236.997 17.9748 228.006 15.2784 219.509 13.0005C200.747 8.17974 181.109 6.43694 161.766 4.29833C155.188 3.86485 148.612 3.456 142.032 3.03276C135.11 2.8983 128.17 2.76851 121.253 2.63478C88.8579 2.42169 56.1514 4.12354 27.4292 11.7667C19.6841 14.085 6.71261 17.261 4.8532 22.9861C4.15991 25.8343 6.60979 28.5885 10.2904 30.5721C15.2499 33.4101 21.0533 35.5836 27.1164 37.1518C34.6406 39.1743 42.4679 40.302 50.2808 41.2367C61.1143 42.6276 71.96 43.8812 82.8133 45.0767C111.042 48.203 139.426 51.221 167.573 51.5058C173.17 51.6203 178.828 51.3921 184.426 52.5418C185.663 52.7621 185.996 53.9378 184.911 54.241C184.355 54.4325 183.7 54.2568 183.086 54.1491C181.859 53.9406 180.637 53.7327 179.393 53.6088C173.022 53.185 166.714 53.3251 160.362 53.0669C152.679 52.8647 144.958 52.4872 137.239 51.9121C122.785 50.8969 108.339 49.3826 93.9051 47.8247C75.4632 45.7514 56.9866 43.7709 38.6111 41.1019L38.6064 41.0944Z"
+            fill={color}
+            stroke={color}
+            strokeWidth="0.3"
+          />
+        </svg>
+      );
     case "bExperience":
       return (
         <svg
+          ref={ref}
           className={className}
-          width="345"
-          height="90"
+          // width="345"
+          // height="90"
           viewBox="0 0 345 90"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
@@ -29,9 +54,10 @@ function SvgLine({ shape, className, color = "black" }) {
     case "bSpecializing":
       return (
         <svg
+          ref={ref}
           className={className}
-          width="368"
-          height="83"
+          // width="368"
+          // height="83"
           viewBox="0 0 368 83"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
@@ -47,7 +73,15 @@ function SvgLine({ shape, className, color = "black" }) {
       );
     case "bRespect":
       return (
-        <svg width="152.2" height="67.79" viewBox="0 0 152.2 67.79" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg
+          ref={ref}
+          className={className}
+          // width="152.2"
+          // height="67.79"
+          viewBox="0 0 152.2 67.79"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
           <path
             d="M74.3522 65.7749C51.531 66.4804 27.9212 66.9405 7.73796 52.1694C4.7005 49.9443 1.49665 46.8522 0.738525 41.4701C-0.375553 33.5532 4.36141 25.9189 8.94311 21.7677C15.3584 15.958 22.4237 12.7886 29.4469 10.206C59.0879 -0.698337 89.5456 -2.18439 118.56 5.87378C129.125 8.8076 139.724 13.1426 148.391 22.7418C151.289 25.9454 154.189 30.8923 153.375 36.8011C152.725 41.5153 149.924 44.7936 147.24 46.9736C141.913 51.2914 136.135 53.4391 130.406 55.2547C99.4103 65.087 67.8413 66.3742 37.4631 59.0592"
             stroke={color}
@@ -58,7 +92,15 @@ function SvgLine({ shape, className, color = "black" }) {
       );
     case "bCreativity":
       return (
-        <svg width="173" height="60" viewBox="0 0 173 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg
+          ref={ref}
+          className={className}
+          // width="173"
+          // height="60"
+          viewBox="0 0 173 60"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
           <path
             d="M114.385 6.6519C90.2765 3.8312 65.6607 5.14755 42.0295 10.5141C32.1235 12.7707 22.3219 15.7505 13.4453 20.5819C6.52306 24.3428 -0.51856 31.0402 1.2866 38.5331C2.45026 43.3789 7.00046 46.7204 11.5208 49.0493C24.2465 55.6165 38.9414 57.5837 53.323 58.4517C80.7286 60.0862 108.373 58.0611 135.227 52.4486C146.087 50.1776 157.142 47.1688 165.899 40.5582C168.137 38.8658 170.271 36.8552 171.315 34.2948C172.881 30.4037 171.613 25.8472 169.017 22.5202C166.421 19.1932 162.677 16.8932 158.888 14.926C133.078 1.54571 102.51 0.677818 73.2394 1.06838"
             stroke={color}
@@ -69,7 +111,15 @@ function SvgLine({ shape, className, color = "black" }) {
       );
     case "bHighquality":
       return (
-        <svg width="382" height="95" viewBox="0 0 382 95" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg
+          ref={ref}
+          className={className}
+          // width="382"
+          // height="95"
+          viewBox="0 0 382 95"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
           <path
             d="M149.963 11.0847C115.297 8.64405 80.1982 12.2936 46.7623 21.7825C33.5064 25.5461 20.1138 30.4502 9.95547 39.7795C4.92186 44.4099 0.617097 50.6598 1.02707 57.5027C1.68759 68.383 13.2581 74.8382 23.5303 78.3965C60.0638 91.1016 99.3077 93.5879 137.982 93.9984C180.984 94.4546 224.009 92.4474 266.761 88.0223C300.219 84.5552 333.929 79.4914 364.905 66.3985C372.125 63.342 380.165 58.5291 380.803 50.6826C381.509 42.3114 373.355 36.1071 365.93 32.2522C325.41 11.2216 278.445 7.48075 232.915 4.40142C187.681 1.3449 141.763 -1.41508 97.3717 7.84571"
             stroke={color}
@@ -81,7 +131,15 @@ function SvgLine({ shape, className, color = "black" }) {
       );
     case "bBetter":
       return (
-        <svg width="201" height="77" viewBox="0 0 201 77" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg
+          ref={ref}
+          className={className}
+          // width="201"
+          // height="77"
+          viewBox="0 0 201 77"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
           <path
             d="M31.9904 19.7448C23.1655 21.5246 14.8061 25.5899 7.93614 31.4537C5.23655 33.758 2.68591 36.4745 1.58745 39.8653C-0.0881514 44.9985 1.99705 50.8061 5.60891 54.7965C9.22077 58.7868 14.1731 61.2972 19.1068 63.4141C55.8212 79.1508 97.6369 78.3265 136.827 70.7579C154.421 67.367 172.127 62.5149 187.003 52.4547C193.221 48.2395 199.272 42.3944 199.942 34.8821C200.538 28.1378 196.479 21.6557 191.061 17.6654C185.643 13.675 179.015 11.7266 172.499 10.078C125.471 -1.78068 75.5934 -2.02423 28.453 9.36613"
             stroke={color}
@@ -97,6 +155,7 @@ function SvgLine({ shape, className, color = "black" }) {
       return (
         <>
           <svg
+            ref={ref}
             className={className}
             xmlns="http://www.w3.org/2000/svg"
             width="237"
@@ -126,6 +185,7 @@ function SvgLine({ shape, className, color = "black" }) {
     case "sThej":
       return (
         <svg
+          ref={ref}
           className={className}
           width="322"
           height="292"
@@ -180,7 +240,7 @@ function SvgLine({ shape, className, color = "black" }) {
     default:
       return "No icon";
   }
-}
+});
 
 SvgLine.propTypes = {
   shape: PropTypes.string.isRequired,

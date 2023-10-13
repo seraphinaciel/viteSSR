@@ -4,7 +4,7 @@
     .container {
       display: grid;
       grid-template-areas:
-        "fnb logo"
+        "navigation logo"
         "line line"
         "complementary complementary"
         "rest rest";
@@ -13,8 +13,8 @@
     .line {
       grid-area: line;
     }
-    .fnb {
-      grid-area: fnb;
+    .navigation {
+      grid-area: navigation;
     }
     .logo {
       grid-area: logo;
@@ -33,7 +33,7 @@
 .line {
   @apply block my-[6rem] md:my-[8rem] opacity-20;
 }
-.fnb {
+.navigation {
   @apply flex flex-col gap-y-[4rem] md:gap-y-[5rem] text-heading-7 md:text-heading-5;
 }
 .logo {
