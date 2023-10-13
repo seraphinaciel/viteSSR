@@ -183,7 +183,7 @@ function Page() {
 
         <section className={styles.service}>
           <h1 className="overflow-hidden ">
-            <TextPassed text="Our service" size="10" runDirection={"left"} />
+            <TextPassed text={"Our service"} size={20} runDirection={"left"} />
           </h1>
           <article>
             <Title tagName="h5">What we do</Title>

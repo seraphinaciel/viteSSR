@@ -49,6 +49,11 @@
     @apply border-none;
   }
 
+  a.link {
+    @apply underline underline-offset-8;
+    @apply text-heading-10 md:text-heading-8 font-medium md:font-medium;
+  }
+
   /* HEADING */
 
   h1 {
@@ -133,7 +138,8 @@
   }
 
   .layout_text_box {
-    @apply grid gap-[--grid-col-gap] md:grid-cols-12 relative break-keep;
+    @apply mobile:px-[--grid-container-margin] grid md:grid-cols-12 relative break-keep;
+    @apply gap-[--grid-col-gap];
 
     > *:first-child {
       @apply mb-25;

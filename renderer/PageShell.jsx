@@ -20,6 +20,7 @@ import Footer from "../components/Footer";
 
 // style:global
 import "../styles/index.css";
+import { CM } from "../utils";
 
 export { PageShell };
 
@@ -279,12 +280,11 @@ function Layout({ children }) {
 
     return cleanUp;
   }, []);
-
   return (
     <>
       <div ref={wrap} id="container">
         {/* grid guide */}
-        <div className="page-contents-wrap z-[100] invisible fixed top-0 bottom-0 left-0 right-0 grid grid-cols-4 md:grid-cols-12 md:gap-x-[--grid-col-gap] md:px-[--grid-container-margin] pb-0">
+        <div className="page-contents-wrap z-[100] invisible fixed top-0 bottom-0 left-0 right-0 grid grid-cols-4 md:grid-cols-12 md:gap-x-[--grid-col-gap] mobile:px-[--grid-container-margin] pb-0">
           {Array.from({ length: 12 }, () => "cols-span-1").map((span, index) => (
             <div key={index} className={span} />
           ))}
@@ -294,9 +294,7 @@ function Layout({ children }) {
         <Header menuList={routes} mode={mode} />
 
         {/* page contents */}
-        <main className={`relative z-10 min-h-[100vh] px-[--grid-container-margin] ${modePalette[mode].class.bg}`}>
-          {children}
-        </main>
+        <main className={CM("relative z-10 min-h-[100vh]", modePalette[mode].class.bg)}>{children}</main>
 
         {/* footer */}
         <Footer menuList={routes} mode={"dark"} />

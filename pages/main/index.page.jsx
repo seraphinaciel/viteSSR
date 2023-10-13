@@ -4,7 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 // import { usePageContext } from "#root/renderer/usePageContext";
 
 // components
-import { Sentence, SWord } from "#root/components/TextSplit";
+import { Sentence, SWord, Word } from "#root/components/TextSplit";
 import SvgLine from "#root/components/SvgLine";
 import TextPassed from "#root/components/TextPassed/TextPassed";
 import { Text, Title } from "#root/components/Text";
@@ -15,6 +15,9 @@ import ListMonoLayout, { LAYOUT_BIG_FIRST } from "#root/components/ListMonoLayou
 
 // styles
 import styles from "./Main.module.css";
+
+// utils
+import { CM } from "#root/utils";
 
 export const documentProps = {
   title: "🥰 Main",
@@ -47,89 +50,118 @@ function Page() {
       <div className="page-contents-wrap">
         <div className="hidden">
           <MotionBox id="smaller" src="https://www.w3schools.com/tags/movie.mp4">
-            <div className="motion-contents | absolute w-full">
-              <Text className="hidden desktop:block desktop:text-heading-6 text-center">
+            <div className={CM(styles.visual, "motion-contents")}>
+              <Text className={CM(styles.title)}>
                 {"LG Global Pilot Website"}
                 {"Platform Building"}
               </Text>
               <MainTitle conLeft="make" conRight="work" change="moment">
                 <SvgLine shape="sThej" />
               </MainTitle>
-              <Text tagName="p" className="basic_p_2 | absolute flex justify-between w-full top-[100%]">
-                {"Our latest"}
-                {"SCROLL"}
-              </Text>
+              <nav>
+                <Text>{"Our latest"}</Text>
+              </nav>
             </div>
           </MotionBox>
+        </div>
 
-          <section className={styles.text_box}>
-            <Sentence tagName="h4" content="Creative Design Technical Agency" />
-            <article>
-              <SWord
-                tagName="h3"
-                content="We have implemented various experience, such as global integrated platforms and creative projects."
-                location="experience,"
-              >
-                <SvgLine shape="bExperience" />
-              </SWord>
+        <section className={CM(styles.text_box)}>
+          <Sentence tagName="h4" content="Creative Design Technical Agency" />
+          <article>
+            <SWord
+              tagName="h3"
+              content="We have implemented various experience, such as global integrated platforms and creative projects."
+              location="experience,"
+            >
+              <SvgLine shape="bExperience" />
+            </SWord>
 
-              <Sentence
-                className="basic_p_2"
-                content="글로벌 통합 플랫폼 프로젝트와 크리에이티브 프로젝트 등 다양한 프로젝트들을 수행해 왔습니다."
-              >
+            <Sentence
+              tagName="p"
+              className="basic_p_2"
+              content="글로벌 통합 플랫폼 프로젝트와 크리에이티브 프로젝트 등 다양한 프로젝트들을 수행해 왔습니다."
+            >
+              <p className="flex justify-center">
                 <SvgLine shape="sArrow" />
-              </Sentence>
-            </article>
-          </section>
-        </div>
-
-        <div className="hidden">
-          {!isLoading && !isError && <ListMonoLayout layout={LAYOUT_BIG_FIRST} list={workList} />}
-        </div>
-
-        <div className="hidden">
-          <section className="pb-100">
-            <h1 className="overflow-hidden ">
-              <TextPassed text="About the J" size="10" runDirection={"left"} />
-            </h1>
-          </section>
-
-          <section className={`layout_text_box ${styles.link}`}>
-            <Title tagName="h5">Who we are</Title>
-            <article>
-              <SWord
-                tagName="h3"
-                className="mb-32"
-                content="We are an agency specializing in global and commerce, from building and maintenance to rollout, and strategic plan and creative design."
-                location="specializing"
-              >
-                <SvgLine shape="bSpecializing" />
-              </SWord>
-              <Sentence
-                className="basic_p_2"
-                content="전략, 기획설계, 크리에이티브 디자인을 중심으로 구축, 확산, 운영 등 글로벌과 커머스에 특화된 크리에이티브 디자인이 가능한 에이전시입니다."
-              />
-              <p className={styles.link}>
-                <a href="">Learn more about</a>
-                <a href="">Join us</a>
               </p>
-            </article>
-          </section>
-        </div>
+            </Sentence>
+          </article>
+        </section>
 
-        <section className={styles.list}>
-          <Title tagName="h5">What we do</Title>
-          <ul>
-            <li>
-              We <a href="">re-create designs</a> for
-            </li>
-            <li>
-              <a href="">user experiences</a>with
-            </li>
-            <li>
-              our <a href="">creative perspective</a>
-            </li>
-          </ul>
+        {/* {!isLoading && !isError && (
+          <section className={CM(styles.list)}>
+            <ListMonoLayout layout={LAYOUT_BIG_FIRST} list={workList} />
+
+            <p className="text-center mt-150 mb-300">
+              <a href="" className="link">
+                See more work
+              </a>
+            </p>
+          </section>
+        )} */}
+
+        <section className={CM(styles.what)}>
+          <video muted autoPlay loop>
+            <source src="https://www.w3schools.com/tags/movie.mp4" type="video/mp4" />
+            Your browser does not support HTML video.
+          </video>
+          <article>
+            <Title tagName="h5">What we do</Title>
+            <ul>
+              <Word
+                tagName="li"
+                content="We re-create designs for"
+                keyword={["re-create"]}
+                location="http://localhost:3000/"
+              />
+              <Word
+                tagName="li"
+                content="user experiences with"
+                keyword={["user", "experiences"]}
+                location="http://localhost:3000/"
+              />
+              <Word
+                tagName="li"
+                content="our creative perspective"
+                keyword={["creative", "perspective"]}
+                location="http://localhost:3000/"
+              />
+            </ul>
+          </article>
+        </section>
+
+        <section className="py-100">
+          <h1 className="overflow-hidden ">
+            <TextPassed text={"About the J"} size={20} runDirection={"left"} />
+          </h1>
+        </section>
+
+        <section className={CM(styles.who, "layout_text_box")}>
+          <Title tagName="h5" className="md:pt-32 md:col-span-4">
+            Who we are
+          </Title>
+          <article>
+            <SWord
+              tagName="h3"
+              className="md:pt-32 mb-32"
+              content="We are an agency specializing in global and commerce, from building and maintenance to rollout, and strategic plan and creative design."
+              location="specializing"
+            >
+              <SvgLine shape="bSpecializing" />
+            </SWord>
+            <Sentence
+              className="basic_p_2"
+              content="전략, 기획설계, 크리에이티브 디자인을 중심으로 구축, 확산, 운영 등 글로벌과 커머스에 특화된 크리에이티브 디자인이 가능한 에이전시입니다."
+            />
+            <p className="inline-flex gap-x-25 mt-63">
+              <a href="" className="link">
+                Learn more about
+              </a>
+              <a href="" className="link">
+                Join us
+              </a>
+            </p>
+          </article>
         </section>
       </div>
     </div>

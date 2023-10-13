@@ -19,7 +19,7 @@ export const debounce = (
 export const scrollMonitor =
   (
     callback = {
-      start(params) {
+      doing(params) {
         console.log("scroll start/params :", params);
       },
       end(params) {
@@ -33,7 +33,7 @@ export const scrollMonitor =
   event => {
     memo = event.timeStamp;
     if (memo != null) {
-      callback.start(params);
+      callback.doing(params);
       // fallback speed
       setTimeout(() => {
         if (0 === event.timeStamp - memo) {
@@ -45,16 +45,25 @@ export const scrollMonitor =
 
 export const handle_speed = (
   now = window.innerWidth,
-  smoothness = 100,
+  smoothness = 1000,
   breakpoints = [414, 768, 1080, 1440, 1920, 2560],
 ) => {
   const middlePoint = Math.floor(breakpoints.length * 0.5);
-  const scale = breakpoints[middlePoint >= window.innerWidth ? 0 : middlePoint];
-  const adjMobile = now < 768 ? 2 : 1;
-  return ((now / scale) * adjMobile * smoothness * 1) / smoothness;
+  const scale = breakpoints[middlePoint];
+  const screenRatio = now < 768 ? 1.25 : 1;
+  // console.group();
+  // console.trace();
+  // console.log("now", now);
+  // console.log("middlePoint", middlePoint);
+  // console.log("scale", scale);
+  // console.log("adjMobile ", screenRatio);
+  // console.log("return", now / scale);
+  // console.groupEnd();
+  return Math.round((now / scale) * screenRatio * smoothness, 10) / smoothness;
 };
 
 export const CM = (...inputs) => twMerge(clsx(inputs));
+
 // example
 /*
   className={CM(
