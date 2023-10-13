@@ -9,6 +9,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 // utils
 import useCssTheme from "#root/hooks/useCssTheme";
+import { CM } from "#root/utils";
 
 const AboutTitle = ({ className, conLeft, conRight }) => {
   const { md, mobile } = useCssTheme(state => state.screens);
@@ -49,7 +50,7 @@ const AboutTitle = ({ className, conLeft, conRight }) => {
 
   return (
     <>
-      <h1 className={className} ref={targetRef}>
+      <h1 className={CM("text-heading-3 md:text-special capitalize", className)} ref={targetRef}>
         <p className="conLeft">{conLeft}</p>
         <p className="conRight ">{conRight}</p>
       </h1>

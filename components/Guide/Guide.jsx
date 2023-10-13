@@ -8,7 +8,7 @@ import SvgIcons from "#root/components/SvgIcons";
 import MotionBox from "../main/MotionBox";
 import LineMotionText from "../LineMotionText";
 import PageTitle from "../PageTitle";
-import ScrollSign from "../ScrollSign";
+// import ScrollSign from "../ScrollSign";
 import { SvgLineIdList } from "../SvgLine";
 
 // style
@@ -231,7 +231,7 @@ export default function Guide() {
         <Title tagName="h2" className={CM(styles.head, "mt-100 mb-30")}>
           Component
         </Title>
-        <section>
+        <section className="w-screen">
           <div className="text-heading-10">
             <div className="flex flex-col gap-y-12">
               <dl>
@@ -291,7 +291,7 @@ export default function Guide() {
               </button>
             </div>
           </div>
-          <div className="flex flex-wrap w-full overflow-hidden md:pb-22">
+          <div className="flex flex-wrap overflow-hidden md:pb-22 ">
             <TextPassed text={rolling.text} runDirection={rolling.direction} />
             <TextPassed text={rolling.text} runDirection={rolling.direction === "left" ? "right" : "left"} />
           </div>
@@ -340,7 +340,7 @@ export default function Guide() {
                 }}
               />
             </div>
-            <ScrollSign text="Learn our services" />
+            {/* <ScrollSign text="Learn our services" /> */}
           </div>
         </section>
 
@@ -355,7 +355,7 @@ export default function Guide() {
         <Title tagName="strong" className={styles.title}>
           SVG (SvgLine.jsx)
         </Title>
-        <section className="flex gap-10">
+        {/* <section className="flex gap-10">
           <div className="text-heading-4">
             {SvgLineIdList.map(id => (
               <LineMotionText key={id} styleId={id}>
@@ -363,7 +363,7 @@ export default function Guide() {
               </LineMotionText>
             ))}
           </div>
-        </section>
+        </section> */}
 
         <Title tagName="strong" className={styles.title}>
           SVG (SvgIcons.jsx)

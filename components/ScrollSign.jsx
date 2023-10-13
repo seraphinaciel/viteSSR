@@ -41,7 +41,7 @@ function ScrollSign({ text, mode, className }) {
 
 ScrollSign.propTypes = {
   text: PropTypes.string.isRequired,
-  mode: PropTypes.string.isRequired,
+  mode: PropTypes.string,
   className: PropTypes.string,
 };
 
