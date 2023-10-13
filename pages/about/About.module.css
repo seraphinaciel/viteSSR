@@ -140,13 +140,14 @@
   @apply mobile:text-center relative overflow-hidden;
 
   article {
-    @apply grid gap-x-5;
+    @apply grid gap-[--grid-col-gap];
     @apply md:grid-cols-12;
     div:first-child {
       @apply w-full h-full mobile:absolute;
       @apply md:col-span-5;
       h2 {
-        @apply sticky top-2/4 text-heading-6 md:text-heading-4;
+        @apply sticky top-2/4;
+        @apply text-heading-6 md:text-heading-4;
         transform: perspective(500px) rotateX(90deg);
         transform-style: preserve-3d;
         transform-origin: center;

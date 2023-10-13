@@ -7,15 +7,8 @@
   }
   > *:last-child {
     @apply mt-94 md:col-start-6 md:col-span-5 relative;
-    h3 p {
-      @apply flex flex-wrap gap-x-[0.25em] overflow-hidden font-light;
-    }
-    u,
-    em {
-      @apply p-10 bg-red-600/50;
-    }
-    svg {
-      @apply absolute;
+    h3 {
+      @apply font-light;
     }
   }
 }
@@ -24,6 +17,19 @@
   @apply inline-flex gap-x-25 mt-63;
   a {
     @apply underline underline-offset-8;
-    @apply text-heading-10 md:text-heading-8;
+    @apply text-heading-10 md:text-heading-8 font-medium md:font-medium;
+  }
+}
+
+.list {
+  ul {
+    li {
+      @apply flex gap-[--grid-col-gap] justify-between;
+      @apply border;
+      @apply text-heading-5 md:text-heading-1 font-light;
+      a {
+        /* @apply ; */
+      }
+    }
   }
 }

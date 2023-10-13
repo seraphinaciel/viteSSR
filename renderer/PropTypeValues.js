@@ -22,3 +22,12 @@ export const workSummaryPropTypes = PropTypes.shape({
 
 export const modePropsType = PropTypes.oneOf(["dark", "light"]);
 export const localPropsType = PropTypes.oneOf(["en", "kr"]);
+
+export const ImagePropType = {
+  url: PropTypes.string.isRequired,
+  width: PropTypes.number,
+  height: PropTypes.number,
+  meta: PropTypes.shape({
+    alt: PropTypes.string,
+  }),
+};

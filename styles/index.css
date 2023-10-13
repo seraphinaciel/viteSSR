@@ -142,10 +142,7 @@
     > *:last-child {
       @apply md:col-span-6;
       .title_p {
-        @apply text-heading-10 md:text-heading-6 mb-19;
-        .svgAni {
-          @apply absolute;
-        }
+        @apply text-heading-10 md:text-heading-6 pb-19;
       }
     }
   }

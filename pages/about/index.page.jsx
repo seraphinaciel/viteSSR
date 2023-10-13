@@ -6,7 +6,7 @@ import { useEffect, useRef } from "react";
 import { Title, Text } from "#root/components/Text";
 import Icon from "#root/components/Icon";
 // import { TextSvg } from "#root/components/TextSvg";
-import { Letter, Word, Sentence } from "#root/components/TextSplit";
+import { Letter, Word, Sentence, SWord } from "#root/components/TextSplit";
 import SvgIcons from "#root/components/SvgIcons";
 import SvgLine from "#root/components/SvgLine";
 import TextPassed from "#root/components/TextPassed/TextPassed";
@@ -114,43 +114,19 @@ function Page() {
         <section className="layout_text_box">
           <Title tagName="h5">Our Philosophy</Title>
           <article>
-            <Sentence
-              tagName="p"
+            <SWord
               className="title_p"
               content="We respect the thoughts of people who grew up in different environments. Making my thoughts and other people's thoughts together The beginning is The J's creative momentum."
+              location="respect"
             >
-              <SvgLine shape="bRespect " color="hotpink" className="svgAni left-[4.2rem]" />
-            </Sentence>
-            <Sentence
-              tagName="p"
+              <SvgLine shape="bRespect" color="white" />
+            </SWord>
+            <SWord
               className="basic_p_2"
-              content="
-              우리는 서로 다른 환경에서 자란 사람들의 생각을 존중합니다. 나의
-              생각과 다른 사람들의 생각을 함께 만들어가는 것 그 시작이 더제이의
-              크리에이티브 모멘텀입니다."
+              content="우리는 서로 다른 환경에서 자란 사람들의 생각을 존중합니다. 나의 생각과 다른 사람들의 생각을 함께 만들어가는 것 그 시작이 더제이의 크리에이티브 모멘텀입니다."
             />
           </article>
         </section>
-
-        {/* <section className="text_box_side ">
-        <Title tagName="h5">Our Philosophy</Title>
-
-        <div>
-          <TextSvg className="relative">
-            <Text tagName="p" className="text-heading-10 md:text-heading-6">
-              {
-                "We respect the thoughts of people who grew up in different environments. Making my thoughts and other people's thoughts together The beginning is The J's creative momentum."
-              }
-            </Text>
-            <SvgLine shape="sBubble_s" color="hotpink" className="svgAni top-0 left-[4.2rem]" />
-            <Text tagName="p" className="basic_p_2">
-              {
-                "우리는 서로 다른 환경에서 자란 사람들의 생각을 존중합니다. 나의 생각과 다른 사람들의 생각을 함께 만들어가는 것 그 시작이 더제이의 크리에이티브 모멘텀입니다."
-              }
-            </Text>
-          </TextSvg>
-        </div>
-      </section> */}
 
         <section className={styles.split_text_box}>
           <Letter
@@ -162,7 +138,7 @@ function Page() {
         <section className={`light ${styles.title_flow}`}>
           <TextMove className={styles.tflow_02} location={["y", "y", "y"]} coord={["1", "1", "1"]}>
             <p>
-              <SvgIcons types="basic" color="black" className="svgFixed" />
+              <SvgIcons types="basic" className="svgFixed" />
             </p>
             <Text tagName="div">
               {"Discover"}
@@ -175,18 +151,16 @@ function Page() {
         <section className="layout_text_box mt-88">
           <Title tagName="h5">Our vision</Title>
           <article>
-            <Sentence
-              tagName="p"
+            <SWord
               className="title_p"
               content="Various ideas and trendy experiences increase the branding representation of the project and make it simple and easy to design. By reflecting creativity in technology, we constantly pursue creativity in technical UX design."
+              location="creativity"
             >
-              <SvgLine shape="bCreativity" color="black" className="svgAni left-[4.2rem]" />
-            </Sentence>
-            <Sentence
-              tagName="p"
+              <SvgLine shape="bCreativity" />
+            </SWord>
+            <SWord
               className="basic_p_2"
-              content="
-              다양한 아이디어와 트렌디한 경험을 통해 프로젝트의 브랜딩 표현을 높이고 사용성은 간결하고 쉽게 디자인합니다. 기술력에 크리에이티브를 반영하는 과정을 통해 우리는 늘 최상의 크리에이티브 테크니컬 UX 디자인을 만들어가고 있습니다."
+              content="다양한 아이디어와 트렌디한 경험을 통해 프로젝트의 브랜딩 표현을 높이고 사용성은 간결하고 쉽게 디자인합니다. 기술력에 크리에이티브를 반영하는 과정을 통해 우리는 늘 최상의 크리에이티브 테크니컬 UX 디자인을 만들어가고 있습니다."
             />
           </article>
         </section>
@@ -213,15 +187,15 @@ function Page() {
           </h1>
           <article>
             <Title tagName="h5">What we do</Title>
-            <Sentence
+            <SWord
               tagName="h3"
               className="mb-19"
               content="We are committed to helping your brand with our high-quality services and integrated approach."
+              location="high-quality"
             >
-              <SvgLine shape="bHighquality" color="black" className="svgAni absolute top-0 left-[4.2rem]" />
-            </Sentence>
-            <Sentence
-              tagName="p"
+              <SvgLine shape="bHighquality" />
+            </SWord>
+            <SWord
               className="basic_p_2"
               content="우리는 우리의 고품질 서비스와 통합된 접근 방식으로 당신의 브랜드를 돕기 위해 최선을 다하고 있습니다."
             />
