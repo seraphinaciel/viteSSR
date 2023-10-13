@@ -7,44 +7,45 @@ import { gsap } from "gsap/dist/gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
+// utils
+import useCssTheme from "#root/hooks/useCssTheme";
+
 const AboutTitle = ({ className, conLeft, conRight }) => {
+  const { md, mobile } = useCssTheme(state => state.screens);
+
   const targetRef = useRef(null);
-  const [axis, setAxis] = useState("x");
 
   useEffect(() => {
-    const ctx = gsap.context(() => {
-      let tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: targetRef.current,
-          start: "top 50%",
-          end: "+=100%",
-          scrub: true,
-        },
-      });
+    let tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: targetRef.current,
+        start: "top 50%",
+        end: "+=100%",
+        scrub: true,
+      },
+    });
 
-      const handleResize = () => {
-        const mobile = document.querySelector("main").clientWidth;
-        if (mobile <= 767) {
-          setAxis("yPercent");
-        } else {
-          setAxis("x");
-        }
-      };
+    const mm = gsap.matchMedia();
+    mm.add(`(min-width:${md})`, () => {
+      tl.to(".conLeft", { x: 0 })
+        .to(".conRight", { x: 0 }, "<")
+        .to(".conLeft", { x: -100 })
+        .to(".conRight", { x: 100 }, "<");
+    });
 
-      tl.to(".conLeft", { [axis]: 0 })
-        .to(".conRight", { [axis]: 0 }, "<")
-        .to(".conLeft", { [axis]: -100 })
-        .to(".conRight", { [axis]: 100 }, "<");
-
-      handleResize();
-      window.addEventListener("resize", handleResize);
-      return () => {
-        window.removeEventListener("resize", handleResize);
-      };
-    }, targetRef);
-
-    return () => ctx.revert();
-  }, [axis]);
+    mm.add(
+      `(max-width:${mobile.max})`,
+      () => {
+        tl.set(targetRef.current, { yPercent: 120 }, ">")
+          .set(".conLeft", { xPercent: 0, yPercent: 0, duration: 10 }, "+=10")
+          .set(".conRight", { xPercent: 0, yPercent: 0, duration: 10 }, "<")
+          .to(".conLeft", { xPercent: 50, yPercent: -280, duration: 10 })
+          .to(".conRight", { xPercent: -50, yPercent: 0, duration: 10 }, "<");
+      },
+      targetRef,
+    );
+    return () => mm.revert();
+  }, [md, mobile]);
 
   return (
     <>

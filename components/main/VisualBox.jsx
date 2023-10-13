@@ -29,7 +29,7 @@ export default function VisualBox({ id, src, children, conLeft, conRight, change
     const mm = gsap.matchMedia();
     mm.add(
       `(min-width:${md})`,
-      context => {
+      () => {
         const tl = gsap.timeline({
           scrollTrigger: {
             trigger: containerRef.current,

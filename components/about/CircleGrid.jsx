@@ -59,25 +59,21 @@ export default function CircleBox({ className, children }) {
 
       tl.set("i", { clipPath: "circle(0% at 50% 50%)", display: "none" })
         .set(".svgIcons2", { opacity: 0 }, "<")
-        .set(svgRef.current, { top: isMd ? "-100px" : "-10%" }, "<")
-        .to(svgRef.current, { top: 0 }, "<")
-        .to(
-          "i",
-          { clipPath: "circle(100% at 50% 50%) ", display: "block", duration: 3, ease: "power1.in" },
-          isMd ? "<+2" : "<+5",
-        )
+        .set(svgRef.current, { top: isMd ? "-100px" : "" }, "<")
+        .to(svgRef.current, { top: isMd ? "0" : "" }, "<")
+        .to("i", { clipPath: "circle(100% at 50% 50%) ", display: "block", duration: 1, ease: "power1.in" }, "<")
         .to(
           ".svgIcons1 path",
           {
-            duration: 2,
+            duration: 1,
             ease: "power1.in",
             stroke: "white",
           },
           "<",
         )
-        .set(".svgIcons1", { opacity: 0, duration: 3 }, "<+=2")
-        .set(".svgIcons2", { opacity: 1, duration: 3 }, ">")
-        .to(".svgIcons2", { opacity: 0, duration: 3 }, ">+=1");
+        .set(".svgIcons1", { opacity: 0, duration: 1 }, "<+=0.5")
+        .set(".svgIcons2", { opacity: 1, duration: 1 }, ">")
+        .to(".svgIcons2", { opacity: 0, duration: 1 }, ">");
 
       let tl2 = gsap.timeline({
         scrollTrigger: {

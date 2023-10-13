@@ -1,70 +1,76 @@
-import { useEffect, useRef } from "react";
+// prop type
 import PropTypes from "prop-types";
+
+// node module
+import { useEffect, useRef } from "react";
 import { gsap } from "gsap/dist/gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
-import useCheckMobile from "#root/hooks/useCheckMobile";
-
 gsap.registerPlugin(ScrollTrigger);
+
+// utils
+import useCssTheme from "#root/hooks/useCssTheme";
 
 const items = [{ alt: "hyundai" }, { alt: "samsung" }, { alt: "lg" }, { alt: "genesis" }];
 
 const SpreadImg = ({ className, children }) => {
+  const { md, mobile } = useCssTheme(state => state.screens);
   const targetRef = useRef(null);
-  const mainWidth = useCheckMobile();
 
   useEffect(() => {
-    const ctx = gsap.context(() => {
-      function desktopEffect() {
-        let tl = gsap.timeline({
-          scrollTrigger: {
-            trigger: targetRef.current,
-            start: "top 0%",
-            end: "+=50%",
-            toggleActions: "restart pause resume reverse",
-            scrub: 0.01,
-            pin: true,
+    const mm = gsap.matchMedia();
+    mm.add(`(min-width:${md})`, () => {
+      let tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: targetRef.current,
+          start: "top 0%",
+          end: "+=50%",
+          toggleActions: "restart pause resume reverse",
+          scrub: 0.01,
+          pin: true,
+        },
+      });
+      tl.set(
+        items.slice(0, 4).map((_, index) => `.item_${index + 1}`),
+        { opacity: 1, scale: 1.25 },
+        "<",
+      )
+        .from(
+          ".item_1",
+          {
+            scale: 1.25,
+            xPercent: 220,
+            yPercent: 150,
           },
-        });
-        tl.set(
-          items.slice(0, 4).map((_, index) => `.item_${index + 1}`),
-          { opacity: 1 },
           "<",
         )
-          .from(
-            ".item_1",
-            {
-              scale: 1.25,
-              xPercent: 220,
-              yPercent: 150,
-            },
-            "<",
-          )
-          .from(
-            ".item_2",
-            {
-              scale: 1.25,
-              xPercent: -180,
-              yPercent: 160,
-            },
-            "<",
-          )
-          .from(".item_3", {
+        .from(
+          ".item_2",
+          {
             scale: 1.25,
-            xPercent: 170,
-            yPercent: 60,
-          })
-          .from(
-            ".item_4",
-            {
-              scale: 1.25,
-              xPercent: -190,
-              yPercent: 80,
-            },
-            "<",
-          );
-        return tl;
-      }
-      function mobileEffect() {
+            xPercent: -180,
+            yPercent: 160,
+          },
+          "<",
+        )
+        .from(".item_3", {
+          scale: 1.25,
+          xPercent: 170,
+          yPercent: 60,
+        })
+        .from(
+          ".item_4",
+          {
+            scale: 1.25,
+            xPercent: -190,
+            yPercent: 80,
+          },
+          "<",
+        );
+    });
+
+    mm.add(
+      `(max-width:${mobile.max})`,
+      () => {
         let tl = gsap.timeline({
           scrollTrigger: {
             trigger: targetRef.current,
@@ -97,6 +103,7 @@ const SpreadImg = ({ className, children }) => {
               yPercent: 0,
               opacity: 1,
               duration: 10,
+              scale: 1.5,
             },
             "<",
           )
@@ -131,36 +138,23 @@ const SpreadImg = ({ className, children }) => {
               yPercent: 60,
               opacity: 1,
               duration: 10,
+              scale: 1.5,
             },
             "<",
           )
           .to(
-            ".item_4 img",
+            ".item_4",
             {
+              duration: 5,
               scale: 1,
             },
-            ">",
+            ">+2",
           );
-      }
-
-      const master = gsap.timeline({
-        onUpdate: () => {
-          ScrollTrigger.refresh();
-        },
-      });
-
-      const breakPoint = "(min-width: 768px)";
-      const isMd = window.matchMedia(breakPoint).matches;
-      if (isMd) {
-        master.add(desktopEffect());
-      } else {
-        master.add(mobileEffect());
-      }
-    }, targetRef);
-    return () => {
-      ctx.revert();
-    };
-  }, [mainWidth]);
+      },
+      targetRef,
+    );
+    return () => mm.revert();
+  }, [md, mobile]);
 
   return (
     <>

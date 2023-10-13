@@ -15,13 +15,11 @@ export default function RecruitList({ className, children }) {
           {
             rotateX: animation.rotateX[0],
             duration: 0.3,
-            color: animation.color,
             ease: "none",
           },
           {
             rotateX: animation.rotateX[1],
             duration: 0.3,
-            color: animation.color,
             ease: "none",
           },
         );
@@ -39,9 +37,10 @@ export default function RecruitList({ className, children }) {
       const applyAnimations = (box, animations) => {
         ScrollTrigger.create({
           trigger: box,
-          start: "top 0%",
-          end: "+=50%",
+          start: "top 50%",
+          end: "+=" + box.offsetHeight,
           stagger: 0.01,
+          markers: true,
           onEnter: () => animateElement(box, animations.enter),
           onLeaveBack: () => animateElement(box, animations.leaveBack),
           onLeave: () => animateElement(box, animations.leave),

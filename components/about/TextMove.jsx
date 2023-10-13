@@ -9,8 +9,7 @@ export default function TextMove({ className, location, coord, children }) {
 
   useEffect(() => {
     let ctx = gsap.context(() => {
-      const paragraph = target.current;
-      const sentence = paragraph.querySelectorAll("span");
+      const sentence = target.current.querySelectorAll("span");
 
       const tl = gsap.timeline();
 
@@ -32,12 +31,12 @@ export default function TextMove({ className, location, coord, children }) {
 
       ScrollTrigger.create({
         animation: tl,
-        trigger: paragraph,
-        start: "0% 20%",
-        end: "+=100%",
+        trigger: target.current,
+        start: "top 20%",
+        // end: "+=100%",
         scrub: true,
         pin: true,
-        anticipatePin: 1,
+        // anticipatePin: 1,
       });
     }, target);
     return () => ctx.revert();
