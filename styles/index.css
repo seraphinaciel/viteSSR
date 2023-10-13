@@ -94,6 +94,7 @@
     @apply m-auto max-w-[--page-container] pb-120 md:pb-250;
   }
 
+  /* cursor */
   .cursor-dot {
     @apply pointer-events-none cursor-none fixed z-1000 top-0 left-0 w-13 h-13 bg-red-600/100 rounded-full;
 
@@ -131,9 +132,8 @@
     }
   }
 
-  .text_box_side {
-    @apply grid md:grid-cols-12 gap-x-5 relative break-keep;
-    @apply m-auto max-w-[--page-container];
+  .layout_text_box {
+    @apply grid gap-[--grid-col-gap] md:grid-cols-12 relative break-keep;
 
     > *:first-child {
       @apply mb-25;
@@ -147,15 +147,6 @@
           @apply absolute;
         }
       }
-    }
-  }
-
-  .text_box_noSide {
-    @apply grid gap-x-5 md:grid-cols-12;
-    @apply m-auto max-w-[--page-container];
-
-    > *:last-child {
-      @apply md:col-start-4 md:col-span-9;
     }
   }
 

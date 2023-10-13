@@ -111,7 +111,7 @@ function Page() {
           </TextMove>
         </section>
 
-        <section className="text_box_side">
+        <section className="layout_text_box">
           <Title tagName="h5">Our Philosophy</Title>
           <article>
             <Sentence
@@ -119,7 +119,7 @@ function Page() {
               className="title_p"
               content="We respect the thoughts of people who grew up in different environments. Making my thoughts and other people's thoughts together The beginning is The J's creative momentum."
             >
-              <SvgLine id="sBubble_s" color="hotpink" className="svgAni left-[4.2rem]" />
+              <SvgLine shape="bRespect " color="hotpink" className="svgAni left-[4.2rem]" />
             </Sentence>
             <Sentence
               tagName="p"
@@ -142,7 +142,7 @@ function Page() {
                 "We respect the thoughts of people who grew up in different environments. Making my thoughts and other people's thoughts together The beginning is The J's creative momentum."
               }
             </Text>
-            <SvgLine id="sBubble_s" color="hotpink" className="svgAni top-0 left-[4.2rem]" />
+            <SvgLine shape="sBubble_s" color="hotpink" className="svgAni top-0 left-[4.2rem]" />
             <Text tagName="p" className="basic_p_2">
               {
                 "우리는 서로 다른 환경에서 자란 사람들의 생각을 존중합니다. 나의 생각과 다른 사람들의 생각을 함께 만들어가는 것 그 시작이 더제이의 크리에이티브 모멘텀입니다."
@@ -152,7 +152,7 @@ function Page() {
         </div>
       </section> */}
 
-        <section className="text_box_noSide ">
+        <section className={styles.split_text_box}>
           <Letter
             content="Neat Arrangement Creative Expression Sophisticated Techniques Good Communication Young Generation Casual and Cozy Office Free-Spirited"
             className="text-heading-6 md:text-heading-1 leading-loose"
@@ -172,7 +172,7 @@ function Page() {
           </TextMove>
         </section>
 
-        <section className="text_box_side mt-88">
+        <section className="layout_text_box mt-88">
           <Title tagName="h5">Our vision</Title>
           <article>
             <Sentence
@@ -180,7 +180,7 @@ function Page() {
               className="title_p"
               content="Various ideas and trendy experiences increase the branding representation of the project and make it simple and easy to design. By reflecting creativity in technology, we constantly pursue creativity in technical UX design."
             >
-              <SvgLine id="sBubble_s" color="black" className="svgAni left-[4.2rem]" />
+              <SvgLine shape="bCreativity" color="black" className="svgAni left-[4.2rem]" />
             </Sentence>
             <Sentence
               tagName="p"
@@ -218,7 +218,7 @@ function Page() {
               className="mb-19"
               content="We are committed to helping your brand with our high-quality services and integrated approach."
             >
-              <SvgLine id="sBubble_s" color="black" className="svgAni absolute top-0 left-[4.2rem]" />
+              <SvgLine shape="bHighquality" color="black" className="svgAni absolute top-0 left-[4.2rem]" />
             </Sentence>
             <Sentence
               tagName="p"

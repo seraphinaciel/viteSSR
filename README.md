@@ -176,6 +176,18 @@ gsap.to(".box", {
 });
 ```
 
+> 함수로 주면 resize 될때마다 gsap에서 refresh하면서 계속 맞춤
+
+```javascript
+scrollTrigger: {
+  trigger: splitTargets,
+  toggleActions: "restart pause resume reverse",
+  start: "top 100%",
+  end: () => `+=${함수()}`,
+  invalidateOnRefresh: true,
+},
+```
+
 ### Timelines
 
 [more](https://greensock.com/get-started-2)

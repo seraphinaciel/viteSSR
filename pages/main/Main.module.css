@@ -1,5 +1,27 @@
+.text_box {
+  @apply grid gap-x-[--grid-col-gap] md:grid-cols-12;
+  @apply text-heading-10 desktop:text-heading-4;
+
+  > *:first-child {
+    @apply md:col-span-full;
+  }
+  > *:last-child {
+    @apply mt-94 md:col-start-6 md:col-span-5 relative;
+    h3 p {
+      @apply flex flex-wrap gap-x-[0.25em] overflow-hidden font-light;
+    }
+    u,
+    em {
+      @apply p-10 bg-red-600/50;
+    }
+    svg {
+      @apply absolute;
+    }
+  }
+}
+
 .link {
-  @apply flex;
+  @apply inline-flex gap-x-25 mt-63;
   a {
     @apply underline underline-offset-8;
     @apply text-heading-10 md:text-heading-8;

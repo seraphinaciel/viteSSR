@@ -43,8 +43,16 @@
   }
 }
 
+.split_text_box {
+  @apply grid gap-[--grid-col-gap] md:grid-cols-12;
+
+  > *:last-child {
+    @apply md:col-start-4 md:col-span-9;
+  }
+}
+
 .title_flow {
-  @apply w-full  overflow-hidden;
+  @apply w-full overflow-hidden;
   article {
     @apply flex flex-col;
     @apply text-heading-5 md:text-special;
