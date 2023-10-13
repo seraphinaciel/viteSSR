@@ -1,3 +1,9 @@
+### 10.10.
+
+@croishz
+[component] TextPassed - 속도 옵션을 props로 옮김.
+스타일, 컴포넌트 샘플 표시 방식 수정
+
 ### 9.27.
 
 @croishz

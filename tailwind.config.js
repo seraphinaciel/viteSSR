@@ -95,9 +95,9 @@ export default {
       },
       colors: {
         base: {
-          1: "#333333",
-          2: "#999999",
-          3: "#CCCCCC",
+          1: "#333",
+          2: "#999",
+          3: "#ccc",
         },
         bg: {
           dark: "#1A1A1A",
