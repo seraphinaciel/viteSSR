@@ -1,29 +1,50 @@
 .visual {
-  border: 1px solid black;
-  /* @apply bg-sky-100 absolute w-full; */
-  * {
-  }
-  nav {
-    border: 1px solid red;
-    @apply w-full flex flex-row justify-between my-16;
-    @apply text-heading-10 md:text-heading-8;
-    margin-bottom: 14vh;
-
-    @media screen and (min-width: theme(screens.md)) {
-      &::after {
-        content: "SCROLL";
-        color: red;
-      }
+  div {
+    @apply flex flex-col;
+    & > div {
+      @apply relative w-full h-[80vh];
     }
   }
   article {
-    border: 1px solid red;
-    height: 100vh;
-    h1 {
-      border: 1px solid yellow;
+    @apply m-auto max-w-[--page-container] mobile:px-[--grid-container-margin];
+    @apply w-full flex flex-col md:justify-center md:absolute md:top-[80vh];
+
+    nav {
+      @apply w-full flex flex-row justify-between py-36;
+      @apply text-heading-10 md:text-heading-8;
+      &::after {
+        content: "SCROLL";
+      }
     }
     h2 {
-      @apply mobile:hidden text-heading-6 text-center mb-[24vh];
+      @apply mobile:hidden text-heading-6 text-center;
+      margin: 20vh 0 10vh;
+    }
+    h1 {
+      @apply md:flex md:flex-col lg:flex-row justify-center items-center my-50 md:mb-[35vh];
+      p:first-child {
+        @apply flex items-center;
+        span {
+          @apply mr-30 md:mr-80;
+        }
+        svg {
+          @apply h-auto w-[1.6em] max-w-full;
+        }
+      }
+      p:last-child {
+        @apply text-right;
+        span:first-of-type {
+          @apply mobile:hidden;
+        }
+        span {
+          transform-style: preserve-3d;
+          transform-origin: center;
+          backface-visibility: hidden;
+        }
+        br {
+          @apply hidden;
+        }
+      }
     }
   }
 }
@@ -47,20 +68,24 @@
   }
 }
 
-.list {
+.listMonoLayout {
   @apply mobile:px-[--grid-container-margin];
 }
 
 .what {
-  @apply bg-black/30 w-[99vw] h-screen;
-  @apply relative left-[50%] -translate-x-2/4 overflow-hidden;
   @apply flex flex-col justify-center text-white;
-  video {
-    @apply object-cover absolute -z-1 w-full h-full;
-    pointer-events: none;
+  & > div {
+    @apply bg-black/30 w-[100vw] h-screen;
+    @apply absolute left-[50%] -translate-x-2/4 overflow-hidden -z-1;
+    video {
+      @apply object-cover absolute -z-1 w-full h-full;
+      pointer-events: none;
+    }
   }
   article {
-    @apply m-auto max-w-[--page-container] mobile:px-[--grid-container-margin];
+    @apply m-auto mobile:px-[--grid-container-margin];
+    width: 100%;
+    /* @apply m-auto max-w-[--page-container] mobile:px-[--grid-container-margin]; */
     ul {
       @apply mt-32;
       &:hover span,

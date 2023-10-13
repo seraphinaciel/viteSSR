@@ -5,7 +5,7 @@ export function animateSvg(selector, duration) {
 
   let tl = gsap.timeline();
 
-  paths.forEach((p) => {
+  paths.forEach(p => {
     const pathLength = p.getTotalLength();
 
     tl.from(p, { duration: 0.000001, opacity: 0 }, ">")
@@ -21,7 +21,7 @@ export function animateSvg(selector, duration) {
           ease: "power3.out",
           strokeDashoffset: 0,
         },
-        ">"
+        ">",
       );
   });
 }

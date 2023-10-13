@@ -9,10 +9,8 @@ import SvgLine from "#root/components/SvgLine";
 import Icon from "#root/components/Icon";
 import TextPassed from "#root/components/TextPassed/TextPassed";
 import { Text, Title } from "#root/components/Text";
-import MainTitle from "#root/components/main/MainTitle";
 
 import VisualBox from "#root/components/main/VisualBox";
-// import MotionBox from "#root/components/main/MotionBox";
 import ListMonoLayout, { LAYOUT_BIG_FIRST } from "#root/components/ListMonoLayout/ListMonoLayout";
 
 // styles
@@ -52,83 +50,68 @@ function Page() {
       <div className="page-contents-wrap">
         {""}
         <section className={CM(styles.visual)}>
-          <VisualBox id="smaller" src="https://www.w3schools.com/tags/movie.mp4">
-            <article className="motion-contents">
-              <Text tagName="nav">{"Our latest"}</Text>
-              <Text tagName="h2">
-                {"LG Global Pilot Website"}
-                {"Platform Building"}
-              </Text>
-              <MainTitle conLeft="make" conRight="work" change="moment">
-                <SvgLine shape="typo/thej" />
-              </MainTitle>
-            </article>
-          </VisualBox>
-        </section>
-        {""}
-
-        {/* <MotionBox id="smaller" src="https://www.w3schools.com/tags/movie.mp4">
-          <nav className={CM(styles.nav)}>
-            <Text>{"Our latest"}</Text>
-          </nav>
-          <div className={CM(styles.visual, "motion-contents")}>
-            <Text className={CM(styles.title)}>
+          <VisualBox
+            id="smaller"
+            src="https://www.w3schools.com/tags/movie.mp4"
+            conLeft="make"
+            conRight="work"
+            change="moment"
+          >
+            <Text tagName="nav">{"Our latest"}</Text>
+            <Text tagName="h2">
               {"LG Global Pilot Website"}
               {"Platform Building"}
             </Text>
-            <MainTitle conLeft="make" conRight="work" change="moment">
-              <SvgLine shape="typo/thej" />
-            </MainTitle>
-          </div>
-        </MotionBox> */}
+          </VisualBox>
+        </section>
 
-        <div className="hidden">
-          <section className={CM(styles.text_box)}>
-            <h4>
-              <Sentence tagName="span" content="Creative Design">
-                <Icon shape="main/x" style={{ width: "30px" }} />
-              </Sentence>
-              <Sentence tagName="span" content="Technical Agency" />
-            </h4>
-            <article>
-              <SWord
-                tagName="h3"
-                content="We have implemented various experience, such as global integrated platforms and creative projects."
-                location="experience,"
-              >
-                <SvgLine shape="circle/16.up" />
-              </SWord>
+        <section className={CM(styles.text_box)}>
+          <h4>
+            <Sentence tagName="span" content="Creative Design">
+              <Icon shape="main/x" style={{ width: "30px" }} />
+            </Sentence>
+            <Sentence tagName="span" content="Technical Agency" />
+          </h4>
+          <article>
+            <SWord
+              tagName="h3"
+              content="We have implemented various experience, such as global integrated platforms and creative projects."
+              location="experience,"
+            >
+              <SvgLine shape="circle/16.up" />
+            </SWord>
 
-              <Sentence
-                tagName="p"
-                className="basic_p_2"
-                content="글로벌 통합 플랫폼 프로젝트와 크리에이티브 프로젝트 등 다양한 프로젝트들을 수행해 왔습니다."
-              >
-                <p className="flex justify-center mobile:hidden">
-                  <SvgLine shape="tail arrow" />
-                </p>
-              </Sentence>
-            </article>
-          </section>
-        </div>
+            <Sentence
+              tagName="p"
+              className="basic_p_2"
+              content="글로벌 통합 플랫폼 프로젝트와 크리에이티브 프로젝트 등 다양한 프로젝트들을 수행해 왔습니다."
+            >
+              <p className="flex justify-center mobile:hidden">
+                <SvgLine shape="tail arrow" />
+              </p>
+            </Sentence>
+          </article>
+        </section>
 
-        {/* {!isLoading && !isError && (
-          <section className={CM(styles.list)}>
+        {!isLoading && !isError && (
+          <section className={CM(styles.listMonoLayout)}>
             <ListMonoLayout layout={LAYOUT_BIG_FIRST} list={workList} />
 
-            <p className="text-center mt-150 mb-300">
+            <p className="mt-60 mb-120 md:text-center md:mt-150 md:mb-300">
               <a href="" className="link">
                 See more work
               </a>
             </p>
           </section>
-        )} */}
+        )}
 
         <section className={CM(styles.what)}>
-          <video muted autoPlay loop>
-            <source src="https://www.w3schools.com/tags/movie.mp4" type="video/mp4" />
-            Your browser does not support HTML video.
-          </video>
+          <div>
+            <video muted autoPlay loop>
+              <source src="https://www.w3schools.com/tags/movie.mp4" type="video/mp4" />
+              Your browser does not support HTML video.
+            </video>
+          </div>
           <article>
             <Title tagName="h5">What we do</Title>
             <ul>
