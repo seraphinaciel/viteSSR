@@ -45,7 +45,7 @@ function Page() {
 
         {/* <div className="scroll-spread | h-[90vh]"></div> */}
 
-        <section className="overflow-hidden">
+        <section className="overflow-hidden w-screen">
           <TextPassed text={"Meet our team"} size={20} runDirection={"left"} />
           <div className="px-[--grid-container-margin] mt-60 mb-100 md:mt-140 md:mb-208">
             <div className="md:grid md:grid-cols-12 md:gap-[--grid-col-gap]">

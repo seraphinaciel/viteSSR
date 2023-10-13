@@ -167,7 +167,7 @@ function Page() {
         </section>
 
         <section className="py-100">
-          <h1 className="overflow-hidden ">
+          <h1 className="w-screen overflow-hidden text-heading-3 md:text-special capitalize">
             <TextPassed text={"About the J"} size={20} runDirection={"left"} />
           </h1>
         </section>
@@ -190,7 +190,7 @@ function Page() {
               tagName="p"
               className="basic_p_2"
               content="전략, 기획설계, 크리에이티브 디자인을 중심으로 구축, 확산, 운영 등 글로벌과 커머스에 특화된 크리에이티브 디자인이 가능한 에이전시입니다."
-              split="none"
+              splitType="none"
               animationConfig={animation.sentence}
             />
 

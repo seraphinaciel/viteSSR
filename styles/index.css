@@ -18,12 +18,13 @@
   */
   :root {
     --canvas: 390; /* rem 기준값을 조정하는 변수 */
-
+    --gnb-height: 6.4rem;
     @media (min-width: 506px) {
       --canvas: 622; /* sm + (md - sm * 0.5) */
     }
     @media (min-width: theme(screens.md)) {
       --canvas: 1440;
+      --gnb-height: 11.5rem;
     }
     @media (min-width: theme(screens.xl)) {
       --canvas: 1920;

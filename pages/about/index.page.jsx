@@ -8,7 +8,7 @@ gsap.registerPlugin(ScrollTrigger);
 // common
 import { Title, Text } from "#root/components/Text";
 import { Word } from "#root/components/TextSplit";
-import Icon from "#root/components/Icon";
+
 import SvgIcons from "#root/components/SvgIcons";
 import TextPassed from "#root/components/TextPassed/TextPassed";
 import PageTitle from "#root/components/PageTitle";
@@ -101,14 +101,14 @@ function Page() {
               className="text-heading-10 md:text-heading-4 justify-center"
               content="We see everything with new eyes and make it with empathy and creativity."
               animationConfig={animation.description}
-              split="none"
+              splitType="none"
             />
             <Word
               tagName="p"
               className="basic_p_2 justify-center"
               content="우리는 모든 것을 새로운 눈으로 보고 공감과 창의력으로 만들어갑니다."
               animationConfig={animation.description}
-              split="none"
+              splitType="none"
             />
           </div>
         </CircleGrid>
@@ -142,7 +142,7 @@ function Page() {
               className="basic_p_2"
               content="우리는 서로 다른 환경에서 자란 사람들의 생각을 존중합니다. 나의 생각과 다른 사람들의 생각을 함께 만들어가는 것 그 시작이 더제이의 크리에이티브 모멘텀입니다."
               animationConfig={animation.description}
-              type="fade in"
+              animationType="fade in"
             />
           </article>
         </section>
@@ -193,34 +193,35 @@ function Page() {
               className="basic_p_2"
               content="다양한 아이디어와 트렌디한 경험을 통해 프로젝트의 브랜딩 표현을 높이고 사용성은 간결하고 쉽게 디자인합니다. 기술력에 크리에이티브를 반영하는 과정을 통해 우리는 늘 최상의 크리에이티브 테크니컬 UX 디자인을 만들어가고 있습니다."
               animationConfig={animation.description}
-              type="fade in"
+              animationType="fade in"
             />
           </article>
         </section>
 
         <SpreadImg className={CM(styles.spreadImg)}>
           <article>
-            <Title tagName="h5" className="font-medium">
+            <Title tagName="h5" className="text-heading-9 md:text-heading-8">
               Our capability
             </Title>
             <Word
               tagName="h3"
+              className="mb-25 text-heading-10 md:text-heading-4"
               content="We specialize in global and commerce, from building and rollout to maintenance, and strategy and creative design."
               animationConfig={animation.description}
-              split="none"
+              splitType="none"
             />
             <Word
               tagName="p"
               className="basic_p_2"
               content="전략, 크리에이티브 디자인을 중심으로 구축, 확산, 운영 등 글로벌과 커머스에 특화된 디자인이 가능합니다."
               animationConfig={animation.description}
-              split="none"
+              splitType="none"
             />
           </article>
         </SpreadImg>
 
         <section className={CM(styles.service)}>
-          <h1 className="overflow-hidden ">
+          <h1 className="overflow-hidden">
             <TextPassed text={"Our service"} size={20} runDirection={"left"} />
           </h1>
           <article>
@@ -239,7 +240,7 @@ function Page() {
               className="basic_p_2"
               content="우리는 우리의 고품질 서비스와 통합된 접근 방식으로 당신의 브랜드를 돕기 위해 최선을 다하고 있습니다."
               animationConfig={animation.description}
-              type="fade in"
+              animationType="fade in"
             />
           </article>
         </section>
@@ -247,7 +248,9 @@ function Page() {
         <RecruitList className={CM(styles.recruitList)}>
           <article>
             <div>
-              <Title tagName="h2">UX UI Design</Title>
+              <Title tagName="h2" className="text-heading-5 md:text-heading-1 font-light">
+                UX UI Design
+              </Title>
             </div>
             <Text tagName="div" className="box">
               {"UX UI Strategy"}
@@ -261,7 +264,9 @@ function Page() {
           </article>
           <article>
             <div>
-              <Title tagName="h2">Contents</Title>
+              <Title tagName="h2" className="text-heading-5 md:text-heading-1 font-light">
+                Contents
+              </Title>
             </div>
             <Text tagName="div" className="box">
               {"Contents Strategy"}
@@ -275,7 +280,9 @@ function Page() {
           </article>
           <article>
             <div>
-              <Title tagName="h2">Global & Platform</Title>
+              <Title tagName="h2" className="text-heading-5 md:text-heading-1 font-light">
+                Global & Platform
+              </Title>
             </div>
             <Text tagName="div" className="box">
               {"Global Strategy"}
@@ -289,7 +296,9 @@ function Page() {
           </article>
           <article>
             <div>
-              <Title tagName="h2">Development</Title>
+              <Title tagName="h2" className="text-heading-5 md:text-heading-1 font-light">
+                Development
+              </Title>
             </div>
             <Text tagName="div" className="box">
               {"Web Front-end Development"}

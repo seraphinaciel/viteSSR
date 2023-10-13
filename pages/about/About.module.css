@@ -1,5 +1,5 @@
 .cCircle {
-  @apply w-full h-screen  text-center;
+  @apply w-full h-screen text-center;
   & > p {
     @apply absolute w-full h-screen z-10;
     @apply flex flex-col items-center;
@@ -177,7 +177,8 @@
 }
 
 .partners {
-  @apply py-35;
+  --width: calc(100vw - var(--grid-container-margin) * 2);
+  @apply py-35 w-[--width];
   @apply mobile:mx-[--grid-container-margin];
 
   h5 {

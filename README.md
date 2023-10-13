@@ -1,8 +1,11 @@
+### 10.13.
+
+[all] 마무리 정리
+[pages] contact 추가
+
 ### 10.10.
 
-@croishz
-[component] TextPassed - 속도 옵션을 props로 옮김.
-스타일, 컴포넌트 샘플 표시 방식 수정
+@croishz [component] TextPassed - 속도 옵션을 props로 옮김. 스타일, 컴포넌트 샘플 표시 방식 수정
 
 ### 9.27.
 
@@ -33,6 +36,7 @@
 
 ### 9.22.
 
+@croishz
 [component] SvgLine - shape case name 수정
 
 - 동그라미
@@ -46,23 +50,23 @@
 
 [component] Text - children 렌더링 조건 수정 : react.element의 존재 여부를 확인
 
-### 9.22.
+### 9.21.
 
+@croishz
 [env] eslint 업데이트 - 사용하지 않는 변수 경고로 하향
 [component] LineMotionText - 코드 축약
 [component] LineMotionText - 코드 축약
-[components] LineMotionText - 모션 함수 추가. 하나의 path 요소만 그리는 걸로 한정된 컴포넌트.…
-… 확장은 나중에.
+[components] LineMotionText - 모션 함수 추가. 하나의 path 요소만 그리는 걸로 한정된 컴포넌트 확장은 나중에.
 
 ### 9.20
 
 @sr1227SR
-[components] LineMotionText - 텍스트 위에 svg path 얹는 컴포넌트 추가 / SvgLine에서 …
+[components] LineMotionText - 텍스트 위에 svg path 얹는 컴포넌트 추가 / SvgLine에서 shape 선택 코드 수정
 
 @croishz
 [components] TextPassed - 이동 속도 오류 수정 / 아이콘 모양 변경
 [page] Careers - 컨텐츠 추가
-[component] Layout - 페이지를 감싸고 있던 좌우 패딩을 제거. 페이지의 컨텐츠 별로 모바일에서 스크린 너비와…
+[component] Layout - 페이지를 감싸고 있던 좌우 패딩을 제거. 페이지의 컨텐츠 별로 모바일에서 스크린 너비와 같은 요소들이 있음.
 [env] 컴포넌트 샘플 수정
 [component] Footer - css 선택자 수정
 [components] LineMotionText - props 수정
@@ -73,7 +77,7 @@
 
 ### 9.18.
 
-[component] CursorDot - 커서 모션에 gsap 적용, 마우스 포인트가 브라우저 스크린 밖으로 나가면 화면에…
+[component] CursorDot - 커서 모션에 gsap 적용, 마우스 포인트가 브라우저 스크린 밖으로 나가면 화면에서 커서 사라짐, z-index 최고치 수정
 [env] z-index 규칙 추가
 cursor-dot z-index 값 수정
 [hook] useMouseHover - link, button에 자식이 있는 경우까지 포함하여 구분하도록 수정
@@ -84,7 +88,7 @@ cursor-dot z-index 값 수정
 다른 프로젝트 폴더의 코드 git에 계속 표시되는 거 방지
 [env] tailwind 클래스 정리해주는 라이브러리 추가
 [hooks] useCssTheme - state 중에 원하는 것을 선택하는 기능 추가
-[env] tailwind config - modal 플로팅할 때 html에 넣을 클래스 추가, theme나 hook 이용해…
+[env] tailwind config - modal 플로팅할 때 html에 넣을 클래스 추가, theme나 hook 이용해서 사용 가능
 [components] header - 모바일에서 메뉴 토글 기능 추가
 [env] 코드 컨벤션 추가
 [components] header - 데탑 모션 추가, 페이지 스크롤 묶는 대상을 html -> body로 변경
@@ -121,7 +125,7 @@ cursor-dot z-index 값 수정
 css 변수 수정 반영
 documentProps 테스트
 [components] MotionBox - props에서 children 지움
-[env] tailwind.config - 여백 값 1~999px까지 반영. ex) pt-10 => padding-top :…
+[env] tailwind.config - 여백 값 1~999px까지 반영. ex) pt-10 => padding-top :1rem
 @sr1227SR
 [page, components, css] about 수정, 각 페이지 타이틀 수정
 

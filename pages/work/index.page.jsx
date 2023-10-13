@@ -95,7 +95,11 @@ function Page(props) {
     );
 
   return (
-    <div ref={pageRef} className="work-list gap-5">
+    <div
+      ref={pageRef}
+      className="work-list gap-5     mobile:px-[--grid-container-margin]
+"
+    >
       <div className="page-contents-wrap">
         {/* page title */}
         <PageTitle
