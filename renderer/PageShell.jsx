@@ -120,7 +120,12 @@ function PageShell({ pageContext, children }) {
   );
 }
 
-const configFooterAnimation = footer => {
+// trigger를 footer 자신으로 줄 경우,
+// animation에 의해 footer의 top 값이 원래 위치보다 올라오기 때문에
+// 스크롤의 시작, 끝 위치가 top 값만큼 올라와 동작에 오류가 생김.
+// footer.children[0] 기준으로 변경. 23.09.12
+const configFooterAnimation = footerElement => {
+  const animateTarget = footerElement.children[0];
   const arrange = {
     element: {
       start: "top",
@@ -137,40 +142,50 @@ const configFooterAnimation = footer => {
   const to = {
     yPercent: 0,
     scrollTrigger: {
-      trigger: footer,
+      trigger: footerElement,
       start: `${arrange.element.start} ${arrange.viewport.start}`,
       end: `${arrange.element.end} ${arrange.viewport.end}`,
       invalidateOnRefresh: true,
       scrub: true,
-      markers: true,
+      // markers: {
+      //   startColor: "steelblue",
+      //   endColor: "steelblue",
+      //   fontSize: "20px",
+      //   indent: 10,
+      // },
     },
   };
-  return [footer, from, to];
+  return [animateTarget, from, to];
 };
 
-// const configHeaderAnimation = pageWrap => {
-//   const arrange = {
-//     element: {
-//       start: "top",
-//       end: "90%",
-//     },
-//     viewport: {
-//       start: "bottom",
-//       end: `bottom`,
-//     },
-//   };
-//   const to = {
-//     scrollTrigger: {
-//       trigger: pageWrap,
-//       start: `${arrange.element.start} ${arrange.viewport.start}`,
-//       end: `${arrange.element.end} ${arrange.viewport.end}`,
-//       invalidateOnRefresh: true,
-//       scrub: true,
-//       markers: true,
-//     },
-//   };
-//   return [pageWrap, to];
-// };
+// trigger를 main으로 줄 경우,
+// 비동기, csr, lazyload 컨텐츠가 있으면,
+// 높이값 변화로 인해 스크롤의 시작, 끝 위치가 어그러짐.
+// footer 기준으로 변경. 23.09.12
+const configHeaderAnimation = triggerElement => {
+  const animateTarget = "#header";
+  const arrange = {
+    element: {
+      start: "top",
+      end: "+=100px", // 시작 위치에서 + 100px
+    },
+    viewport: {
+      start: "center",
+      end: `center`,
+    },
+  };
+  const to = {
+    opacity: 0,
+    scrollTrigger: {
+      trigger: triggerElement,
+      start: `${arrange.element.start} ${arrange.viewport.start}`,
+      end: `${arrange.element.end} ${arrange.viewport.end}`,
+      scrub: true,
+      // markers: true,
+    },
+  };
+  return [animateTarget, to];
+};
 
 const normalizeWheelDelta = (event, ratio = 1) => {
   const value = event?.detail || event?.wheelDelta || event?.wheelDeltaY || 1;
@@ -181,13 +196,14 @@ function Layout({ children }) {
   const pageContext = usePageContext();
   const [mode, setMode] = useState(pageContext.exports?.documentsProps?.mode || "light");
   const [cssTheme] = useCssTheme();
-
   pageContext.exports.mode = [mode, setMode];
 
   const wrap = useRef(null);
-
   useEffect(() => {
+    // gsap 이벤트 등록
     const ctx = gsap.context(context => {
+      // console.log("context", context);
+
       // page scroll
       context.add("pageScroll", ({ scrollTarget, y }) => {
         gsap.to(scrollTarget, {
@@ -195,11 +211,15 @@ function Layout({ children }) {
           duration: 1,
         });
       });
-
+      // header
+      context.add("headerAnimate", params => gsap.to(...params));
       // footer
       context.add("footerAnimate", params => gsap.fromTo(...params));
     }, wrap);
 
+    // interaction
+    // - page scroll
+    const smoothScrollEvents = ["wheel"];
     const smoothScroll = event => {
       event.preventDefault();
       // wheel 동작에 의한 native 스크롤을 막음.
@@ -214,59 +234,69 @@ function Layout({ children }) {
 
       ctx.pageScroll({ scrollTarget, y });
     };
+    smoothScrollEvents.forEach(ev => window.addEventListener(ev, smoothScroll, { passive: false }));
 
+    // - header / footer
+    // 페이지 높이가 비동기, lazyload에 의해 가변적이므로
+    // 스크롤이 끝까지 갔을 때 gsap가 동작하도록 함.
     const target = document.getElementById("footer");
-    const callback = entries => {
-      entries.forEach(({ target, isIntersecting }) => {
-        if (!isIntersecting) return;
-        ctx.footerAnimate(configFooterAnimation(target));
-      });
-    };
-
     const options = {
       rootMargin: "20px 0px 0px",
       thresholds: [0.001],
     };
-
+    const toggleAnimate = (label, configCallback, observeObject) => {
+      const { target, isIntersecting } = observeObject;
+      const config = configCallback(target);
+      if (!isIntersecting) {
+        gsap.killTweensOf(label);
+        return;
+      }
+      ctx[label](config);
+    };
+    const callback = entries => {
+      const [entry] = entries;
+      [
+        { label: "headerAnimate", configCallback: configHeaderAnimation },
+        { label: "footerAnimate", configCallback: configFooterAnimation },
+      ].forEach(({ label, configCallback }) => toggleAnimate(label, configCallback, entry));
+    };
     const interSectionObserver = new IntersectionObserver(callback, options);
     interSectionObserver.observe(target);
-
-    const webApiTarget = "wheel";
-    window.addEventListener(webApiTarget, smoothScroll, { passive: false });
 
     // unmount
     const cleanUp = () => {
       ctx.revert();
       interSectionObserver.unobserve(target);
-      window.removeEventListener(webApiTarget, smoothScroll, { passive: false });
+      smoothScrollEvents.forEach(ev => window.removeEventListener(ev, smoothScroll, { passive: false }));
     };
 
     return cleanUp;
   }, []);
 
   return (
-    <div ref={wrap}>
-      {/* grid guide */}
-      <div className="page-contents-wrap z-[100] invisible fixed top-0 bottom-0 left-0 right-0 grid grid-cols-4 md:grid-cols-12 md:gap-x-[--grid-col-gap]">
-        {Array.from({ length: 12 }, () => "cols-span-1").map((span, index) => (
-          <div key={index} className={span} />
-        ))}
+    <>
+      <div ref={wrap} id="container">
+        {/* grid guide */}
+        <div className="page-contents-wrap z-[100] invisible fixed top-0 bottom-0 left-0 right-0 grid grid-cols-4 md:grid-cols-12 md:gap-x-[--grid-col-gap] md:px-[--grid-container-margin] pb-0">
+          {Array.from({ length: 12 }, () => "cols-span-1").map((span, index) => (
+            <div key={index} className={span} />
+          ))}
+        </div>
+
+        {/* header */}
+        <Header menuList={routes} mode={mode} />
+
+        {/* page contents */}
+        <main className={`relative z-10 min-h-[100vh] px-[--grid-container-margin] ${cssTheme.mode[mode].class.bg}`}>
+          {children}
+        </main>
+
+        {/* footer */}
+        <Footer menuList={routes} mode={"dark"} />
       </div>
-
-      {/* header */}
-      <Header menuList={routes} mode={mode} />
-
-      {/* page contents */}
-      <main className={`relative z-10 min-h-[100vh] px-[--grid-container-margin] ${cssTheme.mode[mode].class.bg}`}>
-        {children}
-      </main>
-
-      {/* footer */}
-      <Footer menuList={routes} mode={"dark"} />
-
       {/* cursor */}
       <CursorDot />
-    </div>
+    </>
   );
 }
 

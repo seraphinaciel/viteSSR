@@ -34,7 +34,7 @@ export default {
       // breakpoint
       smart: { max: "414px" },
       mobile: { max: "767px" },
-      tablet: { min: "768px" }, // include laptop
+      tablet: { min: "768px", max: "1440px" }, // include laptop
       desktop: { min: "1441px" },
       over: {
         DEFAULT: { min: "1921px" },

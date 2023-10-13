@@ -91,7 +91,7 @@
 }
 @layer components {
   .page-contents-wrap {
-    @apply m-auto max-w-[--page-container];
+    @apply m-auto max-w-[--page-container] pb-120 md:pb-250;
   }
 
   .cursor-dot {

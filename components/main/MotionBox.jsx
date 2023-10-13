@@ -80,7 +80,8 @@ export default function MotionBox({ id, src }) {
       ];
 
       // run
-      stream.forEach(set => {
+      stream.forEach((set, index) => {
+        if (index !== set.id) return;
         if (null == set.condition) return tl[set.animate](...set.params);
         if (set.condition) tl[set.animate](...set.params);
       });

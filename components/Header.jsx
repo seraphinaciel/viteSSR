@@ -10,7 +10,7 @@ import styles from "./Header.module.css";
 
 function Header({ menuList = [], mode }) {
   return (
-    <header className={styles.wrap}>
+    <header id="header" className={styles.wrap}>
       <div className={styles.container}>
         {/* Home Link */}
         <div className={styles.logo}>

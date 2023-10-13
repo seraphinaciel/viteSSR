@@ -1,3 +1,5 @@
+// 펑!
+// gsap.matchMedia(), gsap.matchMediaRefresh() 사용!
 import { useEffect, useState } from "react";
 
 const useCheckMobile = () => {

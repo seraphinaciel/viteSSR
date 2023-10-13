@@ -15,7 +15,7 @@ import TextPassed from "#root/components/TextPassed/TextPassed";
 import CircleGrid from "#root/components/about/CircleGrid";
 import TextMove from "#root/components/about/TextMove";
 import AboutTitle from "#root/components/about/AboutTitle";
-import AboutImg from "#root/components/about/AboutImg";
+import SpreadImg from "#root/components/about/SpreadImg";
 import RecruitList from "#root/components/about/RecruitList";
 import Marquee from "#root/components/about/Marquee";
 import styles from "./About.module.css";
@@ -61,49 +61,48 @@ function Page() {
 
   return (
     <div className="about" ref={mainRef}>
-      <div className="hidden">
-        <section className="title_box">
-          <h2>
-            <Word tagName="strong" content="We are focusing on" />
-            <Word content="creative design" />
-            <Word content="and technical work" />
-          </h2>
+      <section className="title_box">
+        <h2>
+          <Word tagName="strong" content="We are focusing on" />
+          <Word content="creative design" />
+          <Word content="and technical work" />
+        </h2>
 
-          <article>
-            <Sentence
-              tagName="strong"
-              className="basic_p relative mb-7"
-              content="As technology develops, the combination of UX design and technology will be our powerful force."
-            />
-            <Sentence
-              tagName="p"
-              className="basic_p_2"
-              content="기술이 발달할수록 크리에이티브와 기술의 결합은 우리의 막강한 힘이 될
+        <article>
+          <Sentence
+            tagName="strong"
+            className="basic_p relative mb-7"
+            content="As technology develops, the combination of UX design and technology will be our powerful force."
+          />
+          <Sentence
+            tagName="p"
+            className="basic_p_2"
+            content="기술이 발달할수록 크리에이티브와 기술의 결합은 우리의 막강한 힘이 될
           것이라고 믿습니다."
-            />
-          </article>
+          />
+        </article>
 
-          <nav>
-            <a href="">
-              <Text>Learn our services</Text>
-              <Icon shape={"arrow/up"} style={{ fill: "black" }} />
-            </a>
-          </nav>
-        </section>
+        <nav>
+          <a href="">
+            <Text>Learn our services</Text>
+            <Icon shape={"arrow/up"} style={{ fill: "black" }} />
+          </a>
+        </nav>
+      </section>
 
-        <CircleGrid className={styles.cCircle}>
-          <AboutTitle conLeft="new" conRight="eyes" />
+      <CircleGrid className={styles.cCircle}>
+        <AboutTitle conLeft="new" conRight="eyes" />
 
-          <div className={styles.textBox}>
-            <Sentence tagName="h3" content="We see everything with new eyes and make it with empathy and creativity." />
-            <Sentence
-              tagName="p"
-              className="basic_p_2"
-              content="우리는 모든 것을 새로운 눈으로 보고 공감과 창의력으로 만들어갑니다."
-            />
-          </div>
-        </CircleGrid>
-
+        <div className={styles.textBox}>
+          <Sentence tagName="h3" content="We see everything with new eyes and make it with empathy and creativity." />
+          <Sentence
+            tagName="p"
+            className="basic_p_2"
+            content="우리는 모든 것을 새로운 눈으로 보고 공감과 창의력으로 만들어갑니다."
+          />
+        </div>
+      </CircleGrid>
+      <div className="hidden">
         <section className={`dark ${styles.title_flow}`}>
           <TextMove className={styles.tflow_01} location={["x", "x", "y"]} coord={["-1", "1", "1"]}>
             <Text tagName="div">
@@ -195,7 +194,7 @@ function Page() {
         </section>
       </div>
 
-      <AboutImg className={styles.spreadImg}>
+      <SpreadImg className={styles.spreadImg}>
         <article>
           <Title tagName="h5">Our capability</Title>
           <Sentence
@@ -208,7 +207,7 @@ function Page() {
             content="전략, 크리에이티브 디자인을 중심으로 구축, 확산, 운영 등 글로벌과 커머스에 특화된 디자인이 가능합니다."
           />
         </article>
-      </AboutImg>
+      </SpreadImg>
 
       <section className={`${styles.service} `}>
         <h1 className="overflow-hidden ">

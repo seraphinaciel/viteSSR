@@ -44,17 +44,17 @@
 }
 .complementary {
   @apply grid mobile:gap-y-[4rem] md:gap-x-[--grid-col-gap] md:grid-cols-12;
+  .box {
+    @apply flex flex-col gap-y-[2rem] text-[1.6rem] leading-[2.4rem] not-italic md:text-body-1;
+    & em,
+    & address {
+      @apply not-italic;
+    }
+  }
+  .box_title {
+    @apply text-base-2 font-normal;
+  }
 }
 .rest {
   @apply w-full flex flex-row justify-between items-start text-[1.8rem] leading-[2.8rem] md:text-heading-8 mt-[4rem] md:mt-[12rem];
-}
-.box {
-  @apply flex flex-col gap-y-[2rem] text-[1.6rem] leading-[2.4rem] not-italic md:text-body-1;
-  & em,
-  & address {
-    @apply not-italic;
-  }
-}
-.box-title {
-  @apply text-base-2 font-normal;
 }

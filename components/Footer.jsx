@@ -2,6 +2,10 @@
 import PropTypes from "prop-types";
 import { localPropsType, modePropsType, routesPropType } from "../renderer/PropTypeValues";
 
+// node module
+import { useEffect, useRef } from "react";
+import { gsap } from "gsap/dist/gsap";
+
 // components
 import { Text, Title } from "#root/components/Text";
 import LogoHomeLink from "#root/components/LogoHomeLink";
@@ -28,8 +32,44 @@ const footerInfo = {
 };
 
 function BackToTop() {
+  const ref = useRef(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(context => {
+      context.add("backToTop", ({ toFocusElement, duration }) => {
+        gsap.to(window, {
+          scrollTo: { autoKill: true, y: 0 },
+          ease: "power2.inOut", // 걍 아무거나 넣어요.
+          duration, // 페이지 길이에 따라 달라짐.
+          onComplete: () => toFocusElement.focus(), // scrollY값이 0이 되면, header의 logo로 포커스 반환.
+        });
+      });
+    });
+
+    if (null == ref.current) return;
+
+    const eventName = "click";
+    const handler = () => {
+      const target = document.getElementById("header");
+      const toFocusElement = target.querySelector("a");
+      const duration = Math.round(document.body.offsetHeight / 3000);
+
+      ctx.backToTop({ toFocusElement, duration });
+    };
+
+    ref.current.addEventListener(eventName, handler, false);
+
+    // unmount
+    const cleanUp = () => {
+      ctx.revert();
+      ref.current.removeEventListener(eventName, handler, false);
+    };
+
+    return cleanUp;
+  }, []);
+
   return (
-    <button type="button" className="flex items-center gap-[0.5rem]">
+    <button ref={ref} type="button" className="flex items-center gap-[0.5rem]">
       <Text>Back to Top</Text>
       <span className="block w-[1.6rem] md:w-[2rem]">
         <Icon shape={"arrow/up"} style={{ fill: "white" }} />
@@ -38,20 +78,24 @@ function BackToTop() {
   );
 }
 
+function Copyright({ year = footerInfo.copyright }) {
+  return <Text>{`ⓒ ${year.start}-${year.now}, the J`}</Text>;
+}
+
 function Complementary({ info = footerInfo, local = "en" }) {
   return (
     <>
       {/* address */}
-      <div className={`${styles.box} ${"md:col-span-3"}`}>
-        <Title className={styles["box-title"]} tagName="strong">
+      <div className={`md:col-span-3 ${styles.box}`}>
+        <Title className={styles.box_title} tagName="strong">
           Address
         </Title>
         <Text tagName="address">{info.address[local]}</Text>
       </div>
 
       {/* contact us */}
-      <div className={`${styles.box} ${"md:col-span-2"}`}>
-        <Title className={styles["box-title"]} tagName="strong">
+      <div className={`md:col-span-2 ${styles.box}`}>
+        <Title className={styles.box_title} tagName="strong">
           Contact Us
         </Title>
         <Text>
@@ -61,8 +105,8 @@ function Complementary({ info = footerInfo, local = "en" }) {
       </div>
 
       {/* mail:recruit */}
-      <div className={`${styles.box} ${"md:col-span-3"}`}>
-        <Title className={styles["box-title"]} tagName="strong">
+      <div className={`md:col-span-3 ${styles.box}`}>
+        <Title className={styles.box_title} tagName="strong">
           Be the New J
         </Title>
         <Text tagName="span">
@@ -71,7 +115,7 @@ function Complementary({ info = footerInfo, local = "en" }) {
       </div>
 
       {/* mail:business */}
-      <div className={`${styles.box} ${"md:col-span-4"}`}>
+      <div className={`md:col-span-4 ${styles.box}`}>
         <Text className="text-heading-9 md:text-heading-6" tagName="span">
           E-mail us your inquiries to start a new project
         </Text>
@@ -81,10 +125,6 @@ function Complementary({ info = footerInfo, local = "en" }) {
       </div>
     </>
   );
-}
-
-function Copyright({ year = footerInfo.copyright }) {
-  return <Text>{`ⓒ ${year.start}-${year.now}, the J`}</Text>;
 }
 
 function Footer({ menuList, mode = "dark" }) {
