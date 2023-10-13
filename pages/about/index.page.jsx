@@ -39,7 +39,6 @@ function Page() {
   useEffect(() => {
     const ctx = gsap.context(() => {
       const main = document.querySelector("main");
-
       const createTimeline = (triggerSelector, startTrigger, endTrigger, bgColorClass, textColorClass) => {
         return gsap
           .timeline({
@@ -52,10 +51,9 @@ function Page() {
             },
           })
           .to(main, {
-            className: `relative z-10 min-h-[100vh] px-[--grid-container-margin] ${bgColorClass} ${textColorClass}`,
+            className: `relative z-10 min-h-[100vh] ${bgColorClass} ${textColorClass}`,
           });
       };
-
       createTimeline(".dark", "-30% 100%", "+=100%", "bg-bg-dark", "text-white");
       createTimeline(".light", "top 20%", "+=100%", "bg-bg-light", "text-black");
     }, mainRef);

@@ -9,8 +9,9 @@ import SvgLine from "#root/components/SvgLine";
 import Icon from "#root/components/Icon";
 import TextPassed from "#root/components/TextPassed/TextPassed";
 import { Text, Title } from "#root/components/Text";
-
 import VisualBox from "#root/components/main/VisualBox";
+import Video from "#root/components/Video";
+
 import ListMonoLayout, { LAYOUT_BIG_FIRST } from "#root/components/ListMonoLayout/ListMonoLayout";
 
 // styles
@@ -107,10 +108,7 @@ function Page() {
 
         <section className={CM(styles.what)}>
           <div>
-            <video muted autoPlay loop>
-              <source src="https://www.w3schools.com/tags/movie.mp4" type="video/mp4" />
-              Your browser does not support HTML video.
-            </video>
+            <Video src="https://www.w3schools.com/tags/movie.mp4" />
           </div>
           <article>
             <Title tagName="h5">What we do</Title>

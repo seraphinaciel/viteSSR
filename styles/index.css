@@ -156,6 +156,7 @@
   .title_box {
     @apply relative grid items-end;
     @apply m-auto max-w-[--page-container];
+    @apply mobile:px-[--grid-container-margin];
     height: calc(100vh - 4rem - 1.9rem);
 
     h2 {

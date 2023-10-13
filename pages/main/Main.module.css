@@ -21,7 +21,7 @@
       margin: 20vh 0 10vh;
     }
     h1 {
-      @apply md:flex md:flex-col lg:flex-row justify-center items-center my-50 md:mb-[35vh];
+      @apply md:flex md:flex-col lg:flex-row justify-center items-center my-50 md:mb-[27vh];
       p:first-child {
         @apply flex items-center;
         span {
@@ -73,9 +73,10 @@
 }
 
 .what {
-  @apply flex flex-col justify-center text-white;
+  @apply flex flex-col justify-center h-screen;
+  @apply text-white;
   & > div {
-    @apply bg-black/30 w-[100vw] h-screen;
+    @apply bg-black/30 w-[99vw] h-screen;
     @apply absolute left-[50%] -translate-x-2/4 overflow-hidden -z-1;
     video {
       @apply object-cover absolute -z-1 w-full h-full;
@@ -83,25 +84,34 @@
     }
   }
   article {
-    @apply m-auto mobile:px-[--grid-container-margin];
-    width: 100%;
-    /* @apply m-auto max-w-[--page-container] mobile:px-[--grid-container-margin]; */
+    @apply w-full m-auto mobile:px-[--grid-container-margin];
+    /* div 요소가 자손으로 h3을 가지고 있지 않을 경우 전체 칼라 적용
+div.section1:not(:has(h3)) {
+  color: red;
+}
+
+div 요소의 자손이 h3이 아닌 요소가 있을 경우 전체 칼라 적용
+div.section2:has(:not(h3)) {
+  color: blue;
+}
+ */
     ul {
       @apply mt-32;
-      &:hover span,
-      &:hover a {
+      &:hover :where(span, a) {
         @apply opacity-20 !important;
       }
       li {
         @apply flex mobile:flex-wrap gap-[--grid-col-gap] overflow-hidden;
         @apply md:border-b border-b-white/20;
         @apply text-heading-5 md:text-heading-2 mx:text-heading-1;
-        span,
-        a,
-        &:hover a {
+
+        & :where(span, a) {
           @apply opacity-100 !important;
         }
-        & *:last-child {
+        &:hover :where(:not(span), a) {
+          @apply opacity-100 !important;
+        }
+        & :where(span:last-child, &:last-of-type a:first-of-type) {
           @apply m-0 md:ml-auto;
         }
       }
