@@ -1,0 +1,43 @@
+/* common */
+.floating-full-fill {
+	@apply absolute top-0 bottom-0 left-0 right-0
+}
+
+/* component */
+.list {
+  --down-sm : md:pt-[10rem];
+  --down-md : md:pt-[22rem];
+  --col-big: calc(var(--grid-container) * 6 / 12 - (2rem * 0.5));
+  --col-small: calc(var(--grid-container) * 5 / 12 - (2rem * 0.5));
+  --col-gap: calc(var(--grid-container) * 1 / 12 + 2rem);
+	@apply text-heading-10 flex flex-wrap gap-y-[6rem] md:gap-y-[15rem] md:gap-x-[--col-gap];
+}
+.item {
+	@apply relative flex flex-col mobile:min-w-[100%]
+}
+.item-thumbnail {
+	@apply aspect-[320/255] border border-gray-600;
+}
+.item-title {
+	@apply text-heading-6 font-normal;
+}
+.item-link-button {
+	@apply floating-full-fill
+}
+
+
+/* layout: margin */
+.item-thumbnail + .item-title {
+	@apply mt-[2rem] md:mt-[3rem]
+}
+.item-title + .item-description {
+	@apply mt-[1.5rem] md:mt-[3rem]
+}
+
+/* variation */
+.item-big {
+  @apply md:basis-[--col-big];
+}
+.item-small {
+  @apply md:basis-[--col-small];
+}

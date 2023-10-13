@@ -4,12 +4,12 @@ const commonStyle = {
     letterSpace: "-0.002em",
   },
 };
-
-const fontSizeRange = (value) => {
+const configFontStyle = (size, lineHeight) => {
   const minFontSize = 12;
-  const maxFontSize = Math.round(Number(value.split("rem")[0] * 100 * 1 * 0.1));
-  // const max = Math.round(Number(value.split("rem")[0] * 100 * 1.3 * 0.1));
-  return `min(max(${value}, ${minFontSize}px), ${maxFontSize}px)`;
+  const maxLimitRatio = 1.2;
+  const maxFontSize = Math.round(Number(size.split("rem")[0] * 100 * maxLimitRatio * 0.1));
+  const fontSize = `min(max(${size}, ${minFontSize}px), ${maxFontSize}px)`;
+  return [fontSize, { ...commonStyle.copies, lineHeight }];
 };
 
 export default {
@@ -21,14 +21,10 @@ export default {
   ],
   theme: {
     screens: {
-      // device
-      gx: "360px",
-      ip: "414px",
       // size
-      mi: "280px",
-      xs: "320px",
+      mi: "320px",
       sm: "480px",
-      md: "720px",
+      md: "768px",
       lg: "1080px",
       xl: "1440px",
       mx: "1920px",
@@ -37,16 +33,8 @@ export default {
       ud: "3840px",
       // breakpoint
       smart: { max: "414px" },
-      // mobile: { min: "0px", max: "720px" },
-      // tablet: { min: "721px", max: "1440px" }, // include laptop
-      // desktop: { min: "1441px", max: "1920px" },
-      // over: {
-      //   DEFAULT: { min: "1921px", max: "2560px" },
-      //   mx: { min: "1921px" },
-      //   wd: { min: "2561px" },
-      // },
-      // mobile: { min: "0px" },
-      tablet: { min: "721px" }, // include laptop
+      mobile: { max: "767px" },
+      tablet: { min: "768px" }, // include laptop
       desktop: { min: "1441px" },
       over: {
         DEFAULT: { min: "1921px" },
@@ -79,94 +67,28 @@ export default {
         cursor: "#DA1E1E",
       },
       fontSize: {
-        special: [
-          fontSizeRange("20rem"),
-          { ...commonStyle.copies, lineHeight: 1 },
-        ],
-        "heading-1": [
-          fontSizeRange("13rem"),
-          { ...commonStyle.copies, lineHeight: "18rem" },
-        ],
-        "heading-2": [
-          fontSizeRange("11rem"),
-          { ...commonStyle.copies, lineHeight: "18rem" },
-        ],
-        "heading-3": [
-          fontSizeRange("6.4rem"),
-          { ...commonStyle.copies, lineHeight: 1 },
-        ],
-        "heading-4": [
-          fontSizeRange("6rem"),
-          { ...commonStyle.copies, lineHeight: "7.5rem" },
-        ],
-        "heading-5": [
-          fontSizeRange("5rem"),
-          { ...commonStyle.copies, lineHeight: "6rem" },
-        ],
-        "heading-6": [
-          fontSizeRange("3.6rem"),
-          { ...commonStyle.copies, lineHeight: "4.8rem" },
-        ],
-        "heading-7": [
-          fontSizeRange("3rem"),
-          { ...commonStyle.copies, lineHeight: "4rem" },
-        ],
-        "heading-8": [
-          fontSizeRange("2.6rem"),
-          { ...commonStyle.copies, lineHeight: "3.8rem" },
-        ],
-        "heading-9": [
-          fontSizeRange("2.4rem"),
-          { ...commonStyle.copies, lineHeight: "3.2rem" },
-        ],
-        "heading-10": [
-          fontSizeRange("2rem"),
-          { ...commonStyle.copies, lineHeight: "3rem" },
-        ],
-        "body-1": [
-          fontSizeRange("1.8rem"),
-          { ...commonStyle.copies, lineHeight: "2.8rem" },
-        ],
-        "body-2": [
-          fontSizeRange("1.6rem"),
-          { ...commonStyle.copies, lineHeight: "2.6rem" },
-        ],
-        "body-3": [
-          fontSizeRange("1.5rem"),
-          { ...commonStyle.copies, lineHeight: "2.4rem" },
-        ],
-        "heading-1-kr": [
-          fontSizeRange("4.8rem"),
-          { ...commonStyle.copies, lineHeight: "6.2rem" },
-        ],
-        "body-1-kr": [
-          fontSizeRange("3.6rem"),
-          { ...commonStyle.copies, lineHeight: "5rem" },
-        ],
-        "body-2-kr": [
-          fontSizeRange("2.8rem"),
-          { ...commonStyle.copies, lineHeight: "3.8rem" },
-        ],
-        "body-3-kr": [
-          fontSizeRange("2.4rem"),
-          { ...commonStyle.copies, lineHeight: "4rem" },
-        ],
-        "body-4-kr": [
-          fontSizeRange("2.4rem"),
-          { ...commonStyle.copies, lineHeight: "3.6rem" },
-        ],
-        "body-5-kr": [
-          fontSizeRange("2rem"),
-          { ...commonStyle.copies, lineHeight: "3.2rem" },
-        ],
-        "body-6-kr": [
-          fontSizeRange("1.8rem"),
-          { ...commonStyle.copies, lineHeight: "3rem" },
-        ],
-        "body-7-kr": [
-          fontSizeRange("1.6rem"),
-          { ...commonStyle.copies, lineHeight: "2.6rem" },
-        ],
+        special: configFontStyle("20rem", 1),
+        "heading-1": configFontStyle("13rem", "18rem"),
+        "heading-2": configFontStyle("11rem", "18rem"),
+        "heading-3": configFontStyle("6.4rem", 1),
+        "heading-4": configFontStyle("6rem", "7.5rem"),
+        "heading-5": configFontStyle("5rem", "6rem"),
+        "heading-6": configFontStyle("3.6rem", "4.8rem"),
+        "heading-7": configFontStyle("3rem", "4rem"),
+        "heading-8": configFontStyle("2.6rem", "3.8rem"),
+        "heading-9": configFontStyle("2.4rem", "3.2rem"),
+        "heading-10": configFontStyle("2rem", "3rem"),
+        "body-1": configFontStyle("1.8rem", "2.8rem"),
+        "body-2": configFontStyle("1.6rem", "2.6rem"),
+        "body-3": configFontStyle("1.5rem", "2.4rem"),
+        "heading-1-kr": configFontStyle("4.8rem", "6.2rem"),
+        "body-1-kr": configFontStyle("3.6rem", "5rem"),
+        "body-2-kr": configFontStyle("2.8rem", "3.8rem"),
+        "body-3-kr": configFontStyle("2.4rem", "4rem"),
+        "body-4-kr": configFontStyle("2.4rem", "3.6rem"),
+        "body-5-kr": configFontStyle("2rem", "3.2rem"),
+        "body-6-kr": configFontStyle("1.8rem", "3rem"),
+        "body-7-kr": configFontStyle("1.6rem", "2.6rem"),
       },
     },
   },

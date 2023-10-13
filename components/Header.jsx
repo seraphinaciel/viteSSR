@@ -7,7 +7,7 @@ import styles from "./Header.module.css";
 function HomeLinkLogo() {
   return (
     <div className={styles.logo}>
-      <Link href="/">
+      <Link href="/main">
         <img src={logo} alt="The J Home" />
       </Link>
     </div>

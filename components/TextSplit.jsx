@@ -31,7 +31,7 @@ export function Letter({ content, className, tagName = "p" }) {
         return node;
       };
 
-      const splitByLetter = (text) => [...text].map(createLetterNode);
+      const splitByLetter = text => [...text].map(createLetterNode);
       let nodes = splitByLetter(splitTargets.innerText);
       if (nodes) splitTargets.firstChild.replaceWith(...nodes);
 
@@ -42,7 +42,7 @@ export function Letter({ content, className, tagName = "p" }) {
         scrollTrigger: {
           trigger: splitTargets,
           toggleActions: "restart pause resume reverse",
-          start: "top 90%",
+          start: "top 20%",
           end: "bottom 50%",
           scrub: true,
           // markers: true,
@@ -53,11 +53,7 @@ export function Letter({ content, className, tagName = "p" }) {
     return () => ctx.revert();
   }, [content]);
   return (
-    <div
-      className={
-        className === undefined ? "split-letter" : `split-letter ${className}`
-      }
-    >
+    <div className={className === undefined ? "split-letter" : `split-letter ${className}`}>
       <Tagname ref={targetRef}>{content}</Tagname>
     </div>
   );
@@ -101,13 +97,7 @@ export function Sentence({ content, className, children, tagName = "p" }) {
   }, [content, children]);
 
   return (
-    <div
-      className={
-        className === undefined
-          ? "split-sentence relative"
-          : `split-sentence ${className}`
-      }
-    >
+    <div className={className === undefined ? "split-sentence relative" : `split-sentence ${className}`}>
       {children ? <div ref={childrenRef}>{children}</div> : null}
       <div className="overflow-hidden">
         <Tagname ref={targetRef}>{content}</Tagname>
@@ -158,15 +148,8 @@ export function Word({ content, className, tagName = "p" }) {
   }, [content]);
 
   return (
-    <div
-      className={
-        className === undefined ? "split-words" : `split-words ${className}`
-      }
-    >
-      <Tagname
-        ref={targetRef}
-        className="flex flex-wrap justify-center gap-x-[0.25em] overflow-hidden"
-      >
+    <div className={className === undefined ? "split-words" : `split-words ${className}`}>
+      <Tagname ref={targetRef} className="flex flex-wrap justify-center gap-x-[0.25em] overflow-hidden">
         {content}
       </Tagname>
     </div>

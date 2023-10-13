@@ -1,17 +1,46 @@
-import styles from "./Main.module.css";
+// node module
+import { useCallback } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { usePageContext } from "../../renderer/usePageContext";
 
+// components
 import { Text } from "#root/components/Text";
-import Video from "#root/components/Video";
 import { Sentence } from "#root/components/TextSplit";
+import Video from "#root/components/Video";
 import SvgLine from "#root/components/SvgLine";
 import MainTitle from "#root/components/main/MainTitle";
+import ListMonoLayout, { LAYOUT_BIG_FIRST } from "#root/components/ListMonoLayout/ListMonoLayout";
 
-export const title = "🥰 Main",
-  description = "this is a Main page.";
+// styles
+import styles from "./Main.module.css";
+
+export const documnetProp = {
+  title: "🥰 Main",
+  description: "this is a Main page.",
+};
 
 function Page() {
+  const pageContext = usePageContext();
+  const pageRef = useCallback(wrap => {
+    if (null == wrap) return;
+    console.log("pageContext", pageContext);
+  });
+
+  const {
+    data: workList,
+    isLoading,
+    isError,
+  } = useQuery({
+    queryKey: ["works"],
+    queryFn: ({ queryKey, pageParam, meta }) => {
+      // console.log(queryKey, pageParam, meta);
+      // return axios.get("./data/works.json");
+      return fetch("./data/works.json").then(res => res.json());
+    },
+  });
+
   return (
-    <>
+    <div ref={pageRef}>
       <Video id="smaller" src="https://www.w3schools.com/tags/movie.mp4">
         <Text className="hidden desktop:block desktop:text-heading-6 text-center">
           {"LG Global Pilot Website"}
@@ -48,8 +77,10 @@ function Page() {
         </section>
       </section>
 
+      {!isLoading && !isError && <ListMonoLayout layout={LAYOUT_BIG_FIRST} list={workList} />}
+
       <div style={{ height: "500vh" }}></div>
-    </>
+    </div>
   );
 }
 export { Page };

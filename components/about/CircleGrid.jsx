@@ -53,7 +53,8 @@ export default function CircleBox({ className, children }) {
       // const h1 = document.querySelector(".cCircle h1").clientHeight;
       // const box = document.querySelector(".cCircle h1 + div").clientHeight;
 
-      tl.set(".svgIcons1", { top: "-5%" })
+      tl.set("i", { clipPath: "circle(0% at 50% 50%)", display: "none" })
+        .set(".svgIcons1", { top: "-5%" })
         .set(".svgIcons2", { opacity: 0 }, "<")
         .to(
           ".svgIcons1",
@@ -62,7 +63,7 @@ export default function CircleBox({ className, children }) {
             duration: 5,
             ease: "power1.in",
           },
-          "<"
+          "<",
         )
         .to(
           ".svgIcons1 path",
@@ -71,16 +72,11 @@ export default function CircleBox({ className, children }) {
             ease: "power1.in",
             stroke: "white",
           },
-          "<+=4.9"
+          "<+=4.9",
         )
         .to(".cCircle h1", { marginTop: "11%", duration: 1 }, "<")
         // .to(".cCircle h1", { margin: `${h1 + box} 0 ${h1}`, duration: 1 }, "<")
-        .fromTo(
-          "i",
-          { scale: 0 },
-          { scale: 120, duration: 5, ease: "power1.in" },
-          "<+3"
-        )
+        .to("i", { clipPath: "circle(100% at 50% 50%) ", display: "block", duration: 5, ease: "power1.in" }, "<+3")
         .set(".svgIcons1", { opacity: 0, duration: 3 }, "<+=3")
         .set(".svgIcons2", { opacity: 1, duration: 3 }, "<")
         .to(".svgIcons2", { opacity: 0, duration: 3 }, ">+=3");
@@ -97,23 +93,20 @@ export default function CircleBox({ className, children }) {
       tl2.to(
         contents.slice(0, 3).map((_, index) => `#span_${index + 1}`),
         { x: 200, delay: 2 },
-        "<"
+        "<",
       );
 
       tl2.to(
         contents.slice(3).map((_, index) => `#span_${index + 4}`),
         { x: -200, delay: 0 },
-        "<"
+        "<",
       );
     }, targetRef);
     return () => ctx.revert();
   }, []);
 
   return (
-    <article
-      className={`${className} flex flex-col items-center mt-24`}
-      ref={targetRef}
-    >
+    <article className={`${className} flex flex-col items-center mt-24`} ref={targetRef}>
       <section className="bg-slate-100 grid grid-cols-12 grid-rows-3 items-center h-screen">
         {contents.map((con, index) => (
           <span
@@ -122,24 +115,16 @@ export default function CircleBox({ className, children }) {
             id={`span_${index + 1}`}
             ref={gridRef}
           >
-            <img
-              src={`/images/char${index + 1}.jpg`}
-              alt={con.alt}
-              className="h-full mx-auto"
-            />
+            <img src={`/images/char${index + 1}.jpg`} alt={con.alt} className="h-full mx-auto" />
           </span>
         ))}
 
-        <div
-          className="flex flex-col justify-center items-center h-screen col-span-full row-span-full"
-          ref={circleRef}
-        >
+        <div className="flex flex-col justify-center items-center h-screen col-span-full row-span-full" ref={circleRef}>
           <SvgIcons types="basic" className="svgIcons1 absolute z-10" />
-          {/* <SvgIcons types="basic" className="svgIcons1 fixed z-10" /> */}
           {children}
-          <i className="block w-[1vw] h-[1vw] rounded-full absolute bg-bg-dark"></i>
+          <i className="w-full h-screen absolute bg-bg-dark"></i>
+          {/* <i className="block w-[1vw] h-[1vw] rounded-full absolute bg-bg-dark"></i> */}
           <SvgIcons className="svgIcons2 absolute" types="big2" color="white" />
-          {/* <SvgIcons className="svgIcons2 absolute z-10" types="big2" /> */}
         </div>
       </section>
     </article>

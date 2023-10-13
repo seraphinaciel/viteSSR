@@ -1,10 +1,30 @@
+// node module
+import { useCallback } from "react";
+import { usePageContext } from "../../renderer/usePageContext";
+
+// components
+
+// style
 import styles from "./Contact.module.css";
 
-export const title = "🥰 Contact",
-  description = "this is a Contact page.";
+export const documentProps = {
+  title: "🥰 Contact",
+  description: `this is a Contact page.`,
+  pageId: "/contact",
+};
 
 function Page() {
-  return <div className="contact"></div>;
+  const pageContext = usePageContext();
+  const pageRef = useCallback(wrap => {
+    if (null == wrap) return;
+    console.log("pageContext", pageContext);
+  });
+  return (
+    <div ref={pageRef} className="contact">
+      <div className="page-contents-wrap"></div>
+      <div className={styles.some}></div>
+    </div>
+  );
 }
 
 export { Page };

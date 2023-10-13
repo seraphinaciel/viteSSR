@@ -47,6 +47,6 @@ export const handle_speed = (
 ) => {
   const middlePoint = Math.floor(breakpoints.length * 0.5);
   const scale = breakpoints[middlePoint >= window.innerWidth ? 0 : middlePoint];
-  const adjMobile = now <= 768 ? 2 : 1;
+  const adjMobile = now < 768 ? 2 : 1;
   return ((now / scale) * adjMobile * smoothness * 1) / smoothness;
 };

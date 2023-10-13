@@ -9,37 +9,46 @@
 
 @layer base {
   /* breakpoint 
-  html의 font size를 10vw로 고정하고
-  1vw = 1rem = 10px로 맞춤. 
-  이 기준이 적용되는 분기점은 
-  모바일 캔버스 360 x 2,
-  데스크탑 캔버스 1920,
-  그 사이에 임의갑 - 1440 - 지정함.
-
-  html의 기준 값을 조정해주는 역할.
-  미디어쿼리 사용은 class로.
-*/
+    html의 font size를 1vw로 고정하고
+    1vw = 1rem = 10px로 맞춤. 
+    이 기준이 적용되는 분기점은 
+    모바일 캔버스 360 x 2,
+    데스크탑 캔버스 1920,
+    그 사이에 임의값으로 - 1440 - 지정함.
+  */
   :root {
-    --canvas: 720;
+    --canvas: 390; /* rem 기준값을 조정하는 변수 */
 
-    @media (min-width: 721px) {
+    @media (min-width: 506px) {
+      --canvas: 622; /* sm + (md - sm * 0.5) */
+    }
+    @media (min-width: theme(screens.md)) {
       --canvas: 1440;
     }
-    @media (min-width: 1441px) {
+    @media (min-width: theme(screens.xl)) {
       --canvas: 1920;
     }
-    @media (min-width: 1920px) {
-      --canvas: 2560;
+    /* mx size 부터는 크기가 커지도록 풀어둠 */
+
+    /* grid var */
+    --page-container: 176rem;
+    --grid-container: calc(100%);
+    --grid-row-gap: 1.2rem;
+    --grid-container-margin: max(15px, 2.5rem);
+    @media screen and (min-width: theme(screens.md)) {
+      --grid-row-gap: 2rem;
+      --grid-container-margin: max(15px, min(8rem, 2.5rem));
     }
   }
-  html {
-    font-size: calc(16 * (100vw / var(--canvas)));
 
+  html {
     @apply font-all;
+    font-size: calc(10 * (100vw / var(--canvas)));
   }
-  body {
-    font-size: 1rem;
+  button {
+    @apply border-none;
   }
+
   button {
     @apply p-2 border rounded-md hover:bg-slate-700 hover:text-white;
   }
@@ -87,13 +96,59 @@
   .text_box_1 {
   }
 
+  /* .special {
+    @apply text-black text-[64px] lg:text-[200px];
+  } */
+  /* .heading__1 {
+    @apply  text-[50px]/[60px] lg:text-[130px]/[180px] font-light;
+    strong {
+      @apply font-medium;
+    }
+  }
+  .heading__4 {
+    @apply text-black text-xl/[30px] lg:text-6xl/[75px];
+  }
+  .heading__10 {
+    @apply text-black text-[18px]/[30px] lg:text-[20px]/[32px];
+  } */
+
+  /* BODY */
+  /* .body__1 {
+    @apply text-2xl/8 lg:text-4xl/[48px] font-medium;
+  }
+  .body__2 {
+    @apply text-[20px]/[30px] lg:text-[26px]/[38px];
+  } */
+}
+@layer components {
+  .page-contents-wrap {
+    @apply m-auto max-w-[--page-container];
+  }
+
+  .cursor-dot {
+    @apply pointer-events-none fixed top-0 left-0 rounded-full cursor-none w-5 h-5 bg-red-600/100;
+    transform: translate(-50%, -50%);
+    transition:
+      width 0.15s ease-in-out,
+      height 0.15s ease-in-out,
+      transform 0.1s ease-in-out;
+    will-change: width, height, transform;
+    z-index: 999;
+    &.active-link {
+      @apply w-20 h-20 bg-red-600/50;
+    }
+    &.active-video {
+      @apply w-72 h-72 bg-teal-500/60;
+    }
+  }
+
   .title_flow {
-    @apply desktop:px-20 text-heading-5 desktop:text-special;
+    @apply desktop:px-20 text-heading-5 desktop:text-special overflow-hidden;
     div {
       @apply flex;
     }
     > span:last-child {
-      margin-left: 50%;
+      @apply ml-[50%] block;
     }
   }
 
@@ -126,54 +181,6 @@
     @apply relative grid items-center justify-center desktop:px-11 pt-56 mx-auto;
     /* s:h-almost-screen s:pt-80 pt-140*/
   }
-
-  /* .special {
-    @apply text-black text-[64px] lg:text-[200px];
-  } */
-  /* .heading__1 {
-    @apply  text-[50px]/[60px] lg:text-[130px]/[180px] font-light;
-    strong {
-      @apply font-medium;
-    }
-  }
-  .heading__4 {
-    @apply text-black text-xl/[30px] lg:text-6xl/[75px];
-  }
-  .heading__10 {
-    @apply text-black text-[18px]/[30px] lg:text-[20px]/[32px];
-  } */
-
-  /* BODY */
-  /* .body__1 {
-    @apply text-2xl/8 lg:text-4xl/[48px] font-medium;
-  }
-  .body__2 {
-    @apply text-[20px]/[30px] lg:text-[26px]/[38px];
-  } */
-}
-@layer components {
-  nav {
-    a {
-      @apply p-2 mr-2 bg-slate-300;
-    }
-    .is-active {
-      @apply bg-purple-600 text-white;
-    }
-  }
-
-  .cursor-dot {
-    @apply pointer-events-none fixed top-0 left-0 rounded-full cursor-none w-5 h-5 bg-red-600/100;
-    transform: translate(-50%, -50%);
-    transition: width 0.15s ease-in-out, height 0.15s ease-in-out, transform 0.1s ease-in-out;
-    will-change: width, height, transform;
-    z-index: 999;
-    &.active-link {
-      @apply w-20 h-20 bg-red-600/50;
-    }
-    &.active-video {
-      @apply w-72 h-72 bg-teal-500/60;
-    }
-  }
 }
 
 .pin-spacer {
@@ -181,4 +188,28 @@
 }
 svg {
   border: 2px dashed greenyellow;
+}
+
+.content-container {
+  display: flex;
+}
+.content-container > * {
+  width: 50%;
+}
+
+.right-content {
+  padding-right: 15px;
+}
+
+.left-content {
+  height: 100vh;
+  position: relative;
+}
+
+.left-content > * {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  opacity: 0;
+  visibility: hidden;
 }

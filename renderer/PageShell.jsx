@@ -10,6 +10,7 @@ import Footer from "../components/Footer";
 
 // style:global
 import "../styles/index.css";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 export { PageShell };
 
@@ -45,12 +46,15 @@ const routes = [
     route: "/contact",
   },
 ];
+const queryClient = new QueryClient();
 
 function PageShell({ pageContext, children }) {
   return (
     <React.StrictMode>
       <PageContextProvider pageContext={pageContext}>
-        <Layout>{children}</Layout>
+        <QueryClientProvider client={queryClient}>
+          <Layout>{children}</Layout>
+        </QueryClientProvider>
       </PageContextProvider>
     </React.StrictMode>
   );
@@ -73,7 +77,7 @@ function Layout({ children }) {
       <Header menuList={routes} mode={mode} />
 
       {/* page contents */}
-      <main ref={modeRef} className="overflow-hidden min-h-[100vh]">
+      <main ref={modeRef} className="min-h-[100vh] px-[--grid-container-margin]">
         {children}
       </main>
 

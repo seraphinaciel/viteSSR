@@ -31,7 +31,7 @@ const AboutImg = ({ className, children }) => {
       let tl = gsap.timeline({
         scrollTrigger: {
           trigger: targetRef.current,
-          start: "top -10%",
+          start: "0 0",
           end: "+=100%",
           toggleActions: "restart pause resume reverse",
           // scrub: 0.02,
@@ -46,7 +46,7 @@ const AboutImg = ({ className, children }) => {
           xPercent: 90,
           yPercent: 250,
         },
-        "<"
+        "<",
       )
         .from(
           ".item_2",
@@ -55,7 +55,7 @@ const AboutImg = ({ className, children }) => {
             xPercent: -100,
             yPercent: 300,
           },
-          "<"
+          "<",
         )
         .from(
           ".item_3",
@@ -64,7 +64,7 @@ const AboutImg = ({ className, children }) => {
             xPercent: 70,
             yPercent: 100,
           },
-          "<"
+          "<",
         )
         .from(
           ".item_4",
@@ -73,7 +73,7 @@ const AboutImg = ({ className, children }) => {
             xPercent: -90,
             yPercent: 50,
           },
-          "<"
+          "<",
         );
     }, targetRef);
     return () => ctx.revert();
