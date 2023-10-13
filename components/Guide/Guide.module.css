@@ -1,6 +1,3 @@
-.title {
-  @apply desktop:text-special text-heading-1;
-}
 .head {
   @apply desktop:text-heading-7 text-heading-3 underline underline-offset-4;
 }

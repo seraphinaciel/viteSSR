@@ -24,7 +24,7 @@ const MainTitle = ({ conLeft, conRight, change, children }) => {
           // markers: true,
           scrub: true,
         },
-        onComplete: () => animateSvg(".Thej path", 1),
+        onComplete: () => animateSvg(".Thej path", 0.5),
       });
 
       tl.to(leftRef.current, { xPercent: -10, duration: 100 })
@@ -54,7 +54,7 @@ const MainTitle = ({ conLeft, conRight, change, children }) => {
 
   return (
     <>
-      <h1 className={`${styles.elevator} special`} ref={targetRef}>
+      <h1 className={`${styles.elevator}`} ref={targetRef}>
         <p className={styles.elevatorL} ref={leftRef}>
           {conLeft}
         </p>

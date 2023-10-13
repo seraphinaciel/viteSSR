@@ -68,6 +68,7 @@ export default function Guide() {
           })}
         </ul>
       </section>
+
       <section id="sec02">
         <Title className={styles.head}>Colors</Title>
         <ul className={styles.table}>

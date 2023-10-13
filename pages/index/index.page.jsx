@@ -5,11 +5,12 @@ import Guide from "#root/components/Guide/Guide";
 
 // import Text from "#root/components/Text";
 // import Button from "#root/components/Button";
-// import TextTyping from "#root/components/TextTyping";
+import { Sentence } from "#root/components/TextSplit";
+// import SvgLine from "#root/components/SvgLine";
+
 // import TextMarquee from "#root/components/TextMarquee/TextMarquee";
 // import TextReveal from "#root/components/TextReveal/TextReveal";
 // import TextMove from "#root/components/TextMove";
-// import SvgIcons from "#root/components/SvgIcons";
 // import Video from "#root/components/Video/Video";
 
 // head의 title, meta 내용
@@ -21,8 +22,31 @@ export const documentProps = {
 function Page() {
   return (
     <>
-      <Title className={styles.title}>Guide</Title>
+      <Title className={styles.title}>heading tag</Title>
+      <h1>h1 64px / 200px</h1>
+      <h2>h2 50px / 130px</h2>
+      <h3>h3 20px / 60px</h3>
+      <h4>h4 26px / 36px</h4>
+      <h5>h5 20px / 26px</h5>
+      <h6>h6</h6>
+      <h7>h7</h7>
+      <h8>h8</h8>
 
+      <hr />
+
+      <Title className={styles.title}>text_box_1</Title>
+      <section className="text_box_1 ">
+        <Sentence content="We have implemented various experience, such as global integrated platforms and creative projects."></Sentence>
+
+        <Sentence
+          tagName="em"
+          content="글로벌 통합 플랫폼 프로젝트와 크리에이티브 프로젝트 등 다양한 프로젝트들을 수행해 왔습니다."
+        />
+      </section>
+
+      <hr />
+
+      <Title className={styles.title}>Guide</Title>
       <Guide />
 
       {/* <Text content="This page is:" />

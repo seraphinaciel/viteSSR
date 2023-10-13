@@ -50,7 +50,8 @@ export default {
         standard: "-0.002em",
       },
       fontFamily: {
-        pretendard: ["Pretendard", "sans-serif"],
+        all: ["Poppins", "Pretendard Variable", "sans-serif"],
+        pretendard: ["Pretendard Variable", "sans-serif"],
         poppins: ["Poppins", "sans-serif"],
       },
       colors: {
