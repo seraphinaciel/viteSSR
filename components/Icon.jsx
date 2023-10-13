@@ -37,6 +37,13 @@ function Icon({ shape = "", style, restAttributes = {} }) {
         </svg>
       );
 
+    case "main/x":
+      return (
+        <svg viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg" {...style}>
+          <path d="M3 3L27 27" stroke="black" strokeWidth="1.5" />
+          <path d="M27 3L3 27" stroke="black" strokeWidth="1.5" />
+        </svg>
+      );
     default:
       return <>{/* ...markup */}</>;
   }

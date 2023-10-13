@@ -1,4 +1,4 @@
-import { Fragment } from "react";
+import React, { Fragment } from "react";
 import PropTypes from "prop-types";
 import { childrenPropType } from "../renderer/PropTypeValues";
 
@@ -11,9 +11,8 @@ const TextPropsType = {
 // component
 export function Text({ tagName = "span", children, className = null }) {
   const Tagname = tagName;
-
-  // children case:Array
-  if (Array.isArray(children)) {
+  // children case:only Array by string
+  if (Array.isArray(children) && 0 === children.filter(v => React.isValidElement(v)).length) {
     return (
       <Tagname className={className}>
         {[...children].map((content, index) => {

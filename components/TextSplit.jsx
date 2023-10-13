@@ -57,7 +57,7 @@ export function Letter({ content, className, tagName = "p" }) {
   }, [content]);
   return (
     <Tagname className={`split-letter ${className}`}>
-      <div ref={targetRef}>{content}</div>
+      <span ref={targetRef}>{content}</span>
     </Tagname>
   );
 }
@@ -209,17 +209,15 @@ export function Sentence({ content, className, children, tagName = "div" }) {
   return (
     <>
       {children ? (
-        <div className={`split-sentence relative bg-red-50 ${className} `}>
-          <div ref={targetRef} className="overflow-hidden border">
-            <Tagname>{content}</Tagname>
-          </div>
+        <div className={`split-sentence relative ${className} `}>
+          <Tagname ref={targetRef} className="overflow-hidden">
+            <span>{content}</span>
+          </Tagname>
           <div ref={childrenRef}>{children}</div>
         </div>
       ) : (
-        <div className={`split-sentence overflow-hidden bg-sky-100 ${className}`}>
-          <Tagname ref={targetRef} className="border">
-            {content}
-          </Tagname>
+        <div className={`split-sentence overflow-hidden ${className}`}>
+          <Tagname ref={targetRef}>{content}</Tagname>
         </div>
       )}
     </>

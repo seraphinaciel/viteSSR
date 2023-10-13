@@ -15,7 +15,7 @@ import { Text } from "./Text";
 // utils
 import { CM } from "#root/utils";
 
-export const tweenSVGLine = (pathElement, config = {}) => {
+const tweenSVGLine = (pathElement, config = {}) => {
   const tl = gsap.timeline();
   const pathLength = pathElement.getTotalLength();
   const setValue = {
@@ -32,10 +32,16 @@ export const tweenSVGLine = (pathElement, config = {}) => {
   return tl;
 };
 
-function LineMotionText({ styleId, children, extendLineStyle, slicePoint = 1, cutoffRatio = 0.9 }) {
+function LineMotionText({ styleId, children, extendLineStyle = null, slicePoint = 0.6, cutoffRatio = 0.9 }) {
   const lineRef = useRef(null);
   useEffect(() => {
     if (null == lineRef.current) return;
+
+    // const { width, height } = lineRef.current.viewBox.baseVal;
+    // console.group(`${styleId}`);
+    // console.log((height / width) * 100);
+    // console.log((width / height) * 100);
+    // console.groupEnd(`${styleId}`);
 
     const pathElement =
       lineRef.current instanceof SVGPathElement ? lineRef.current : lineRef.current.querySelector("path");

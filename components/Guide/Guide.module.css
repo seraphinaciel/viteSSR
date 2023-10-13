@@ -1,6 +1,6 @@
-/* section + section {
+section + section {
   @apply py-10 border-b;
-} */
+}
 
 .title {
   @apply text-heading-3 desktop:text-heading-8 text-red-600 over:wd:text-cursor;

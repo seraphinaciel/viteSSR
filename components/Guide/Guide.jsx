@@ -6,7 +6,6 @@ import { Sentence, SWord, Word } from "#root/components/TextSplit";
 import TextPassed from "../../components/TextPassed/TextPassed";
 import SvgIcons from "#root/components/SvgIcons";
 import SvgLine from "#root/components/SvgLine";
-import { TextSvg } from "#root/components/TextSvg";
 import MotionBox from "../main/MotionBox";
 import Icon from "../icon";
 
@@ -15,6 +14,8 @@ import styles from "./Guide.module.css";
 
 // hooks
 import useCssTheme from "#root/hooks/useCssTheme";
+import LineMotionText from "../LineMotionText";
+import { SvgLineIdList } from "../SvgLine";
 
 // static data
 const fontGroup = [
@@ -159,7 +160,7 @@ export default function Guide() {
               content="We respect the thoughts of people who grew up in different environments. Making my thoughts and other people's thoughts together The beginning is The J's creative momentum."
               location="respect"
             >
-              <SvgLine shape="bRespect" color="red" />
+              <SvgLine shape="circle/4.down" color="red" />
             </SWord>
             <SWord
               className="basic_p_2"
@@ -199,43 +200,28 @@ export default function Guide() {
         </section>
 
         <section>
-          <Title className={styles.title}>SvgIcons .basic .big1~2</Title>
-          <SvgIcons types="basic" color="pink" />
-          <SvgIcons types="big1" color="hotpink" />
-          <SvgIcons types="big2" />
-        </section>
-        <section>
           <Title className={styles.title}>#smaller, #bigger</Title>
           <MotionBox id="smaller" src="https://www.w3schools.com/tags/movie.mp4" />
           <MotionBox id="bigger" src="https://www.w3schools.com/tags/movie.mp4" />
         </section>
-        <section>
-          <Title className={styles.title}>bubble</Title>
-          <SvgLine id="sBubble_s" color="red" className="svgAni" />
-        </section>
-        <section>
-          <Title className={styles.title}>TextSvg</Title>
 
-          <div className="w-2/6 mx-auto mt-[70px] gap-y-[30px] flex flex-wrap">
-            <Sentence
-              tagName="p"
-              className="basic_p"
-              content="As technology develops, the combination of UX design and technology will be our powerful force."
-            />
-            <Sentence
-              tagName="p"
-              content="기술이 발달할수록 크리에이티브와 기술의 결합은 우리의 막강한 힘이 될
-      것이라고 믿습니다."
-            />
+        <Title className={styles.title}>SVG (SvgLine.jsx)</Title>
+        <section className="flex gap-10">
+          <div className="text-heading-4">
+            {SvgLineIdList.map(id => (
+              <LineMotionText key={id} styleId={id}>
+                {id.indexOf("circle/") !== -1 && "experimentation"}
+              </LineMotionText>
+            ))}
           </div>
-          <TextSvg tagName="div" className="w-2/6 mx-auto mt-[70px] gap-y-[30px] flex flex-wrap">
-            <Text tagName="p" className="basic_p">
-              {"As technology develops, the combination of UX design and technology will be our powerful force."}
-            </Text>
-            <Text tagName="p">
-              {"기술이 발달할수록 크리에이티브와 기술의 결합은 우리의 막강한 힘이 될 것이라고 믿습니다."}
-            </Text>
-          </TextSvg>
+        </section>
+
+        <Title className={styles.title}>SVG (SvgIcons.jsx)</Title>
+        <section className="flex gap-10">
+          <Text className="text-heading-8">SvgIcons .basic .big1~2</Text>
+          <SvgIcons types="basic" color="pink" />
+          <SvgIcons types="big1" color="hotpink" />
+          <SvgIcons types="big2" />
         </section>
       </div>
     </>

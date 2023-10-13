@@ -1,11 +1,17 @@
+// prop type
 import PropTypes from "prop-types";
+
+// node module
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap/dist/gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
-import { animateSvg } from "#root/utils/animateSvg";
-import styles from "./MainTitle.module.css";
-
 gsap.registerPlugin(ScrollTrigger);
+
+// component
+import { animateSvg } from "#root/utils/animateSvg";
+
+// styles
+import styles from "./MainTitle.module.css";
 
 const MainTitle = ({ conLeft, conRight, change, children }) => {
   const targetRef = useRef(null);
@@ -18,24 +24,26 @@ const MainTitle = ({ conLeft, conRight, change, children }) => {
       let tl = gsap.timeline({
         scrollTrigger: {
           trigger: targetRef.current,
-          toggleActions: "play none none none",
-          start: "top 0%",
-          end: "bottom 0%",
-
+          // toggleActions: "play none none none",
+          start: "top 50%",
+          // end: "bottom 0%",
+          duration: 10,
           scrub: true,
+          pin: ".motion-contents",
+          markers: true,
         },
-        onComplete: () => animateSvg(".Thej path", 0.5),
+        onComplete: () => animateSvg(".Thej path", 0.2),
       });
 
-      tl.to(leftRef.current, { xPercent: -10, duration: 100 })
-        .to(rightRef.current, { xPercent: 50, duration: 100 }, "<")
-        .to(".right01", {
-          yPercent: -100,
-          duration: 100,
-          opacity: 0,
-          position: "absolute",
-          right: 0,
-        })
+      // tl.to(leftRef.current, { xPercent: -10, duration: 100 })
+      //   .to(rightRef.current, { xPercent: 50, duration: 100 }, "<")
+      tl.to(".right01", {
+        yPercent: -100,
+        duration: 100,
+        opacity: 0,
+        position: "absolute",
+        right: 0,
+      })
         .to(rightRef.current, { xPercent: 10, duration: 10 }, "<")
         .fromTo(
           ".right02",
