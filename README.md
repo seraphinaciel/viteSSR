@@ -1,54 +1,167 @@
-### 9.14.
+### 9.22.
 
-```javascript
-gsap.registerPlugin(ScrollTrigger);
+[component] SvgLine - shape case name 수정
 
-let mm = gsap.matchMedia();
+- 동그라미
+  circle/20.down.fill
+  name/
+  option1(타원에 가까울수록 수가 큼),
+  option2(겹침 방향)
 
-mm.add("(min-width: 800px)", () => {});
+- 타이포그라피
+  typo/thej
 
-// 2
-gsap.registerPlugin(ScrollTrigger);
+[component] Text - children 렌더링 조건 수정 : react.element의 존재 여부를 확인
 
-ScrollTrigger.saveStyles(".mobile, .desktop");
-ScrollTrigger.matchMedia({
-  "(min-width: 800px)": function () {},
+### 9.22.
 
-  "(max-width: 799px)": function () {},
+[env] eslint 업데이트 - 사용하지 않는 변수 경고로 하향
+[component] LineMotionText - 코드 축약
+[component] LineMotionText - 코드 축약
+[components] LineMotionText - 모션 함수 추가. 하나의 path 요소만 그리는 걸로 한정된 컴포넌트.…
+… 확장은 나중에.
 
-  all: function () {},
-});
-```
+### 9.20
 
-### 9.7.
+@sr1227SR
+[components] LineMotionText - 텍스트 위에 svg path 얹는 컴포넌트 추가 / SvgLine에서 …
 
-- 이미지 webp
+@croishz
+[components] TextPassed - 이동 속도 오류 수정 / 아이콘 모양 변경
+[page] Careers - 컨텐츠 추가
+[component] Layout - 페이지를 감싸고 있던 좌우 패딩을 제거. 페이지의 컨텐츠 별로 모바일에서 스크린 너비와…
+[env] 컴포넌트 샘플 수정
+[component] Footer - css 선택자 수정
+[components] LineMotionText - props 수정
 
-```html
-<picture>
-  <source srcset="(webp이미지파일).webp" type="image/webp" />
-  <source srcset="(webp가 나오지 않을때 보여줄 이미지파일).jpg" type="image/jpeg" />
-  <img src="(srcSet을 지원하지 않는 ie를 위한 이미지파일).jpg" />
-</picture>
+### 9.19.
 
-<img
-  sizes="(max-width: 768px) 200px, 360px"
-  srcset="(이미지 주소) 200w, (이미지 주소)360w, (이미지주소) "
-  src="(srcset을 지원하지 않는 ie대비용 주소)"
-  alt="thumbnail"
-/>
+[page] careers - 가로 스크롤 영역 추가
 
-<picture>
-  <source media="(min-width:800px)" srcset="/images/partner1.webp" type="image/webp" />
-  <source srcset="/images/char2.jpg" type="image/jpeg" />
-  <img src="/images/char3.jpg" />
-</picture>
-<!-- css : pixel-ratio-->
-```
+### 9.18.
 
-### 8.24.
+[component] CursorDot - 커서 모션에 gsap 적용, 마우스 포인트가 브라우저 스크린 밖으로 나가면 화면에…
+[env] z-index 규칙 추가
+cursor-dot z-index 값 수정
+[hook] useMouseHover - link, button에 자식이 있는 경우까지 포함하여 구분하도록 수정
 
-**상현 선임님 작업**
+### 9.15.
+
+@croishz
+다른 프로젝트 폴더의 코드 git에 계속 표시되는 거 방지
+[env] tailwind 클래스 정리해주는 라이브러리 추가
+[hooks] useCssTheme - state 중에 원하는 것을 선택하는 기능 추가
+[env] tailwind config - modal 플로팅할 때 html에 넣을 클래스 추가, theme나 hook 이용해…
+[components] header - 모바일에서 메뉴 토글 기능 추가
+[env] 코드 컨벤션 추가
+[components] header - 데탑 모션 추가, 페이지 스크롤 묶는 대상을 html -> body로 변경
+
+### 9. 13.
+
+@croishz
+[components] PageShell - grid guide 리사이징 시 여백 반영
+[components] Footer - 코드 컨벤션에 맞춰 정리
+
+### 9. 12.
+
+@sr1227SR
+[components, hooks, css] about 수정
+[components] svgIcon 수정
+
+@croishz
+[components] BackToTop - 페이지 상단으로 올리는 스크롤 이벤트 추가
+[components] MotionBox - stream 순서 변경 임의로 안되도록 id 조건 추가
+[components] Header - trigger 요소 변경, 오류 수정 / Footer - 모니터링 코드 수정
+[env] 페이지 아래 공통 여백 추가
+[env] breakpoint - tablet에 max 구간 추가
+[utils] gsap 디버깅 함수 추가
+
+### 9. 11.
+
+@croishz
+[components] Video - video 요소만 남기고 main에서 사용하는 코드는 MotionBox 컴포넌트로 만듬.
+[page] main - 테스트 코드는 모두 jsx로 옮김. MotionBox 반영
+[env] index.css의 변수명 수정
+@croishz
+[page] Layout - gsap 의존성을 dist로 모두 옮겨서 missing plugin 오류 잡음.
+[components] Footer - fnb 링크 오류 수정
+css 변수 수정 반영
+documentProps 테스트
+[components] MotionBox - props에서 children 지움
+[env] tailwind.config - 여백 값 1~999px까지 반영. ex) pt-10 => padding-top :…
+@sr1227SR
+[page, components, css] about 수정, 각 페이지 타이틀 수정
+
+### 9. 8.
+
+@croishz
+[components] Layout - smooth scroll 적용.
+[components] Layout - 페이지 스크롤 변수 제거
+[components] ListMonoLayout - props 정의 오류 수정 / 이미지 테두리 제거 / font 클래스 변경
+[components] TextPassed - 스크롤시 속도 변경 변수를 hooks 안에 고정
+
+### 9. 7.
+
+@croishz
+[components] Header, Footer, Layout -
+[components] TextPassed - props 정의 오류 수정
+
+### 9. 6.
+
+@croishz
+[components] Footer - 레이아웃 완료
+[components] 전역 상태 추가 - mode
+[components] Icon - svg를 inline으로 사용하는 컴포넌트 추가
+[components] HiddenText - sr only 텍스트 컴포넌트 추가
+[env] font size 추가 - 임시
+
+### 9. 5.
+
+@sr1227SR
+[css] index 수정
+
+### 9. 4.
+
+@croishz
+[components] ListMonoLayout 추가
+[env] component 보일러플레이트
+[route] work - ListMonoLayout 삽입
+[env] css에 grid 변수 추가
+[utils] breakpoint 변경
+[env] tailwind config 수정 - font 전체를 설정 함수로 뽑음. / 분기점 변경
+[components] Header - 로고 링크 메인으로 수정
+[env] react-query 모듈 추가
+[route] 페이지 레이아웃 정리
+오타 수정
+빌드 오류 수정
+[env] 분기점 수정
+
+### 9. 1.
+
+@croishz
+[page] index 정리
+
+@sr1227SR
+about, css, guide 정리
+
+### 8. 31.
+
+main, about 진행중
+
+@croishz
+[env] config prettier
+[component] Text:passed - 글자 흘러가며 아이콘 회전하는 컴포넌트 추가
+[env] route props 정의
+[component] Link - header에서 분리해 옴. 자식으로 컴포넌트도 추가 가능.
+[components] Header, Footer - 컴포넌트로 옮김
+[WSG] TextPassed 샘플 추가
+[component] pageShell - 컴포넌트 계층 정리 / Header gnb 컬러 선택
+[pages] wrapper 추가
+
+### 8. 24.
+
+[css] wsg 적용
+[components] Text 수정 - 한줄, 두줄, 문단 모두 사용 가능.
 
 - color... 이름은 figma의 토큰명과 일치시킴.
 - font... 일단 heading-1, body-1로...
@@ -68,7 +181,9 @@ https://webstoryboy.github.io/gsap2023/gsap13.html
 
 - main 상단, 폰트까지
 
-### 8.16.
+### 8. 16.
+
+video 등 컴포넌트 추가/수정
 
 - main coding start(video)
 
@@ -94,6 +209,60 @@ https://webstoryboy.github.io/gsap2023/gsap13.html
   kv 제외 컨텐츠들만 max-width:1920px
   영상 삽입했을 때는 어딘가는 잘릴텐데 높이가 고정
   hero 영역 kv만 잘릴꺼 고민
+
+### 8. 9.
+
+폴더, 설정 등 추가/삭제
+
+### 8. 7.
+
+vite, react, gsap 세팅
+
+### matchMedia
+
+```javascript
+gsap.registerPlugin(ScrollTrigger);
+
+let mm = gsap.matchMedia();
+
+mm.add("(min-width: 800px)", () => {});
+
+// 2
+gsap.registerPlugin(ScrollTrigger);
+
+ScrollTrigger.saveStyles(".mobile, .desktop");
+ScrollTrigger.matchMedia({
+  "(min-width: 800px)": function () {},
+
+  "(max-width: 799px)": function () {},
+
+  all: function () {},
+});
+```
+
+- 이미지 webp
+
+```html
+<picture>
+  <source srcset="(webp이미지파일).webp" type="image/webp" />
+  <source srcset="(webp가 나오지 않을때 보여줄 이미지파일).jpg" type="image/jpeg" />
+  <img src="(srcSet을 지원하지 않는 ie를 위한 이미지파일).jpg" />
+</picture>
+
+<img
+  sizes="(max-width: 768px) 200px, 360px"
+  srcset="(이미지 주소) 200w, (이미지 주소)360w, (이미지주소) "
+  src="(srcset을 지원하지 않는 ie대비용 주소)"
+  alt="thumbnail"
+/>
+
+<picture>
+  <source media="(min-width:800px)" srcset="/images/partner1.webp" type="image/webp" />
+  <source srcset="/images/char2.jpg" type="image/jpeg" />
+  <img src="/images/char3.jpg" />
+</picture>
+<!-- css : pixel-ratio-->
+```
 
 page file 접미사
 

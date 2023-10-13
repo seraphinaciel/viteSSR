@@ -1,24 +1,30 @@
+// node module
+import { useEffect, useRef } from "react";
 import { gsap } from "gsap/dist/gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
-import { useEffect, useRef } from "react";
 
-import { Title, Text } from "#root/components/Text";
+// components
 import Icon from "#root/components/Icon";
-// import { TextSvg } from "#root/components/TextSvg";
+import { Title, Text } from "#root/components/Text";
 import { Letter, Word, Sentence, SWord } from "#root/components/TextSplit";
 import SvgIcons from "#root/components/SvgIcons";
 import SvgLine from "#root/components/SvgLine";
 import TextPassed from "#root/components/TextPassed/TextPassed";
-// import TextMarquee from "#root/components/TextMarquee";
 
+// about components
 import CircleGrid from "#root/components/about/CircleGrid";
 import TextMove from "#root/components/about/TextMove";
 import AboutTitle from "#root/components/about/AboutTitle";
 import SpreadImg from "#root/components/about/SpreadImg";
 import RecruitList from "#root/components/about/RecruitList";
 import Marquee from "#root/components/about/Marquee";
+
+// style
 import styles from "./About.module.css";
+
+// utils
+import { CM } from "#root/utils";
 
 export { Page };
 
@@ -87,8 +93,7 @@ function Page() {
             </a>
           </nav>
         </section>
-
-        <CircleGrid className={styles.cCircle}>
+        <CircleGrid className={CM(styles.cCircle)}>
           <AboutTitle conLeft="new" conRight="eyes" />
 
           <div className={styles.textBox}>
@@ -101,8 +106,8 @@ function Page() {
           </div>
         </CircleGrid>
 
-        <section className={`dark ${styles.title_flow}`}>
-          <TextMove className={styles.tflow_01} location={["x", "x", "y"]} coord={["-1", "1", "1"]}>
+        <section className={CM("dark", styles.title_flow)}>
+          <TextMove className={CM(styles.tflow_01)} location={["x", "x", "y"]} coord={["-1", "1", "1"]}>
             <Text tagName="div">
               {"Make Empathy"}
               {"&"}
@@ -119,7 +124,7 @@ function Page() {
               content="We respect the thoughts of people who grew up in different environments. Making my thoughts and other people's thoughts together The beginning is The J's creative momentum."
               location="respect"
             >
-              <SvgLine shape="bRespect" color="white" />
+              <SvgLine shape="circle/4.down" color="white" />
             </SWord>
             <SWord
               className="basic_p_2"
@@ -128,17 +133,17 @@ function Page() {
           </article>
         </section>
 
-        <section className={styles.split_text_box}>
+        <section className={CM(styles.split_text_box)}>
           <Letter
             content="Neat Arrangement Creative Expression Sophisticated Techniques Good Communication Young Generation Casual and Cozy Office Free-Spirited"
             className="text-heading-6 md:text-heading-1 leading-loose"
           />
         </section>
 
-        <section className={`light ${styles.title_flow}`}>
-          <TextMove className={styles.tflow_02} location={["y", "y", "y"]} coord={["1", "1", "1"]}>
+        <section className={CM("light", styles.title_flow)}>
+          <TextMove className={CM(styles.tflow_02)} location={["y", "y", "y"]} coord={["1", "1", "1"]}>
             <p>
-              <SvgIcons types="basic" className="svgFixed" />
+              <SvgIcons types="basic" />
             </p>
             <Text tagName="div">
               {"Discover"}
@@ -156,7 +161,7 @@ function Page() {
               content="Various ideas and trendy experiences increase the branding representation of the project and make it simple and easy to design. By reflecting creativity in technology, we constantly pursue creativity in technical UX design."
               location="creativity"
             >
-              <SvgLine shape="bCreativity" />
+              <SvgLine shape="circle/8.up" />
             </SWord>
             <SWord
               className="basic_p_2"
@@ -165,7 +170,7 @@ function Page() {
           </article>
         </section>
 
-        <SpreadImg className={styles.spreadImg}>
+        <SpreadImg className={CM(styles.spreadImg)}>
           <article>
             <Title tagName="h5">Our capability</Title>
             <Sentence
@@ -181,7 +186,7 @@ function Page() {
           </article>
         </SpreadImg>
 
-        <section className={styles.service}>
+        <section className={CM(styles.service)}>
           <h1 className="overflow-hidden ">
             <TextPassed text={"Our service"} size={20} runDirection={"left"} />
           </h1>
@@ -193,7 +198,7 @@ function Page() {
               content="We are committed to helping your brand with our high-quality services and integrated approach."
               location="high-quality"
             >
-              <SvgLine shape="bHighquality" />
+              <SvgLine shape="circle/14.up" />
             </SWord>
             <SWord
               className="basic_p_2"
@@ -202,7 +207,7 @@ function Page() {
           </article>
         </section>
 
-        <RecruitList className={styles.recruitList}>
+        <RecruitList className={CM(styles.recruitList)}>
           <article>
             <div>
               <Title tagName="h2">UX UI Design</Title>
@@ -261,7 +266,7 @@ function Page() {
           </article>
         </RecruitList>
 
-        <section className={styles.partners}>
+        <section className={CM(styles.partners)}>
           <Title tagName="h5">Our partners & clients</Title>
           <Marquee />
         </section>

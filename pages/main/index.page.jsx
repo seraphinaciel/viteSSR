@@ -6,11 +6,13 @@ import { useQuery } from "@tanstack/react-query";
 // components
 import { Sentence, SWord, Word } from "#root/components/TextSplit";
 import SvgLine from "#root/components/SvgLine";
+import Icon from "#root/components/Icon";
 import TextPassed from "#root/components/TextPassed/TextPassed";
 import { Text, Title } from "#root/components/Text";
 import MainTitle from "#root/components/main/MainTitle";
 
-import MotionBox from "#root/components/main/MotionBox";
+import VisualBox from "#root/components/main/VisualBox";
+// import MotionBox from "#root/components/main/MotionBox";
 import ListMonoLayout, { LAYOUT_BIG_FIRST } from "#root/components/ListMonoLayout/ListMonoLayout";
 
 // styles
@@ -48,45 +50,67 @@ function Page() {
   return (
     <div ref={pageRef}>
       <div className="page-contents-wrap">
-        <div className="hidden">
-          <MotionBox id="smaller" src="https://www.w3schools.com/tags/movie.mp4">
-            <div className={CM(styles.visual, "motion-contents")}>
-              <Text className={CM(styles.title)}>
+        {""}
+        <section className={CM(styles.visual)}>
+          <VisualBox id="smaller" src="https://www.w3schools.com/tags/movie.mp4">
+            <article className="motion-contents">
+              <Text tagName="nav">{"Our latest"}</Text>
+              <Text tagName="h2">
                 {"LG Global Pilot Website"}
                 {"Platform Building"}
               </Text>
               <MainTitle conLeft="make" conRight="work" change="moment">
-                <SvgLine shape="sThej" />
+                <SvgLine shape="typo/thej" />
               </MainTitle>
-              <nav>
-                <Text>{"Our latest"}</Text>
-              </nav>
-            </div>
-          </MotionBox>
-        </div>
-
-        <section className={CM(styles.text_box)}>
-          <Sentence tagName="h4" content="Creative Design Technical Agency" />
-          <article>
-            <SWord
-              tagName="h3"
-              content="We have implemented various experience, such as global integrated platforms and creative projects."
-              location="experience,"
-            >
-              <SvgLine shape="bExperience" />
-            </SWord>
-
-            <Sentence
-              tagName="p"
-              className="basic_p_2"
-              content="글로벌 통합 플랫폼 프로젝트와 크리에이티브 프로젝트 등 다양한 프로젝트들을 수행해 왔습니다."
-            >
-              <p className="flex justify-center">
-                <SvgLine shape="sArrow" />
-              </p>
-            </Sentence>
-          </article>
+            </article>
+          </VisualBox>
         </section>
+        {""}
+
+        {/* <MotionBox id="smaller" src="https://www.w3schools.com/tags/movie.mp4">
+          <nav className={CM(styles.nav)}>
+            <Text>{"Our latest"}</Text>
+          </nav>
+          <div className={CM(styles.visual, "motion-contents")}>
+            <Text className={CM(styles.title)}>
+              {"LG Global Pilot Website"}
+              {"Platform Building"}
+            </Text>
+            <MainTitle conLeft="make" conRight="work" change="moment">
+              <SvgLine shape="typo/thej" />
+            </MainTitle>
+          </div>
+        </MotionBox> */}
+
+        <div className="hidden">
+          <section className={CM(styles.text_box)}>
+            <h4>
+              <Sentence tagName="span" content="Creative Design">
+                <Icon shape="main/x" style={{ width: "30px" }} />
+              </Sentence>
+              <Sentence tagName="span" content="Technical Agency" />
+            </h4>
+            <article>
+              <SWord
+                tagName="h3"
+                content="We have implemented various experience, such as global integrated platforms and creative projects."
+                location="experience,"
+              >
+                <SvgLine shape="circle/16.up" />
+              </SWord>
+
+              <Sentence
+                tagName="p"
+                className="basic_p_2"
+                content="글로벌 통합 플랫폼 프로젝트와 크리에이티브 프로젝트 등 다양한 프로젝트들을 수행해 왔습니다."
+              >
+                <p className="flex justify-center mobile:hidden">
+                  <SvgLine shape="tail arrow" />
+                </p>
+              </Sentence>
+            </article>
+          </section>
+        </div>
 
         {/* {!isLoading && !isError && (
           <section className={CM(styles.list)}>
@@ -147,7 +171,7 @@ function Page() {
               content="We are an agency specializing in global and commerce, from building and maintenance to rollout, and strategic plan and creative design."
               location="specializing"
             >
-              <SvgLine shape="bSpecializing" />
+              <SvgLine shape="circle/18.up" />
             </SWord>
             <Sentence
               className="basic_p_2"
