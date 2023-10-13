@@ -38,7 +38,6 @@ export default function TextMove({ className, location, coord, children }) {
         scrub: true,
         pin: true,
         anticipatePin: 1,
-        markers: true,
       });
     }, target);
     return () => ctx.revert();

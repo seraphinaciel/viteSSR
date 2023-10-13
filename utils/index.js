@@ -1,3 +1,6 @@
+import clsx from "clsx";
+import { twMerge } from "tailwind-merge";
+
 export const debounce = (
   callback = () => {
     console.log("delay", duration);
@@ -50,3 +53,18 @@ export const handle_speed = (
   const adjMobile = now < 768 ? 2 : 1;
   return ((now / scale) * adjMobile * smoothness * 1) / smoothness;
 };
+
+export const CM = (...inputs) => twMerge(clsx(inputs));
+// example
+/*
+  className={CM(
+    styles.selectorName, 
+    `${active ? "block" : "hidden"}`,
+    {
+      "bg-white" : active
+      "bg-red-100" : !active
+      "text-heading-1" : tagName === "h1",
+    }
+  )}
+*/
+// dynamic class 사용은 여전히 불가능.

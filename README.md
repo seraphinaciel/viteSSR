@@ -261,6 +261,16 @@ useEffect(() => {
 }, []);
 ```
 
+## global로 npm-check-updates 설치
+
+```bash
+npm i -g npm-check-updates
+ncu -u
+// 1. 프로젝트(package.json과 동일한) 디렉토리에서 다음 명령어 실행
+npm install
+// 2. 업데이트된 결과를 설치
+```
+
 <!--
 
 *

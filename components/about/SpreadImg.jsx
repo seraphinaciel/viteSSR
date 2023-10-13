@@ -7,22 +7,10 @@ import useCheckMobile from "#root/hooks/useCheckMobile";
 gsap.registerPlugin(ScrollTrigger);
 
 const items = [
-  {
-    class: "bg-red-600/20",
-    alt: "hyundai",
-  },
-  {
-    class: "bg-blue-600/20",
-    alt: "samsung",
-  },
-  {
-    class: "bg-green-600/20",
-    alt: "lg",
-  },
-  {
-    class: "bg-yellow-600/20",
-    alt: "genesis",
-  },
+  { class: "bg-red-600/20", alt: "hyundai" },
+  { class: "bg-blue-600/20", alt: "samsung" },
+  { class: "bg-green-600/20", alt: "lg" },
+  { class: "bg-yellow-600/20", alt: "genesis" },
 ];
 
 const SpreadImg = ({ className, children }) => {
@@ -168,9 +156,85 @@ const SpreadImg = ({ className, children }) => {
       if (isPC) {
         master.add(ani01());
       } else {
-        master.add(ani02());
-        master.add(ani03());
+        // master.add(ani02());
+        // master.add(ani03());
       }
+
+      const ani2 = gsap.timeline();
+      ani2
+        .set(
+          items.slice(0, 4).map((_, index) => `.item_${index + 1}`),
+          { opacity: 0 },
+          "<",
+        )
+        .to(".item_1", {
+          xPercent: 20,
+          yPercent: -100,
+          opacity: 1,
+        })
+        .to(
+          ".item_3",
+          {
+            xPercent: 100,
+            yPercent: 0,
+            opacity: 1,
+          },
+          "<",
+        );
+
+      ScrollTrigger.create({
+        animation: ani2,
+        trigger: targetRef.current,
+        start: "-20% 0%",
+        end: "+=50%",
+        scrub: 0.02,
+        pin: true,
+        anticipatePin: 1,
+        markers: true,
+      });
+      const ani3 = gsap.timeline();
+      ani3
+        .set(
+          items.slice(0, 4).map((_, index) => `.item_${index + 1}`),
+          { opacity: 0 },
+          "<",
+        )
+        .to(
+          ".item_2",
+          {
+            xPercent: -100,
+            yPercent: -10,
+            opacity: 1,
+          },
+          "<",
+        )
+        .to(
+          ".item_4",
+          {
+            xPercent: -50,
+            yPercent: 60,
+            opacity: 1,
+          },
+          "<",
+        )
+        .to(
+          ".item_4 img",
+          {
+            scale: 1,
+          },
+          ">",
+        );
+
+      ScrollTrigger.create({
+        animation: ani3,
+        trigger: targetRef.current,
+        start: "20% 0",
+        end: "+=25%",
+        scrub: 0.02,
+        pin: true,
+        anticipatePin: 1,
+        markers: true,
+      });
     }, targetRef);
     return () => {
       ctx.revert();

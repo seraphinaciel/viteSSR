@@ -21,7 +21,7 @@ const MainTitle = ({ conLeft, conRight, change, children }) => {
           toggleActions: "play none none none",
           start: "top 0%",
           end: "bottom 0%",
-          // markers: true,
+
           scrub: true,
         },
         onComplete: () => animateSvg(".Thej path", 0.5),
@@ -41,7 +41,7 @@ const MainTitle = ({ conLeft, conRight, change, children }) => {
           ".right02",
           { yPercent: 50, opacity: 0 },
           { yPercent: 0, duration: 100, display: "block", opacity: 1 },
-          "<"
+          "<",
         );
 
       if (centerRef.current) {

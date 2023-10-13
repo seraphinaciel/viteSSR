@@ -140,7 +140,7 @@
     @apply grid gap-x-5;
     @apply md:grid-cols-12;
     div:first-child {
-      @apply w-full mobile:h-screen mobile:absolute;
+      @apply w-full h-full mobile:absolute;
       @apply md:col-span-5;
       h2 {
         @apply sticky top-2/4 text-heading-6 md:text-heading-4;
@@ -151,8 +151,8 @@
       }
     }
     div:last-child {
-      @apply flex flex-col justify-center gap-4 py-[--col-gap] opacity-[0.5];
-      @apply h-[70vh] md:col-span-7;
+      @apply h-[70vh] flex flex-col justify-center gap-4 py-[--col-gap] opacity-[0.5];
+      @apply md:col-span-7;
       span {
         @apply text-heading-10 md:text-heading-4;
       }

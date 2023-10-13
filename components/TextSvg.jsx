@@ -28,7 +28,6 @@ export function TextSvg({ tagName = "div", children, className = null }) {
           toggleActions: "restart pause resume reverse",
           start: "top center",
           end: "+=100%",
-          // markers: true,
         },
         onComplete: () => animateSvg(".svgAni  path", 1),
       });

@@ -9,22 +9,18 @@ export default function TextReveal({ content }) {
   useEffect(() => {
     gsap.utils.toArray("#transition-wrap").forEach((section, index) => {
       const w = section.querySelector("div");
-      const [x, xEnd] =
-        index % 2
-          ? ["100%", (w.scrollWidth - section.offsetWidth) * -1]
-          : [w.scrollWidth * -1, 0];
+      const [x, xEnd] = index % 2 ? ["100%", (w.scrollWidth - section.offsetWidth) * -1] : [w.scrollWidth * -1, 0];
       const tlbanner = gsap.timeline({
         scrollTrigger: {
           trigger: section,
           scrub: 0.5,
-          markers: true,
         },
       });
       tlbanner.fromTo(w, { x }, { x: xEnd });
     });
 
     return () => {
-      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
     };
   }, []);
 

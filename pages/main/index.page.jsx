@@ -4,8 +4,10 @@ import { useQuery } from "@tanstack/react-query";
 import { usePageContext } from "../../renderer/usePageContext";
 
 // components
-import { Sentence } from "#root/components/TextSplit";
+import { Title, Sentence } from "#root/components/TextSplit";
 import SvgLine from "#root/components/SvgLine";
+import TextPassed from "#root/components/TextPassed/TextPassed";
+
 import MotionBox from "../../components/main/MotionBox";
 import ListMonoLayout, { LAYOUT_BIG_FIRST } from "#root/components/ListMonoLayout/ListMonoLayout";
 
@@ -66,6 +68,29 @@ function Page() {
         {!isLoading && !isError && <ListMonoLayout layout={LAYOUT_BIG_FIRST} list={workList} />}
 
         <div style={{ height: "100vh" }}></div>
+
+        <section className={`${styles.service} `}>
+          <h1 className="overflow-hidden ">
+            <TextPassed text="About the J" size="10" runDirection={"left"} />
+          </h1>
+          <article>
+            <Title tagName="h5">Who we are</Title>
+            <Sentence
+              tagName="h3"
+              className="mb-19"
+              content="We are an agency specializing in global and commerce, from building and maintenance to rollout, and strategic plan and creative design."
+            >
+              <SvgLine id="sBubble_s" color="black" className="svgAni absolute top-0 left-[4.2rem]" />
+            </Sentence>
+            <Sentence
+              tagName="p"
+              className="basic_p_2"
+              content="전략, 기획설계, 크리에이티브 디자인을 중심으로 구축, 확산, 운영 등 글로벌과 커머스에 특화된 크리에이티브 디자인이 가능한 에이전시입니다."
+            />
+            <a href="">Learn more about</a>
+            <a href="">Join us</a>
+          </article>
+        </section>
       </div>
     </div>
   );

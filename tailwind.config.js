@@ -43,6 +43,9 @@ export default {
     },
     // --- override [end] ---
     extend: {
+      modal: {
+        toggle: ["overflow-hidden", "relative"],
+      },
       spacing: (maxSize => {
         let result = { 1: "0.1rem" };
         for (let i = 1; i <= maxSize; i++) {

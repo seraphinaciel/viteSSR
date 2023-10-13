@@ -8,17 +8,21 @@ export default function RecruitList({ className, children }) {
   const containerRef = useRef(null);
 
   useEffect(() => {
+    // const ctx = gsap.context(() => {
     const animateElement = (element, animation) => {
+      console.log(element);
       gsap.fromTo(
         element.querySelector("h2"),
         {
           rotateX: animation.rotateX[0],
           duration: 0.3,
+          color: animation.color,
           ease: "none",
         },
         {
           rotateX: animation.rotateX[1],
           duration: 0.3,
+          color: animation.color,
           ease: "none",
         },
       );
@@ -36,14 +40,14 @@ export default function RecruitList({ className, children }) {
     const applyAnimations = (box, animations) => {
       ScrollTrigger.create({
         trigger: box,
-        start: "top 50%",
+        start: "top 0%",
         end: "+=50%",
-        // markers: true,
         stagger: 0.01,
         onEnter: () => animateElement(box, animations.enter),
         onLeaveBack: () => animateElement(box, animations.leaveBack),
         onLeave: () => animateElement(box, animations.leave),
         onEnterBack: () => animateElement(box, animations.enterBack),
+        onUpdate: ScrollTrigger.refresh(),
       });
     };
 
@@ -64,6 +68,10 @@ export default function RecruitList({ className, children }) {
     boxes.forEach(box => {
       applyAnimations(box, animations);
     });
+    // }, containerRef);
+    // return () => {
+    //   ctx.revert();
+    // };
   }, []);
 
   return (

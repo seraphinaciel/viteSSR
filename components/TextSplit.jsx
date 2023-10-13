@@ -45,7 +45,6 @@ export function Letter({ content, className, tagName = "p" }) {
           // start: "top 20%",
           // end: "bottom 50%",
           scrub: true,
-          // markers: true,
         },
       });
     }, targetRef);
