@@ -1,35 +1,17 @@
-section + section {
-  @apply py-10 border-b;
-}
-
 .title {
-  @apply text-heading-3 desktop:text-heading-8 text-red-600 over:wd:text-cursor;
+  @apply desktop:text-special text-heading-1;
 }
 .head {
   @apply desktop:text-heading-7 text-heading-3 underline underline-offset-4;
 }
-
-.font {
-  /* @apply ; */
-  ul {
-    @apply grid grid-cols-2 text-body-2 gap-6 gap-x-32;
-    li {
-      @apply flex;
-    }
+.table {
+  --item-gap: max(3rem, 15px);
+  @apply flex flex-col gap-[1rem] text-body-1;
+  > * {
+    @apply flex flex-row flex-1 gap-[var(--item-gap)] items-center;
   }
 }
-.color {
-  @apply flex;
-  ul {
-    @apply w-10/12 mx-auto grid grid-cols-2 md:grid-cols-4 mx:grid-cols-5 text-body-2 gap-6 gap-x-32;
-    p {
-      @apply flex justify-between;
-    }
-  }
-  .table {
-    div {
-      --range: max(5rem, 20px);
-      @apply box-border border border-solid border-[#c8b16c] min-w-[var(--range)] h-[var(--range)];
-    }
-  }
+[class*="bg-"] {
+  --range: max(10rem, 40px);
+  @apply box-border border border-solid border-[#c8b16c] min-w-[var(--range)] h-[var(--range)];
 }

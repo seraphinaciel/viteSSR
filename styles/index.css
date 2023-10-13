@@ -35,98 +35,26 @@
   html {
     font-size: calc(16 * (100vw / var(--canvas)));
 
-    @apply font-all;
+    @apply font-poppins;
   }
   body {
     font-size: 1rem;
   }
   button {
-    @apply p-2 border rounded-md hover:bg-slate-700 hover:text-white;
+    @apply p-2 border rounded-md  hover:bg-slate-700 hover:text-white;
   }
 
   /* HEADING */
 
   h1 {
-    /* 64px / 200px */
     @apply text-heading-3 desktop:text-special capitalize;
   }
   h2 {
-    /* 50px / 130px */
     @apply text-heading-5 desktop:text-heading-1 font-light;
     strong {
       @apply font-medium;
     }
   }
-  h3 {
-    /* 20px / 60px */
-    @apply text-heading-10 desktop:text-heading-4;
-  }
-  h4 {
-    /* 26px / 36px */
-    @apply text-heading-8 desktop:text-heading-6;
-  }
-
-  h5 {
-    /* 24px / 26px */
-    @apply text-heading-9 desktop:text-heading-8;
-  }
-
-  h6 {
-  }
-
-  /* 아직 정하지 못한... 이름 ㅎ */
-  .basic_p {
-    /* 20px / 26px */
-    @apply text-heading-10 desktop:text-heading-8;
-  }
-  .basic_p_2 {
-    /* 18px / 20px */
-    @apply text-body-6-kr desktop:text-body-5-kr;
-  }
-
-  .text_box_1 {
-  }
-
-  .title_flow {
-    @apply desktop:px-20 text-heading-5 desktop:text-special;
-    div {
-      @apply flex;
-    }
-    > span:last-child {
-      margin-left: 50%;
-    }
-  }
-
-  .text_box_side {
-    grid-template-columns: repeat(12, minmax(0, 1fr));
-    @apply desktop:grid desktop:gap-x-5 desktop:mx-20 relative px-[2.6471rem] desktop:px-0;
-
-    > *:first-child {
-      /* 24px / 26px */
-      @apply desktop:col-span-3;
-    }
-    > *:last-child {
-      @apply desktop:col-span-6 text-heading-9 desktop:text-heading-8;
-    }
-    .svgAni {
-      @apply absolute;
-    }
-  }
-
-  .text_box_noSide {
-    grid-template-columns: repeat(12, minmax(0, 1fr));
-    @apply px-[2.6471rem] desktop:grid desktop:gap-x-5 desktop:mx-20 desktop:px-0;
-
-    > *:last-child {
-      @apply desktop:col-start-4 desktop:col-span-8;
-    }
-  }
-
-  .title_box {
-    @apply relative grid items-center justify-center desktop:px-11 pt-56 mx-auto;
-    /* s:h-almost-screen s:pt-80 pt-140*/
-  }
-
   /* .special {
     @apply text-black text-[64px] lg:text-[200px];
   } */
@@ -164,7 +92,8 @@
   .cursor-dot {
     @apply pointer-events-none fixed top-0 left-0 rounded-full cursor-none w-5 h-5 bg-red-600/100;
     transform: translate(-50%, -50%);
-    transition: width 0.15s ease-in-out, height 0.15s ease-in-out, transform 0.1s ease-in-out;
+    transition: width 0.15s ease-in-out, height 0.15s ease-in-out,
+      transform 0.1s ease-in-out;
     will-change: width, height, transform;
     z-index: 999;
     &.active-link {

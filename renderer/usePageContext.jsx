@@ -5,18 +5,21 @@ import React, { useContext } from "react";
 import PropTypes from "prop-types";
 import { childrenPropType } from "./PropTypeValues";
 
+export { PageContextProvider };
+// eslint-disable-next-line react-refresh/only-export-components
+export { usePageContext };
+
 const Context = React.createContext(undefined);
 
 PageContextProvider.propTypes = {
   pageContext: PropTypes.any,
   children: childrenPropType,
 };
-export function PageContextProvider({ pageContext, children }) {
+function PageContextProvider({ pageContext, children }) {
   return <Context.Provider value={pageContext}>{children}</Context.Provider>;
 }
 
-// eslint-disable-next-line react-refresh/only-export-components
-export function usePageContext() {
+function usePageContext() {
   const pageContext = useContext(Context);
   return pageContext;
 }

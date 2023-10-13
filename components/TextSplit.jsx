@@ -7,16 +7,13 @@ import { animateSvg } from "#root/utils/animateSvg";
 gsap.registerPlugin(ScrollTrigger);
 
 const PropsType = {
-  content: PropTypes.string,
+  content: PropTypes.string.isRequired,
   className: PropTypes.string,
-  container: PropTypes.string,
   children: PropTypes.node,
-  tagName: PropTypes.string,
 };
 
-export function Letter({ content, className, tagName = "p" }) {
+function Letter({ content, className }) {
   const targetRef = useRef();
-  const Tagname = tagName;
 
   useEffect(() => {
     const splitTargets = targetRef.current;
@@ -35,17 +32,17 @@ export function Letter({ content, className, tagName = "p" }) {
       let nodes = splitByLetter(splitTargets.innerText);
       if (nodes) splitTargets.firstChild.replaceWith(...nodes);
 
-      gsap.to(gsap.utils.toArray(".split-letter .char"), {
+      gsap.to(gsap.utils.toArray(".split.letter .char"), {
         willChange: "opacity",
         opacity: 1,
         stagger: 1,
         scrollTrigger: {
           trigger: splitTargets,
           toggleActions: "restart pause resume reverse",
-          start: "top 90%",
+          start: "top 100%",
           end: "bottom 50%",
           scrub: true,
-          // markers: true,
+          markers: true,
         },
       });
     }, targetRef);
@@ -55,19 +52,18 @@ export function Letter({ content, className, tagName = "p" }) {
   return (
     <div
       className={
-        className === undefined ? "split-letter" : `split-letter ${className}`
+        className === undefined ? "split letter" : `split letter ${className}`
       }
     >
-      <Tagname ref={targetRef}>{content}</Tagname>
+      <p ref={targetRef}>{content}</p>
     </div>
   );
 }
 Letter.propTypes = PropsType;
 
-export function Sentence({ content, className, children, tagName = "p" }) {
+function Sentence({ content, className, children }) {
   const targetRef = useRef();
   const childrenRef = useRef(null);
-  const Tagname = tagName;
 
   useEffect(() => {
     const splitTargets = targetRef.current;
@@ -79,9 +75,9 @@ export function Sentence({ content, className, children, tagName = "p" }) {
           toggleActions: "restart pause resume reverse",
           start: "top center",
           end: "+=100%",
-          // markers: true,
+          markers: true,
         },
-        onComplete: () => animateSvg(".split-sentence path", 1),
+        onComplete: () => animateSvg(".text-sentence path", 1),
       });
 
       tl.from(splitTargets, {
@@ -96,29 +92,27 @@ export function Sentence({ content, className, children, tagName = "p" }) {
         tl.from(childrenRef.current, { duration: 0.000001, opacity: 0 }, ">");
       }
     }, targetRef);
-
     return () => ctx.revert();
-  }, [content, children]);
+  }, [children]);
 
   return (
     <div
       className={
         className === undefined
-          ? "split-sentence relative"
-          : `split-sentence ${className}`
+          ? "split sentence"
+          : `split sentence ${className}`
       }
     >
       {children ? <div ref={childrenRef}>{children}</div> : null}
       <div className="overflow-hidden">
-        <Tagname ref={targetRef}>{content}</Tagname>
+        <p ref={targetRef}>{content}</p>
       </div>
     </div>
   );
 }
 Sentence.propTypes = PropsType;
 
-export function Word({ content, className, tagName = "p" }) {
-  const Tagname = tagName;
+function Word({ content, className }) {
   const targetRef = useRef();
 
   useEffect(() => {
@@ -131,7 +125,6 @@ export function Word({ content, className, tagName = "p" }) {
         splitTargets.removeChild(splitTargets.firstChild);
       }
 
-      // console.log(children.length);
       words.forEach((word, index) => {
         const node = document.createElement("span");
         node.textContent = word;
@@ -140,7 +133,7 @@ export function Word({ content, className, tagName = "p" }) {
         splitTargets.appendChild(node);
       });
 
-      gsap.from(gsap.utils.toArray(".split-words .word"), {
+      gsap.from(gsap.utils.toArray(".split.words .word"), {
         ease: "circ.out",
         y: splitTargets.offsetHeight,
         opacity: 0,
@@ -149,7 +142,7 @@ export function Word({ content, className, tagName = "p" }) {
           trigger: splitTargets,
           toggleActions: "restart pause resume reverse",
           start: "top 40%",
-          // markers: true,
+          markers: true,
           once: true,
         },
       });
@@ -160,16 +153,44 @@ export function Word({ content, className, tagName = "p" }) {
   return (
     <div
       className={
-        className === undefined ? "split-words" : `split-words ${className}`
+        className === undefined ? "split words" : `split words ${className}`
       }
     >
-      <Tagname
+      <p
         ref={targetRef}
         className="flex flex-wrap justify-center gap-x-[0.25em] overflow-hidden"
       >
         {content}
-      </Tagname>
+      </p>
     </div>
   );
 }
 Word.propTypes = PropsType;
+
+export default function TextSplit({ content, splitBy, className, children }) {
+  if (splitBy === "letter") {
+    return (
+      <Letter content={content} className={className}>
+        {children}
+      </Letter>
+    );
+  } else if (splitBy === "sentence") {
+    return (
+      <Sentence content={content} className={className}>
+        {children}
+      </Sentence>
+    );
+  } else if (splitBy === "word") {
+    return (
+      <Word content={content} className={className}>
+        {children}
+      </Word>
+    );
+  }
+
+  return null;
+}
+TextSplit.propTypes = {
+  ...PropsType,
+  splitBy: PropTypes.string.isRequired,
+};

@@ -4,7 +4,7 @@ export const title = "🥰 Contact",
   description = "this is a Contact page.";
 
 function Page() {
-  return <div className="contact"></div>;
+  return <></>;
 }
 
 export { Page };

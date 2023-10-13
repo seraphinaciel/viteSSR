@@ -4,13 +4,7 @@
 }
 
 .svgTest {
-  h3 {
-    @apply text-heading-10 desktop:text-heading-4;
-  }
-  p {
-    @apply text-heading-10 desktop:text-body-1 block not-italic;
-  }
-
+  @apply flex pl-0 flex-col items-start gap-3 ml-[45%] w-5/12 relative;
   .svg01 {
     @apply absolute;
   }

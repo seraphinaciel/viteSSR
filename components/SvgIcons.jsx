@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 // import { gsap } from "gsap/dist/gsap";
 // import { useEffect, useRef } from "react";
 
-const SvgIcons = ({ color = "black", types, className }) => {
+const SvgIcons = ({ color, className }) => {
   // const targetRef = useRef();
 
   let pathD = [
@@ -37,13 +37,13 @@ const SvgIcons = ({ color = "black", types, className }) => {
 
   let newpathD = [];
   let size = 0;
-  if (types === "basic") {
+  if (className === "basic") {
     newpathD = [...pathD];
     size = 200;
-  } else if (types === "big1") {
+  } else if (className === "big1") {
     newpathD = calculateNewPathD(pathD, 1.2);
     size = 240;
-  } else if (types === "big2") {
+  } else if (className === "big2") {
     newpathD = calculateNewPathD(pathD, 3);
     size = 600;
   }
@@ -83,7 +83,7 @@ const SvgIcons = ({ color = "black", types, className }) => {
 export default SvgIcons;
 
 SvgIcons.propTypes = {
-  types: PropTypes.string.isRequired,
-  color: PropTypes.string,
-  className: PropTypes.string,
+  color: PropTypes.string.isRequired,
+  // size: PropTypes.array.isRequired,
+  className: PropTypes.string.isRequired,
 };
