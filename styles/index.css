@@ -53,27 +53,27 @@
 
   h1 {
     /* 64px / 200px */
-    @apply text-heading-3 desktop:text-special capitalize;
+    @apply text-heading-3 md:text-special capitalize;
   }
   h2 {
     /* 50px / 130px */
-    @apply text-heading-5 desktop:text-heading-1 font-light;
+    @apply text-heading-5 md:text-heading-1 font-light;
     strong {
       @apply font-medium;
     }
   }
   h3 {
     /* 20px / 60px */
-    @apply text-heading-10 desktop:text-heading-4;
+    @apply text-heading-10 md:text-heading-4;
   }
   h4 {
     /* 26px / 36px */
-    @apply text-heading-8 desktop:text-heading-6;
+    @apply text-heading-8 md:text-heading-6;
   }
 
   h5 {
     /* 24px / 26px */
-    @apply text-heading-9 desktop:text-heading-8;
+    @apply text-heading-9 md:text-heading-8;
   }
 
   h6 {
@@ -82,11 +82,11 @@
   /* 아직 정하지 못한... 이름 ㅎ */
   .basic_p {
     /* 20px / 26px */
-    @apply text-heading-10 desktop:text-heading-8;
+    @apply text-heading-10 md:text-heading-8;
   }
   .basic_p_2 {
     /* 18px / 20px */
-    @apply text-body-6-kr desktop:text-body-5-kr;
+    @apply text-body-6-kr md:text-body-5-kr;
   }
 }
 @layer components {

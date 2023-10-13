@@ -1,3 +1,25 @@
+### 9.14.
+
+```javascript
+gsap.registerPlugin(ScrollTrigger);
+
+let mm = gsap.matchMedia();
+
+mm.add("(min-width: 800px)", () => {});
+
+// 2
+gsap.registerPlugin(ScrollTrigger);
+
+ScrollTrigger.saveStyles(".mobile, .desktop");
+ScrollTrigger.matchMedia({
+  "(min-width: 800px)": function () {},
+
+  "(max-width: 799px)": function () {},
+
+  all: function () {},
+});
+```
+
 ### 9.7.
 
 - 이미지 webp

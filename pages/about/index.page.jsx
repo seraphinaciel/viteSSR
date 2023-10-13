@@ -199,6 +199,7 @@ function Page() {
           <Title tagName="h5">Our capability</Title>
           <Sentence
             tagName="h3"
+            className="mb-25"
             content="We specialize in global and commerce, from building and rollout to maintenance, and strategy and creative design."
           />
           <Sentence
