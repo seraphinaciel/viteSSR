@@ -1,8 +1,10 @@
-import { useEffect, useRef, useState } from "react";
+// prop type
 import PropTypes from "prop-types";
+
+// node module
+import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap/dist/gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
-
 gsap.registerPlugin(ScrollTrigger);
 
 const AboutTitle = ({ className, conLeft, conRight }) => {

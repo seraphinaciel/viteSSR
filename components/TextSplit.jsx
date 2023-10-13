@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { gsap } from "gsap/dist/gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import { animateSvg } from "#root/utils/animateSvg";
-import SvgLine from "#root/components/SvgLine";
+import styles from "./TextSplit.module.css";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -16,6 +16,7 @@ const PropsType = {
   location: PropTypes.string,
 };
 
+// 음절 쪼개기
 export function Letter({ content, className, tagName = "p" }) {
   const targetRef = useRef();
   const Tagname = tagName;
@@ -54,13 +55,14 @@ export function Letter({ content, className, tagName = "p" }) {
     return () => ctx.revert();
   }, [content]);
   return (
-    <div className={className === undefined ? "split-letter" : `split-letter ${className}`}>
+    <div className={`split-letter ${className}`}>
       <Tagname ref={targetRef}>{content}</Tagname>
     </div>
   );
 }
 Letter.propTypes = PropsType;
 
+// 어절 쪼개기
 export function Word({ content, className, tagName = "p" }) {
   const Tagname = tagName;
   const targetRef = useRef();
@@ -68,21 +70,6 @@ export function Word({ content, className, tagName = "p" }) {
   useEffect(() => {
     let ctx = gsap.context(() => {
       const splitTargets = targetRef.current;
-      const words = content.split(" ");
-
-      // 기존에 생성된 노드들을 제거
-      while (splitTargets.firstChild) {
-        splitTargets.removeChild(splitTargets.firstChild);
-      }
-
-      // console.log(children.length);
-      words.forEach((word, index) => {
-        const node = document.createElement("span");
-        node.textContent = word;
-        node.style.setProperty("--index", index);
-        node.classList.add("word");
-        splitTargets.appendChild(node);
-      });
 
       gsap.from(gsap.utils.toArray(".split-words .word"), {
         ease: "circ.out",
@@ -101,13 +88,92 @@ export function Word({ content, className, tagName = "p" }) {
   }, [content]);
 
   return (
-    <Tagname ref={targetRef} className={className === undefined ? "split-words" : `split-words ${className}`}>
-      {content}
+    <Tagname ref={targetRef} className={`split-words ${className}`}>
+      {content.split(" ").map((word, index) => {
+        return (
+          <span key={index} className="word" style={{ "--index": index }}>
+            {word}
+          </span>
+        );
+      })}
     </Tagname>
   );
 }
 Word.propTypes = PropsType;
 
+// 어절 + svg
+export function SWord({ content, className, tagName = "div", children, location }) {
+  const Tagname = tagName;
+  const targetRef = useRef();
+
+  useEffect(() => {
+    let ctx = gsap.context(() => {
+      const splitTargets = targetRef.current;
+
+      let tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: gsap.utils.toArray(".sword"),
+          toggleActions: "restart pause resume reverse",
+          // start: "top 50%",
+          // end: "+=",
+          markers: true,
+        },
+        onComplete: () => animateSvg(".sword path", 0.25),
+      });
+
+      if (location) {
+        tl.set(".sword path", {
+          duration: 0.000001,
+          opacity: 0,
+        });
+      }
+      tl.from(gsap.utils.toArray(".sword"), {
+        duration: 0.6,
+        ease: "circ.out",
+        y: splitTargets.offsetHeight,
+        opacity: 1,
+        stagger: 0.02,
+      });
+    }, targetRef);
+    return () => ctx.revert();
+  }, [content, className, tagName, children, location]);
+
+  const SvgContent = ({ children, className }) => {
+    return (
+      <>
+        <Tagname className={`${styles.swords} ${className}`}>
+          <p ref={targetRef}>
+            {content.split(" ").map((word, index) => {
+              if (word.includes(location)) {
+                return (
+                  <span key={index} className="sword" style={{ "--index": index }}>
+                    {children}
+                    {word}
+                  </span>
+                );
+              } else {
+                return (
+                  <span key={index} className="sword" style={{ "--index": index }}>
+                    {word}
+                  </span>
+                );
+              }
+            })}
+          </p>
+        </Tagname>
+      </>
+    );
+  };
+
+  return (
+    <>
+      {children ? <SvgContent className={`${className}`}>{children}</SvgContent> : <SvgContent className={className} />}
+    </>
+  );
+}
+SWord.propTypes = PropsType;
+
+// 문단(효과)
 export function Sentence({ content, className, children, tagName = "p" }) {
   const targetRef = useRef();
   const childrenRef = useRef(null);
@@ -121,8 +187,8 @@ export function Sentence({ content, className, children, tagName = "p" }) {
         scrollTrigger: {
           trigger: splitTargets,
           toggleActions: "restart pause resume reverse",
-          start: "top 100%",
-          end: "+=100%",
+          // start: "top 70%",
+          // end: "+=70%",
         },
         onComplete: () => animateSvg(".split-sentence path", 1),
       });
@@ -145,13 +211,11 @@ export function Sentence({ content, className, children, tagName = "p" }) {
 
   const SvgContent = ({ children, className }) => {
     return (
-      <div
-        className={
-          className === undefined ? "split-sentence overflow-hidden" : `split-sentence overflow-hidden ${className}`
-        }
-      >
+      <div className={`split-sentence ${className}`}>
+        <Tagname ref={targetRef} className="overflow-hidden">
+          {content}
+        </Tagname>
         {children}
-        <Tagname ref={targetRef}>{content}</Tagname>
       </div>
     );
   };
@@ -168,91 +232,3 @@ export function Sentence({ content, className, children, tagName = "p" }) {
   );
 }
 Sentence.propTypes = PropsType;
-
-export function SWord({ content, className, tagName = "p", children, location }) {
-  const Tagname = tagName;
-  const targetRef = useRef();
-  const childrenRef = useRef(null);
-
-  useEffect(() => {
-    let ctx = gsap.context(() => {
-      const splitTargets = targetRef.current;
-      const swords = content.split(" ");
-
-      // 기존에 생성된 노드들을 제거
-      while (splitTargets.firstChild) {
-        splitTargets.removeChild(splitTargets.firstChild);
-      }
-
-      swords.forEach((sword, index) => {
-        const node = document.createElement("span");
-        node.textContent = sword;
-        node.style.setProperty("--index", index);
-        node.classList.add("sword");
-
-        if (node.innerText.includes(location)) {
-          const hello = document.createElement("u");
-          hello.appendChild(node);
-
-          const test = document.createElement("em");
-          hello.appendChild(test);
-          splitTargets.appendChild(hello);
-        } else {
-          splitTargets.appendChild(node);
-        }
-      });
-
-      // console.log(splitTargets.offsetHeight);
-
-      let tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: gsap.utils.toArray(".split-swords .sword"),
-          toggleActions: "restart pause resume reverse",
-          start: "top 100%",
-          end: "+=100%",
-          markers: true,
-        },
-        onComplete: () => animateSvg(".split-swords path", 1),
-      });
-
-      tl.from(gsap.utils.toArray(".split-swords .sword"), {
-        duration: 0.6,
-        ease: "circ.out",
-        y: splitTargets.offsetHeight,
-        opacity: 1,
-        stagger: 0.02,
-      }).from(childrenRef.current, { duration: 0.000001, opacity: 0 }, ">");
-    }, targetRef);
-    return () => ctx.revert();
-  }, [content, className, tagName, children, location]);
-
-  const Test = () => {
-    return <SvgLine shape="bExperience" className="absolute" />;
-  };
-
-  const SvgContent = ({ children, className }) => {
-    return (
-      <Tagname
-        className={
-          className === undefined ? "split-swords overflow-hidden" : `split-swords overflow-hidden ${className}`
-        }
-      >
-        {children}
-        <p ref={targetRef}>{content}</p>
-      </Tagname>
-    );
-  };
-
-  return (
-    <>
-      {children ? (
-        <SvgContent className={`${className} relative`}>
-          <div ref={childrenRef}>{children}</div>
-        </SvgContent>
-      ) : (
-        <SvgContent className={className} />
-      )}
-    </>
-  );
-}
-SWord.propTypes = PropsType;

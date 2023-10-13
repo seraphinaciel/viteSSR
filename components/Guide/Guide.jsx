@@ -2,12 +2,13 @@ import { useCallback } from "react";
 
 // components
 import { Text, Title } from "#root/components/Text";
-import { Sentence } from "#root/components/TextSplit";
+import { Sentence, SWord, Word } from "#root/components/TextSplit";
 import TextPassed from "../../components/TextPassed/TextPassed";
 import SvgIcons from "#root/components/SvgIcons";
 import SvgLine from "#root/components/SvgLine";
 import { TextSvg } from "#root/components/TextSvg";
 import MotionBox from "../main/MotionBox";
+import Icon from "../icon";
 
 // style
 import styles from "./Guide.module.css";
@@ -149,14 +150,52 @@ export default function Guide() {
           </div>
         </section>
 
-        <Title className={styles.title}>text_box_1</Title>
-        <section className="text_box_1 ">
-          <Sentence content="We have implemented various experience, such as global integrated platforms and creative projects."></Sentence>
+        <Title className={styles.title}>공통 text box</Title>
+        <section className="layout_text_box">
+          <Title tagName="h5">Our Philosophy</Title>
+          <article>
+            <SWord
+              className="title_p"
+              content="We respect the thoughts of people who grew up in different environments. Making my thoughts and other people's thoughts together The beginning is The J's creative momentum."
+              location="respect"
+            >
+              <SvgLine shape="bRespect" color="red" />
+            </SWord>
+            <SWord
+              className="basic_p_2"
+              content="우리는 서로 다른 환경에서 자란 사람들의 생각을 존중합니다. 나의 생각과 다른 사람들의 생각을 함께 만들어가는 것 그 시작이 더제이의 크리에이티브 모멘텀입니다."
+            />
+          </article>
+        </section>
 
-          <Sentence
-            tagName="em"
-            content="글로벌 통합 플랫폼 프로젝트와 크리에이티브 프로젝트 등 다양한 프로젝트들을 수행해 왔습니다."
-          />
+        <Title className={styles.title}>공통 title</Title>
+        <section className="title_box">
+          <h2>
+            <Word tagName="strong" content="We are focusing on" />
+            <Word content="creative design" />
+            <Word content="and technical work" />
+          </h2>
+
+          <article>
+            <Sentence
+              tagName="strong"
+              className="basic_p relative mb-7"
+              content="As technology develops, the combination of UX design and technology will be our powerful force."
+            />
+            <Sentence
+              tagName="p"
+              className="basic_p_2"
+              content="기술이 발달할수록 크리에이티브와 기술의 결합은 우리의 막강한 힘이 될
+          것이라고 믿습니다."
+            />
+          </article>
+
+          <nav>
+            <a href="">
+              <Text>Learn our services</Text>
+              <Icon shape={"arrow/up"} style={{ fill: "black" }} />
+            </a>
+          </nav>
         </section>
 
         <section>
@@ -198,44 +237,6 @@ export default function Guide() {
             </Text>
           </TextSvg>
         </section>
-        {/* <Text content="This page is:" />
-      <Button label="hello Btn" />
-
-
-      <div className={styles.text_reveal}>
-        <div>
-          <TextTyping splitBy="words" content="version 2" />
-          <TextTyping splitBy="words" content="디자인은" />
-          <TextTyping splitBy="words" content="눈에 보이는 " />
-          <TextTyping splitBy="words" content="지성입니다...?" />
-        </div>
-      </div>
-
-      <div className={styles.text_split}>
-        <TextTyping
-          splitBy="letter"
-          content="As human beings, we often find ourselves feeling out of place in the world around us. We sense that something is not quite right that the reality we experience is not necessarily the truth"
-        />
-      </div>
-      <div className={styles.banner}>
-        <TextMarquee content="my favorite fruit is apple" speed={2} />
-        <TextMarquee content="a little bit of love" speed={5} />
-        <TextMarquee content="good chioce" speed={5} />
-        <TextMarquee content="I love tomato" speed={1} />
-        <TextMarquee content="one two three" speed={1.5} />
-        <TextMarquee content="깊은 밤, 길을 잃어도 차라리 날아올라" speed={2} />
-      </div>
-
-      <div className={styles.transition}>
-        <TextReveal content="my favorite fruit is apple" />
-        <TextReveal content="my favorite fruit is apple" />
-      </div>
-
-      <h1>SvgIcons</h1>
-      <SvgIcons className="basic" color="pink" size={[200, 200]} />
-
-      <h1>video</h1>
-       */}
       </div>
     </>
   );
