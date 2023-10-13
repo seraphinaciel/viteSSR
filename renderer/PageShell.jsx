@@ -8,6 +8,10 @@ import { PageContextProvider, usePageContext } from "./usePageContext";
 import { gsap } from "gsap/dist/gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import { ScrollToPlugin } from "gsap/dist/ScrollToPlugin.js";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
+// hooks
+import useCssTheme from "../hooks/useCssTheme";
 
 // components
 import CursorDot from "../components/CursorDot";
@@ -16,8 +20,6 @@ import Footer from "../components/Footer";
 
 // style:global
 import "../styles/index.css";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import useCssTheme from "../hooks/useCssTheme";
 
 export { PageShell };
 
@@ -195,7 +197,8 @@ const normalizeWheelDelta = (event, ratio = 1) => {
 function Layout({ children }) {
   const pageContext = usePageContext();
   const [mode, setMode] = useState(pageContext.exports?.documentsProps?.mode || "light");
-  const [cssTheme] = useCssTheme();
+  const modePalette = useCssTheme(state => state.mode);
+  const { modal } = useCssTheme(state => state);
   pageContext.exports.mode = [mode, setMode];
 
   const wrap = useRef(null);
@@ -225,11 +228,15 @@ function Layout({ children }) {
       // wheel 동작에 의한 native 스크롤을 막음.
       // 이 동작이 선행되어야 gsap의 scrollTo로 움직이는 위치를 스크롤 위치로 적용/환원시킬 수 있음.
 
+      // escape : if floating modal include gnb/mobile full window
+      const isFloatingModal = document.body.classList.contains(...modal.toggle);
+      if (isFloatingModal) return;
+
       const smoothness = 200;
       const scrollTarget = event?.view || window;
       const direction = event.deltaY < 0 ? -1 : 1;
       const delta = normalizeWheelDelta(event, smoothness);
-      const pageHeight = document.documentElement.offsetHeight - window.innerHeight;
+      const pageHeight = document.body.offsetHeight - window.innerHeight;
       const y = Math.max(0, Math.min(pageHeight, window.scrollY + delta * direction));
 
       ctx.pageScroll({ scrollTarget, y });
@@ -287,7 +294,7 @@ function Layout({ children }) {
         <Header menuList={routes} mode={mode} />
 
         {/* page contents */}
-        <main className={`relative z-10 min-h-[100vh] px-[--grid-container-margin] ${cssTheme.mode[mode].class.bg}`}>
+        <main className={`relative z-10 min-h-[100vh] px-[--grid-container-margin] ${modePalette[mode].class.bg}`}>
           {children}
         </main>
 

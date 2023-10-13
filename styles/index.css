@@ -95,11 +95,11 @@
   }
 
   .cursor-dot {
-    @apply pointer-events-none fixed top-0 left-0 rounded-full cursor-none w-13 h-13 bg-red-600/100;
+    @apply pointer-events-none cursor-none fixed z-1000 top-0 left-0 w-13 h-13 bg-red-600/100 rounded-full;
+
     transform: translate(-50%, -50%);
     transition: width 0.15s ease-in-out, height 0.15s ease-in-out, transform 0.1s ease-in-out;
     will-change: width, height, transform;
-    z-index: 999;
 
     --size-s: 2px;
     --size-b: 50%;

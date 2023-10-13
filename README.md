@@ -326,26 +326,6 @@ npm install postcss-nesting
 npm install gsap
 ```
 
-### 그 외
-
-#### prettier-plugin-tailwindcss
-
-```bash
-npm install -D prettier prettier-plugin-tailwindcss
-
-```
-
-```js
-# prettier.config.js 파일 생성
-
-module.exports = {
-  plugins: [require("prettier-plugin-tailwindcss")],
-  tailwindConfig: "./tailwind.config.js",
-};
-```
-
-tailwind 클래스명을 정렬해준다.
-
 ### 폴더 용도
 
 > 자세한 내용은 주석 참고
@@ -356,3 +336,10 @@ tailwind 클래스명을 정렬해준다.
 - components : pages/components/##.jsx
 - features : pages/components/##/##.jsx
 - tailwind.css 모음 : /styles/index.css
+
+### 코드 컨벤션
+
+- module.css에서 jsx에 선택자는 snake case로 작성함
+  ex. .box_title (O) | .box-title (X)
+- \{component\}.jsx 새로 만들 시 components/component.sample.jsx 사용할 것.
+- z-index는 5 이하 사용 권장, 10 이상부터는 툴팁, 모달, 팝오버등 별도 창에 사용. 최고치는 1000으로 고정하고 .cursor-dot에만 적용. 나머지 요소는 모두 그 이하로 정함.

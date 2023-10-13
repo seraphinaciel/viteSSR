@@ -53,6 +53,20 @@ export default {
         }
         return result;
       })(999),
+      zIndex: (levels => {
+        return Object.assign(
+          {
+            1: 1,
+            2: 2,
+            3: 3,
+            4: 4,
+          },
+          levels.reduce((acc, lv) => {
+            acc[`${lv}`] = lv;
+            return acc;
+          }, {}),
+        );
+      })([5, 10, 20, 30, 40, 50, 100, 200, 500, 1000]),
       mode: {
         light: {
           fore: "black",

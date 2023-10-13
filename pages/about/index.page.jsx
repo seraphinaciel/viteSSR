@@ -43,9 +43,6 @@ function Page() {
               end: endTrigger,
               toggleActions: "restart pause resume reverse",
               scrub: true,
-              // onUpdate: () => {
-              //   main.className = `relative z-10 min-h-[100vh] px-[--grid-container-margin] ${bgColorClass} ${textColorClass}`;
-              // },
             },
           })
           .to(main, {
@@ -61,7 +58,7 @@ function Page() {
 
   return (
     <div className="about" ref={mainRef}>
-      <div className="hidden">
+      <div className="page-contents-wrap">
         <section className="title_box">
           <h2>
             <Word tagName="strong" content="We are focusing on" />
@@ -175,7 +172,7 @@ function Page() {
           </TextMove>
         </section>
 
-        <section className="text_box_side ">
+        <section className="text_box_side mt-88">
           <Title tagName="h5">Our vision</Title>
           <article>
             <Sentence
@@ -193,108 +190,108 @@ function Page() {
             />
           </article>
         </section>
+
+        <SpreadImg className={styles.spreadImg}>
+          <article>
+            <Title tagName="h5">Our capability</Title>
+            <Sentence
+              tagName="h3"
+              className="mb-25"
+              content="We specialize in global and commerce, from building and rollout to maintenance, and strategy and creative design."
+            />
+            <Sentence
+              tagName="p"
+              className="basic_p_2"
+              content="전략, 크리에이티브 디자인을 중심으로 구축, 확산, 운영 등 글로벌과 커머스에 특화된 디자인이 가능합니다."
+            />
+          </article>
+        </SpreadImg>
+
+        <section className={styles.service}>
+          <h1 className="overflow-hidden ">
+            <TextPassed text="Our service" size="10" runDirection={"left"} />
+          </h1>
+          <article>
+            <Title tagName="h5">What we do</Title>
+            <Sentence
+              tagName="h3"
+              className="mb-19"
+              content="We are committed to helping your brand with our high-quality services and integrated approach."
+            >
+              <SvgLine id="sBubble_s" color="black" className="svgAni absolute top-0 left-[4.2rem]" />
+            </Sentence>
+            <Sentence
+              tagName="p"
+              className="basic_p_2"
+              content="우리는 우리의 고품질 서비스와 통합된 접근 방식으로 당신의 브랜드를 돕기 위해 최선을 다하고 있습니다."
+            />
+          </article>
+        </section>
+
+        <RecruitList className={styles.recruitList}>
+          <article>
+            <div>
+              <Title tagName="h2">UX UI Design</Title>
+            </div>
+            <Text tagName="div" className="box">
+              {"UX UI Strategy"}
+              {"UX Research"}
+              {"UX Planning & Insight"}
+              {"UX Writing"}
+              {"UI Design"}
+              {"Brand Experience"}
+              {"SEO"}
+            </Text>
+          </article>
+          <article>
+            <div>
+              <Title tagName="h2">Contents</Title>
+            </div>
+            <Text tagName="div" className="box">
+              {"Contents Strategy"}
+              {"Visual Communication"}
+              {"Interaction Design"}
+              {"3D & Motion Graphics"}
+              {"Digital Design Strategy"}
+              {"Graphic Design"}
+              {"Copywriting"}
+            </Text>
+          </article>
+          <article>
+            <div>
+              <Title tagName="h2">Global & Platform</Title>
+            </div>
+            <Text tagName="div" className="box">
+              {"Global Strategy"}
+              {"E-Commerce Strategy"}
+              {"Global Rollout"}
+              {"Contents Translation Work"}
+              {"AEM & CMS Platform Building"}
+              {"Adobe Experience Management"}
+              {"Contents Creation"}
+            </Text>
+          </article>
+          <article>
+            <div>
+              <Title tagName="h2">Development</Title>
+            </div>
+            <Text tagName="div" className="box">
+              {"Web Front-end Development"}
+              {"Web & App Publishing"}
+              {"Responsive Web"}
+              {"Interaction Engineering"}
+              {"Web Accessibility"}
+              {"Cross Browsing"}
+              {"Performance Optimization"}
+            </Text>
+          </article>
+        </RecruitList>
+
+        <section className={styles.partners}>
+          <Title tagName="h5">Our partners & clients</Title>
+          <Marquee />
+        </section>
       </div>
-
-      <SpreadImg className={styles.spreadImg}>
-        <article>
-          <Title tagName="h5">Our capability</Title>
-          <Sentence
-            tagName="h3"
-            className="mb-25"
-            content="We specialize in global and commerce, from building and rollout to maintenance, and strategy and creative design."
-          />
-          <Sentence
-            tagName="p"
-            className="basic_p_2"
-            content="전략, 크리에이티브 디자인을 중심으로 구축, 확산, 운영 등 글로벌과 커머스에 특화된 디자인이 가능합니다."
-          />
-        </article>
-      </SpreadImg>
-
-      <section className={`${styles.service} `}>
-        <h1 className="overflow-hidden ">
-          <TextPassed text="Our service" size="10" runDirection={"left"} />
-        </h1>
-        <article>
-          <Title tagName="h5">What we do</Title>
-          <Sentence
-            tagName="h3"
-            className="mb-19"
-            content="We are committed to helping your brand with our high-quality services and integrated approach."
-          >
-            <SvgLine id="sBubble_s" color="black" className="svgAni absolute top-0 left-[4.2rem]" />
-          </Sentence>
-          <Sentence
-            tagName="p"
-            className="basic_p_2"
-            content="우리는 우리의 고품질 서비스와 통합된 접근 방식으로 당신의 브랜드를 돕기 위해 최선을 다하고 있습니다."
-          />
-        </article>
-      </section>
-
-      <RecruitList className={`${styles.recruitList} `}>
-        <article>
-          <div>
-            <Title tagName="h2">UX UI Design</Title>
-          </div>
-          <Text tagName="div" className="box">
-            {"UX UI Strategy"}
-            {"UX Research"}
-            {"UX Planning & Insight"}
-            {"UX Writing"}
-            {"UI Design"}
-            {"Brand Experience"}
-            {"SEO"}
-          </Text>
-        </article>
-        <article>
-          <div>
-            <Title tagName="h2">Contents</Title>
-          </div>
-          <Text tagName="div" className="box">
-            {"Contents Strategy"}
-            {"Visual Communication"}
-            {"Interaction Design"}
-            {"3D & Motion Graphics"}
-            {"Digital Design Strategy"}
-            {"Graphic Design"}
-            {"Copywriting"}
-          </Text>
-        </article>
-        <article>
-          <div>
-            <Title tagName="h2">Global & Platform</Title>
-          </div>
-          <Text tagName="div" className="box">
-            {"Global Strategy"}
-            {"E-Commerce Strategy"}
-            {"Global Rollout"}
-            {"Contents Translation Work"}
-            {"AEM & CMS Platform Building"}
-            {"Adobe Experience Management"}
-            {"Contents Creation"}
-          </Text>
-        </article>
-        <article>
-          <div>
-            <Title tagName="h2">Development</Title>
-          </div>
-          <Text tagName="div" className="box">
-            {"Web Front-end Development"}
-            {"Web & App Publishing"}
-            {"Responsive Web"}
-            {"Interaction Engineering"}
-            {"Web Accessibility"}
-            {"Cross Browsing"}
-            {"Performance Optimization"}
-          </Text>
-        </article>
-      </RecruitList>
-
-      <section className={`${styles.partners}`}>
-        <Title tagName="h5">Our partners & clients</Title>
-        <Marquee />
-      </section>
     </div>
   );
 }

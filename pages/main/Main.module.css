@@ -1,18 +1,7 @@
-.service {
-  @apply bg-slate-300 h-screen;
-  @apply grid grid-rows-2 items-center;
-
-  h1 {
-    @apply w-full overflow-hidden;
-  }
-  article {
-    @apply grid md:grid-cols-12 gap-x-5 justify-center items-center;
-    @apply m-auto max-w-[--page-container];
-    & > * {
-      @apply md:col-span-7;
-    }
-    h5 {
-      @apply mb-25;
-    }
+.link {
+  @apply flex;
+  a {
+    @apply underline underline-offset-8;
+    @apply text-heading-10 md:text-heading-8;
   }
 }
