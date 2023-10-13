@@ -45,9 +45,9 @@ export default function TextMove({ className, location, coord, children }) {
   }, [location, coord]);
 
   return (
-    <div className={className} ref={target}>
+    <article className={className} ref={target}>
       {children}
-    </div>
+    </article>
   );
 }
 

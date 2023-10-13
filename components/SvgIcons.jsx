@@ -1,9 +1,11 @@
 import PropTypes from "prop-types";
-// import { gsap } from "gsap/dist/gsap";
-// import { useEffect, useRef } from "react";
+import { gsap } from "gsap/dist/gsap";
+import { useEffect, useRef } from "react";
+import useCheckMobile from "../hooks/useCheckMobile";
 
 const SvgIcons = ({ color = "black", types, className }) => {
-  // const targetRef = useRef();
+  const targetRef = useRef();
+  const mainWidth = useCheckMobile();
 
   let pathD = [
     { d01: 100, d02: 0, d03: 100, d04: 72.5869 },
@@ -25,65 +27,72 @@ const SvgIcons = ({ color = "black", types, className }) => {
   ];
 
   const calculateNewPathD = (pathData, multiplier) => {
-    return pathData.map(pathCoords => {
-      return {
-        d01: pathCoords.d01 * multiplier,
-        d02: pathCoords.d02 * multiplier,
-        d03: pathCoords.d03 * multiplier,
-        d04: pathCoords.d04 * multiplier,
-      };
-    });
+    return pathData.map(pathCoords => ({
+      d01: pathCoords.d01 * multiplier,
+      d02: pathCoords.d02 * multiplier,
+      d03: pathCoords.d03 * multiplier,
+      d04: pathCoords.d04 * multiplier,
+    }));
   };
 
-  let newpathD = [];
-  let size = 0;
-  if (types === "basic") {
-    newpathD = [...pathD];
-    size = 200;
-  } else if (types === "big1") {
-    newpathD = calculateNewPathD(pathD, 1.2);
-    size = 240;
-  } else if (types === "big2") {
-    newpathD = calculateNewPathD(pathD, 3);
-    size = 600;
-  }
+  const sizeMap = {
+    basic: 200,
+    big1: 240,
+    big2: 600,
+  };
 
-  // useEffect(() => {
-  //   const ctx = gsap.context(() => {
-  //     gsap.to(targetRef.current, {
-  //       rotation: "180",
-  //       delay: "0.000001",
-  //       repeat: "-1",
-  //       duration: "6",
-  //       ease: "none",
-  //     });
-  //   });
-  //   return () => ctx.revert();
-  // }, [className, size]);
+  const newSize = sizeMap[types] || 200;
+
+  useEffect(() => {
+    if (mainWidth <= 390) {
+      const newSize2 = newSize / 2.5;
+      targetRef.current.style.width = `${newSize2}px`;
+      targetRef.current.style.height = `${newSize2}px`;
+    } else {
+      targetRef.current.style.width = `${newSize}px`;
+      targetRef.current.style.height = `${newSize}px`;
+    }
+  }, [mainWidth, newSize]);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.to(targetRef.current, {
+        rotation: "180",
+        delay: "0.000001",
+        repeat: "-1",
+        duration: "6",
+        ease: "none",
+      });
+    });
+
+    return () => ctx.revert();
+  }, []);
 
   return (
-    <>
-      <svg
-        // ref={targetRef}
-        className={className}
-        width={size}
-        height={size}
-        viewBox={`0 0 ${size} ${size}`}
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        {newpathD.map((pathCoords, index) => {
-          const newD = `M${pathCoords.d01} ${pathCoords.d02}L${pathCoords.d03} ${pathCoords.d04}`;
-          return <path key={index} d={newD} stroke={color} strokeWidth="10" />;
-        })}
-      </svg>
-    </>
+    <svg
+      ref={targetRef}
+      className={className}
+      width={newSize}
+      height={newSize}
+      viewBox={`0 0 ${newSize} ${newSize}`}
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      {calculateNewPathD(pathD, newSize / 200).map((pathCoords, index) => (
+        <path
+          key={index}
+          d={`M${pathCoords.d01} ${pathCoords.d02}L${pathCoords.d03} ${pathCoords.d04}`}
+          stroke={color}
+          strokeWidth="10"
+        />
+      ))}
+    </svg>
   );
 };
-export default SvgIcons;
 
 SvgIcons.propTypes = {
   types: PropTypes.string.isRequired,
   color: PropTypes.string,
   className: PropTypes.string,
 };
+export default SvgIcons;

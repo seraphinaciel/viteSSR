@@ -2,30 +2,33 @@ import PropTypes from "prop-types";
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap/dist/gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
+import useCheckMobile from "#root/hooks/useCheckMobile";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const items = [
   {
-    class: "bg-red-600",
+    class: "bg-red-600/20",
     alt: "name A",
   },
   {
-    class: "bg-blue-600",
+    class: "bg-blue-600/20",
     alt: "name b",
   },
   {
-    class: "bg-green-600",
+    class: "bg-green-600/20",
     alt: "name C",
   },
   {
-    class: "bg-yellow-600",
+    class: "bg-yellow-600/20",
     alt: "name D",
   },
 ];
 
-const AboutImg = ({ className, children }) => {
+export default function AboutImg({ className, children }) {
   const targetRef = useRef(null);
+  const mainWidth = useCheckMobile();
+
   useEffect(() => {
     const ctx = gsap.context(() => {
       let tl = gsap.timeline({
@@ -39,63 +42,67 @@ const AboutImg = ({ className, children }) => {
         },
       });
 
-      tl.from(
-        ".item_1",
-        {
-          borderColor: "darkblue",
-          xPercent: 90,
-          yPercent: 250,
-        },
-        "<",
-      )
-        .from(
-          ".item_2",
+      const pcEffects = () => {
+        tl.from(
+          ".item_1",
           {
-            borderColor: "darkgreen",
-            xPercent: -100,
-            yPercent: 300,
+            xPercent: 90,
+            yPercent: 250,
           },
           "<",
         )
-        .from(
-          ".item_3",
-          {
-            borderColor: "orange",
-            xPercent: 70,
-            yPercent: 100,
-          },
-          "<",
-        )
-        .from(
-          ".item_4",
-          {
-            borderColor: "hotpink",
-            xPercent: -90,
-            yPercent: 50,
-          },
-          "<",
-        );
+          .from(
+            ".item_2",
+            {
+              xPercent: -100,
+              yPercent: 300,
+            },
+            "<",
+          )
+          .from(
+            ".item_3",
+            {
+              xPercent: 70,
+              yPercent: 100,
+            },
+            "<",
+          )
+          .from(
+            ".item_4",
+            {
+              xPercent: -90,
+              yPercent: 50,
+            },
+            "<",
+          );
+      };
+
+      if (mainWidth <= 390) {
+        console.log("mobile down");
+      } else {
+        console.log("mobile up");
+        pcEffects();
+      }
     }, targetRef);
     return () => ctx.revert();
-  }, []);
+  }, [mainWidth]);
   return (
     <>
       <section className={className} ref={targetRef}>
         {children}
         <ol>
           {items.map((item, index) => (
-            <li key={index} className={`item_${index + 1}`}>
-              <img src={`/images/char${index + 1}.jpg`} alt={item.alt} />
+            <li key={index} className={`item_${index + 1} ${item.class}`}>
+              {/* <img src={`/images/char${index + 1}.jpg`} alt={item.alt} /> */}
             </li>
           ))}
         </ol>
       </section>
     </>
   );
-};
+}
 
 AboutImg.prototypes = {
   className: PropTypes.string,
   children: PropTypes.node,
 };
-export default AboutImg;

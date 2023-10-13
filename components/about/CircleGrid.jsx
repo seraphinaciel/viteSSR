@@ -20,15 +20,15 @@ const contents = [
     alt: "the j",
   },
   {
-    class: "bg-green-500 col-start-3 md:col-start-11 row-start-1 w-2/3",
+    class: "bg-green-500 col-start-3 md:col-start-10 row-start-1 w-2/3",
     alt: "logo 1",
   },
   {
-    class: "bg-sky-500 col-start-3 md:col-start-13 row-start-2",
+    class: "bg-sky-500 col-start-3 md:col-start-12 row-start-2",
     alt: "star 1",
   },
   {
-    class: "bg-blue-500 col-start-3 md:col-start-12 row-start-3 w-1/3",
+    class: "bg-blue-500 col-start-3 md:col-start-11 row-start-3 w-1/3",
     alt: "the j 1",
   },
 ];
@@ -67,62 +67,38 @@ export default function CircleBox({ className, children }) {
       let moveX;
       mobile <= 767 ? (moveX = 20) : (moveX = 200);
 
-      tl2.to(
-        contents.slice(0, 3).map((_, index) => `#span_${index + 1}`),
-        { x: moveX, delay: 2 },
-        "<",
-      );
-
-      tl2.to(
-        contents.slice(3).map((_, index) => `#span_${index + 4}`),
-        { x: -moveX, delay: 0 },
-        "<",
-      );
-
-      const moEffect = () => {
-        tl.set("i", { clipPath: "circle(0% at 50% 50%)", display: "none" })
-          .set(".svgIcons2", { opacity: 0 }, "<")
-          .set(svgRef.current, { top: "0" }, "<")
-          .to(svgRef.current, { top: "0" }, "<")
-          .to("i", { clipPath: "circle(100% at 50% 50%) ", display: "block", duration: 3, ease: "power1.in" }, "<+2")
-          .to(
-            ".svgIcons1 path",
-            {
-              duration: 2,
-              ease: "power1.in",
-              stroke: "white",
-            },
-            "<",
-          )
-          .set(".svgIcons1", { opacity: 0, duration: 3 }, "<+=2")
-          .set(".svgIcons2", { opacity: 1, duration: 3 }, ">")
-          .to(".svgIcons2", { opacity: 0, duration: 3 }, ">+=1");
-      };
-      const pcEffect = () => {
-        tl.set("i", { clipPath: "circle(0% at 50% 50%)", display: "none" })
-          .set(".svgIcons2", { opacity: 0 }, "<")
-          .set(svgRef.current, { top: "-100px" }, "<")
-          .to(svgRef.current, { top: "0" }, "<")
-          .to("i", { clipPath: "circle(100% at 50% 50%) ", display: "block", duration: 3, ease: "power1.in" }, "<+2")
-          .to(
-            ".svgIcons1 path",
-            {
-              duration: 2,
-              ease: "power1.in",
-              stroke: "white",
-            },
-            "<",
-          )
-          .set(".svgIcons1", { opacity: 0, duration: 3 }, "<+=2")
-          .set(".svgIcons2", { opacity: 1, duration: 3 }, ">")
-          .to(".svgIcons2", { opacity: 0, duration: 3 }, ">+=1");
-      };
-
-      if (mobile <= 767) {
-        moEffect();
-      } else {
-        pcEffect();
-      }
+      tl2
+        .to(
+          contents.slice(0, 3).map((_, index) => `#span_${index + 1}`),
+          { x: moveX, delay: 2 },
+          "<",
+        )
+        .to(
+          contents.slice(3).map((_, index) => `#span_${index + 4}`),
+          { x: -moveX, delay: 0 },
+          "<",
+        );
+      tl.set("i", { clipPath: "circle(0% at 50% 50%)", display: "none" })
+        .set(".svgIcons2", { opacity: 0 }, "<")
+        .set(svgRef.current, { top: mobile <= 767 ? "-10%" : "-100px" }, "<")
+        .to(svgRef.current, { top: 0 }, "<")
+        .to(
+          "i",
+          { clipPath: "circle(100% at 50% 50%) ", display: "block", duration: 3, ease: "power1.in" },
+          mobile <= 767 ? "<+5" : "<+2",
+        )
+        .to(
+          ".svgIcons1 path",
+          {
+            duration: 2,
+            ease: "power1.in",
+            stroke: "white",
+          },
+          "<",
+        )
+        .set(".svgIcons1", { opacity: 0, duration: 3 }, "<+=2")
+        .set(".svgIcons2", { opacity: 1, duration: 3 }, ">")
+        .to(".svgIcons2", { opacity: 0, duration: 3 }, ">+=1");
     }, targetRef);
     return () => ctx.revert();
   }, []);

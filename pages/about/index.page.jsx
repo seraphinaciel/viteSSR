@@ -5,7 +5,7 @@ import { useEffect, useRef } from "react";
 
 import { Title, Text } from "#root/components/Text";
 import Icon from "#root/components/Icon";
-import { TextSvg } from "#root/components/TextSvg";
+// import { TextSvg } from "#root/components/TextSvg";
 import { Letter, Word, Sentence } from "#root/components/TextSplit";
 import SvgIcons from "#root/components/SvgIcons";
 import SvgLine from "#root/components/SvgLine";
@@ -31,16 +31,9 @@ export const documentProps = {
 function Page() {
   const mainRef = useRef(null);
   useEffect(() => {
-    //   console.log("gsap", gsap);
-
     const ctx = gsap.context(() => {
       const main = document.querySelector("main");
 
-      const updateBackgroundColor = colorClass => {
-        main.classList.add(colorClass);
-      };
-
-      // 각 Timeline을 함수로 추출
       const createTimeline = (triggerSelector, startTrigger, endTrigger, bgColorClass, textColorClass) => {
         return gsap
           .timeline({
@@ -50,118 +43,104 @@ function Page() {
               end: endTrigger,
               toggleActions: "restart pause resume reverse",
               scrub: true,
+              // onUpdate: () => {
+              //   main.className = `relative z-10 min-h-[100vh] px-[--grid-container-margin] ${bgColorClass} ${textColorClass}`;
+              // },
             },
           })
-          .to(main, { className: `${bgColorClass} ${textColorClass}` });
+          .to(main, {
+            className: `relative z-10 min-h-[100vh] px-[--grid-container-margin] ${bgColorClass} ${textColorClass}`,
+          });
       };
 
-      const mobile = main.clientWidth;
-      console.log(mobile);
-
-      if (mobile <= 390) {
-      } else {
-        const darkTimeline = createTimeline(".dark", "-30% 100%", "+=100%", "bg-bg-dark", "text-white");
-        const lightTimeline = createTimeline(".light", "top 20%", "+=100%", "bg-bg-light", "text-black");
-      }
-
-      // lightTimeline
-      //   .fromTo(
-      //     ".svgFixed",
-      //     { opacity: 0, position: "static" },
-      //     {
-      //       opacity: 1,
-      //       position: "fixed",
-      //       top: 0,
-      //       left: 0,
-      //     },
-      //     "<-=1",
-      //   )
-      //   .set(".svgFixed", { opacity: 0, position: "static" });
+      createTimeline(".dark", "-30% 100%", "+=100%", "bg-bg-dark", "text-white");
+      createTimeline(".light", "top 20%", "+=100%", "bg-bg-light", "text-black");
     }, mainRef);
     return () => ctx.revert();
   }, []);
 
   return (
     <div className="about" ref={mainRef}>
-      <section className="title_box">
-        <h2>
-          <Word tagName="strong" content="We are focusing on" />
-          <Word content="creative design" />
-          <Word content="and technical work" />
-        </h2>
+      <div className="hidden">
+        <section className="title_box">
+          <h2>
+            <Word tagName="strong" content="We are focusing on" />
+            <Word content="creative design" />
+            <Word content="and technical work" />
+          </h2>
 
-        <article>
-          <Sentence
-            tagName="strong"
-            className="basic_p relative mb-7"
-            content="As technology develops, the combination of UX design and technology will be our powerful force."
-          />
-          <Sentence
-            tagName="p"
-            className="basic_p_2"
-            content="기술이 발달할수록 크리에이티브와 기술의 결합은 우리의 막강한 힘이 될
+          <article>
+            <Sentence
+              tagName="strong"
+              className="basic_p relative mb-7"
+              content="As technology develops, the combination of UX design and technology will be our powerful force."
+            />
+            <Sentence
+              tagName="p"
+              className="basic_p_2"
+              content="기술이 발달할수록 크리에이티브와 기술의 결합은 우리의 막강한 힘이 될
           것이라고 믿습니다."
-          />
-        </article>
+            />
+          </article>
 
-        <nav>
-          <a href="">
-            <Text>Learn our services</Text>
-            <Icon shape={"arrow/up"} style={{ fill: "black" }} />
-          </a>
-        </nav>
-      </section>
+          <nav>
+            <a href="">
+              <Text>Learn our services</Text>
+              <Icon shape={"arrow/up"} style={{ fill: "black" }} />
+            </a>
+          </nav>
+        </section>
 
-      <CircleGrid className={styles.cCircle}>
-        <AboutTitle conLeft="new" conRight="eyes" />
+        <CircleGrid className={styles.cCircle}>
+          <AboutTitle conLeft="new" conRight="eyes" />
 
-        <div className={styles.textBox}>
-          <Sentence tagName="h3" content="We see everything with new eyes and make it with empathy and creativity." />
-          <Sentence
-            tagName="p"
-            className="basic_p_2"
-            content="우리는 모든 것을 새로운 눈으로 보고 공감과 창의력으로 만들어갑니다."
-          />
-        </div>
-      </CircleGrid>
+          <div className={styles.textBox}>
+            <Sentence tagName="h3" content="We see everything with new eyes and make it with empathy and creativity." />
+            <Sentence
+              tagName="p"
+              className="basic_p_2"
+              content="우리는 모든 것을 새로운 눈으로 보고 공감과 창의력으로 만들어갑니다."
+            />
+          </div>
+        </CircleGrid>
 
-      <section className="dark ">
-        <TextMove className={styles.title_flow} location={["x", "x", "y"]} coord={["-1", "1", "1"]}>
-          <Text tagName="div" className="justify-between">
-            {"Make Empathy"}
-            {"&"}
-          </Text>
-          <Text>{"Creativity"}</Text>
-        </TextMove>
-      </section>
+        <section className={`dark ${styles.title_flow}`}>
+          <TextMove className={styles.tflow_01} location={["x", "x", "y"]} coord={["-1", "1", "1"]}>
+            <Text tagName="div">
+              {"Make Empathy"}
+              {"&"}
+            </Text>
+            <Text>{"Creativity"}</Text>
+          </TextMove>
+        </section>
 
-      <section className="text_box_side ">
-        <Title tagName="h5">Our Philosophy</Title>
-        <article>
-          <Sentence
-            tagName="p"
-            className="text-heading-10 desktop:text-heading-6"
-            content="We respect the thoughts of people who grew up in different environments. Making my thoughts and other people's thoughts together The beginning is The J's creative momentum."
-          >
-            <SvgLine id="sBubble_s" color="hotpink" className="svgAni left-[4.2rem]" />
-          </Sentence>
-          <Sentence
-            tagName="p"
-            className="basic_p_2"
-            content="
+        <section className="text_box_side">
+          <Title tagName="h5">Our Philosophy</Title>
+          <article>
+            <Sentence
+              tagName="p"
+              className="title_p"
+              content="We respect the thoughts of people who grew up in different environments. Making my thoughts and other people's thoughts together The beginning is The J's creative momentum."
+            >
+              <SvgLine id="sBubble_s" color="hotpink" className="svgAni left-[4.2rem]" />
+            </Sentence>
+            <Sentence
+              tagName="p"
+              className="basic_p_2"
+              content="
               우리는 서로 다른 환경에서 자란 사람들의 생각을 존중합니다. 나의
               생각과 다른 사람들의 생각을 함께 만들어가는 것 그 시작이 더제이의
               크리에이티브 모멘텀입니다."
-          />
-        </article>
-      </section>
+            />
+          </article>
+        </section>
 
-      <section className="text_box_side ">
+        {/* <section className="text_box_side ">
         <Title tagName="h5">Our Philosophy</Title>
 
         <div>
           <TextSvg className="relative">
-            <Text tagName="p" className="text-heading-10 desktop:text-heading-6">
+            <Text tagName="p" className="text-heading-10 md:text-heading-6">
               {
                 "We respect the thoughts of people who grew up in different environments. Making my thoughts and other people's thoughts together The beginning is The J's creative momentum."
               }
@@ -174,50 +153,50 @@ function Page() {
             </Text>
           </TextSvg>
         </div>
-      </section>
+      </section> */}
 
-      <section className="text_box_noSide ">
-        <Letter
-          content="Neat Arrangement Creative Expression Sophisticated Techniques Good Communication Young Generation Casual and Cozy Office Free-Spirited"
-          className="text-heading-8 desktop:text-heading-1"
-        />
-      </section>
-
-      <section className="light ">
-        <TextMove className={styles.title_flow} location={["y", "y", "y"]} coord={["1", "1", "1"]}>
-          <p>
-            <SvgIcons types="basic" color="black" className="svgFixed" />
-          </p>
-          <Text tagName="div" className="gap-8">
-            {"Discover"}
-            {"Hidden"}
-          </Text>
-          <Text>{"Creativity"}</Text>
-        </TextMove>
-      </section>
-
-      <section className="text_box_side ">
-        <Title tagName="h5">Our vision</Title>
-
-        <div>
-          <Sentence
-            tagName="p"
-            className="text-heading-10 desktop:text-heading-6"
-            content="Various ideas and trendy experiences increase the branding representation of the project and make it simple and easy to design. By reflecting creativity in technology, we constantly pursue creativity in technical UX design."
-          >
-            <SvgLine id="sBubble_s" color="black" className="svgAni left-[4.2rem]" />
-          </Sentence>
-          <Sentence
-            tagName="p"
-            className="basic_p_2"
-            content="
-              다양한 아이디어와 트렌디한 경험을 통해 프로젝트의 브랜딩 표현을 높이고 사용성은 간결하고 쉽게 디자인합니다. 기술력에 크리에이티브를 반영하는 과정을 통해 우리는 늘 최상의 크리에이티브 테크니컬 UX 디자인을 만들어가고 있습니다."
+        <section className="text_box_noSide ">
+          <Letter
+            content="Neat Arrangement Creative Expression Sophisticated Techniques Good Communication Young Generation Casual and Cozy Office Free-Spirited"
+            className="text-heading-6 md:text-heading-1 leading-loose"
           />
-        </div>
-      </section>
+        </section>
 
-      <AboutImg className={`${styles.spreadImg}`}>
-        <div className={styles.txtBox}>
+        <section className={`light ${styles.title_flow}`}>
+          <TextMove className={styles.tflow_02} location={["y", "y", "y"]} coord={["1", "1", "1"]}>
+            <p>
+              <SvgIcons types="basic" color="black" className="svgFixed" />
+            </p>
+            <Text tagName="div">
+              {"Discover"}
+              {"Hidden"}
+            </Text>
+            <Text>{"Creativity"}</Text>
+          </TextMove>
+        </section>
+
+        <section className="text_box_side ">
+          <Title tagName="h5">Our vision</Title>
+          <article>
+            <Sentence
+              tagName="p"
+              className="title_p"
+              content="Various ideas and trendy experiences increase the branding representation of the project and make it simple and easy to design. By reflecting creativity in technology, we constantly pursue creativity in technical UX design."
+            >
+              <SvgLine id="sBubble_s" color="black" className="svgAni left-[4.2rem]" />
+            </Sentence>
+            <Sentence
+              tagName="p"
+              className="basic_p_2"
+              content="
+              다양한 아이디어와 트렌디한 경험을 통해 프로젝트의 브랜딩 표현을 높이고 사용성은 간결하고 쉽게 디자인합니다. 기술력에 크리에이티브를 반영하는 과정을 통해 우리는 늘 최상의 크리에이티브 테크니컬 UX 디자인을 만들어가고 있습니다."
+            />
+          </article>
+        </section>
+      </div>
+
+      <AboutImg className={styles.spreadImg}>
+        <article>
           <Title tagName="h5">Our capability</Title>
           <Sentence
             tagName="h3"
@@ -228,7 +207,7 @@ function Page() {
             className="basic_p_2"
             content="전략, 크리에이티브 디자인을 중심으로 구축, 확산, 운영 등 글로벌과 커머스에 특화된 디자인이 가능합니다."
           />
-        </div>
+        </article>
       </AboutImg>
 
       <section className={`${styles.service} `}>
@@ -239,7 +218,7 @@ function Page() {
           <Title tagName="h5">What we do</Title>
           <Sentence
             tagName="h3"
-            className="mb-20"
+            className="mb-19"
             content="We are committed to helping your brand with our high-quality services and integrated approach."
           >
             <SvgLine id="sBubble_s" color="black" className="svgAni absolute top-0 left-[4.2rem]" />

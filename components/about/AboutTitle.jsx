@@ -23,9 +23,9 @@ const AboutTitle = ({ className, conLeft, conRight }) => {
       const handleResize = () => {
         const mobile = document.querySelector("main").clientWidth;
         if (mobile <= 767) {
-          setAxis("y"); // 767px 이하에서는 y 축
+          setAxis("yPercent");
         } else {
-          setAxis("x"); // 767px 이상에서는 x 축
+          setAxis("x");
         }
       };
 
