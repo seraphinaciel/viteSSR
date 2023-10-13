@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { gsap } from "gsap/dist/gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import { animateSvg } from "#root/utils/animateSvg";
+import SvgLine from "#root/components/SvgLine";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -12,6 +13,7 @@ const PropsType = {
   container: PropTypes.string,
   children: PropTypes.node,
   tagName: PropTypes.string,
+  location: PropTypes.string,
 };
 
 export function Letter({ content, className, tagName = "p" }) {
@@ -59,6 +61,53 @@ export function Letter({ content, className, tagName = "p" }) {
 }
 Letter.propTypes = PropsType;
 
+export function Word({ content, className, tagName = "p" }) {
+  const Tagname = tagName;
+  const targetRef = useRef();
+
+  useEffect(() => {
+    let ctx = gsap.context(() => {
+      const splitTargets = targetRef.current;
+      const words = content.split(" ");
+
+      // 기존에 생성된 노드들을 제거
+      while (splitTargets.firstChild) {
+        splitTargets.removeChild(splitTargets.firstChild);
+      }
+
+      // console.log(children.length);
+      words.forEach((word, index) => {
+        const node = document.createElement("span");
+        node.textContent = word;
+        node.style.setProperty("--index", index);
+        node.classList.add("word");
+        splitTargets.appendChild(node);
+      });
+
+      gsap.from(gsap.utils.toArray(".split-words .word"), {
+        ease: "circ.out",
+        y: splitTargets.offsetHeight,
+        opacity: 0,
+        stagger: 0.2,
+        scrollTrigger: {
+          trigger: splitTargets,
+          toggleActions: "restart pause resume reverse",
+          start: "top 70%",
+          end: "+=70%",
+        },
+      });
+    }, targetRef);
+    return () => ctx.revert();
+  }, [content]);
+
+  return (
+    <Tagname ref={targetRef} className={className === undefined ? "split-words" : `split-words ${className}`}>
+      {content}
+    </Tagname>
+  );
+}
+Word.propTypes = PropsType;
+
 export function Sentence({ content, className, children, tagName = "p" }) {
   const targetRef = useRef();
   const childrenRef = useRef(null);
@@ -72,7 +121,7 @@ export function Sentence({ content, className, children, tagName = "p" }) {
         scrollTrigger: {
           trigger: splitTargets,
           toggleActions: "restart pause resume reverse",
-          start: "top 80%",
+          start: "top 100%",
           end: "+=100%",
         },
         onComplete: () => animateSvg(".split-sentence path", 1),
@@ -120,49 +169,90 @@ export function Sentence({ content, className, children, tagName = "p" }) {
 }
 Sentence.propTypes = PropsType;
 
-export function Word({ content, className, tagName = "p" }) {
+export function SWord({ content, className, tagName = "p", children, location }) {
   const Tagname = tagName;
   const targetRef = useRef();
+  const childrenRef = useRef(null);
 
   useEffect(() => {
     let ctx = gsap.context(() => {
       const splitTargets = targetRef.current;
-      const words = content.split(" ");
+      const swords = content.split(" ");
 
       // 기존에 생성된 노드들을 제거
       while (splitTargets.firstChild) {
         splitTargets.removeChild(splitTargets.firstChild);
       }
 
-      // console.log(children.length);
-      words.forEach((word, index) => {
+      swords.forEach((sword, index) => {
         const node = document.createElement("span");
-        node.textContent = word;
+        node.textContent = sword;
         node.style.setProperty("--index", index);
-        node.classList.add("word");
-        splitTargets.appendChild(node);
+        node.classList.add("sword");
+
+        if (node.innerText.includes(location)) {
+          const hello = document.createElement("u");
+          hello.appendChild(node);
+
+          const test = document.createElement("em");
+          hello.appendChild(test);
+          splitTargets.appendChild(hello);
+        } else {
+          splitTargets.appendChild(node);
+        }
       });
 
-      gsap.from(gsap.utils.toArray(".split-words .word"), {
+      // console.log(splitTargets.offsetHeight);
+
+      let tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: gsap.utils.toArray(".split-swords .sword"),
+          toggleActions: "restart pause resume reverse",
+          start: "top 100%",
+          end: "+=100%",
+          markers: true,
+        },
+        onComplete: () => animateSvg(".split-swords path", 1),
+      });
+
+      tl.from(gsap.utils.toArray(".split-swords .sword"), {
+        duration: 0.6,
         ease: "circ.out",
         y: splitTargets.offsetHeight,
-        opacity: 0,
-        stagger: 0.2,
-        scrollTrigger: {
-          trigger: splitTargets,
-          toggleActions: "restart pause resume reverse",
-          start: "top 70%",
-          end: "+=70%",
-        },
-      });
+        opacity: 1,
+        stagger: 0.02,
+      }).from(childrenRef.current, { duration: 0.000001, opacity: 0 }, ">");
     }, targetRef);
     return () => ctx.revert();
-  }, [content]);
+  }, [content, className, tagName, children, location]);
+
+  const Test = () => {
+    return <SvgLine shape="bExperience" className="absolute" />;
+  };
+
+  const SvgContent = ({ children, className }) => {
+    return (
+      <Tagname
+        className={
+          className === undefined ? "split-swords overflow-hidden" : `split-swords overflow-hidden ${className}`
+        }
+      >
+        {children}
+        <p ref={targetRef}>{content}</p>
+      </Tagname>
+    );
+  };
 
   return (
-    <Tagname ref={targetRef} className={className === undefined ? "split-words" : `split-words ${className}`}>
-      {content}
-    </Tagname>
+    <>
+      {children ? (
+        <SvgContent className={`${className} relative`}>
+          <div ref={childrenRef}>{children}</div>
+        </SvgContent>
+      ) : (
+        <SvgContent className={className} />
+      )}
+    </>
   );
 }
-Word.propTypes = PropsType;
+SWord.propTypes = PropsType;
