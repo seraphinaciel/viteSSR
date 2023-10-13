@@ -19,7 +19,8 @@ function Video({
   },
 }) {
   const className = {
-    floating: "absolute top-0 left-0 w-full h-full object-cover",
+    floating: "w-full h-full object-cover",
+    // floating: "absolute top-0 left-0 w-full h-full object-cover",
   };
   return (
     <video className={className[layout]} {...attributes}>

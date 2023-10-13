@@ -80,8 +80,8 @@ export function Word({ content, className, tagName = "p", keyword, location }) {
         scrollTrigger: {
           trigger: splitTargets,
           toggleActions: "restart pause resume reverse",
-          start: "top 70%",
-          end: "+=70%",
+          // start: "top 70%",
+          // end: "+=70%",
         },
       });
     }, targetRef);

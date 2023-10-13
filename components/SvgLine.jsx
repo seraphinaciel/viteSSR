@@ -213,15 +213,7 @@ const SvgLine = forwardRef(function SvgLine({ shape, className, color = "black" 
     // typography
     case "typo/thej":
       return (
-        <svg
-          ref={ref}
-          className={className}
-          width="322"
-          height="292"
-          viewBox="0 0 322 292"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
+        <svg ref={ref} className={className} viewBox="0 0 322 292" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path
             d="M14.8022 78.8677L104.14 81.2018"
             stroke={color}

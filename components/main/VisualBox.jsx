@@ -9,106 +9,146 @@ gsap.registerPlugin(ScrollTrigger);
 
 // component
 import Video from "../Video";
+import SvgLine from "../SvgLine";
+import { animateSvg } from "#root/utils/animateSvg";
+import { Text } from "#root/components/Text";
 
-// const arrange = {
-//   target: {
-//     start: "top",
-//     end: "bottom",
-//   },
-//   viewport: {
-//     start: "top",
-//     end: "top",
-//   },
-// };
+// utils
+import useCssTheme from "#root/hooks/useCssTheme";
+
 const clipMap = {
-  bigger: ["inset(40%)", "inset(0%)"],
   smaller: ["inset(0%)", "inset(40%)"],
 };
 
-export default function VisualBox({ id, src, children }) {
+export default function VisualBox({ id, src, children, conLeft, conRight, change }) {
+  const { md } = useCssTheme(state => state.screens);
   const containerRef = useRef(null);
+  const centerRef = useRef(null);
 
   useEffect(() => {
-    const ctx = gsap.context(() => {
-      // create timeline instance
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: containerRef.current,
-          pin: true,
-          anticipatePin: 1,
-          scrub: true,
-          start: "top top",
-          // start: `${arrange.target.start} ${arrange.viewport.start}`,
-          // end: `${arrange.target.end} ${arrange.viewport.end}`,
-        },
-      });
+    const mm = gsap.matchMedia();
+    mm.add(
+      `(min-width:${md})`,
+      context => {
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: containerRef.current,
+            pin: true,
+            anticipatePin: 1,
+            scrub: true,
+            start: "top top",
+          },
+          onComplete: () => animateSvg(".Thej path", 0.2),
+        });
 
-      const [clipStart, clipEnd] = clipMap[id];
-      tl.fromTo(
-        ".motion-video",
-        { webkitClipPath: clipStart, clipPath: clipStart },
-        {
-          webkitClipPath: clipEnd,
-          clipPath: clipEnd,
-          duration: 20,
-          ease: "none", // == linear
-        },
-      )
-        // .to("nav", { y: "-100vh", duration: 28 }, "<+=5")
-        .fromTo(".motion-contents", { y: "0vh" }, { y: "-100vh", duration: 60 }, "<")
-        .to(".motion-video", { opacity: 0, duration: 5, display: "none" });
+        const [clipStart, clipEnd] = clipMap[id];
 
-      // const stream = [
-      //   // 순서 변경 x
-      //   {
-      //     id: 0,
-      //     animate: "fromTo",
-      //     params: [
-      //       ".motion-video",
-      //       { webkitClipPath: clipStart, clipPath: clipStart },
-      //       {
-      //         webkitClipPath: clipEnd,
-      //         clipPath: clipEnd,
-      //         duration: 14,
-      //         ease: "none", // == linear
-      //       },
-      //     ],
-      //   },
+        const stream = [
+          // 순서 변경 x
+          {
+            id: 0,
+            animate: "fromTo",
+            params: [
+              ".motion-video",
+              { webkitClipPath: clipStart, clipPath: clipStart },
+              {
+                webkitClipPath: clipEnd,
+                clipPath: clipEnd,
+                duration: 200,
+                ease: "none", // == linear
+              },
+            ],
+          },
 
-      //   {
-      //     id: 1,
-      //     animate: "fromTo",
-      //     params: [".motion-contents", { y: "0vh" }, { y: "-100vh", duration: 28 }, "<"],
-      //     // params: [".motion-contents", { y: "50vh" }, { y: "0vh", duration: 5 }, "<+15"],
-      //   },
-      //   {
-      //     id: 2,
-      //     animate: "to",
-      //     params: [".motion-video", { opacity: 0, duration: 10, display: "none" }],
-      //   },
-      // ];
+          {
+            id: 1,
+            animate: "fromTo",
+            params: [".motion-contents", { y: "0vh" }, { y: "-100%", duration: 200 }, "<+100"],
+          },
+          {
+            id: 2,
+            animate: "to",
+            params: [".motion-video", { opacity: 0, duration: 1 }],
+          },
+          {
+            id: 3,
+            animate: "fromTo",
+            params: [
+              ".conRight span:first-of-type",
+              {
+                transform: "perspective(500px) rotateY(0deg)",
+                display: "block",
+              },
+              {
+                transform: "perspective(500px) rotateY(90deg)",
+                display: "none",
+                duration: 200,
+              },
+              ">",
+            ],
+          },
+          {
+            id: 4,
+            animate: "to",
+            params: [".conLeft span", { duration: 100, x: -20, margin: 0 }, ">"],
+          },
+          {
+            id: 5,
+            animate: "fromTo",
+            params: [
+              ".conRight span:last-of-type",
+              {
+                transform: "perspective(500px) rotateY(-90deg)",
+                display: "none",
+              },
+              { transform: "perspective(500px) rotateY(0deg)", display: "block", duration: 200 },
+              "<",
+            ],
+          },
+          {
+            id: 6,
+            animate: "from",
+            params: [".Thej", { duration: 0.0000001, opacity: 0 }, ">-=10"],
+          },
+        ];
 
-      // run
-      // stream.forEach((set, index) => {
-      //   if (index !== set.id) return;
-      //   if (null == set.condition) return tl[set.animate](...set.params);
-      //   if (set.condition) tl[set.animate](...set.params);
-      // });
-    }, containerRef);
+        // run
+        stream.forEach((set, index) => {
+          if (index !== set.id) return;
+          if (null == set.condition) return tl[set.animate](...set.params);
+          if (set.condition) tl[set.animate](...set.params);
+        });
+      },
+      containerRef,
+    );
 
-    return () => ctx.revert();
-  }, [id]);
+    return () => mm.revert();
+  }, [id, md]);
 
   return (
-    <section ref={containerRef} className=" flex flex-col items-center justify-center bg-slate-200 mb-10">
+    <div ref={containerRef}>
       {/* video */}
-      <div className="motion-video | relative w-full h-[80vh] border-teal-700 border-8">
+      <div className="motion-video">
         <Video src={src} />
       </div>
 
-      {/* text */}
-      {children}
-    </section>
+      <article className="motion-contents ">
+        {/* text */}
+        {children}
+
+        {/* title */}
+        <h1>
+          <p className="conLeft">
+            <Text tagName="span">{conLeft}</Text>
+            <SvgLine shape="typo/thej" className="Thej" ref={centerRef} />
+          </p>
+          <Text tagName="p" className="conRight relative">
+            {conRight}
+            {change}
+          </Text>
+        </h1>
+      </article>
+    </div>
   );
 }
 
@@ -116,4 +156,7 @@ VisualBox.propTypes = {
   id: PropTypes.string.isRequired,
   src: PropTypes.string.isRequired,
   children: PropTypes.node,
+  conLeft: PropTypes.string,
+  conRight: PropTypes.string,
+  change: PropTypes.string,
 };
