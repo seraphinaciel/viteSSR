@@ -22,7 +22,7 @@ function Page() {
           <SvgLine id="sThej" />
         </MainTitle>
 
-        <Text tagName="h5" className={styles.main_txt}>
+        <Text tagName="p" className={`basic_p_2 ${styles.main_txt}`}>
           {"Our latest"}
           {"SCROLL"}
         </Text>
@@ -42,6 +42,7 @@ function Page() {
 
           <Sentence
             tagName="p"
+            className="basic_p_2"
             content="글로벌 통합 플랫폼 프로젝트와 크리에이티브 프로젝트 등 다양한 프로젝트들을 수행해 왔습니다."
           />
         </section>

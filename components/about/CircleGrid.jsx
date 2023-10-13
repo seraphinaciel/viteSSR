@@ -90,7 +90,7 @@ export default function CircleBox({ className, children }) {
           trigger: circleRef.current,
           start: "top 28%",
           end: "+=100%",
-          markers: true,
+          // markers: true,
           scrub: true,
         },
       });

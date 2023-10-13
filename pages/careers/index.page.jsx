@@ -4,7 +4,7 @@ export const title = "🥰 Careers",
   description = "this is a Careers page.";
 
 function Page() {
-  return <></>;
+  return <div className="careers"></div>;
 }
 
 export { Page };

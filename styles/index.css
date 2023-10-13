@@ -67,13 +67,20 @@
   }
 
   h5 {
-    /* 20px / 26px */
-    @apply text-heading-10 desktop:text-heading-8;
+    /* 24px / 26px */
+    @apply text-heading-9 desktop:text-heading-8;
   }
 
   h6 {
+  }
+
+  /* 아직 정하지 못한... 이름 ㅎ */
+  .basic_p {
+    /* 20px / 26px */
+    @apply text-heading-10 desktop:text-heading-8;
+  }
+  .basic_p_2 {
     /* 18px / 20px */
-    /* @apply text-body-1 desktop:text-heading-10; */
     @apply text-body-6-kr desktop:text-body-5-kr;
   }
 
@@ -96,7 +103,7 @@
 
     > *:first-child {
       /* 24px / 26px */
-      @apply desktop:col-span-3 text-heading-9 desktop:text-heading-8;
+      @apply desktop:col-span-3;
     }
     > *:last-child {
       @apply desktop:col-span-6 text-heading-9 desktop:text-heading-8;
@@ -157,10 +164,7 @@
   .cursor-dot {
     @apply pointer-events-none fixed top-0 left-0 rounded-full cursor-none w-5 h-5 bg-red-600/100;
     transform: translate(-50%, -50%);
-    transition:
-      width 0.15s ease-in-out,
-      height 0.15s ease-in-out,
-      transform 0.1s ease-in-out;
+    transition: width 0.15s ease-in-out, height 0.15s ease-in-out, transform 0.1s ease-in-out;
     will-change: width, height, transform;
     z-index: 999;
     &.active-link {
