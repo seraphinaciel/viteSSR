@@ -1,5 +1,5 @@
 section + section {
-  @apply py-10 border-b;
+  @apply py-10 border-t;
 }
 
 .title {

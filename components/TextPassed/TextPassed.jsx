@@ -69,7 +69,7 @@ const initAnimateStore = action => {
   }
 };
 
-function TextPassed({ text, runDirection = "left" }) {
+function TextPassed({ text, runDirection = "left", duration = 100 }) {
   const textboxRef = useRef(null);
 
   // call external library:GSAP
@@ -78,7 +78,6 @@ function TextPassed({ text, runDirection = "left" }) {
     const textbox = textboxRef.current;
     const [container] = textboxRef.current.children;
     const [...icons] = textboxRef.current.querySelectorAll("svg");
-    const duration = 100;
     const upside = 5;
 
     // initialize state
@@ -90,8 +89,10 @@ function TextPassed({ text, runDirection = "left" }) {
       // 1. set
       { api: "set", params: [container, { x: start }] },
       { api: "set", params: [icons, { rotation: 0 }] },
+
       // 2. bookmark start point on timeline
       { api: "addLabel", params: ["main"] },
+
       // 3. animate
       {
         api: "to",
@@ -100,8 +101,8 @@ function TextPassed({ text, runDirection = "left" }) {
       {
         api: "to",
         params: [icons, { rotation: 360 * -1, duration: duration * 0.5, repeat: -1, ease: "none" }, "main"],
-        // 동일 대상으로는 tl 인스턴스 생성 시 넣는 옵션값이 유효한데,
-        // 복수 대상이면 to에 각각 넣어줘야 제대로 동작함.
+        // 동일 대상으로는 tl 인스턴스 만들 때 옵션으로 넣어줘도 유효한데,
+        // 복수 대상이면 모션 하려는 함수마다 각각 넣어줘야 제대로 동작함.
       },
     ];
 
@@ -164,7 +165,7 @@ function TextPassed({ text, runDirection = "left" }) {
     };
 
     return clean_up;
-  }, [runDirection]);
+  }, [runDirection, duration]);
 
   return (
     <div ref={textboxRef} className={CM(styles.container)} data-observe-target="null">
@@ -188,7 +189,7 @@ TextPassed.propTypes = {
   // unit: PropTypes.oneOf(["rem"]),
   runDirection: PropTypes.oneOf(["left", "right"]),
   // upside: PropTypes.number,
-  // duration: PropTypes.number,
+  duration: PropTypes.number,
 };
 
 export default TextPassed;
