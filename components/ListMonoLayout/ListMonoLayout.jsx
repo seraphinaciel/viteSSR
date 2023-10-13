@@ -59,7 +59,11 @@ function ListMonoType({ layout = LAYOUT_SMALL_FIRST, list = [], toItemFunc = () 
               </button>
 
               {/* presentation */}
-              <img className={styles["item-thumbnail"]} src={set.image} alt={set.alt} />
+              <img
+                className={styles["item-thumbnail"]}
+                src={"https://ortizleon.com/wp-content/uploads/2022/12/EF_01_21009_Atardecer_03-1.jpg"}
+                alt={set.alt}
+              />
               <Title tagName={"strong"} className={styles["item-title"]}>
                 {set.title}
               </Title>
@@ -76,9 +80,9 @@ function ListMonoType({ layout = LAYOUT_SMALL_FIRST, list = [], toItemFunc = () 
 }
 
 ListMonoType.propTypes = {
-  layout: PropTypes.string.isRequired,
+  layout: PropTypes.string,
   list: PropTypes.arrayOf(workSummaryPropTypes).isRequired,
-  toItemFunc: PropTypes.func.isRequired,
+  toItemFunc: PropTypes.func,
 };
 
 export default ListMonoType;

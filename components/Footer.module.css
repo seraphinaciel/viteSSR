@@ -1,5 +1,5 @@
 .wrap {
-  @apply bg-black text-white text-body-3 pt-[6rem] pb-[4rem] px-[2.5rem] md:pt-[12rem] md:pb-[8rem] md:px-[--grid-container-margin];
+  @apply text-body-3 pt-[6rem] pb-[4rem] px-[2.5rem] md:pt-[12rem] md:pb-[8rem] md:px-[--grid-container-margin];
   @media screen and (min-width: theme(screens.md)) {
     .container {
       display: grid;
@@ -43,7 +43,7 @@
   }
 }
 .complementary {
-  @apply grid mobile:gap-y-[4rem] md:gap-x-[--grid-row-gap] md:grid-cols-12;
+  @apply grid mobile:gap-y-[4rem] md:gap-x-[--grid-col-gap] md:grid-cols-12;
 }
 .rest {
   @apply w-full flex flex-row justify-between items-start text-[1.8rem] leading-[2.8rem] md:text-heading-8 mt-[4rem] md:mt-[12rem];

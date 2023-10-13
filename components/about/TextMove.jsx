@@ -14,16 +14,14 @@ export default function TextMove({ className, location, coord, children }) {
 
       const ani8 = gsap.timeline();
 
-      const setAni = (index) => {
+      const setAni = index => {
         const animProps = {
           opacity: 0,
         };
 
         const isWidth = location[index] === "w";
 
-        animProps[location[index]] = isWidth
-          ? innerWidth * coord[index]
-          : innerHeight * coord[index];
+        animProps[location[index]] = isWidth ? innerWidth * coord[index] : innerHeight * coord[index];
 
         ani8.from(sentence[index], animProps);
       };
@@ -35,11 +33,12 @@ export default function TextMove({ className, location, coord, children }) {
       ScrollTrigger.create({
         animation: ani8,
         trigger: paragraph,
-        start: "top 20%",
+        start: "0% 20%",
         end: "+=100%",
         scrub: true,
         pin: true,
         anticipatePin: 1,
+        markers: true,
       });
     }, target);
     return () => ctx.revert();

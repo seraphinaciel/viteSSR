@@ -25,7 +25,7 @@ const SvgIcons = ({ color = "black", types, className }) => {
   ];
 
   const calculateNewPathD = (pathData, multiplier) => {
-    return pathData.map((pathCoords) => {
+    return pathData.map(pathCoords => {
       return {
         d01: pathCoords.d01 * multiplier,
         d02: pathCoords.d02 * multiplier,

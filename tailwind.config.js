@@ -43,6 +43,31 @@ export default {
     },
     // --- override [end] ---
     extend: {
+      spacing: (maxSize => {
+        let result = { 1: "0.1rem" };
+        for (let i = 1; i <= maxSize; i++) {
+          result[i] = `${i * 0.1}rem`;
+        }
+        return result;
+      })(999),
+      mode: {
+        light: {
+          fore: "black",
+          back: "white",
+          class: {
+            bg: "bg-white",
+            text: "text-black",
+          },
+        },
+        dark: {
+          fore: "white",
+          back: "black",
+          class: {
+            bg: "bg-black",
+            text: "text-white",
+          },
+        },
+      },
       letterSpacing: {
         standard: "-0.002em",
       },

@@ -73,7 +73,7 @@ export function Sentence({ content, className, children, tagName = "p" }) {
         scrollTrigger: {
           trigger: splitTargets,
           toggleActions: "restart pause resume reverse",
-          start: "top 100%",
+          start: "top 80%",
           end: "+=100%",
         },
         onComplete: () => animateSvg(".split-sentence path", 1),
@@ -154,8 +154,6 @@ export function Word({ content, className, tagName = "p" }) {
           toggleActions: "restart pause resume reverse",
           start: "top 70%",
           end: "+=70%",
-          // once: true,
-          markers: true,
         },
       });
     }, targetRef);

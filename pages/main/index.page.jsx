@@ -4,17 +4,15 @@ import { useQuery } from "@tanstack/react-query";
 import { usePageContext } from "../../renderer/usePageContext";
 
 // components
-import { Text } from "#root/components/Text";
 import { Sentence } from "#root/components/TextSplit";
-import Video from "#root/components/Video";
 import SvgLine from "#root/components/SvgLine";
-import MainTitle from "#root/components/main/MainTitle";
+import MotionBox from "../../components/main/MotionBox";
 import ListMonoLayout, { LAYOUT_BIG_FIRST } from "#root/components/ListMonoLayout/ListMonoLayout";
 
 // styles
 import styles from "./Main.module.css";
 
-export const documnetProp = {
+export const documentProps = {
   title: "🥰 Main",
   description: "this is a Main page.",
 };
@@ -32,54 +30,43 @@ function Page() {
     isError,
   } = useQuery({
     queryKey: ["works"],
-    queryFn: ({ queryKey, pageParam, meta }) => {
+    queryFn: async () => {
+      // { queryKey, pageParam, meta }
       // console.log(queryKey, pageParam, meta);
       // return axios.get("./data/works.json");
-      return fetch("./data/works.json").then(res => res.json());
+      return await fetch("./data/works.json").then(res => res.json());
     },
   });
 
   return (
     <div ref={pageRef}>
-      <Video id="smaller" src="https://www.w3schools.com/tags/movie.mp4">
-        <Text className="hidden desktop:block desktop:text-heading-6 text-center">
-          {"LG Global Pilot Website"}
-          {"Platform Building"}
-        </Text>
+      <div className="page-contents-wrap">
+        <MotionBox id="smaller" src="https://www.w3schools.com/tags/movie.mp4" />
 
-        <MainTitle conLeft="make" conRight="work" change="moment">
-          <SvgLine id="sThej" />
-        </MainTitle>
+        <Sentence tagName="h4" content="Creative Design Technical Agency" />
 
-        <Text tagName="p" className={`basic_p_2 ${styles.main_txt}`}>
-          {"Our latest"}
-          {"SCROLL"}
-        </Text>
-      </Video>
+        <section className={`text_box_noSide text-heading-10 desktop:text-heading-4`}>
+          <section>
+            <Sentence
+              tagName="h3"
+              content="We have implemented various experience, such as global integrated platforms and creative projects."
+            >
+              <SvgLine id="sBubble" className={`svg | absolute`} />
+              <SvgLine id="sArrow" className={`svg | absolute top-full`} />
+            </Sentence>
 
-      <Sentence tagName="h4" content="Creative Design Technical Agency" />
-
-      <section className={`text_box_noSide ${styles.svgTest}`}>
-        <section>
-          <Sentence
-            tagName="h3"
-            content="We have implemented various experience, such as global integrated platforms and creative projects."
-          >
-            <SvgLine id="sBubble" className={`svg ${styles.svg01}`} />
-            <SvgLine id="sArrow" className={`svg ${styles.svg02}`} />
-          </Sentence>
-
-          <Sentence
-            tagName="p"
-            className="basic_p_2"
-            content="글로벌 통합 플랫폼 프로젝트와 크리에이티브 프로젝트 등 다양한 프로젝트들을 수행해 왔습니다."
-          />
+            <Sentence
+              tagName="p"
+              className="basic_p_2 | text-heading-10 desktop:text-body-1 block not-italic"
+              content="글로벌 통합 플랫폼 프로젝트와 크리에이티브 프로젝트 등 다양한 프로젝트들을 수행해 왔습니다."
+            />
+          </section>
         </section>
-      </section>
 
-      {!isLoading && !isError && <ListMonoLayout layout={LAYOUT_BIG_FIRST} list={workList} />}
+        {!isLoading && !isError && <ListMonoLayout layout={LAYOUT_BIG_FIRST} list={workList} />}
 
-      <div style={{ height: "500vh" }}></div>
+        <div style={{ height: "100vh" }}></div>
+      </div>
     </div>
   );
 }

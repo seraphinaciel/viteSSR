@@ -31,8 +31,8 @@ const AboutImg = ({ className, children }) => {
       let tl = gsap.timeline({
         scrollTrigger: {
           trigger: targetRef.current,
-          start: "0 0",
-          end: "+=100%",
+          start: "0 0%",
+          end: "+=50%",
           toggleActions: "restart pause resume reverse",
           // scrub: 0.02,
           pin: true,

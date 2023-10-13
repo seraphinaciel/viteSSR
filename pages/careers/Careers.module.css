@@ -1,0 +1,36 @@
+.cCircle {
+  @apply w-full h-screen m-auto max-w-[--page-container] text-center;
+  /* @apply h-screen bg-slate-100 w-screen; */
+  & > p {
+    @apply absolute w-full h-screen z-10;
+    @apply flex flex-col items-center;
+    svg:first-child {
+      --center: calc(50% - 100px);
+      @apply sticky top-[--center] mx-auto;
+    }
+    svg:last-child {
+      @apply static;
+    }
+  }
+  article {
+    @apply grid grid-cols-12 items-center h-screen w-screen;
+    @apply absolute top-0;
+    @apply m-auto max-w-[--page-container];
+    span {
+      @apply aspect-square overflow-hidden rounded-full;
+    }
+  }
+  article:first-child {
+    @apply grid-rows-3;
+  }
+  article:last-child {
+    @apply gap-y-[20rem] content-center pt-[--height];
+    h1 {
+      @apply col-span-full row-span-full justify-center;
+      @apply flex gap-x-60 capitalize;
+    }
+    .textBox {
+      @apply col-start-3 col-span-8 text-center;
+    }
+  }
+}

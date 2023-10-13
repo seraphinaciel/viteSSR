@@ -10,16 +10,16 @@
   --col-big: calc(var(--grid-container) * 6 / 12 - (2rem * 0.5));
   --col-small: calc(var(--grid-container) * 5 / 12 - (2rem * 0.5));
   --col-gap: calc(var(--grid-container) * 1 / 12 + 2rem);
-	@apply text-heading-10 flex flex-wrap gap-y-[6rem] md:gap-y-[15rem] md:gap-x-[--col-gap];
+	@apply text-body-16-24 md:text-heading-10 flex flex-wrap gap-y-[6rem] md:gap-y-[15rem] md:gap-x-[--col-gap];
 }
 .item {
 	@apply relative flex flex-col mobile:min-w-[100%]
 }
 .item-thumbnail {
-	@apply aspect-[320/255] border border-gray-600;
+	@apply aspect-[320/255];
 }
 .item-title {
-	@apply text-heading-6 font-normal;
+	@apply text-heading-9 md:text-heading-6 font-normal;
 }
 .item-link-button {
 	@apply floating-full-fill

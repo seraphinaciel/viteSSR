@@ -1,35 +1,12 @@
 // prop type
-import PropTypes from "prop-types";
 import { routesPropType, modePropsType } from "../renderer/PropTypeValues";
 
 // components
-import Link from "../components/Link";
-import Icon from "./Icon";
+import Link from "#root/components/Link";
+import LogoHomeLink from "#root/components/LogoHomeLink";
 
 // style
 import styles from "./Header.module.css";
-
-const setThemeColor = mode => {
-  switch (mode) {
-    case "dark":
-      return "white";
-    case "light":
-      return "black";
-  }
-};
-
-export function LogoHomeLink({ iconColor, iconType = "the j" }) {
-  return (
-    <Link href="/main" className="block w-full">
-      {/* Home Logo */}
-      <Icon shape={iconType} style={{ fill: iconColor }} />
-    </Link>
-  );
-}
-LogoHomeLink.propTypes = {
-  iconColor: PropTypes.string,
-  iconType: PropTypes.string,
-};
 
 function Header({ menuList = [], mode }) {
   return (
@@ -37,7 +14,7 @@ function Header({ menuList = [], mode }) {
       <div className={styles.container}>
         {/* Home Link */}
         <div className={styles.logo}>
-          <LogoHomeLink iconColor={setThemeColor(mode)} />
+          <LogoHomeLink mode={mode} />
         </div>
 
         {/* mobile button */}

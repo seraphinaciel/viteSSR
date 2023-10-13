@@ -1,7 +1,15 @@
+// prop type
+import PropTypes from "prop-types";
+
+// node module
 import { forwardRef, useRef, useEffect } from "react";
 import { gsap } from "gsap";
+
+// style
 import style from "./TextPassed.module.css";
-import { handle_speed, scrollMonitor } from "../../utils";
+
+// utils
+import { handle_speed, scrollMonitor } from "#root/utils";
 
 const Icon = forwardRef(function Icon({ size, unit = "rem" }, ref) {
   return (
@@ -21,7 +29,12 @@ const Icon = forwardRef(function Icon({ size, unit = "rem" }, ref) {
   );
 });
 
-const initAnimateStore = (action) => {
+Icon.propTypes = {
+  size: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+  unit: PropTypes.oneOf(["rem"]),
+};
+
+const initAnimateStore = action => {
   const toLeft = "left";
   const toRight = "right";
 
@@ -50,8 +63,6 @@ function TextPassed({
   unit = "rem",
   // animate values
   runDirection,
-  upside = 10,
-  duration = 50,
 }) {
   // ref
   const textboxRef = useRef(null);
@@ -62,12 +73,14 @@ function TextPassed({
     const textbox = textboxRef.current;
     const [container] = textboxRef.current.children;
     const [...icons] = textboxRef.current.querySelectorAll("svg");
+    const duration = 20;
+    const upside = 2;
 
     // initialize state
     let animateStore = initAnimateStore(runDirection);
     let { start, end, progress } = animateStore;
 
-    const recodeProgress = () => {
+    const recodeProgress = (...args) => {
       progress = timeline.progress();
       // console.log("progress", progress);
       // console.log("duration", timeline.duration());
@@ -77,10 +90,10 @@ function TextPassed({
       timeline.add(setValues);
       timeline.to(container, frame.end);
     };
-    const refreshAnimate = (timeline, frame) => {
-      timeline.clear();
-      startAnimate(timeline, frame);
-    };
+    // const refreshAnimate = (timeline, frame) => {
+    //   timeline.clear();
+    //   startAnimate(timeline, frame);
+    // };
     const timeline = gsap.timeline({
       repeat: -1,
       onStart: recodeProgress,
@@ -102,8 +115,8 @@ function TextPassed({
 
     // pause when out screen
     const intersectionObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
+      entries => {
+        entries.forEach(entry => {
           const { y: screenY } = entry.boundingClientRect;
           const posY = screenY - window.innerHeight;
           const isInter = (0 > screenY || 0 > posY) && entry.isIntersecting;
@@ -116,14 +129,12 @@ function TextPassed({
       },
       {
         threshold: [0.01],
-      }
+      },
     );
     intersectionObserver.observe(textbox);
 
     // handle rolling time by textbox's width
-    const resizeObserver = new ResizeObserver((entries) =>
-      entries.forEach((entry) => timeline.timeScale(handle_speed()))
-    );
+    const resizeObserver = new ResizeObserver(entries => entries.forEach(() => timeline.timeScale(handle_speed())));
     resizeObserver.observe(textbox);
 
     // accelerate speed by scroll
@@ -131,14 +142,16 @@ function TextPassed({
       {
         start(params) {
           const [upside] = params;
-          timeline.timeScale(upside);
+          timeline.timeScale(duration / upside); // 페이지 로드 시에 이 값이 안먹힘.리렌더링에서는 먹음.
+          // console.log("start", timeline.timeScale());
         },
         end(params) {
-          const [upside, fallback] = params;
+          const [, fallback] = params;
           timeline.timeScale(fallback);
+          // console.log("end", timeline.timeScale());
         },
       },
-      [upside, 1]
+      [upside, 1],
     );
     window.addEventListener("scroll", handler, false);
 
@@ -147,12 +160,12 @@ function TextPassed({
       window.removeEventListener("scroll", handler, false);
       // intersectionObserver.disconnect();
       // intersectionObserver.unobserve(textbox);
-      // timeline.revert();
+      timeline.revert();
     };
 
     // unmount
     return clean_up;
-  }, []);
+  }, [runDirection]);
 
   return (
     <div
@@ -203,5 +216,13 @@ function TextPassed({
     </div>
   );
 }
+TextPassed.propTypes = {
+  text: PropTypes.string.isRequired,
+  size: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+  unit: PropTypes.oneOf(["rem"]),
+  runDirection: PropTypes.oneOf(["left", "right"]),
+  upside: PropTypes.number,
+  duration: PropTypes.number,
+};
 
 export default TextPassed;

@@ -20,5 +20,5 @@ export const workSummaryPropTypes = PropTypes.shape({
   detailDisplay: PropTypes.bool,
 });
 
-export const modePropsType = PropTypes.shape(PropTypes.oneOf(["dark", "light"]));
-export const localPropsType = PropTypes.shape(PropTypes.oneOf(["en", "kr"]));
+export const modePropsType = PropTypes.oneOf(["dark", "light"]);
+export const localPropsType = PropTypes.oneOf(["en", "kr"]);

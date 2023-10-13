@@ -6,8 +6,8 @@ import { Sentence } from "#root/components/TextSplit";
 import TextPassed from "../../components/TextPassed/TextPassed";
 import SvgIcons from "#root/components/SvgIcons";
 import SvgLine from "#root/components/SvgLine";
-import Video from "#root/components/Video";
 import { TextSvg } from "#root/components/TextSvg";
+import MotionBox from "../main/MotionBox";
 
 // style
 import styles from "./Guide.module.css";
@@ -58,12 +58,7 @@ export default function Guide() {
   const fontStyle = {
     ...Object.entries(theme.fontSize).reduce((a, s) => {
       const [keyname, value] = s;
-      if (
-        keyname.indexOf("special") < 0 &&
-        keyname.indexOf("heading") < 0 &&
-        keyname.indexOf("body") < 0
-      )
-        return a;
+      if (keyname.indexOf("special") < 0 && keyname.indexOf("heading") < 0 && keyname.indexOf("body") < 0) return a;
       a[`${keyname}`] = value;
       return a;
     }, {}),
@@ -99,9 +94,7 @@ export default function Guide() {
         <section className={styles.font}>
           <Title className={styles.head}>Font size</Title>
 
-          <Text className={"text-body-7-kr"}>
-            # 빨간 테두리가 텍스트 상자의 높이 가늠선입니다.
-          </Text>
+          <Text className={"text-body-7-kr"}># 빨간 테두리가 텍스트 상자의 높이 가늠선입니다.</Text>
           <ul className={styles.table}>
             {Object.keys(fontStyle).map((name, index) => {
               const className = fontGroup[index];
@@ -110,11 +103,8 @@ export default function Guide() {
                   <div className="min-w-[15rem] border-box text-heading-10 pl-4 capitalize ">
                     <div>{name.replace("-", "").replace("-kr", " [kr]")}</div>
                   </div>
-                  <p
-                    className={`${className} border-y border-red-300 overflow-hidden text-ellipsis whitespace-nowrap`}
-                  >
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Quos, voluptate?
+                  <p className={`${className} border-y border-red-300 overflow-hidden text-ellipsis whitespace-nowrap`}>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos, voluptate?
                   </p>
                 </li>
               );
@@ -177,8 +167,8 @@ export default function Guide() {
         </section>
         <section>
           <Title className={styles.title}>#smaller, #bigger</Title>
-          <Video id="smaller" src="https://www.w3schools.com/tags/movie.mp4" />
-          <Video id="bigger" src="https://www.w3schools.com/tags/movie.mp4" />
+          <MotionBox id="smaller" src="https://www.w3schools.com/tags/movie.mp4" />
+          <MotionBox id="bigger" src="https://www.w3schools.com/tags/movie.mp4" />
         </section>
         <section>
           <Title className={styles.title}>bubble</Title>
@@ -199,19 +189,12 @@ export default function Guide() {
       것이라고 믿습니다."
             />
           </div>
-          <TextSvg
-            tagName="div"
-            className="w-2/6 mx-auto mt-[70px] gap-y-[30px] flex flex-wrap"
-          >
+          <TextSvg tagName="div" className="w-2/6 mx-auto mt-[70px] gap-y-[30px] flex flex-wrap">
             <Text tagName="p" className="basic_p">
-              {
-                "As technology develops, the combination of UX design and technology will be our powerful force."
-              }
+              {"As technology develops, the combination of UX design and technology will be our powerful force."}
             </Text>
             <Text tagName="p">
-              {
-                "기술이 발달할수록 크리에이티브와 기술의 결합은 우리의 막강한 힘이 될 것이라고 믿습니다."
-              }
+              {"기술이 발달할수록 크리에이티브와 기술의 결합은 우리의 막강한 힘이 될 것이라고 믿습니다."}
             </Text>
           </TextSvg>
         </section>

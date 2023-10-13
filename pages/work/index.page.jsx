@@ -6,8 +6,10 @@ import { useCallback, useState } from "react";
 import ListMonoType from "../../components/ListMonoLayout/ListMonoLayout";
 
 // style
-import styles from "./Work.module.css";
+// import styles from "./Work.module.css";
 
+// route에서 export 시키는 것들은 pageContext.exports를 통해 global state로 사용할 수 있음.
+export const test = ["work", 1, 2];
 export const documentProps = {
   title: "😁 Work | The j",
   description: `Work List page.`,

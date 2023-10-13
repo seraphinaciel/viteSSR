@@ -4,21 +4,22 @@ import { localPropsType, modePropsType, routesPropType } from "../renderer/PropT
 
 // components
 import { Text, Title } from "#root/components/Text";
-import Icon from "./Icon";
+import LogoHomeLink from "#root/components/LogoHomeLink";
+import Icon from "#root/components/Icon";
 
 // style
 import styles from "./Footer.module.css";
-import { LogoHomeLink } from "./Header";
+import useCssTheme from "../hooks/useCssTheme";
 
 // static data
 const footerInfo = {
-  business: "bussiness@the-jey.com",
+  business: "business@the-jey.com",
   recruit: "recruit@the-jey.com",
   tel: "+82 2 515 4240",
   fax: "+82 2 515 2480",
   address: {
     en: "Vogoze Bldg 3F, 6, Samseong-ro 126-gil, Gangnam-gu, Seoul, Republic of Korea",
-    kr: "",
+    kr: "서울시 강남구 삼성로 126길 6 보고재빌딩 3층",
   },
   copyright: {
     start: "2011",
@@ -87,14 +88,16 @@ function Copyright({ year = footerInfo.copyright }) {
 }
 
 function Footer({ menuList, mode = "dark" }) {
+  const [cssTheme] = useCssTheme();
+  const { bg, text } = cssTheme.mode[mode].class;
   return (
-    <footer className={styles.wrap}>
+    <footer id="footer" className={`${styles.wrap} ${bg} ${text}`}>
       <div className={styles.container}>
         {/* FNB */}
         <ul className={styles.fnb}>
-          {menuList.map(({ name, url }) => (
-            <li key={name}>
-              <a href={url}>{name}</a>
+          {menuList.map(({ id, name, route }) => (
+            <li key={id}>
+              <a href={route}>{name}</a>
             </li>
           ))}
         </ul>
@@ -104,7 +107,7 @@ function Footer({ menuList, mode = "dark" }) {
 
         {/* info n ui */}
         <div className={styles.complementary}>
-          <Complementary />
+          <Complementary local="en" />
         </div>
 
         <div className={styles.logo}>
@@ -122,15 +125,15 @@ function Footer({ menuList, mode = "dark" }) {
 
 // Component props type
 Complementary.propTypes = {
-  info: PropTypes.object.isRequired,
+  info: PropTypes.object,
   local: localPropsType,
 };
 
 Copyright.propTypes = {
-  year: {
+  year: PropTypes.shape({
     start: PropTypes.string,
     now: PropTypes.string,
-  },
+  }),
 };
 
 Footer.propTypes = {

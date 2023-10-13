@@ -1,6 +1,76 @@
+.cCircle {
+  @apply w-full h-screen m-auto max-w-[--page-container] text-center;
+  & > p {
+    @apply absolute w-full h-screen z-10;
+    @apply flex flex-col items-center justify-center;
+    pointer-events: none;
+
+    svg:first-child {
+      --center: calc(50% - 100px);
+      @apply sticky top-[--center] mx-auto;
+    }
+    svg:last-child {
+      @apply static;
+    }
+  }
+  article {
+    @apply grid grid-cols-3 md:grid-cols-12 items-center h-screen w-full overflow-hidden;
+    @apply absolute top-0;
+    @apply m-auto max-w-[--page-container];
+    span {
+      @apply aspect-square overflow-hidden rounded-full;
+    }
+  }
+  article:first-child {
+    @apply grid-rows-3;
+    pointer-events: none;
+  }
+  article:last-child {
+    @apply gap-y-20 md:gap-y-[20rem] content-center pt-[--height];
+    h1 {
+      @apply col-span-full row-span-full justify-center;
+      @apply flex md:gap-x-60 capitalize;
+      /* @apply flex-col md:flex-row; */
+    }
+    .textBox {
+      @apply px-6 col-span-3 md:col-start-3 md:col-span-8 text-center;
+    }
+  }
+}
+@media screen and (max-width: theme(screens.sm)) {
+  .cCircle {
+    & > p {
+      svg:first-child {
+        --size: 80px;
+        @apply mobile:w-[--size] mobile:h-[--size];
+      }
+      svg:last-child {
+        --size: 200px;
+        @apply mobile:w-[--size] mobile:h-[--size];
+      }
+    }
+  }
+}
+
+.title_flow {
+  @apply text-heading-5 md:text-special;
+  @apply w-full m-auto max-w-[--page-container] text-center;
+  @apply overflow-hidden flex flex-col;
+  svg {
+    @apply w-auto h-auto sticky top-0 left-0;
+  }
+  div {
+    @apply flex w-full h-full m-auto max-w-[--page-container] text-center;
+  }
+  > span:last-child {
+    @apply text-right;
+  }
+}
+
 .spreadImg {
-  @apply h-screen relative;
-  @apply grid grid-cols-12 px-20 gap-x-5 justify-center items-center;
+  @apply w-screen h-screen relative overflow-hidden;
+  @apply grid grid-cols-12 gap-x-5 justify-center items-center;
+  @apply m-auto max-w-[--page-container];
 
   .txtBox {
     @apply bg-sky-500 text-center;
@@ -22,26 +92,26 @@
 }
 
 .service {
-  --mb30: calc(100% / 12);
-  --mb40: calc(100% / 12 + 1rem);
-  @apply bg-slate-300 overflow-hidden;
-  @apply grid;
-  @apply grid desktop:grid-cols-12 gap-x-5 justify-center items-center;
-  h5 {
-    @apply mb-[--mb40];
-  }
-  h3 {
-    @apply mb-[--mb30];
+  @apply bg-slate-300 h-screen;
+  @apply grid grid-rows-2 items-center;
+
+  h1 {
+    @apply w-full overflow-hidden;
   }
   article {
-    @apply desktop:col-span-7;
+    @apply grid md:grid-cols-12 gap-x-5 justify-center items-center;
+    @apply m-auto max-w-[--page-container];
+    & > * {
+      @apply md:col-span-7;
+    }
   }
 }
 
 .recruitList {
-  --col-gap: calc(var(--grid-container) * 1 / 12 + 2rem);
   @apply mobile:text-center relative;
+
   article {
+    @apply m-auto max-w-[--page-container];
     @apply grid mobile:grid-cols-1 grid-cols-12 gap-x-5;
     div:first-child {
       @apply col-span-5 mobile:absolute mobile:-z-[1] w-full h-screen;
@@ -63,14 +133,5 @@
 }
 
 .partners {
-  h5 {
-  }
-  /* div {
-    @apply flex gap-16 overflow-hidden ;
-    img {
-      border: 1px solid;
-      width: 240px;
-      height: 100px;
-    }
-  } */
+  @apply m-auto max-w-[--page-container];
 }
