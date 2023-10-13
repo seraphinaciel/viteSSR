@@ -19,3 +19,6 @@ export const workSummaryPropTypes = PropTypes.shape({
   time: PropTypes.arrayOf(PropTypes.string),
   detailDisplay: PropTypes.bool,
 });
+
+export const modePropsType = PropTypes.shape(PropTypes.oneOf(["dark", "light"]));
+export const localPropsType = PropTypes.shape(PropTypes.oneOf(["en", "kr"]));

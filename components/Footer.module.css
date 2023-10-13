@@ -1,0 +1,60 @@
+.wrap {
+  @apply bg-black text-white text-body-3 pt-[6rem] pb-[4rem] px-[2.5rem] md:pt-[12rem] md:pb-[8rem] md:px-[--grid-container-margin];
+  @media screen and (min-width: theme(screens.md)) {
+    .container {
+      display: grid;
+      grid-template-areas:
+        "fnb logo"
+        "line line"
+        "complementary complementary"
+        "rest rest";
+    }
+    /* elements */
+    .line {
+      grid-area: line;
+    }
+    .fnb {
+      grid-area: fnb;
+    }
+    .logo {
+      grid-area: logo;
+    }
+    .complementary {
+      grid-area: complementary;
+    }
+    .rest {
+      grid-area: rest;
+    }
+  }
+}
+.container {
+  @apply m-auto max-w-[--page-container];
+}
+.line {
+  @apply block my-[6rem] md:my-[8rem] opacity-20;
+}
+.fnb {
+  @apply flex flex-col gap-y-[4rem] md:gap-y-[5rem] text-heading-7 md:text-heading-5;
+}
+.logo {
+  @apply w-full flex items-start justify-center md:justify-end mobile:mt-[8rem];
+  > * {
+    @apply md:max-w-[39.4rem];
+  }
+}
+.complementary {
+  @apply grid mobile:gap-y-[4rem] md:gap-x-[--grid-row-gap] md:grid-cols-12;
+}
+.rest {
+  @apply w-full flex flex-row justify-between items-start text-[1.8rem] leading-[2.8rem] md:text-heading-8 mt-[4rem] md:mt-[12rem];
+}
+.box {
+  @apply flex flex-col gap-y-[2rem] text-[1.6rem] leading-[2.4rem] not-italic md:text-body-1;
+  & em,
+  & address {
+    @apply not-italic;
+  }
+}
+.box-title {
+  @apply text-base-2 font-normal;
+}

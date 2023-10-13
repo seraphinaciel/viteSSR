@@ -1,3 +1,29 @@
+### 9.7.
+
+- 이미지 webp
+
+```html
+<picture>
+  <source srcset="(webp이미지파일).webp" type="image/webp" />
+  <source srcset="(webp가 나오지 않을때 보여줄 이미지파일).jpg" type="image/jpeg" />
+  <img src="(srcSet을 지원하지 않는 ie를 위한 이미지파일).jpg" />
+</picture>
+
+<img
+  sizes="(max-width: 768px) 200px, 360px"
+  srcset="(이미지 주소) 200w, (이미지 주소)360w, (이미지주소) "
+  src="(srcset을 지원하지 않는 ie대비용 주소)"
+  alt="thumbnail"
+/>
+
+<picture>
+  <source media="(min-width:800px)" srcset="/images/partner1.webp" type="image/webp" />
+  <source srcset="/images/char2.jpg" type="image/jpeg" />
+  <img src="/images/char3.jpg" />
+</picture>
+<!-- css : pixel-ratio-->
+```
+
 ### 8.24.
 
 **상현 선임님 작업**
@@ -145,9 +171,7 @@ tl.to(".orange", { x: 600, duration: 1 }, "+=1"); // 타임라인 종료 후 1�
 let tl = gsap.timeline({ defaults: { duration: 1 } });
 
 //no more repetition of duration: 1!
-tl.to(".green", { x: 200 })
-  .to(".purple", { x: 200, scale: 0.2 })
-  .to(".orange", { x: 200, scale: 2, y: 20 });
+tl.to(".green", { x: 200 }).to(".purple", { x: 200, scale: 0.2 }).to(".orange", { x: 200, scale: 2, y: 20 });
 ```
 
 ### 애니메이션 제어 콜백
@@ -181,20 +205,9 @@ function createPanel(panel) {
   let tl = new TimelineLite(); // 1. 패널에 대해 별도의 타임라인 만들기
   tl.from(panel + " .bg", 0.4, { scale: 0, ease: Power1.easeInOut })
     .from(panel + " .bg", 0.3, { rotation: 90, ease: Power1.easeInOut }, 0)
-    .staggerFrom(
-      panel + " .text span",
-      1.1,
-      { y: -50, opacity: 0, ease: Elastic.easeOut },
-      0.06
-    )
+    .staggerFrom(panel + " .text span", 1.1, { y: -50, opacity: 0, ease: Elastic.easeOut }, 0.06)
     .addLabel("out", "+=1")
-    .staggerTo(
-      panel + " .text span",
-      0.3,
-      { opacity: 0, y: 50, ease: Power1.easeIn },
-      -0.06,
-      "out"
-    )
+    .staggerTo(panel + " .text span", 0.3, { opacity: 0, y: 50, ease: Power1.easeIn }, -0.06, "out")
     .to(panel + " .bg", 0.4, {
       scale: 0,
       rotation: -90,
@@ -205,10 +218,7 @@ function createPanel(panel) {
 
 // 2. 각 타임라인 중첩시키기 - add()
 let master = new TimelineMax({ repeat: -1 });
-master
-  .add(createPanel(".panel1"))
-  .add(createPanel(".panel2"))
-  .add(createPanel(".panel3"));
+master.add(createPanel(".panel1")).add(createPanel(".panel2")).add(createPanel(".panel3"));
 
 //make smaller for when demo is embedded
 TweenLite.set(".banner", { scale: 0.8, transformOrigin: "left top" });

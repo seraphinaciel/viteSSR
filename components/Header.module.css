@@ -11,15 +11,17 @@
 }
 
 .wrap {
-  @apply flex-box-both-end gap-[2rem] py-[2rem] px-[2.5rem] md:py-[4rem] md:px-[8rem];
+  @apply z-50 sticky top-0 py-[2rem] px-[2.5rem] md:py-[4rem] md:px-[--grid-container-margin];
   & a {
     @apply block;
   }
 }
-
+.container {
+  @apply m-auto max-w-[--page-container] flex-box-both-end gap-[2rem];
+}
 .logo {
-  @apply w-[7rem] md:w-[9.5rem] h-auto;
-  & img {
+  @apply max-w-[7rem] md:max-w-[9.8rem] h-auto;
+  & svg {
     @apply w-full;
   }
 }

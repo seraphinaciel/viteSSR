@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 export default function useMouseHover() {
   const [cursorType, setCursorType] = useState("");
   useEffect(() => {
-    const mouseMoveHandler = (event) => {
+    const mouseMoveHandler = event => {
       const target = event.target;
 
       if (target.tagName === "A" || target.tagName === "BUTTON") {

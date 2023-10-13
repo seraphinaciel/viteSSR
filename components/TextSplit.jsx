@@ -42,8 +42,8 @@ export function Letter({ content, className, tagName = "p" }) {
         scrollTrigger: {
           trigger: splitTargets,
           toggleActions: "restart pause resume reverse",
-          start: "top 20%",
-          end: "bottom 50%",
+          // start: "top 20%",
+          // end: "bottom 50%",
           scrub: true,
           // markers: true,
         },
@@ -73,9 +73,8 @@ export function Sentence({ content, className, children, tagName = "p" }) {
         scrollTrigger: {
           trigger: splitTargets,
           toggleActions: "restart pause resume reverse",
-          start: "top center",
+          start: "top 100%",
           end: "+=100%",
-          // markers: true,
         },
         onComplete: () => animateSvg(".split-sentence path", 1),
       });
@@ -96,13 +95,28 @@ export function Sentence({ content, className, children, tagName = "p" }) {
     return () => ctx.revert();
   }, [content, children]);
 
-  return (
-    <div className={className === undefined ? "split-sentence relative" : `split-sentence ${className}`}>
-      {children ? <div ref={childrenRef}>{children}</div> : null}
-      <div className="overflow-hidden">
+  const SvgContent = ({ children, className }) => {
+    return (
+      <div
+        className={
+          className === undefined ? "split-sentence overflow-hidden" : `split-sentence overflow-hidden ${className}`
+        }
+      >
+        {children}
         <Tagname ref={targetRef}>{content}</Tagname>
       </div>
-    </div>
+    );
+  };
+  return (
+    <>
+      {children ? (
+        <SvgContent className={`${className} relative`}>
+          <div ref={childrenRef}>{children}</div>
+        </SvgContent>
+      ) : (
+        <SvgContent className={className} />
+      )}
+    </>
   );
 }
 Sentence.propTypes = PropsType;
@@ -138,9 +152,10 @@ export function Word({ content, className, tagName = "p" }) {
         scrollTrigger: {
           trigger: splitTargets,
           toggleActions: "restart pause resume reverse",
-          start: "top 40%",
-          // markers: true,
-          once: true,
+          start: "top 70%",
+          end: "+=70%",
+          // once: true,
+          markers: true,
         },
       });
     }, targetRef);
@@ -148,11 +163,9 @@ export function Word({ content, className, tagName = "p" }) {
   }, [content]);
 
   return (
-    <div className={className === undefined ? "split-words" : `split-words ${className}`}>
-      <Tagname ref={targetRef} className="flex flex-wrap justify-center gap-x-[0.25em] overflow-hidden">
-        {content}
-      </Tagname>
-    </div>
+    <Tagname ref={targetRef} className={className === undefined ? "split-words" : `split-words ${className}`}>
+      {content}
+    </Tagname>
   );
 }
 Word.propTypes = PropsType;

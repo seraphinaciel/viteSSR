@@ -1,7 +1,7 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, createContext } from "react";
 import PropTypes from "prop-types";
 import { childrenPropType } from "./PropTypeValues";
-import { PageContextProvider } from "./usePageContext";
+import { PageContextProvider, usePageContext } from "./usePageContext";
 
 // components
 import CursorDot from "../components/CursorDot";
@@ -46,9 +46,13 @@ const routes = [
     route: "/contact",
   },
 ];
+
 const queryClient = new QueryClient();
 
 function PageShell({ pageContext, children }) {
+  // pageContext의 exports.documentProps가 undefined인 이슈.
+  // image 참조가 안되는 경우 리렌더링으로 documentProps가 undefined가 반환된다.
+
   return (
     <React.StrictMode>
       <PageContextProvider pageContext={pageContext}>
@@ -61,28 +65,19 @@ function PageShell({ pageContext, children }) {
 }
 
 function Layout({ children }) {
-  const [mode, setMode] = useState("light");
-  const modeRef = useCallback(node => {
-    if (null != node) {
-      // console.log("ready!");
-
-      const darkModeFlag = [...node.children[0].classList].includes("bg-black");
-      darkModeFlag && setMode("dark");
-    }
-  }, []);
-
+  const pageContext = usePageContext();
+  const [mode, setMode] = useState(pageContext.exports?.documentsProps?.mode || "light");
+  pageContext.exports.mode = [mode, setMode];
   return (
     <>
       {/* header */}
       <Header menuList={routes} mode={mode} />
 
       {/* page contents */}
-      <main ref={modeRef} className="min-h-[100vh] px-[--grid-container-margin]">
-        {children}
-      </main>
+      <main className="min-h-[100vh] px-[--grid-container-margin]">{children}</main>
 
-      {/* footter */}
-      <Footer menuList={routes} />
+      {/* footer */}
+      <Footer menuList={routes} mode={"dark"} />
 
       {/* cursor */}
       <CursorDot />

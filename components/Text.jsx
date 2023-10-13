@@ -1,14 +1,11 @@
 import { Fragment } from "react";
 import PropTypes from "prop-types";
+import { childrenPropType } from "../renderer/PropTypeValues";
 
 const TextPropsType = {
   tagName: PropTypes.string,
-  children: PropTypes.oneOfType([PropTypes.string, PropTypes.array]).isRequired,
-  className: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.array,
-    PropTypes.instanceOf(null),
-  ]),
+  children: childrenPropType,
+  className: PropTypes.oneOfType([PropTypes.string, PropTypes.array, PropTypes.instanceOf(null)]),
 };
 
 // component
@@ -43,6 +40,17 @@ export function Title({ tagName = "h1", children, className = null }) {
     </Text>
   );
 }
+Title.propTypes = TextPropsType;
+
+export function HiddenText({ tagName = "span", children }) {
+  return (
+    <Text tagName={tagName} className="sr-only">
+      {children}
+    </Text>
+  );
+}
+HiddenText.propTypes = TextPropsType;
+
 /* examples
       <Title>
         {["We create designs", "to inspire people", "around the world"]}
@@ -51,5 +59,3 @@ export function Title({ tagName = "h1", children, className = null }) {
         {["We create designs", "to inspire people", "around the world"]}
       </Text>
  */
-Title.propTypes = TextPropsType;
-

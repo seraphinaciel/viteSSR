@@ -81,6 +81,7 @@ export default {
         "body-1": configFontStyle("1.8rem", "2.8rem"),
         "body-2": configFontStyle("1.6rem", "2.6rem"),
         "body-3": configFontStyle("1.5rem", "2.4rem"),
+        "body-16-24": configFontStyle("1.6rem", "2.4rem"),
         "heading-1-kr": configFontStyle("4.8rem", "6.2rem"),
         "body-1-kr": configFontStyle("3.6rem", "5rem"),
         "body-2-kr": configFontStyle("2.8rem", "3.8rem"),
