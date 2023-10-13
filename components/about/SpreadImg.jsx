@@ -6,12 +6,7 @@ import useCheckMobile from "#root/hooks/useCheckMobile";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const items = [
-  { class: "bg-red-600/20", alt: "hyundai" },
-  { class: "bg-blue-600/20", alt: "samsung" },
-  { class: "bg-green-600/20", alt: "lg" },
-  { class: "bg-yellow-600/20", alt: "genesis" },
-];
+const items = [{ alt: "hyundai" }, { alt: "samsung" }, { alt: "lg" }, { alt: "genesis" }];
 
 const SpreadImg = ({ className, children }) => {
   const targetRef = useRef(null);
@@ -19,7 +14,7 @@ const SpreadImg = ({ className, children }) => {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      function ani01() {
+      function desktopEffect() {
         let tl = gsap.timeline({
           scrollTrigger: {
             trigger: targetRef.current,
@@ -69,12 +64,12 @@ const SpreadImg = ({ className, children }) => {
           );
         return tl;
       }
-      function ani02() {
+      function mobileEffect() {
         let tl = gsap.timeline({
           scrollTrigger: {
             trigger: targetRef.current,
-            start: "-20% 0%",
-            end: "+=50%",
+            start: "top 0%",
+            end: "+=100%",
             toggleActions: "restart pause resume reverse",
             scrub: 0.02,
             pin: true,
@@ -84,54 +79,58 @@ const SpreadImg = ({ className, children }) => {
           items.slice(0, 4).map((_, index) => `.item_${index + 1}`),
           { opacity: 0 },
           "<",
-        )
-          .to(".item_1", {
+        );
+        tl.to(
+          ".item_1",
+          {
             xPercent: 20,
-            yPercent: -100,
+            yPercent: -50,
             opacity: 1,
-          })
+            duration: 10,
+          },
+          "<+=4",
+        )
           .to(
             ".item_3",
             {
               xPercent: 100,
               yPercent: 0,
               opacity: 1,
-            },
-            "<",
-          );
-        return tl;
-      }
-      function ani03() {
-        let tl = gsap.timeline({
-          scrollTrigger: {
-            trigger: targetRef.current,
-            start: "20% 0%",
-            end: "+=25%",
-            toggleActions: "restart pause resume reverse",
-            scrub: 0.02,
-            pin: true,
-          },
-        });
-        tl.set(
-          items.slice(0, 4).map((_, index) => `.item_${index + 1}`),
-          { opacity: 0 },
-          "<",
-        )
-          .to(
-            ".item_2",
-            {
-              xPercent: -100,
-              yPercent: -10,
-              opacity: 1,
+              duration: 10,
             },
             "<",
           )
+          .to(
+            ".item_1",
+            {
+              opacity: 0,
+            },
+            ">+=4",
+          )
+          .to(
+            ".item_3",
+            {
+              opacity: 0,
+            },
+            "<",
+          );
+        tl.to(
+          ".item_2",
+          {
+            xPercent: -100,
+            yPercent: -10,
+            duration: 10,
+            opacity: 1,
+          },
+          ">+=3",
+        )
           .to(
             ".item_4",
             {
               xPercent: -50,
               yPercent: 60,
               opacity: 1,
+              duration: 10,
             },
             "<",
           )
@@ -142,7 +141,6 @@ const SpreadImg = ({ className, children }) => {
             },
             ">",
           );
-        return tl;
       }
 
       const master = gsap.timeline({
@@ -152,89 +150,12 @@ const SpreadImg = ({ className, children }) => {
       });
 
       const breakPoint = "(min-width: 768px)";
-      const isPC = window.matchMedia(breakPoint).matches;
-      if (isPC) {
-        master.add(ani01());
+      const isMd = window.matchMedia(breakPoint).matches;
+      if (isMd) {
+        master.add(desktopEffect());
       } else {
-        // master.add(ani02());
-        // master.add(ani03());
+        master.add(mobileEffect());
       }
-
-      const ani2 = gsap.timeline();
-      ani2
-        .set(
-          items.slice(0, 4).map((_, index) => `.item_${index + 1}`),
-          { opacity: 0 },
-          "<",
-        )
-        .to(".item_1", {
-          xPercent: 20,
-          yPercent: -100,
-          opacity: 1,
-        })
-        .to(
-          ".item_3",
-          {
-            xPercent: 100,
-            yPercent: 0,
-            opacity: 1,
-          },
-          "<",
-        );
-
-      ScrollTrigger.create({
-        animation: ani2,
-        trigger: targetRef.current,
-        start: "-20% 0%",
-        end: "+=50%",
-        scrub: 0.02,
-        pin: true,
-        anticipatePin: 1,
-        markers: true,
-      });
-      const ani3 = gsap.timeline();
-      ani3
-        .set(
-          items.slice(0, 4).map((_, index) => `.item_${index + 1}`),
-          { opacity: 0 },
-          "<",
-        )
-        .to(
-          ".item_2",
-          {
-            xPercent: -100,
-            yPercent: -10,
-            opacity: 1,
-          },
-          "<",
-        )
-        .to(
-          ".item_4",
-          {
-            xPercent: -50,
-            yPercent: 60,
-            opacity: 1,
-          },
-          "<",
-        )
-        .to(
-          ".item_4 img",
-          {
-            scale: 1,
-          },
-          ">",
-        );
-
-      ScrollTrigger.create({
-        animation: ani3,
-        trigger: targetRef.current,
-        start: "20% 0",
-        end: "+=25%",
-        scrub: 0.02,
-        pin: true,
-        anticipatePin: 1,
-        markers: true,
-      });
     }, targetRef);
     return () => {
       ctx.revert();
@@ -246,7 +167,7 @@ const SpreadImg = ({ className, children }) => {
       <section className={className} ref={targetRef}>
         <ol>
           {items.map((item, index) => (
-            <li key={index} className={`item_${index + 1} ${item.class}`}>
+            <li key={index} className={`item_${index + 1}`}>
               <picture>
                 <source srcSet={`/images/spread_${index + 1}.webp`} type="image/webp" />
                 <source srcSet={`/images/spread_${index + 1}.jpg`} type="image/jpeg" />

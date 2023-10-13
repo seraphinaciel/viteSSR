@@ -1,9 +1,11 @@
-import useMousePosition from "../hooks/useMousePosition";
+import useMouseUpdatePosition from "../hooks/useMouseUpdatePosition";
 import useMouseHover from "../hooks/useMouseHover";
+// import { useCallback, useEffect, useRef } from "react";
 
-const DotRing = () => {
-  const { x, y } = useMousePosition();
+const CursorDot = () => {
+  useMouseUpdatePosition();
   const cursorType = useMouseHover();
+
   return (
     <>
       {/* <div
@@ -11,10 +13,11 @@ const DotRing = () => {
         style={{ left: `${x}px`, top: `${y}px` }}
       ></div> */}
       <div
+        // ref={dotRef}
         className={"cursor-dot " + cursorType}
-        style={{ left: `${x}px`, top: `${y}px` }}
+        // style={{ left: `${x}px`, top: `${y}px` }}
       ></div>
     </>
   );
 };
-export default DotRing;
+export default CursorDot;

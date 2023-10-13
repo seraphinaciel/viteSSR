@@ -7,13 +7,7 @@ import { gsap } from "gsap/dist/gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 
 // component
-import { Text } from "#root/components/Text";
-import MainTitle from "#root/components/main/MainTitle";
-import SvgLine from "#root/components/SvgLine";
 import Video from "../Video";
-
-// style
-// import styles from "./Video.module.css";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -32,7 +26,7 @@ const clipMap = {
   smaller: ["inset(0%)", "inset(40%)"],
 };
 
-export default function MotionBox({ id, src }) {
+export default function MotionBox({ id, src, children }) {
   const containerRef = useRef(null);
 
   useEffect(() => {
@@ -95,19 +89,7 @@ export default function MotionBox({ id, src }) {
   return (
     <section ref={containerRef} className="h-screen flex flex-col items-center justify-center bg-slate-200 mb-10">
       {/* text */}
-      <div className="motion-contents | absolute w-full">
-        <Text className="hidden desktop:block desktop:text-heading-6 text-center">
-          {"LG Global Pilot Website"}
-          {"Platform Building"}
-        </Text>
-        <MainTitle conLeft="make" conRight="work" change="moment">
-          <SvgLine id="sThej" />
-        </MainTitle>
-        <Text tagName="p" className="basic_p_2 | absolute flex justify-between w-full top-[100%]">
-          {"Our latest"}
-          {"SCROLL"}
-        </Text>
-      </div>
+      {children}
 
       {/* video */}
       <div className="motion-video | relative w-full h-full bg-orange-400">

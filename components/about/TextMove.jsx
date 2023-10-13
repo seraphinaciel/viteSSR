@@ -12,7 +12,7 @@ export default function TextMove({ className, location, coord, children }) {
       const paragraph = target.current;
       const sentence = paragraph.querySelectorAll("span");
 
-      const ani8 = gsap.timeline();
+      const tl = gsap.timeline();
 
       const setAni = index => {
         const animProps = {
@@ -23,7 +23,7 @@ export default function TextMove({ className, location, coord, children }) {
 
         animProps[location[index]] = isWidth ? innerWidth * coord[index] : innerHeight * coord[index];
 
-        ani8.from(sentence[index], animProps);
+        tl.from(sentence[index], animProps);
       };
 
       for (let i = 0; i < sentence.length; i++) {
@@ -31,7 +31,7 @@ export default function TextMove({ className, location, coord, children }) {
       }
 
       ScrollTrigger.create({
-        animation: ani8,
+        animation: tl,
         trigger: paragraph,
         start: "0% 20%",
         end: "+=100%",

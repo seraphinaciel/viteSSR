@@ -26,10 +26,8 @@ export default function Marquee() {
       const clone = parentSelector.innerHTML;
       parentSelector.insertAdjacentHTML("beforeend", clone);
       parentSelector.insertAdjacentHTML("beforeend", clone);
-
       const firstElement = parentSelector.children[0];
       const distanceX = firstElement.clientWidth;
-
       gsap.fromTo(
         firstElement,
         { marginLeft: 0 },
@@ -45,10 +43,10 @@ export default function Marquee() {
   }, []);
 
   return (
-    <article className="flex overflow-hidden h-52" ref={marquee}>
-      <div className="marquee_wrap flex flex-nowrap gap-6 mr-6">
+    <article className="" ref={marquee}>
+      <div className="marquee_wrap ">
         {contents.map((con, index) => (
-          <span key={index} className={`partner_${index + 1} w-[240px] h-[100px] overflow-hidden border`}>
+          <span key={index} className={`partner_${index + 1} `}>
             <img src={`/images/partner${index + 1}.webp`} alt={con.alt} />
           </span>
         ))}
