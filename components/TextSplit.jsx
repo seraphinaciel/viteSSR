@@ -35,17 +35,17 @@ export function Letter({ content, className, tagName = "p" }) {
       let nodes = splitByLetter(splitTargets.innerText);
       if (nodes) splitTargets.firstChild.replaceWith(...nodes);
 
-      gsap.to(gsap.utils.toArray(".split.letter .char"), {
+      gsap.to(gsap.utils.toArray(".split-letter .char"), {
         willChange: "opacity",
         opacity: 1,
         stagger: 1,
         scrollTrigger: {
           trigger: splitTargets,
           toggleActions: "restart pause resume reverse",
-          start: "top 100%",
+          start: "top 90%",
           end: "bottom 50%",
           scrub: true,
-          markers: true,
+          // markers: true,
         },
       });
     }, targetRef);
@@ -55,7 +55,7 @@ export function Letter({ content, className, tagName = "p" }) {
   return (
     <div
       className={
-        className === undefined ? "split letter" : `split letter ${className}`
+        className === undefined ? "split-letter" : `split-letter ${className}`
       }
     >
       <Tagname ref={targetRef}>{content}</Tagname>
@@ -79,9 +79,9 @@ export function Sentence({ content, className, children, tagName = "p" }) {
           toggleActions: "restart pause resume reverse",
           start: "top center",
           end: "+=100%",
-          markers: true,
+          // markers: true,
         },
-        onComplete: () => animateSvg(".split.sentence path", 1),
+        onComplete: () => animateSvg(".split-sentence path", 1),
       });
 
       tl.from(splitTargets, {
@@ -104,8 +104,8 @@ export function Sentence({ content, className, children, tagName = "p" }) {
     <div
       className={
         className === undefined
-          ? "split sentence"
-          : `split sentence ${className}`
+          ? "split-sentence relative"
+          : `split-sentence ${className}`
       }
     >
       {children ? <div ref={childrenRef}>{children}</div> : null}
@@ -118,8 +118,8 @@ export function Sentence({ content, className, children, tagName = "p" }) {
 Sentence.propTypes = PropsType;
 
 export function Word({ content, className, tagName = "p" }) {
-  const targetRef = useRef();
   const Tagname = tagName;
+  const targetRef = useRef();
 
   useEffect(() => {
     let ctx = gsap.context(() => {
@@ -131,6 +131,7 @@ export function Word({ content, className, tagName = "p" }) {
         splitTargets.removeChild(splitTargets.firstChild);
       }
 
+      // console.log(children.length);
       words.forEach((word, index) => {
         const node = document.createElement("span");
         node.textContent = word;
@@ -139,7 +140,7 @@ export function Word({ content, className, tagName = "p" }) {
         splitTargets.appendChild(node);
       });
 
-      gsap.from(gsap.utils.toArray(".split.words .word"), {
+      gsap.from(gsap.utils.toArray(".split-words .word"), {
         ease: "circ.out",
         y: splitTargets.offsetHeight,
         opacity: 0,
@@ -148,7 +149,7 @@ export function Word({ content, className, tagName = "p" }) {
           trigger: splitTargets,
           toggleActions: "restart pause resume reverse",
           start: "top 40%",
-          markers: true,
+          // markers: true,
           once: true,
         },
       });
@@ -159,7 +160,7 @@ export function Word({ content, className, tagName = "p" }) {
   return (
     <div
       className={
-        className === undefined ? "split words" : `split words ${className}`
+        className === undefined ? "split-words" : `split-words ${className}`
       }
     >
       <Tagname
@@ -172,38 +173,3 @@ export function Word({ content, className, tagName = "p" }) {
   );
 }
 Word.propTypes = PropsType;
-
-// export default function TextSplit({
-//   content,
-//   splitBy,
-//   className,
-//   children,
-//   tagName = "span",
-// }) {
-//   if (splitBy === "letter") {
-//     return (
-//       <Letter content={content} className={className}>
-//         {children}
-//       </Letter>
-//     );
-//   } else if (splitBy === "sentence") {
-//     return (
-//       <Sentence content={content} className={className} tagName={tagName}>
-//         {children}
-//       </Sentence>
-//     );
-//   } else if (splitBy === "word") {
-//     return (
-//       <Word content={content} className={className}>
-//         {children}
-//       </Word>
-//     );
-//   }
-
-//   return null;
-// }
-// TextSplit.propTypes = {
-//   ...PropsType,
-//   tagName: PropTypes.string,
-//   splitBy: PropTypes.string.isRequired,
-// };

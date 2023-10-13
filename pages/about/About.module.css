@@ -1,24 +1,16 @@
-.text {
-  @apply py-10 text-heading-5 desktop:text-special;
-  div {
-    @apply flex justify-between;
-  }
-  > p:last-child {
-    margin-left: 50%;
-  }
-}
-.vision_title {
-  @apply py-10;
-  div {
-    @apply flex gap-8;
-  }
-  > p:last-child {
-    margin-left: 50%;
-  }
+.cCircle_title {
+  @apply grid grid-cols-2 gap-x-60 capitalize;
 }
 
-.circle {
+.cCircle_box {
+  @apply w-3/6 text-center;
 }
+/*
 .title {
   @apply grid grid-cols-2 gap-[240px] capitalize;
-}
+} .circle {
+  @apply flex flex-col items-center mt-24;
+  .box {
+    @apply w-3/6 text-center;
+  }
+} */

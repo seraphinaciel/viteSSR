@@ -42,8 +42,6 @@ function Content({ children }) {
   return (
     <main
       style={{
-        padding: 20,
-        paddingBottom: 50,
         minHeight: "100vh",
         overflow: "hidden",
       }}

@@ -47,26 +47,32 @@
   /* HEADING */
 
   h1 {
+    /* 64px / 200px */
     @apply text-heading-3 desktop:text-special capitalize;
   }
   h2 {
+    /* 50px / 130px */
     @apply text-heading-5 desktop:text-heading-1 font-light;
     strong {
       @apply font-medium;
     }
   }
   h3 {
+    /* 20px / 60px */
     @apply text-heading-10 desktop:text-heading-4;
   }
   h4 {
+    /* 26px / 36px */
     @apply text-heading-8 desktop:text-heading-6;
   }
 
   h5 {
+    /* 20px / 26px */
     @apply text-heading-10 desktop:text-heading-8;
   }
 
   h6 {
+    /* 18px / 20px */
     @apply text-body-1 desktop:text-heading-10;
   }
 
@@ -74,6 +80,40 @@
     @apply text-heading-10 desktop:text-heading-4;
     em {
       @apply text-heading-10 desktop:text-body-1 block not-italic;
+    }
+  }
+
+  .title_flow {
+    @apply desktop:px-20 text-heading-5 desktop:text-special;
+    div {
+      @apply flex;
+    }
+    > span:last-child {
+      margin-left: 50%;
+    }
+  }
+
+  .text_box_side {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    @apply desktop:grid desktop:gap-x-5 desktop:mx-20 relative;
+
+    > *:first-child {
+      /* 24px / 26px */
+      @apply desktop:col-span-3 text-heading-9 desktop:text-heading-8;
+    }
+    > *:last-child {
+      @apply desktop:col-span-6  text-heading-9 desktop:text-heading-8;
+    }
+    .svgAni {
+      @apply absolute;
+    }
+  }
+  .text_box_noSide {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    @apply desktop:grid desktop:gap-x-5 desktop:mx-20;
+
+    > *:last-child {
+      @apply desktop:col-start-4 desktop:col-span-8;
     }
   }
 

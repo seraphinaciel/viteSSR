@@ -8,17 +8,20 @@ const PropType = {
   className: PropTypes.string,
 };
 
-const SvgLine = ({ id, className }) => {
+const SvgLine = ({ id, className, color }) => {
   const components = {
     sBubble: <Bubble className={className} />,
+    sBubble_s: <BubbleS className={className} color={color} />,
     sArrow: <Arrow className={className} />,
     sThej: <Thej />,
   };
   return components[id] || "No icon";
 };
+
 SvgLine.propTypes = {
   ...PropType,
   id: PropTypes.string.isRequired,
+  color: PropTypes.string,
 };
 
 function Bubble({ className }) {
@@ -44,6 +47,28 @@ function Bubble({ className }) {
   );
 }
 Bubble.propTypes = PropType;
+
+function BubbleS({ className, color }) {
+  return (
+    <svg
+      id="sBubble"
+      className={className}
+      width="155"
+      height="67"
+      viewBox="0 0 155 67"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M74.3522 65.7749C51.531 66.4804 27.9212 66.9405 7.73796 52.1694C4.7005 49.9443 1.49665 46.8522 0.738525 41.4701C-0.375553 33.5532 4.36141 25.9189 8.94311 21.7677C15.3584 15.958 22.4237 12.7886 29.4469 10.206C59.0879 -0.698337 89.5456 -2.18439 118.56 5.87378C129.125 8.8076 139.724 13.1426 148.391 22.7418C151.289 25.9454 154.189 30.8923 153.375 36.8011C152.725 41.5153 149.924 44.7936 147.24 46.9736C141.913 51.2914 136.135 53.4391 130.406 55.2547C99.4103 65.087 67.8413 66.3742 37.4631 59.0592"
+        stroke={color}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+BubbleS.propTypes = { ...PropType, color: PropTypes.string };
 
 function Arrow({ className }) {
   return (
