@@ -6,7 +6,9 @@ export const debounce = (
     console.log("delay", duration);
     console.log("timer", timer);
   },
-  { callbackParams = null, duration = 400, timer = null },
+  callbackParams = null,
+  duration = 400,
+  timer = null,
 ) => {
   return () => {
     clearTimeout(timer);
@@ -63,7 +65,6 @@ export const handle_speed = (
 };
 
 export const CM = (...inputs) => twMerge(clsx(inputs));
-
 // example
 /*
   className={CM(

@@ -31,3 +31,25 @@ export const ImagePropType = {
     alt: PropTypes.string,
   }),
 };
+
+const animationTypeList = ["fade in", "fade up", "fill"];
+export const animateProviderPropType = {
+  type: PropTypes.oneOf(animationTypeList).isRequired,
+  target: PropTypes.oneOfType([PropTypes.node, PropTypes.string]),
+  trigger: PropTypes.oneOfType([PropTypes.node, PropTypes.string]),
+  // set
+  arrange: PropTypes.shape({
+    viewport: {
+      start: "",
+      end: "",
+    },
+  }),
+  // from
+  options: PropTypes.object,
+  /*
+    duration,
+    stagger,
+    ease,
+    markers
+  */
+};

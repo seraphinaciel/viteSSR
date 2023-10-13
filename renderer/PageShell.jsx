@@ -282,7 +282,7 @@ function Layout({ children }) {
   }, []);
   return (
     <>
-      <div ref={wrap} id="container">
+      <div ref={wrap} id="container" className="grid grid-rows-[minmax(auto, 11.5rem), 1fr, auto]">
         {/* grid guide */}
         <div className="page-contents-wrap z-[100] invisible fixed top-0 bottom-0 left-0 right-0 grid grid-cols-4 md:grid-cols-12 md:gap-x-[--grid-col-gap] mobile:px-[--grid-container-margin] pb-0">
           {Array.from({ length: 12 }, () => "cols-span-1").map((span, index) => (

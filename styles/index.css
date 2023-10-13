@@ -58,27 +58,27 @@
 
   h1 {
     /* 64px / 200px */
-    @apply text-heading-3 md:text-special capitalize;
+    /* @apply text-heading-3 md:text-special capitalize; */
   }
   h2 {
     /* 50px / 130px */
-    @apply text-heading-5 md:text-heading-1 font-light;
+    /* @apply text-heading-5 md:text-heading-1 font-light;
     strong {
       @apply font-medium;
-    }
+    } */
   }
   h3 {
     /* 20px / 60px */
-    @apply text-heading-10 md:text-heading-4;
+    /* @apply text-heading-10 md:text-heading-4; */
   }
   h4 {
     /* 26px / 36px */
-    @apply text-heading-8 md:text-heading-6;
+    /* @apply text-heading-8 md:text-heading-6; */
   }
 
   h5 {
     /* 24px / 26px */
-    @apply text-heading-9 md:text-heading-8;
+    /* @apply text-heading-9 md:text-heading-8; */
   }
 
   h6 {
@@ -137,6 +137,7 @@
     }
   }
 
+  /* 설명 글 레이아웃 */
   .layout_text_box {
     @apply mobile:px-[--grid-container-margin] grid md:grid-cols-12 relative break-keep;
     @apply gap-[--grid-col-gap];
@@ -153,21 +154,22 @@
     }
   }
 
-  .title_box {
+  /* 각 페이지 상단 제목(공통) */
+  /* .title_box {
     @apply relative grid items-end;
     @apply m-auto max-w-[--page-container];
     @apply mobile:px-[--grid-container-margin];
     height: calc(100vh - 4rem - 1.9rem);
 
     h2 {
-      .split-words {
+      & > * {
         @apply flex flex-wrap gap-x-[0.25em] overflow-hidden font-light;
+        span {
+          @apply relative -top-[0.15em];
+        }
       }
-      strong.split-words {
+      strong {
         @apply font-medium;
-      }
-      .word {
-        @apply relative -top-[0.15em];
       }
     }
 
@@ -195,10 +197,10 @@
       height: calc(100vh - 8rem - 2.6rem);
       h2 {
         @apply col-start-2 col-span-10 leading-[16rem];
-        .split-words:nth-child(2) {
+        & > *:nth-child(2) {
           @apply justify-end;
         }
-        strong.split-words {
+        strong {
           @apply justify-center;
         }
       }
@@ -210,7 +212,7 @@
         color: red;
       }
     }
-  }
+  }*/
 }
 
 .pin-spacer {

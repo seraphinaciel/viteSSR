@@ -1,12 +1,16 @@
 // components
 import { usePageContext } from "#root/renderer/usePageContext";
-import { useCallback, useState } from "react";
+import { Children, useCallback, useState } from "react";
 
 // components
-import ListMonoType from "../../components/ListMonoLayout/ListMonoLayout";
+import ListMonoType from "#root/components/ListMonoLayout/ListMonoLayout";
+import PageTitle from "../../components/PageTitle";
 
 // style
 // import styles from "./Work.module.css";
+
+// hooks
+import useCSSTheme from "#root/hooks/useCSSTheme";
 
 // route에서 export 시키는 것들은 pageContext.exports를 통해 global state로 사용할 수 있음.
 export const test = ["work", 1, 2];
@@ -75,9 +79,10 @@ const initialState = [
 
 function Page(props) {
   const pageContext = usePageContext();
+  const [cssTheme] = useCSSTheme();
   const pageRef = useCallback(wrap => {
     if (null == wrap) return;
-    console.log("pageContext", pageContext);
+    console.log("cssTheme", cssTheme);
   });
 
   const [list, setList] = useState(initialState);
@@ -90,8 +95,16 @@ function Page(props) {
     );
 
   return (
-    <div ref={pageRef} className="work-list">
+    <div ref={pageRef} className="work-list gap-5">
       <div className="page-contents-wrap">
+        {/* page title */}
+        <PageTitle
+          title={["We create designs", "to inspire people", "around the world"]}
+          description={{
+            text: "We make the J style. We strive to create a unique digital experience design.",
+            transform: "우리는 독특한 디지털 경험 디자인을 만들기 위해 노력합니다.",
+          }}
+        />
         <ListMonoType list={list} toItemFunc={onChange} />
       </div>
     </div>

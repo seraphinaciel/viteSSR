@@ -1,3 +1,30 @@
+### 9.27.
+
+@croishz
+[component] Layout - gnb 높이 제한을 위해 적용한 grid 속성이 모바일에서 오류라 롤백 오타 수정등
+[component] Layout - 공통 헤더의 최대 높이 제한
+[page] page_header css 추가
+[env] heading 요소에 직접 들어가있던 font class를 jsx로 옮김. 헤딩 레벨 의존성 제거.
+[component] ScrollSign 추가
+[component] PageTitle 추가
+[component] Icon - props 정리, "arrow/up"에 적용되도록 수정, "arrow/down" 추가
+
+- text-heading-1,2,3,4,...에서 빠졌던 letter-spacing 복구
+- h1~h5에 직접 적용된 apply 제거하고 jsx에 클래스로 넣음.
+- about에서 헤딩 레빌이 h3 > h5로 넘어가서 h5를 h4로 수정
+- 각 페이지 시작하는 제목 부분을 컴포넌트로 변경. pageTitle, scrolllSign
+- GNB의 최대 높이 선언 - 페이지 레이아웃을 grid로 바꿔서 적용.
+- Icon arrow/up 스타일 먹히도록 수정
+
+### 9.26.
+
+@croishz
+[env] font css에 자간 선언이 빠진 것 복구
+[components] HorizonScrollContents - 가로 스크롤 영역을 컴포넌트로 빼냄.
+[components] LineMotionText - 자체 모션을 위한 boolean prop - animateDelegation -을 추가
+[utils] animateSvg - 받는 인자를 선택자에서 요소로 변경
+[component] TextSplit - 내용을 쪼개는 단위별로 나뉘어져 있던 컴포넌트를 하나로 합침. animation type과 split type으로 렌더링 구분.
+
 ### 9.22.
 
 [component] SvgLine - shape case name 수정

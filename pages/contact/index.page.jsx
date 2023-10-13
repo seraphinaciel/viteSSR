@@ -1,9 +1,9 @@
 // node module
 import { useCallback } from "react";
-import { usePageContext } from "../../renderer/usePageContext";
+import { usePageContext } from "#root/renderer/usePageContext";
 
 // components
-
+import PageTitle from "#root/components/PageTitle";
 // style
 import styles from "./Contact.module.css";
 
@@ -21,7 +21,10 @@ function Page() {
   });
   return (
     <div ref={pageRef} className="contact">
-      <div className="page-contents-wrap"></div>
+      <div className="page-contents-wrap">
+        {/* page title */}
+        <PageTitle title={["We would love to", " hear from you"]} />
+      </div>
       <div className={styles.some}></div>
     </div>
   );

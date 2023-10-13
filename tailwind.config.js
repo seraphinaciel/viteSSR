@@ -1,7 +1,7 @@
 const commonStyle = {
   copies: {
     fontWeight: 400,
-    letterSpace: "-0.002em",
+    letterSpacing: "-0.002em",
   },
 };
 const configFontStyle = (size, lineHeight) => {
