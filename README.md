@@ -60,11 +60,8 @@ npm install gsap
 - \{component\}.jsx 새로 만들 시 components/component.sample.jsx 사용할 것.
 - z-index는 5 이하 사용 권장, 10 이상부터는 툴팁, 모달, 팝오버등 별도 창에 사용. 최고치는 1000으로 고정하고 .cursor-dot에만 적용. 나머지 요소는 모두 그 이하로 정함.
 
-
-
-
-
 ## 로그
+
 ### 10.13.
 
 [all] 마무리 정리
@@ -321,5 +318,3 @@ video 등 컴포넌트 추가/수정
 ### 8. 7.
 
 vite, react, gsap 세팅
-
-
