@@ -2,7 +2,7 @@ import react from "@vitejs/plugin-react";
 import ssr from "vite-plugin-ssr/plugin";
 
 export default {
-  base: "/viteSSR/client",
+  base: "/viteSSR/",
   server: {
     host: true, // 192.168.0.194
     open: true,
