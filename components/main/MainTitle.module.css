@@ -1,0 +1,43 @@
+/* GRID */
+/* .elevator {
+  @apply grid gap-x-5 content-evenly;
+  grid-template-columns: repeat(5, 1fr);
+  p {
+    grid-column: 3;
+    @apply text-center;
+  }
+  .elevatorL {
+    grid-column: 2;
+    @apply text-right;
+  }
+  .elevatorR {
+    grid-column: -3;
+    @apply relative;
+    @apply text-center;
+
+    span {
+      @apply block text-right;
+    }
+  }
+  svg {
+    @apply inline;
+  }
+} */
+
+/* FLEX */
+.elevator {
+  @apply flex flex-col lg:flex-row justify-center mx-[10%];
+  /* @apply gap-[20%] lg:gap-[10%]; */
+  .elevatorL {
+    @apply text-right;
+  }
+  .elevatorR {
+    @apply relative;
+    span {
+      @apply block;
+    }
+  }
+  svg {
+    @apply inline;
+  }
+}

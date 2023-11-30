@@ -1,0 +1,12 @@
+.movieBox {
+  @apply h-screen flex flex-col items-center justify-center bg-slate-200 mb-10;
+  .movieBox_wrap {
+    @apply aspect-[9/16] lg:aspect-video bg-orange-400;
+    width: calc(100vw - 40px);
+    clip-path: inset(50%);
+  }
+
+  video {
+    @apply absolute top-0 left-0 h-screen w-screen object-cover;
+  }
+}

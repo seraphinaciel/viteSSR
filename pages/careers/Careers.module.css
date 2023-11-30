@@ -1,0 +1,19 @@
+.page_header {
+  --height: calc(100vh - var(--gnb-height));
+  --division: minmax(15px, 100px) 1fr auto minmax(15px, 5rem);
+
+  @apply h-[--height];
+  display: grid;
+  grid-template-areas:
+    "pt"
+    "content"
+    "sign"
+    "pb";
+  grid-template-rows: var(--division);
+  > *:first-child {
+    grid-area: content;
+  }
+  > *:last-child {
+    grid-area: sign;
+  }
+}

@@ -1,0 +1,14 @@
+.single-line {
+  @apply flex items-center;
+}
+.container {
+  @apply inline-flex /* neccessary */
+  whitespace-nowrap /* neccessary */
+  text-heading-3 md:text-special;
+  .line {
+    @apply single-line;
+  }
+  svg {
+    @apply w-80 md:w-200;
+  }
+}

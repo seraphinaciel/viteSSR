@@ -1,0 +1,224 @@
+/* pretendard */
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/variable/pretendardvariable-dynamic-subset.css");
+/* poppins */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /* breakpoint 
+    html의 font size를 1vw로 고정하고
+    1vw = 1rem = 10px로 맞춤. 
+    이 기준이 적용되는 분기점은 
+    모바일 캔버스 360 x 2,
+    데스크탑 캔버스 1920,
+    그 사이에 임의값으로 - 1440 - 지정함.
+  */
+  :root {
+    --canvas: 390; /* rem 기준값을 조정하는 변수 */
+    --gnb-height: 6.4rem;
+    @media (min-width: 506px) {
+      --canvas: 622; /* sm + (md - sm * 0.5) */
+    }
+    @media (min-width: theme(screens.md)) {
+      --canvas: 1440;
+      --gnb-height: 11.5rem;
+    }
+    @media (min-width: theme(screens.xl)) {
+      --canvas: 1920;
+    }
+    /* mx size 부터는 크기가 커지도록 풀어둠 */
+
+    /* grid var */
+    --page-container: 176rem;
+    --grid-container: calc(100%);
+    --grid-col-gap: 1.2rem;
+    --grid-container-margin: max(15px, 2.5rem);
+    @media screen and (min-width: theme(screens.md)) {
+      --grid-col-gap: 2rem;
+      --grid-container-margin: max(15px, min(8rem, 2.5rem));
+    }
+  }
+
+  html {
+    @apply font-all;
+    font-size: calc(10 * (100vw / var(--canvas)));
+  }
+  button {
+    @apply border-none;
+  }
+
+  a.link {
+    @apply underline underline-offset-8;
+    @apply text-heading-10 md:text-heading-8 font-medium md:font-medium;
+  }
+
+  /* HEADING */
+
+  h1 {
+    /* 64px / 200px */
+    /* @apply text-heading-3 md:text-special capitalize; */
+  }
+  h2 {
+    /* 50px / 130px */
+    /* @apply text-heading-5 md:text-heading-1 font-light;
+    strong {
+      @apply font-medium;
+    } */
+  }
+  h3 {
+    /* 20px / 60px */
+    /* @apply text-heading-10 md:text-heading-4; */
+  }
+  h4 {
+    /* 26px / 36px */
+    /* @apply text-heading-8 md:text-heading-6; */
+  }
+
+  h5 {
+    /* 24px / 26px */
+    /* @apply text-heading-9 md:text-heading-8; */
+  }
+
+  h6 {
+  }
+
+  /* 아직 정하지 못한... 이름 ㅎ */
+  .basic_p {
+    /* 20px / 26px */
+    @apply text-heading-10 md:text-heading-8;
+  }
+  .basic_p_2 {
+    /* 18px / 20px */
+    @apply text-body-6-kr md:text-body-5-kr;
+  }
+}
+@layer components {
+  .page-contents-wrap {
+    @apply m-auto max-w-[--page-container] pb-120 md:pb-250;
+  }
+
+  /* cursor */
+  .cursor-dot {
+    @apply pointer-events-none cursor-none fixed z-1000 top-0 left-0 w-13 h-13 bg-red-600/100 rounded-full;
+
+    transform: translate(-50%, -50%);
+    transition: width 0.15s ease-in-out, height 0.15s ease-in-out, transform 0.1s ease-in-out;
+    will-change: width, height, transform;
+
+    --size-s: 2px;
+    --size-b: 50%;
+    &.active-link,
+    &.active-video {
+      &::before {
+        content: "";
+        @apply w-[--size-s] h-[--size-b] absolute;
+      }
+      &::after {
+        content: "";
+        @apply w-[--size-b] h-[--size-s];
+      }
+      @apply w-50 h-50 flex justify-center items-center;
+    }
+    &.active-link {
+      &::before,
+      &::after {
+        @apply bg-black;
+      }
+      @apply bg-white;
+    }
+    &.active-video {
+      &::before,
+      &::after {
+        @apply bg-white;
+      }
+      @apply bg-black;
+    }
+  }
+
+  /* 설명 글 레이아웃 */
+  .layout_text_box {
+    @apply mobile:px-[--grid-container-margin] grid md:grid-cols-12 relative break-keep;
+    @apply gap-[--grid-col-gap];
+
+    > *:first-child {
+      @apply mb-25;
+      @apply md:col-span-3;
+    }
+    > *:last-child {
+      @apply md:col-span-6;
+      .title_p {
+        @apply text-heading-10 md:text-heading-6 pb-19;
+      }
+    }
+  }
+
+  /* 각 페이지 상단 제목(공통) */
+  /* .title_box {
+    @apply relative grid items-end;
+    @apply m-auto max-w-[--page-container];
+    @apply mobile:px-[--grid-container-margin];
+    height: calc(100vh - 4rem - 1.9rem);
+
+    h2 {
+      & > * {
+        @apply flex flex-wrap gap-x-[0.25em] overflow-hidden font-light;
+        span {
+          @apply relative -top-[0.15em];
+        }
+      }
+      strong {
+        @apply font-medium;
+      }
+    }
+
+    article {
+      @apply mt-10;
+      strong {
+        @apply block font-normal;
+      }
+    }
+
+    nav {
+      @apply flex flex-row justify-between col-span-full my-16;
+      @apply text-heading-10 md:text-heading-8;
+      a {
+        @apply flex items-center gap-[0.5rem] font-medium underline underline-offset-8;
+        svg {
+          @apply w-[1.6rem] md:w-[2rem];
+        }
+      }
+    }
+
+    @media screen and (min-width: theme(screens.md)) {
+      @apply grid-cols-12;
+      grid-template-rows: 5fr 1fr 2fr;
+      height: calc(100vh - 8rem - 2.6rem);
+      h2 {
+        @apply col-start-2 col-span-10 leading-[16rem];
+        & > *:nth-child(2) {
+          @apply justify-end;
+        }
+        strong {
+          @apply justify-center;
+        }
+      }
+      article {
+        @apply col-start-3 col-span-5;
+      }
+      nav::after {
+        content: "SCROLL";
+        color: red;
+      }
+    }
+  }*/
+}
+
+.pin-spacer {
+  border: 2px dashed green;
+}
+svg {
+  border: 2px dashed greenyellow;
+}
