@@ -30,9 +30,6 @@
       "_chunk-eGf0tu_e.js"
     ]
   },
-  "_chunk-Ca8KETGS.js": {
-    "file": "assets/chunks/chunk-Ca8KETGS.js"
-  },
   "_chunk-Cb7lv_Cz.js": {
     "file": "assets/chunks/chunk-Cb7lv_Cz.js"
   },
@@ -70,6 +67,9 @@
     "imports": [
       "_chunk-Cb7lv_Cz.js"
     ]
+  },
+  "_chunk-Vm_p9HR6.js": {
+    "file": "assets/chunks/chunk-Vm_p9HR6.js"
   },
   "_chunk-ZvqIhud1.js": {
     "file": "assets/chunks/chunk-ZvqIhud1.js",
@@ -122,9 +122,9 @@
       "renderer/_default.page.client.jsx",
       "renderer/_default.page.server.jsx?extractAssets&lang.jsx"
     ],
-    "file": "assets/entries/entry-client-routing.g023mfj9.js",
+    "file": "assets/entries/entry-client-routing.vkrMdkJi.js",
     "imports": [
-      "_chunk-Ca8KETGS.js"
+      "_chunk-Vm_p9HR6.js"
     ],
     "isEntry": true,
     "src": "node_modules/vite-plugin-ssr/dist/esm/client/client-routing-runtime/entry.js"
@@ -141,9 +141,9 @@
       "renderer/_default.page.client.jsx",
       "renderer/_default.page.server.jsx?extractAssets&lang.jsx"
     ],
-    "file": "assets/entries/entry-server-routing.HtPu7x0p.js",
+    "file": "assets/entries/entry-server-routing.yprhtKfW.js",
     "imports": [
-      "_chunk-Ca8KETGS.js"
+      "_chunk-Vm_p9HR6.js"
     ],
     "isEntry": true,
     "src": "node_modules/vite-plugin-ssr/dist/esm/client/server-routing-runtime/entry.js"
