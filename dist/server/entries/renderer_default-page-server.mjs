@@ -633,7 +633,7 @@ PageShell.propTypes = {
 Layout.propTypes = {
   children: childrenPropType
 };
-const logoUrl = "/images/logo.svg";
+const logoUrl = "/viteSSR/client/images/logo.svg";
 const passToClient = ["pageProps", "urlPathname"];
 async function render(pageContext) {
   const { Page, pageProps } = pageContext;

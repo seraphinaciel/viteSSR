@@ -11,12 +11,7 @@ Link.propTypes = {
 };
 function Link(props) {
   const pageContext = usePageContext();
-  const className = [
-    props.className,
-    pageContext.urlPathname === props.href && "is-active",
-  ]
-    .filter(Boolean)
-    .join(" ");
+  const className = [props.className, pageContext.urlPathname === props.href && "is-active"].filter(Boolean).join(" ");
   return (
     <a {...props} className={className}>
       {props.text}
@@ -39,6 +34,7 @@ function Logo() {
   );
 }
 function Header() {
+  const BASE_URL = "/viteSSR/client";
   return (
     <header
       style={{
@@ -54,12 +50,12 @@ function Header() {
       <Logo />
 
       <nav>
-        <Link href="/" text="Home" />
-        <Link href="/main" text="Main" />
-        <Link href="/work" text="Work" />
-        <Link href="/about" text="About" />
-        <Link href="/careers" text="Careers" />
-        <Link href="/contact" text="Contact" />
+        <Link href={`${BASE_URL}/`} text="Home" />
+        <Link href={`${BASE_URL}/main`} text="Main" />
+        <Link href={`${BASE_URL}/work`} text="Work" />
+        <Link href={`${BASE_URL}/about`} text="About" />
+        <Link href={`${BASE_URL}/careers`} text="Careers" />
+        <Link href={`${BASE_URL}/contact`} text="Contact" />
       </nav>
     </header>
   );
