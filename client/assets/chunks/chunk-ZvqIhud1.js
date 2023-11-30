@@ -1,0 +1,1 @@
+import{R as r,P as n,r as a,j as s}from"./chunk-Cb7lv_Cz.js";import{c as p}from"./chunk-Cf0BkQ-u.js";const t=r.createContext(void 0);x.propTypes={pageContext:n.any,children:p};function x({pageContext:e,children:o}){return s.jsx(t.Provider,{value:e,children:o})}function u(){return a.useContext(t)}export{x as P,u};

@@ -1,15 +1,15 @@
 import { jsx, Fragment, jsxs } from "react/jsx-runtime";
 import ReactDOMServer from "react-dom/server";
 import PropTypes from "prop-types";
-import { c as childrenPropType, r as routesPropType, m as modePropsType, C as CM, l as localPropsType, T as Text, a as Title } from "../chunks/chunk-7cdbbd50.js";
+import { c as childrenPropType, r as routesPropType, m as modePropsType, C as CM, l as localPropsType, T as Text, a as Title } from "../chunks/chunk-DRcwvi6n.js";
 import React, { useEffect, useState, useRef, useCallback, Fragment as Fragment$1 } from "react";
-import { u as usePageContext, P as PageContextProvider } from "../chunks/chunk-cc172f77.js";
+import { u as usePageContext, P as PageContextProvider } from "../chunks/chunk-5fqjUpWX.js";
 import { gsap } from "gsap/dist/gsap.js";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger.js";
 import { ScrollToPlugin } from "gsap/dist/ScrollToPlugin.js";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { u as useCssTheme } from "../chunks/chunk-3fce2c11.js";
-import { I as Icon } from "../chunks/chunk-7ed0b246.js";
+import { u as useCssTheme } from "../chunks/chunk-P7vN87LO.js";
+import { I as Icon } from "../chunks/chunk-6b9tQcyh.js";
 import { escapeInject, dangerouslySkipEscape } from "vite-plugin-ssr/server";
 import "clsx";
 import "tailwind-merge";
@@ -407,7 +407,6 @@ Footer.propTypes = {
   menuList: routesPropType.isRequired,
   mode: modePropsType
 };
-const index = "";
 ScrollTrigger.config({
   limitCallbacks: true,
   /* limitCallbacks[Boolean] 
@@ -619,7 +618,7 @@ function Layout({ children }) {
   }, []);
   return /* @__PURE__ */ jsxs(Fragment, { children: [
     /* @__PURE__ */ jsxs("div", { ref: wrap2, id: "container", className: "grid grid-rows-[minmax(auto, 11.5rem), 1fr, auto]", children: [
-      /* @__PURE__ */ jsx("div", { className: "page-contents-wrap z-[100] invisible fixed top-0 bottom-0 left-0 right-0 grid grid-cols-4 md:grid-cols-12 md:gap-x-[--grid-col-gap] mobile:px-[--grid-container-margin] pb-0", children: Array.from({ length: 12 }, () => "cols-span-1").map((span, index2) => /* @__PURE__ */ jsx("div", { className: span }, index2)) }),
+      /* @__PURE__ */ jsx("div", { className: "page-contents-wrap z-[100] invisible fixed top-0 bottom-0 left-0 right-0 grid grid-cols-4 md:grid-cols-12 md:gap-x-[--grid-col-gap] mobile:px-[--grid-container-margin] pb-0", children: Array.from({ length: 12 }, () => "cols-span-1").map((span, index) => /* @__PURE__ */ jsx("div", { className: span }, index)) }),
       /* @__PURE__ */ jsx(Header, { menuList: routes, mode }),
       /* @__PURE__ */ jsx("main", { className: CM("relative z-10 min-h-[100vh]", modePalette[mode].class.bg), children }),
       /* @__PURE__ */ jsx(Footer, { menuList: routes, mode: "dark" })
@@ -634,7 +633,7 @@ PageShell.propTypes = {
 Layout.propTypes = {
   children: childrenPropType
 };
-const logoUrl = "/theJ/images/logo.svg";
+const logoUrl = "/viteSSR/images/logo.svg";
 const passToClient = ["pageProps", "urlPathname"];
 async function render(pageContext) {
   const { Page, pageProps } = pageContext;
