@@ -34,7 +34,7 @@ function Logo() {
   );
 }
 function Header() {
-  const BASE_URL = "/viteSSR/client";
+  const BASE_URL = "/viteSSR/dist/client";
   return (
     <header
       style={{
