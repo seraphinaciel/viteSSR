@@ -2,6 +2,7 @@ import react from "@vitejs/plugin-react";
 import ssr from "vite-plugin-ssr/plugin";
 
 export default {
+  base: "/theJ/",
   server: {
     host: true, // 192.168.0.194
     open: true,

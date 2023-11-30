@@ -42,6 +42,10 @@ npm install postcss-nesting
 npm install gsap
 ```
 
+### 배포하기
+
+[vite 문서](https://ko.vitejs.dev/guide/static-deploy.html)
+
 ### 폴더 용도
 
 > 자세한 내용은 주석 참고
