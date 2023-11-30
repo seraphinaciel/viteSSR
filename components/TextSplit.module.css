@@ -1,6 +1,0 @@
-.words_wrap {
-  @apply overflow-hidden;
-  > * {
-    @apply flex flex-wrap items-center gap-x-[0.25em];
-  }
-}
