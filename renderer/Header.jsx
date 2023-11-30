@@ -50,12 +50,12 @@ function Header() {
       <Logo />
 
       <nav>
-        <Link href={`${BASE_URL}/`} text="Home" />
-        <Link href={`${BASE_URL}/main`} text="Main" />
-        <Link href={`${BASE_URL}/work`} text="Work" />
-        <Link href={`${BASE_URL}/about`} text="About" />
-        <Link href={`${BASE_URL}/careers`} text="Careers" />
-        <Link href={`${BASE_URL}/contact`} text="Contact" />
+        <Link href="/viteSSR/dist/client/" text="Home" />
+        <Link href="/viteSSR/dist/client/main" text="Main" />
+        <Link href="/viteSSR/dist/client/work" text="Work" />
+        <Link href="/viteSSR/dist/client/about" text="About" />
+        <Link href="/viteSSR/dist/client/careers" text="Careers" />
+        <Link href="/viteSSR/dist/client/contact" text="Contact" />
       </nav>
     </header>
   );
