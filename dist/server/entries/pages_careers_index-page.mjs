@@ -5,9 +5,9 @@ import PropTypes from "prop-types";
 import { useRef, useEffect } from "react";
 import { gsap } from "gsap/dist/gsap.js";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger.js";
-import { L as LineMotionText, S as SvgLine } from "../chunks/chunk-ytogB_GN.js";
+import { L as LineMotionText, S as SvgLine } from "../chunks/chunk-Wb4zu5JQ.js";
 import { u as useCssTheme } from "../chunks/chunk-P7vN87LO.js";
-import { P as PageTitle } from "../chunks/chunk-KTGRsWi6.js";
+import { P as PageTitle } from "../chunks/chunk-HGVQSNuh.js";
 import { S as ScrollSign } from "../chunks/chunk-RuNReUVr.js";
 import "clsx";
 import "tailwind-merge";
@@ -93,7 +93,7 @@ function HorizonScrollContents() {
             pin: true,
             scrub: true,
             invalidateOnRefresh: true,
-            markers: true
+            markers: false
           }
         };
         gsap.to(scrollContainer, to);

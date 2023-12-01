@@ -3,10 +3,10 @@ import { useRef, useEffect } from "react";
 import { gsap } from "gsap/dist/gsap.js";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger.js";
 import { C as CM, T as Text, a as Title } from "../chunks/chunk-DRcwvi6n.js";
-import { W as Word } from "../chunks/chunk-ytogB_GN.js";
+import { W as Word } from "../chunks/chunk-Wb4zu5JQ.js";
 import { S as SvgIcons } from "../chunks/chunk-pve8c4X-.js";
 import { T as TextPassed } from "../chunks/chunk-GshQpoJ7.js";
-import { P as PageTitle } from "../chunks/chunk-KTGRsWi6.js";
+import { P as PageTitle } from "../chunks/chunk-HGVQSNuh.js";
 import { S as ScrollSign } from "../chunks/chunk-RuNReUVr.js";
 import PropTypes from "prop-types";
 import { u as useCssTheme } from "../chunks/chunk-P7vN87LO.js";
@@ -369,7 +369,7 @@ function RecruitList({ className, children }) {
           start: "top 50%",
           end: "+=" + box.offsetHeight,
           stagger: 0.01,
-          markers: true,
+          markers: false,
           onEnter: () => animateElement(box, animations2.enter),
           onLeaveBack: () => animateElement(box, animations2.leaveBack),
           onLeave: () => animateElement(box, animations2.leave),

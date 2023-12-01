@@ -40,7 +40,7 @@ export default function RecruitList({ className, children }) {
           start: "top 50%",
           end: "+=" + box.offsetHeight,
           stagger: 0.01,
-          markers: true,
+          markers: false,
           onEnter: () => animateElement(box, animations.enter),
           onLeaveBack: () => animateElement(box, animations.leaveBack),
           onLeave: () => animateElement(box, animations.leave),

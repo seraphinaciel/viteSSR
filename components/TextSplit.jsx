@@ -110,7 +110,7 @@ const animate = ({ context, type, target, trigger, options }) => {
       end: arrange.end,
       toggleActions: "restart pause resume reverse",
       trigger,
-      markers,
+      // markers,
       scrub: type === "fill" ? 1.5 : false,
     },
     onComplete: 0 < pathElements.length && (() => animateSvg(pathElements, duration)),

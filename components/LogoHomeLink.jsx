@@ -12,7 +12,7 @@ export function LogoHomeLink({ mode, iconType = "the j" }) {
   const [cssTheme] = useCssTheme();
   const { fore: iconColor } = cssTheme.mode[mode];
   return (
-    <Link href="/main" className="block w-full">
+    <Link href="/" className="block w-full">
       {/* Home Logo */}
       <Icon shape={iconType} style={{ fill: iconColor }} />
     </Link>

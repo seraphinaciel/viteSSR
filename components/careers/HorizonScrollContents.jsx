@@ -127,7 +127,7 @@ function HorizonScrollContents() {
             pin: true,
             scrub: true,
             invalidateOnRefresh: true,
-            markers: true,
+            markers: false,
           },
         };
         gsap.to(scrollContainer, to);

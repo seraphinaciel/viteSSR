@@ -82,7 +82,7 @@ Link.propTypes = {
 function LogoHomeLink({ mode, iconType = "the j" }) {
   const [cssTheme] = useCssTheme();
   const { fore: iconColor } = cssTheme.mode[mode];
-  return /* @__PURE__ */ jsx(Link, { href: "/main", className: "block w-full", children: /* @__PURE__ */ jsx(Icon, { shape: iconType, style: { fill: iconColor } }) });
+  return /* @__PURE__ */ jsx(Link, { href: "/", className: "block w-full", children: /* @__PURE__ */ jsx(Icon, { shape: iconType, style: { fill: iconColor } }) });
 }
 LogoHomeLink.propTypes = {
   iconType: PropTypes.string,
@@ -449,6 +449,7 @@ ScrollTrigger.config({
     */
 });
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
+const BASE_URL = "/viteSSR/dist/client/";
 const routes = [
   // {
   //   id: "index",
@@ -463,22 +464,22 @@ const routes = [
   {
     id: "work",
     name: "Work",
-    route: "/work"
+    route: `${BASE_URL}work`
   },
   {
     id: "about",
     name: "About",
-    route: "/about"
+    route: `${BASE_URL}about`
   },
   {
     id: "careers",
     name: "Careers",
-    route: "/careers"
+    route: `${BASE_URL}careers`
   },
   {
     id: "contact",
     name: "Contact",
-    route: "/contact"
+    route: `${BASE_URL}contact`
   }
 ];
 const queryClient = new QueryClient();
@@ -609,6 +610,7 @@ function Layout({ children }) {
     };
     const interSectionObserver = new IntersectionObserver(callback, options);
     interSectionObserver.observe(target);
+    console.log(BASE_URL);
     const cleanUp = () => {
       ctx.revert();
       interSectionObserver.unobserve(target);

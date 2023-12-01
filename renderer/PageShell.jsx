@@ -69,6 +69,8 @@ ScrollTrigger.config({
 
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
+const BASE_URL = import.meta.env.BASE_URL;
+
 const routes = [
   // {
   //   id: "index",
@@ -83,22 +85,22 @@ const routes = [
   {
     id: "work",
     name: "Work",
-    route: "/work",
+    route: `${BASE_URL}work`,
   },
   {
     id: "about",
     name: "About",
-    route: "/about",
+    route: `${BASE_URL}about`,
   },
   {
     id: "careers",
     name: "Careers",
-    route: "/careers",
+    route: `${BASE_URL}careers`,
   },
   {
     id: "contact",
     name: "Contact",
-    route: "/contact",
+    route: `${BASE_URL}contact`,
   },
 ];
 
@@ -271,6 +273,7 @@ function Layout({ children }) {
     const interSectionObserver = new IntersectionObserver(callback, options);
     interSectionObserver.observe(target);
 
+    console.log(BASE_URL);
     // unmount
     const cleanUp = () => {
       ctx.revert();

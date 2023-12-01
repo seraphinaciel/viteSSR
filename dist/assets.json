@@ -19,17 +19,6 @@
       "_chunk-P3E9NFZh.js"
     ]
   },
-  "_chunk-3D560zwQ.js": {
-    "css": [
-      "assets/static/PageTitle.6c3_UYIL.css"
-    ],
-    "file": "assets/chunks/chunk-3D560zwQ.js",
-    "imports": [
-      "_chunk-Cb7lv_Cz.js",
-      "_chunk-Cf0BkQ-u.js",
-      "_chunk-eGf0tu_e.js"
-    ]
-  },
   "_chunk-Cb7lv_Cz.js": {
     "file": "assets/chunks/chunk-Cb7lv_Cz.js"
   },
@@ -37,6 +26,17 @@
     "file": "assets/chunks/chunk-Cf0BkQ-u.js",
     "imports": [
       "_chunk-Cb7lv_Cz.js"
+    ]
+  },
+  "_chunk-EdHRn-FS.js": {
+    "css": [
+      "assets/static/PageTitle.6c3_UYIL.css"
+    ],
+    "file": "assets/chunks/chunk-EdHRn-FS.js",
+    "imports": [
+      "_chunk-Cb7lv_Cz.js",
+      "_chunk-Cf0BkQ-u.js",
+      "_chunk-n8jr1v7z.js"
     ]
   },
   "_chunk-F2zhSQ4x.js": {
@@ -84,8 +84,8 @@
       "_chunk-Cb7lv_Cz.js"
     ]
   },
-  "_chunk-eGf0tu_e.js": {
-    "file": "assets/chunks/chunk-eGf0tu_e.js",
+  "_chunk-n8jr1v7z.js": {
+    "file": "assets/chunks/chunk-n8jr1v7z.js",
     "imports": [
       "_chunk-Cb7lv_Cz.js",
       "_chunk-Cf0BkQ-u.js"
@@ -115,14 +115,14 @@
       "pages/about/index.page.jsx",
       "pages/careers/index.page.jsx",
       "pages/contact/index.page.jsx",
+      "pages/guide/index.page.jsx",
       "pages/index/index.page.jsx",
-      "pages/main/index.page.jsx",
       "pages/work/index.page.jsx",
       "renderer/_error.page.jsx",
       "renderer/_default.page.client.jsx",
       "renderer/_default.page.server.jsx?extractAssets&lang.jsx"
     ],
-    "file": "assets/entries/entry-client-routing.vkrMdkJi.js",
+    "file": "assets/entries/entry-client-routing.mJMrMx2W.js",
     "imports": [
       "_chunk-Vm_p9HR6.js"
     ],
@@ -134,14 +134,14 @@
       "pages/about/index.page.jsx",
       "pages/careers/index.page.jsx",
       "pages/contact/index.page.jsx",
+      "pages/guide/index.page.jsx",
       "pages/index/index.page.jsx",
-      "pages/main/index.page.jsx",
       "pages/work/index.page.jsx",
       "renderer/_error.page.jsx",
       "renderer/_default.page.client.jsx",
       "renderer/_default.page.server.jsx?extractAssets&lang.jsx"
     ],
-    "file": "assets/entries/entry-server-routing.yprhtKfW.js",
+    "file": "assets/entries/entry-server-routing.AU81oUhx.js",
     "imports": [
       "_chunk-Vm_p9HR6.js"
     ],
@@ -152,14 +152,14 @@
     "css": [
       "assets/static/index.k2nciq6t.css"
     ],
-    "file": "assets/entries/pages_about_index.page.F7Zp2OB0.js",
+    "file": "assets/entries/pages_about_index.page.ZPmAdDFB.js",
     "imports": [
       "_chunk-Cb7lv_Cz.js",
       "_chunk-Cf0BkQ-u.js",
-      "_chunk-eGf0tu_e.js",
+      "_chunk-n8jr1v7z.js",
       "_chunk-06_JfC3m.js",
       "_chunk-y0W8RVqL.js",
-      "_chunk-3D560zwQ.js",
+      "_chunk-EdHRn-FS.js",
       "_chunk-uljG1HHv.js",
       "_chunk-P3E9NFZh.js",
       "_chunk-F2zhSQ4x.js"
@@ -172,14 +172,14 @@
     "css": [
       "assets/static/index.LZi1GKsl.css"
     ],
-    "file": "assets/entries/pages_careers_index.page.eUoP25jF.js",
+    "file": "assets/entries/pages_careers_index.page.JZ3An7FC.js",
     "imports": [
       "_chunk-Cb7lv_Cz.js",
       "_chunk-Cf0BkQ-u.js",
       "_chunk-y0W8RVqL.js",
-      "_chunk-eGf0tu_e.js",
+      "_chunk-n8jr1v7z.js",
       "_chunk-P3E9NFZh.js",
-      "_chunk-3D560zwQ.js",
+      "_chunk-EdHRn-FS.js",
       "_chunk-uljG1HHv.js",
       "_chunk-F2zhSQ4x.js"
     ],
@@ -191,12 +191,12 @@
     "css": [
       "assets/static/index.tWV07ot2.css"
     ],
-    "file": "assets/entries/pages_contact_index.page.5236u9oW.js",
+    "file": "assets/entries/pages_contact_index.page.d0pzsxl9.js",
     "imports": [
       "_chunk-Cb7lv_Cz.js",
       "_chunk-ZvqIhud1.js",
-      "_chunk-3D560zwQ.js",
-      "_chunk-eGf0tu_e.js",
+      "_chunk-EdHRn-FS.js",
+      "_chunk-n8jr1v7z.js",
       "_chunk-y0W8RVqL.js",
       "_chunk-Cf0BkQ-u.js"
     ],
@@ -204,34 +204,34 @@
     "isEntry": true,
     "src": "pages/contact/index.page.jsx"
   },
-  "pages/index/index.page.jsx": {
+  "pages/guide/index.page.jsx": {
     "css": [
       "assets/static/index.c_97u1j3.css"
     ],
-    "file": "assets/entries/pages_index_index.page.UTVsTjhF.js",
+    "file": "assets/entries/pages_guide_index.page.bEFf_FjD.js",
     "imports": [
       "_chunk-Cb7lv_Cz.js",
       "_chunk-Cf0BkQ-u.js",
-      "_chunk-eGf0tu_e.js",
+      "_chunk-n8jr1v7z.js",
       "_chunk-y0W8RVqL.js",
       "_chunk-06_JfC3m.js",
       "_chunk-dlblzUxB.js",
-      "_chunk-3D560zwQ.js",
+      "_chunk-EdHRn-FS.js",
       "_chunk-P3E9NFZh.js"
     ],
     "isDynamicEntry": true,
     "isEntry": true,
-    "src": "pages/index/index.page.jsx"
+    "src": "pages/guide/index.page.jsx"
   },
-  "pages/main/index.page.jsx": {
+  "pages/index/index.page.jsx": {
     "css": [
       "assets/static/index.coVA9G0I.css"
     ],
-    "file": "assets/entries/pages_main_index.page.uHklgSB8.js",
+    "file": "assets/entries/pages_index_index.page.Xd4jcVSv.js",
     "imports": [
       "_chunk-Cb7lv_Cz.js",
       "_chunk-HjyYFN9T.js",
-      "_chunk-eGf0tu_e.js",
+      "_chunk-n8jr1v7z.js",
       "_chunk-Cf0BkQ-u.js",
       "_chunk-y0W8RVqL.js",
       "_chunk-dlblzUxB.js",
@@ -240,25 +240,25 @@
     ],
     "isDynamicEntry": true,
     "isEntry": true,
-    "src": "pages/main/index.page.jsx"
+    "src": "pages/index/index.page.jsx"
   },
   "pages/work/index.page.jsx": {
-    "file": "assets/entries/pages_work_index.page.BPT0xYia.js",
+    "file": "assets/entries/pages_work_index.page.qVrWc79b.js",
     "imports": [
       "_chunk-Cb7lv_Cz.js",
       "_chunk-ZvqIhud1.js",
       "_chunk-JOy3SAD5.js",
-      "_chunk-3D560zwQ.js",
+      "_chunk-EdHRn-FS.js",
       "_chunk-P3E9NFZh.js",
       "_chunk-Cf0BkQ-u.js",
-      "_chunk-eGf0tu_e.js"
+      "_chunk-n8jr1v7z.js"
     ],
     "isDynamicEntry": true,
     "isEntry": true,
     "src": "pages/work/index.page.jsx"
   },
   "renderer/_default.page.client.jsx": {
-    "file": "assets/entries/renderer_default.page.client.J-7Nty19.js",
+    "file": "assets/entries/renderer_default.page.client.5F1TbC6a.js",
     "imports": [
       "_chunk-Cb7lv_Cz.js",
       "_chunk-Cf0BkQ-u.js",
@@ -274,9 +274,9 @@
   },
   "renderer/_default.page.server.jsx?extractAssets&lang.jsx": {
     "css": [
-      "assets/static/default.page.server.dUoW9Xa1.css"
+      "assets/static/default.page.server.vr4acrbo.css"
     ],
-    "file": "assets/entries/renderer_default.page.server.extractAssets.ALitk1qj.js",
+    "file": "assets/entries/renderer_default.page.server.extractAssets.xyTtzicv.js",
     "isDynamicEntry": true,
     "isEntry": true,
     "src": "renderer/_default.page.server.jsx?extractAssets&lang.jsx"

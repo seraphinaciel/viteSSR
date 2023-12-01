@@ -1,7 +1,7 @@
 import { jsxs, jsx } from "react/jsx-runtime";
 import PropTypes from "prop-types";
 import { C as CM, a as Title } from "./chunk-DRcwvi6n.js";
-import { W as Word } from "./chunk-ytogB_GN.js";
+import { W as Word } from "./chunk-Wb4zu5JQ.js";
 const title_box = "_title_box_715c6_1";
 const title = "_title_715c6_1";
 const styles = {
