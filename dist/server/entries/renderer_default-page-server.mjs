@@ -449,7 +449,7 @@ ScrollTrigger.config({
     */
 });
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
-const BASE_URL = "/";
+const BASE_URL = "/viteSSR/dist/client/";
 const routes = [
   // {
   //   id: "index",
@@ -635,7 +635,7 @@ PageShell.propTypes = {
 Layout.propTypes = {
   children: childrenPropType
 };
-const logoUrl = "/images/logo.svg";
+const logoUrl = "/viteSSR/dist/client/images/logo.svg";
 const passToClient = ["pageProps", "urlPathname"];
 async function render(pageContext) {
   const { Page, pageProps } = pageContext;
