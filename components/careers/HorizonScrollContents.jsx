@@ -204,12 +204,15 @@ function HorizonScrollContents() {
     <div ref={wrap} className="scroll-wrap | ">
       <div className={CM(styles.container, "scroll-container", "mobile:gap-100")}>
         <section className="mobile:hidden">
-          <Image url="/images/thej-careers-hz-img01" />
+          <Image url="${import.meta.env.BASE_URL}images/thej-careers-hz-img01" />
         </section>
         {/* -- end:section 1 -- */}
 
         <section className="flex flex-col gap-y-60 md:gap-y-110">
-          <Image classes={{ container: "mobile:pr-[--grid-container-margin]" }} url="/images/thej-careers-hz-img02" />
+          <Image
+            classes={{ container: "mobile:pr-[--grid-container-margin]" }}
+            url="${import.meta.env.BASE_URL}images/thej-careers-hz-img02"
+          />
           <ContentsSummary
             className="mobile:px-[--grid-container-margin] md:pl-50"
             title="UX UI Planner"
@@ -220,7 +223,10 @@ function HorizonScrollContents() {
         {/* -- end:section 2 -- */}
 
         <section className="flex flex-col gap-y-60 md:gap-y-110">
-          <Image classes={{ container: "mobile:pl-[--grid-container-margin]" }} url="/images/thej-careers-hz-img03" />
+          <Image
+            classes={{ container: "mobile:pl-[--grid-container-margin]" }}
+            url="${import.meta.env.BASE_URL}images/thej-careers-hz-img03"
+          />
           <ContentsSummary
             className="mobile:px-[--grid-container-margin]"
             title="UX UI Designer"
@@ -231,7 +237,10 @@ function HorizonScrollContents() {
         {/* -- end:section 3 -- */}
 
         <section className="flex flex-col gap-y-60 md:gap-y-110">
-          <Image classes={{ container: "mobile:pr-[--grid-container-margin]" }} url="/images/thej-careers-hz-img04" />
+          <Image
+            classes={{ container: "mobile:pr-[--grid-container-margin]" }}
+            url="${import.meta.env.BASE_URL}images/thej-careers-hz-img04"
+          />
           <ContentsSummary
             className="mobile:px-[--grid-container-margin]"
             title="Front-end Developer"
@@ -249,7 +258,7 @@ function HorizonScrollContents() {
         {/* -- end:section 4 -- */}
 
         <section className="w-full">
-          <Image url="/images/thej-careers-hz-img05" />
+          <Image url="${import.meta.env.BASE_URL}images/thej-careers-hz-img05" />
         </section>
         {/* -- end:section 5 -- */}
 

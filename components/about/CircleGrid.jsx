@@ -114,7 +114,11 @@ export default function CircleBox({ className, children }) {
       <article>
         {contents.map((con, index) => (
           <span key={index} className={` ${con.class}`} id={`span_${index + 1}`}>
-            <img src={`/images/person_${index + 1}.jpg`} alt={con.alt} className="h-full mx-auto" />
+            <img
+              src={`${import.meta.env.BASE_URL}images/person_${index + 1}.jpg`}
+              alt={con.alt}
+              className="h-full mx-auto"
+            />
           </span>
         ))}
       </article>

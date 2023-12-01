@@ -162,9 +162,15 @@ function HorizonScrollContents() {
     return cleanUp;
   }, [md]);
   return /* @__PURE__ */ jsx("div", { ref: wrap, className: "scroll-wrap | ", children: /* @__PURE__ */ jsxs("div", { className: CM(styles$1.container, "scroll-container", "mobile:gap-100"), children: [
-    /* @__PURE__ */ jsx("section", { className: "mobile:hidden", children: /* @__PURE__ */ jsx(Image, { url: "/images/thej-careers-hz-img01" }) }),
+    /* @__PURE__ */ jsx("section", { className: "mobile:hidden", children: /* @__PURE__ */ jsx(Image, { url: "${import.meta.env.BASE_URL}images/thej-careers-hz-img01" }) }),
     /* @__PURE__ */ jsxs("section", { className: "flex flex-col gap-y-60 md:gap-y-110", children: [
-      /* @__PURE__ */ jsx(Image, { classes: { container: "mobile:pr-[--grid-container-margin]" }, url: "/images/thej-careers-hz-img02" }),
+      /* @__PURE__ */ jsx(
+        Image,
+        {
+          classes: { container: "mobile:pr-[--grid-container-margin]" },
+          url: "${import.meta.env.BASE_URL}images/thej-careers-hz-img02"
+        }
+      ),
       /* @__PURE__ */ jsx(
         ContentsSummary,
         {
@@ -176,7 +182,13 @@ function HorizonScrollContents() {
       )
     ] }),
     /* @__PURE__ */ jsxs("section", { className: "flex flex-col gap-y-60 md:gap-y-110", children: [
-      /* @__PURE__ */ jsx(Image, { classes: { container: "mobile:pl-[--grid-container-margin]" }, url: "/images/thej-careers-hz-img03" }),
+      /* @__PURE__ */ jsx(
+        Image,
+        {
+          classes: { container: "mobile:pl-[--grid-container-margin]" },
+          url: "${import.meta.env.BASE_URL}images/thej-careers-hz-img03"
+        }
+      ),
       /* @__PURE__ */ jsx(
         ContentsSummary,
         {
@@ -188,7 +200,13 @@ function HorizonScrollContents() {
       )
     ] }),
     /* @__PURE__ */ jsxs("section", { className: "flex flex-col gap-y-60 md:gap-y-110", children: [
-      /* @__PURE__ */ jsx(Image, { classes: { container: "mobile:pr-[--grid-container-margin]" }, url: "/images/thej-careers-hz-img04" }),
+      /* @__PURE__ */ jsx(
+        Image,
+        {
+          classes: { container: "mobile:pr-[--grid-container-margin]" },
+          url: "${import.meta.env.BASE_URL}images/thej-careers-hz-img04"
+        }
+      ),
       /* @__PURE__ */ jsx(
         ContentsSummary,
         {
@@ -203,7 +221,7 @@ function HorizonScrollContents() {
         }
       )
     ] }),
-    /* @__PURE__ */ jsx("section", { className: "w-full", children: /* @__PURE__ */ jsx(Image, { url: "/images/thej-careers-hz-img05" }) }),
+    /* @__PURE__ */ jsx("section", { className: "w-full", children: /* @__PURE__ */ jsx(Image, { url: "${import.meta.env.BASE_URL}images/thej-careers-hz-img05" }) }),
     /* @__PURE__ */ jsx("section", { children: /* @__PURE__ */ jsxs(Text, { className: "text-heading-1", children: [
       "The different",
       /* @__PURE__ */ jsx("br", {}),

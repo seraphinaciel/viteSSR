@@ -102,7 +102,14 @@ function CircleBox({ className, children }) {
       /* @__PURE__ */ jsx(SvgIcons, { types: "basic", className: "svgIcons1 " }),
       /* @__PURE__ */ jsx(SvgIcons, { types: "big2", color: "white", className: "svgIcons2" })
     ] }),
-    /* @__PURE__ */ jsx("article", { children: contents$1.map((con, index) => /* @__PURE__ */ jsx("span", { className: ` ${con.class}`, id: `span_${index + 1}`, children: /* @__PURE__ */ jsx("img", { src: `/images/person_${index + 1}.jpg`, alt: con.alt, className: "h-full mx-auto" }) }, index)) }),
+    /* @__PURE__ */ jsx("article", { children: contents$1.map((con, index) => /* @__PURE__ */ jsx("span", { className: ` ${con.class}`, id: `span_${index + 1}`, children: /* @__PURE__ */ jsx(
+      "img",
+      {
+        src: `${"/"}images/person_${index + 1}.jpg`,
+        alt: con.alt,
+        className: "h-full mx-auto"
+      }
+    ) }, index)) }),
     /* @__PURE__ */ jsxs("article", { ref: circleRef, className: "", children: [
       children,
       /* @__PURE__ */ jsx("i", { className: "w-full h-screen absolute bg-bg-dark" })
@@ -323,9 +330,9 @@ const SpreadImg = ({ className, children }) => {
   }, [md, mobile]);
   return /* @__PURE__ */ jsx(Fragment, { children: /* @__PURE__ */ jsxs("section", { className, ref: targetRef, children: [
     /* @__PURE__ */ jsx("ol", { children: items.map((item, index) => /* @__PURE__ */ jsx("li", { className: `item_${index + 1}`, children: /* @__PURE__ */ jsxs("picture", { children: [
-      /* @__PURE__ */ jsx("source", { srcSet: `/images/spread_${index + 1}.webp`, type: "image/webp" }),
-      /* @__PURE__ */ jsx("source", { srcSet: `/images/spread_${index + 1}.jpg`, type: "image/jpeg" }),
-      /* @__PURE__ */ jsx("img", { src: `/images/spread_${index + 1}.jpg`, alt: item.alt })
+      /* @__PURE__ */ jsx("source", { srcSet: `${"/"}images/spread_${index + 1}.webp`, type: "image/webp" }),
+      /* @__PURE__ */ jsx("source", { srcSet: `${"/"}images/spread_${index + 1}.jpg`, type: "image/jpeg" }),
+      /* @__PURE__ */ jsx("img", { src: `${"/"}images/spread_${index + 1}.jpg`, alt: item.alt })
     ] }) }, index)) }),
     children
   ] }) });
@@ -441,7 +448,7 @@ function Marquee() {
     }, marquee);
     return () => ctx.revert();
   }, []);
-  return /* @__PURE__ */ jsx("article", { className: "", ref: marquee, children: /* @__PURE__ */ jsx("div", { className: "marquee_wrap ", children: contents.map((con, index) => /* @__PURE__ */ jsx("span", { className: `partner_${index + 1} `, children: /* @__PURE__ */ jsx("img", { src: `/images/partner${index + 1}.webp`, alt: con.alt }) }, index)) }) });
+  return /* @__PURE__ */ jsx("article", { className: "", ref: marquee, children: /* @__PURE__ */ jsx("div", { className: "marquee_wrap ", children: contents.map((con, index) => /* @__PURE__ */ jsx("span", { className: `partner_${index + 1} `, children: /* @__PURE__ */ jsx("img", { src: `${"/"}images/partner${index + 1}.webp`, alt: con.alt }) }, index)) }) });
 }
 const cCircle = "_cCircle_17rxx_1";
 const textBox = "_textBox_17rxx_81";

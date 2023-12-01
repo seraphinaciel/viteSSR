@@ -47,7 +47,7 @@ export default function Marquee() {
       <div className="marquee_wrap ">
         {contents.map((con, index) => (
           <span key={index} className={`partner_${index + 1} `}>
-            <img src={`/images/partner${index + 1}.webp`} alt={con.alt} />
+            <img src={`${import.meta.env.BASE_URL}images/partner${index + 1}.webp`} alt={con.alt} />
           </span>
         ))}
       </div>

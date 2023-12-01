@@ -36,7 +36,7 @@ function Page() {
   return /* @__PURE__ */ jsx("div", { ref: pageRef, className: "contact", children: /* @__PURE__ */ jsxs("div", { className: "page-contents-wrap", children: [
     /* @__PURE__ */ jsx("div", { role: "region", className: CM(styles.page_header), children: /* @__PURE__ */ jsx("div", { children: /* @__PURE__ */ jsx(PageTitle, { title: ["We would love to", " hear from you"] }) }) }),
     /* @__PURE__ */ jsxs("section", { className: CM(styles.map), children: [
-      /* @__PURE__ */ jsx("img", { src: "/images/contact_01.webp", alt: "" }),
+      /* @__PURE__ */ jsx("img", { src: "${import.meta.env.BASE_URL}images/contact_01.webp", alt: "" }),
       /* @__PURE__ */ jsxs("dl", { children: [
         /* @__PURE__ */ jsx("dt", { className: "font-medium mb-40 md:mb-50", children: "Address" }),
         /* @__PURE__ */ jsxs("dd", { className: "mb-30 md:mb-45", children: [

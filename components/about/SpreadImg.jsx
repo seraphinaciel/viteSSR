@@ -163,9 +163,9 @@ const SpreadImg = ({ className, children }) => {
           {items.map((item, index) => (
             <li key={index} className={`item_${index + 1}`}>
               <picture>
-                <source srcSet={`/images/spread_${index + 1}.webp`} type="image/webp" />
-                <source srcSet={`/images/spread_${index + 1}.jpg`} type="image/jpeg" />
-                <img src={`/images/spread_${index + 1}.jpg`} alt={item.alt} />
+                <source srcSet={`${import.meta.env.BASE_URL}images/spread_${index + 1}.webp`} type="image/webp" />
+                <source srcSet={`${import.meta.env.BASE_URL}images/spread_${index + 1}.jpg`} type="image/jpeg" />
+                <img src={`${import.meta.env.BASE_URL}images/spread_${index + 1}.jpg`} alt={item.alt} />
               </picture>
             </li>
           ))}

@@ -37,7 +37,7 @@ function Page() {
         </div>
 
         <section className={CM(styles.map)}>
-          <img src="/images/contact_01.webp" alt="" />
+          <img src="${import.meta.env.BASE_URL}images/contact_01.webp" alt="" />
           <dl>
             <dt className="font-medium mb-40 md:mb-50">Address</dt>
             <dd className="mb-30 md:mb-45">
