@@ -317,4 +317,14 @@ video 등 컴포넌트 추가/수정
 
 ### 8. 7.
 
+
+## 참고 사이트
+- [the j](http://the-jey.co.kr/)
+- [CYLNDR](http://cylndr.co.kr/)
+- [Benjamin Righetti](https://benjaminrighetti.com/)
+- [Motto® | Global Branding Agency | Ideas Worth Rallying Around®](https://wearemotto.com/)
+- [media.monks](https://media.monks.com/)
+- [Vikki B | Folio 23](https://www.vikkibre.com/)
+
+
 vite, react, gsap 세팅
